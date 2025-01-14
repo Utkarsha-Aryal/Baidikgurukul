@@ -3,7 +3,6 @@
 namespace App\Models\BackPanel;
 
 use App\Models\Common;
-use App\Models\User;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,42 +10,36 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
-class Post extends Model
+class Event extends Model
 {
     use HasFactory;
 
-    public function postedBy()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
+
     public static function saveData($post)
     {
         try {
+            // dd($post);
             $dataArray = [
                 'title' => $post['title'],
                 'slug' =>  Str::slug($post['title']) . '-' . time(),
-                'category' => $post['category'],
                 'details' => $post['details'],
                 'event_date' => $post['event_date'],
-                'event_address' => $post['event_address'],
-                'user_id' => Auth::user()->id
+                'order_number' => $post['order_number'],
+                'address' => $post['event_address'],
+                'venue' => $post['event_venue'],
+                'event_time_start' => $post['event_time_start'],
+                'event_time_end' => $post['event_time_end'],
+                'created_by' => Auth::user()->id
             ];
-            if (!empty($post['croppedImg'])) {
 
-                $fileName =  Common::uploadCroppedImage('post', $post['croppedImg']);
+            if (!empty($post['image'])) {
+                $fileName =  Common::uploadFile('event', $post['image']);
                 if (!$fileName) {
                     return false;
                 }
                 $dataArray['image'] = $fileName;
-            } else {
-                if (!empty($post['image'])) {
-                    $fileName =  Common::uploadFile('post', $post['image']);
-                    if (!$fileName) {
-                        return false;
-                    }
-                    $dataArray['image'] = $fileName;
-                }
             }
+
 
             if (!empty($post['feature_images'][0])) {
                 $imageNames = [];
@@ -63,7 +56,7 @@ class Post extends Model
                 } else {
                     // $fetchOldData = Post::select('feature_image')->where('id', $post['id'])->first();//compare
                     // $oldData = json_decode($fetchOldData->documents);//compare
-                    $postData = Post::where('id', $post['id'])->first();
+                    $postData = Event::where('id', $post['id'])->first();
                     $fetchOldData = json_decode($postData->feature_image);
                     if (isset($fetchOldData)) {
                         $dataArray['feature_image'] = json_encode(array_merge($fetchOldData, $imageNames));
@@ -73,17 +66,20 @@ class Post extends Model
                 }
             }
 
-
             $dataArray['created_at'] = Carbon::now();
 
             if (!empty($post['id'])) {
+
+                $dataArray['updated_by'] = Auth::user()->id;
+
+
                 $dataArray['updated_at'] = Carbon::now();
 
-                if (!Post::where('id', $post['id'])->update($dataArray)) {
+                if (!Event::where('id', $post['id'])->update($dataArray)) {
                     throw new Exception("Couldn't update Records", 1);
                 }
             } else {
-                if (!Post::insert($dataArray)) {
+                if (!Event::insert($dataArray)) {
                     throw new Exception("Couldn't Save Records", 1);
                 }
             }
@@ -121,7 +117,7 @@ class Post extends Model
                 $offset = $get["start"];
             }
 
-            $query = Post::with('postedBy')->selectRaw("(SELECT count(*) FROM posts) AS totalrecs, title, id as id, details, image, category,user_id,event_date,event_address, created_at")
+            $query = Event::selectRaw("(SELECT count(*) FROM events WHERE{$cond}) AS totalrecs, title, id as id, details, image, venue,address,event_time_start,event_time_end, order_number,event_date")
                 ->whereRaw($cond);
 
             if ($limit > -1) {
@@ -163,6 +159,51 @@ class Post extends Model
             $postData->feature_image = json_encode($newArray);
             if (!$postData->update()) {
                 throw new Exception("Error updating feature image");
+            }
+            return true;
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
+    public static function deleteFeatureImageEvent($post)
+    {
+        try {
+            $postData = Event::where('id', $post['id'])->first();
+            $jsonArray = json_decode($postData->feature_image);
+            $newArray = array_values(array_diff($jsonArray, [$post['feature_image']]));
+
+            $filepath = storage_path('app/public/event');
+
+            if (file_exists($filepath . '/' . $post['feature_image'])) {
+                unlink($filepath . '/' . $post['feature_image']);
+            }
+
+
+            // Storage::delete('public/user-documents/'.$post['imgValue']);
+
+
+
+            $postData->feature_image = json_encode($newArray);
+            if (!$postData->update()) {
+                throw new Exception("Error updating feature image");
+            }
+            return true;
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
+    //restore 
+    public static function restoreData($post)
+    {
+        try {
+            $updateArray = [
+                'status' => 'Y',
+                'updated_at' => Carbon::now(),
+            ];
+            if (!Event::where(['id' => $post['id']])->update($updateArray)) {
+                throw new Exception("Couldn't Restore Data. Please try again", 1);
             }
             return true;
         } catch (Exception $e) {
