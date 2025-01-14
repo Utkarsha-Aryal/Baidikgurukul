@@ -13,16 +13,18 @@ return new class extends Migration
     {
         Schema::create('team_members', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('team_category_id')->constrained('team_categories', 'id');
             $table->string('name')->nullable();
             $table->string('photo')->nullable();
             $table->integer('order')->nullable();
             $table->string('slug')->nullable();
             $table->string('designation')->nullable();
+            $table->text('details')->nullable();
             $table->string('facebook_url')->nullable();
             $table->string('instagram_url')->nullable();
             $table->string('twitter_url')->nullable();
-            $table->enum('status', ['Y', 'N'])->default('Y');
+            $table->enum('status', ['Y','R', 'N'])->default('Y');
+            $table->integer('created_by');
+            $table->integer('updated_by')->nullable();
             $table->timestamps();
         });
     }

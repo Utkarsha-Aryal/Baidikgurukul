@@ -25,50 +25,32 @@
 <div class="modal-body">
     <form id="form" method="POST" action="{{ route('admin.member.save') }}" enctype="multipart/form-data">
         <div class="row">
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                <input type="hidden" name="id" id="id" value="{{ @$id }}">
-                <label for="category" class="form-label">Member Type <span class="required-field">*</span></label>
-                <select class="form-select" aria-label="Default select example" id="category" name="category">
-                    <option value="" selected>Select Category</option>
-                    @foreach ($category as $item)
-                        <option value="{{ $item->id }}"
-                            {{ !empty($category_id) && $category_id == $item->id ? 'selected' : '' }}>
-                            {{ $item->team_category }}
-                        </option>
-                    @endforeach
-
-                </select>
-            </div>
+            <input type="hidden" name="id" id="id" value="{{$id??''}}"/>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                 <label for="name" class="form-label">Name <span class="required-field">*</span></label>
                 <input type="text" class="form-control" id="name" name="name" placeholder="Enter name..."
                     value="{{ @$name }}">
             </div>
-
-
-        </div>
-        <div class="row mt-3 ">
-
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                <label for="order" class="form-label">Order <span class="required-field">*</span></label>
-                <input type="number" class="form-control" id="order" name="order" placeholder="Enter Order"
-                    value="{{ @$order }}">
-            </div>
-
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                 <label for="designation" class="form-label">Designation <span class="required-field">*</span></label>
                 <input type="text" class="form-control" id="designation" name="designation"
                     placeholder="Enter Designation..." value="{{ @$designation }}">
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                <label for="order" class="form-label">Order <span class="required-field">*</span></label>
+                <input type="number" class="form-control" id="order" name="order" placeholder="Enter Order"
+                    value="{{ @$order }}">
+            </div>
+
+        </div>
+        <div class="row mt-3 ">
+          
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                 <label for="facebook_url" class="form-label">Facebook Link</label>
                 <input type="text" class="form-control" id="facebook_url" name="facebook_url"
                     placeholder="Enter Facebook Link..." value="{{ @$facebook_url }}">
             </div>
 
-
-        </div>
-        <div class="row mt-3">
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                 <label for="instagram_url" class="form-label">Instagram link</label>
                 <input type="text" class="form-control" id="instagram_url" name="instagram_url"
@@ -80,10 +62,20 @@
                 <input type="text" class="form-control" id="twitter_url" name="twitter_url"
                     placeholder="Enter Twitter link..." value="{{ @$twitter_url }}">
             </div>
+        </div>
+
+        <div class="row mt-2">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                <label for="details" class="form-label">Details </label>
+                <!-- Quill Editor Container -->
+                <div id="details" name="details">{!! @$details !!}</div>
+                <input type="hidden" name="details" id="quill_content">
+            </div>
+        </div>
 
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mt-2">
                 <div class="row">
-                    <label class="form-label">Photo <span class="required-field">*</span></label>
+                    <label class="form-label">Photo </label>
                     <div class="relative" id="edit-image">
                         <div class="profile-user">
                             <label for="photo" class="fe fe-camera profile-edit text-primary absolute"></label>
@@ -113,7 +105,7 @@
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-    <button type="button" class="btn btn-primary saveData"><i class="fa fa-add"></i>
+    <button type="button" class="btn btn-primary saveData"><i class="fa fa-save"></i>
         @if (empty($id))
             Save
         @else
@@ -123,7 +115,9 @@
 </div>
 <script>
     $(document).ready(function() {
-
+        var quill = new Quill('#details', {
+            theme: 'snow'
+        });
         $('#photo').on('change', function(event) {
             const selectedFile = event.target.files[0];
 
@@ -135,16 +129,9 @@
 
         $('#form').validate({
             rules: {
-                category: "required",
                 name: "required",
                 order: "required",
                 designation: "required",
-                photo: {
-                    required: function() {
-                        var id = $('#id').val();
-                        return id === '';
-                    }
-                },
             },
             message: {
                 category: {
@@ -159,9 +146,6 @@
                 designation: {
                     required: "This field is required."
                 },
-                photo: {
-                    required: "This field is required."
-                },
             },
             highlight: function(element) {
                 $(element).addClass('border-danger')
@@ -174,6 +158,9 @@
         // Save bod
         $('.saveData').off('click');
         $('.saveData').on('click', function(e) {
+
+            var details = quill.root.innerHTML;
+            $('#form').find('#quill_content').val(details);
 
             if ($('#form').valid()) {
                 showLoader();

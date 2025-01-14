@@ -7,7 +7,6 @@ use App\Http\Controllers\BackPanel\GalleryController;
 use App\Http\Controllers\BackPanel\GalleryImageController;
 use App\Http\Controllers\BackPanel\GalleryVideoController;
 use App\Http\Controllers\BackPanel\HomeController;
-use App\Http\Controllers\BackPanel\TeamCategoryController;
 use App\Http\Controllers\BackPanel\MessageFromController;
 use App\Http\Controllers\BackPanel\OtpController;
 use App\Http\Controllers\BackPanel\PostController;
@@ -166,15 +165,6 @@ Route::group(['middleware' => 'admin'], function () {
             });
         });
         /* Gallery-end */
-
-        /*Member tytpe-start */
-        Route::group(['prefix' => 'teamcategory'], function () {
-            Route::get('/', [TeamCategoryController::class, 'index'])->name('admin.teamcategory');
-            Route::post('/save', [TeamCategoryController::class, 'save'])->name('admin.teamcategory.save');
-            Route::post('/list', [TeamCategoryController::class, 'list'])->name('admin.teamcategory.list');
-            Route::post('/delete', [TeamCategoryController::class, 'delete'])->name('admin.teamcategory.delete');
-        });
-        /*Member tytpe-end */
 
         /* Our Team member-start*/
         Route::group(['prefix' => 'member'], function () {
