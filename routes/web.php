@@ -16,6 +16,9 @@ use App\Http\Controllers\BackPanel\SiteSettingController;
 use App\Http\Controllers\BackPanel\TeamMemberController;
 use App\Http\Controllers\BackPanel\TestimonialController;
 use App\Http\Controllers\BackPanel\TimelineController;
+use App\Http\Controllers\BackPanel\EventController;
+use App\Http\Controllers\BackPanel\HistoryController;
+use App\Http\Controllers\BackPanel\FAQController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -183,6 +186,41 @@ Route::group(['middleware' => 'admin'], function () {
         });
         /* Our team member-end*/
 
+
+        /*Event start here*/
+        Route::group(['prefix' => 'event'], function () {
+            Route::get('/', [EventController::class, 'index'])->name('admin.event');
+            Route::post('/save', [EventController::class, 'save'])->name('admin.event.save');
+            Route::any('/form', [EventController::class, 'form'])->name('admin.event.form');
+            Route::post('/list', [EventController::class, 'list'])->name('admin.event.list');
+            Route::post('/delete', [EventController::class, 'delete'])->name('admin.event.delete');
+            Route::post('/deletefeatureimage', [EventController::class, 'deleteFeatureImage'])->name('admin.event.deletefeatureimage');
+            Route::post('/restore', [EventController::class, 'restore'])->name('admin.event.restore');
+        });
+        /*Event end*/
+
+        //history start here
+        Route::group(['prefix' => 'history'], function () {
+            Route::get('/', [HistoryController::class, 'index'])->name('admin.history');
+            Route::post('/save', [HistoryController::class, 'save'])->name('admin.history.save');
+            Route::any('/form', [HistoryController::class, 'form'])->name('admin.history.form');
+            Route::post('/list', [HistoryController::class, 'list'])->name('admin.history.list');
+            Route::post('/delete', [HistoryController::class, 'delete'])->name('admin.history.delete');
+            Route::post('/deletefeatureimage', [HistoryController::class, 'deleteFeatureImage'])->name('admin.history.deletefeatureimage');
+            Route::post('/restore', [HistoryController::class, 'restore'])->name('admin.history.restore');
+        });
+        //history end here
+
+        //FAQ start here
+        Route::group(['prefix' => 'faq'], function () {
+            Route::get('/', [FAQController::class, 'index'])->name('admin.faq');
+            Route::post('/save', [FAQController::class, 'save'])->name('admin.faq.save');
+            Route::any('/form', [FAQController::class, 'form'])->name('admin.faq.form');
+            Route::post('/list', [FAQController::class, 'list'])->name('admin.faq.list');
+            Route::post('/delete', [FAQController::class, 'delete'])->name('admin.faq.delete');
+            Route::post('/restore', [FAQController::class, 'restore'])->name('admin.faq.restore');
+        });
+        //FAQ end here
     });
 });
 
