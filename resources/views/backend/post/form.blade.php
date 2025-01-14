@@ -71,12 +71,12 @@
                     </option>
                     <option value="blog" {{ !empty($category) && $category === 'blog' ? 'selected' : '' }}>Blog
                     </option>
-                    <option value="event" {{ !empty($category) && $category === 'event' ? 'selected' : '' }}>Event
-                    </option>
+                    {{-- <option value="event" {{ !empty($category) && $category === 'event' ? 'selected' : '' }}>Event
+                    </option> --}}
                     <option value="news" {{ !empty($category) && $category === 'news' ? 'selected' : '' }}>News
                     </option>
-                    <option value="notice" {{ !empty($category) && $category === 'notice' ? 'selected' : '' }}>Notice
-                    </option>
+                    {{-- <option value="notice" {{ !empty($category) && $category === 'notice' ? 'selected' : '' }}>Notice
+                    </option> --}}
                 </select>
             </div>
             <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
