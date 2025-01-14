@@ -43,9 +43,13 @@ About Us
     <div class="card-body">
         <form action="{{ route('admin.aboutus.update') }}" id="about-us-form" enctype="multipart/form-data" method="POST">
             <div class="row">
+                <div class="form-group col-6">
+                    <label for="inputEmail6">Introduction Title <span class="required-field">*</span></label>
+                    <input type="text" class="form-control mt-1" id="aboutus_title" name="aboutus_title" value="{{ isset($aboutusData['aboutus_title']) ? $aboutusData['aboutus_title'] : old('aboutus_title') }}" placeholder="Enter about us title">
+                </div>
                 <div class="form-group col-10">
                     <label for="introduction">Introduction of organization <span class="required-field">*</span></label>
-                    <textarea class="form-control mt-2" id="introduction" name="introduction" rows="10" placeholder="Enter introduction...">{{ $aboutusData['introduction'] }}</textarea>
+                    <textarea class="form-control mt-2" id="introduction" name="introduction" rows="9" placeholder="Enter introduction...">{{ $aboutusData['introduction'] }}</textarea>
                 </div>
 
                 <div class="form-group col-2">
@@ -78,118 +82,23 @@ About Us
                 </div>
             </div>
             <div class="row">
-                <div class="form-group col-10">
-                    <label for="mission">Mission and Vision <span class="required-field">*</span></label>
-                    <textarea class="form-control mt-2" id="mission" name="mission" rows="10" placeholder="Enter mission...">{{ @$aboutusData['mission'] }}</textarea>
-                </div>
-
-                <div class="form-group col-2">
-                    <div class="row">
-                        <div class="mt-2">
-                            <label for="img_mission">Mission image</label>
-                        </div>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="relative" id="edit-image">
-                            <div class="profile-user">
-                                <label for="edit_img_mission" class="fe fe-camera profile-edit text-primary absolute"></label>
-                            </div>
-                            <input type="file" class="edit_img_mission" id="edit_img_mission" style="position: absolute; clip: rect(0, 0, 0, 0); pointer-events: none;" accept="image/*" name="img_mission">
-
-                            <div class="img-rectangle">
-                                @if (!empty($aboutusData['img_mission']))
-                                <img alt="" src={{ asset('/storage/aboutus') . '/' . @$aboutusData['img_mission'] }} alt="img" id="img_mission">
-                                @else
-                                <img src="{{ asset('/no-image.jpg') }}" alt="Default Image" id="img_mission">
-                                @endif
-
-                            </div>
-                        </div>
-                        <div class="row mt-2 ms-1">
-                            <p class="p-0 m-0">Accepted Format :<span class="text-muted"> jpg/jpeg/png</span></p>
-                            <p class="p-0 m-0">File size :<span class="text-muted"> (300x475) in pixels</span></p>
-                        </div>
-                    </div>
+                <div class="form-group col-12">
+                    <label for="mission">Mission </label>
+                    <textarea class="form-control mt-2" id="mission" name="mission" rows="4" placeholder="Enter mission...">{{ @$aboutusData['mission'] }}</textarea>
                 </div>
             </div>
-
             <div class="row">
-                <div class="row">
-                    <label for="mission">Message From Founder <span class="required-field">*</span></label>
-                    <div class="form-group col-6">
-                        <label for="founder_name">Name of Founder <span class="required-field">*</span></label>
-                        <input type="text" class="form-control" name="founder_name" id="founder_name" placeholder="Name of Founder..." value="{{ @$aboutusData['founder_name'] }}">
-                    </div>
-                    <div class="form-group col-6">
-                        <label for="message_title">Founder's Message Title <span class="required-field">*</span></label>
-                        <input type="text" class="form-control" name="message_title" id="message_title" placeholder="Founder's message title..." value="{{ @$aboutusData['message_title']}}">
-                    </div>
-                </div>
-
-                <div class="form-group col-10">
-                    <label for="message_from_founder">Message Description <span class="required-field">*</span></label>
-                    <textarea class="form-control mt-2" id="message_from_founder" name="message_from_founder" rows="10" placeholder="Enter the message of founder...">{{ @$aboutusData['message_from_founder'] }}</textarea>
-                </div>
-
-                <div class="form-group col-2">
-                    <div class="row mt-2">
-                        <div class="row">
-                            <div class="mt-2">
-                                <label for="img_founder">Founder image</label>
-                            </div>
-                        </div>
-
-                        <div class="relative" id="edit-image">
-                            <div class="profile-user">
-                                <label for="edit_img_founder" class="fe fe-camera profile-edit text-primary absolute"></label>
-                            </div>
-                            <input type="file" class="edit_img_founder" id="edit_img_founder" style="position: absolute; clip: rect(0, 0, 0, 0); pointer-events: none;" accept="image/*" name="img_founder">
-
-                            <div class="img-rectangle">
-                                @if (!empty($aboutusData['img_founder']))
-                                <img alt="" src={{ asset('/storage/aboutus') . '/' . @$aboutusData['img_founder'] }} alt="img" id="img_founder">
-                                @else
-                                <img src="{{ asset('/no-image.jpg') }}" alt="Default Image" id="img_founder">
-                                @endif
-
-                            </div>
-                        </div>
-                        <div class="row mt-2 ms-1">
-                            <p class="p-0 m-0">Accepted Format :<span class="text-muted"> jpg/jpeg/png</span></p>
-                            <p class="p-0 m-0">File size :<span class="text-muted"> (300x475) in pixels</span></p>
-                        </div>
-                    </div>
+                <div class="form-group col-12">
+                    <label for="vision">Vision </label>
+                    <textarea class="form-control mt-2" id="vision" name="vision" rows="4" placeholder="Enter vision...">{{ @$aboutusData['vision'] }}</textarea>
                 </div>
             </div>
-
             <div class="row">
-                <div class="form-group col-3">
-                    <label for="student_each_year">Total Students in (K or M)</label>
-                    <input type="text" class="form-control mt-1" id="student_each_year" name="student_each_year" value="{{ $aboutusData['student_each_year'] }}" placeholder="Enter total numbers of student eg 1K / 500">
+                <div class="form-group col-12">
+                    <label for="goals">Goals </label>
+                    <textarea class="form-control mt-2" id="goals" name="goals" rows="4" placeholder="Enter goals...">{{ @$aboutusData['goals'] }}</textarea>
                 </div>
-                <div class="form-group col-3">
-                    <label for="professional_teacher">Professional Teacher</label>
-                    <input type="number" class="form-control mt-1" id="professional_teacher" name="professional_teacher" value="{{ $aboutusData['professional_teacher'] }}" placeholder="Enter number of professional teacher eg 200">
-                </div>
-                <div class="form-group col-3">
-                    <label for="awards">Awards/Wining</label>
-                    <input type="number" class="form-control mt-1" id="awards" name="awards" value="{{ $aboutusData['awards'] }}" placeholder="Enter Awards/Wining eg 15">
-                </div>
-                <div class="form-group col-3">
-                    <label for="inputEmail3">Year of experiences </label>
-                    <input type="number" class="form-control mt-1" id="year_of_experiences" name="year_of_experiences" value="{{ $aboutusData['year_of_experiences'] }}" placeholder="Enter year of experiences eg 10">
-                </div>
-
             </div>
-            <!-- <div class="row ms-0">
-                <div class="form-check col-xl-6 col-lg-6 col-md-6 col-sm-6">
-                    <input class="form-check-input" type="checkbox" value="Y" id="admission_open" name="admission_open" {{ @$aboutusData['admission_open'] === 'Y' ? 'checked' : '' }}>
-                    <label class="form-check-label" for="admission_open">
-                        Admission Open
-                    </label>
-                </div>
-            </div> -->
-
             <div class="card-footer d-flex justify-content-end mt-3">
                 <button type="button" class="btn btn-primary" id="save_about"><i class="fa fa-save"></i>
                     Update</button>

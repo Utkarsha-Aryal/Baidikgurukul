@@ -37,14 +37,6 @@ class AboutUsController extends Controller
                 'mission' => 'required|min:5',
                 'img_introduction' => 'nullable|mimes:jpg,jpeg,png|max:2048',
                 'img_mission' => 'nullable|mimes:jpg,jpeg,png|max:2048',
-                'founder_name' => 'required',
-                'message_title' => 'required |min:5 | max:255',
-                'message_from_founder' => 'required',
-                'img_founder' => 'nullable|mimes:jpg,jpeg,png|max:2048',
-                'student_each_year' => 'nullable|max:10',
-                'professional_teacher' => 'nullable|max:10',
-                'awards' => 'nullable|max:10',
-                'year_of_experiences' => 'nullable|max:10',
             ];
             $message = [
                 'introduction.required' => 'Please enter introduction',
@@ -61,7 +53,7 @@ class AboutUsController extends Controller
             $message = 'Record saved successfully';
 
             DB::beginTransaction();
-
+            $post['updated_by']=Auth::user()->id;
             if (!AboutUs::updatedata($post))
                 throw new Exception("Couldn't Save Records", 1);
 

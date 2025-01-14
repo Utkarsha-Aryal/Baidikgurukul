@@ -62,11 +62,11 @@ Site Setting
             <div class="row">
                 <div class="form-group col-4">
                     <label for="homepage_title">Home Page Title</label>
-                    <textarea class="form-control mt-1" id="homepage_title" name="homepage_title" rows="2" placeholder="Eg:- Education is passport to a successful career Learn Anything">{{ $siteSettings['homepage_title'] }}</textarea>
+                    <textarea class="form-control mt-1" id="homepage_title" name="homepage_title" rows="2" placeholder="Eg:- Welcome To Chochangay Samaj Nepal">{{ $siteSettings['homepage_title'] }}</textarea>
                 </div>
                 <div class="form-group col-8">
                     <label for="hmaepage_description">HomePage Short Description</label>
-                    <textarea class="form-control mt-1" id="hmaepage_description" name="hmaepage_description" rows="2" placeholder="Enter google map link">{{ $siteSettings['hmaepage_description'] }}</textarea>
+                    <textarea class="form-control mt-1" id="hmaepage_description" name="hmaepage_description" rows="2" placeholder="Eg Dream Of Every Chochangay Samaj Community">{{ $siteSettings['hmaepage_description'] }}</textarea>
                 </div>
             </div>
 
@@ -79,7 +79,7 @@ Site Setting
                         </div>
                         <div class="form-group col-6">
                             <div class="main-profile-overview">
-                                <div class="main-img-user profile-user user-profile">
+                                <div class="img-rectangle">
                                     <label for="input_homepage_banner" class="fe fe-camera profile-edit text-primary"></label>
                                     <input type="file" id="input_homepage_banner" class="input_homepage_banner" style="position: absolute; clip: rect(0, 0, 0, 0); pointer-events: none;" accept="image/*" name="img_banner_homepage">
                                     <input type="hidden" class="form-control croppedImg" id="croppedImg" name="croppedImg">

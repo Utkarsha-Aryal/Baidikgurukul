@@ -16,16 +16,11 @@ class AboutUs extends Model
     {
         try {
             $updateArray = [
+                'aboutus_title' => $post['aboutus_title'],
                 'introduction' => $post['introduction'],
                 'mission' => $post['mission'],
-                'student_each_year' => $post['student_each_year'],
-                'professional_teacher' => $post['professional_teacher'],
-                'awards' => $post['awards'],
-                'year_of_experiences' => $post['year_of_experiences'],
-                'founder_name' => $post['founder_name'],
-                'message_title' => $post['message_title'],
-                'message_from_founder' => $post['message_from_founder'],
-                'admission_open' => !empty($post['admission_open']) ? $post['admission_open'] : 'N',
+                'vision' => $post['vision'],
+                'goals' => $post['goals'],
             ];
 
             if (!empty($post['croppedImgIntroduction'])) {

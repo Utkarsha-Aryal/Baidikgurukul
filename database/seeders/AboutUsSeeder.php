@@ -13,19 +13,14 @@ class AboutUsSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('about_us')->insert([
-            'introduction' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+        DB::table('about_us')->insert(['introduction' => "About us.",
+            'aboutus_title' => 'About us',
+            'introduction' => 'Introduction',
             'img_introduction' => '',
-            'mission' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-            'img_mission' => '',
-            'student_each_year' => '',
-            'professional_teacher' => '',
-            'awards' => '',
-            'year_of_experiences' => '',
-            'founder_name' => '',
-            'message_title' => '',
-            'img_founder' => '',
-            'message_from_founder' => '',
+            'img_introduction' => '',
+            'mission' => "Mission.",
+            'vision' => "vision.",
+            'goals' => "goals.",
         ]);
     }
 }

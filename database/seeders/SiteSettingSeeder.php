@@ -13,8 +13,8 @@ class SiteSettingSeeder extends Seeder
     public function run(): void
     {
         DB::table('site_settings')->insert([
-            'name' => 'Smart School',
-            'email' => 'abc@gmail.com',
+            'name' => 'Chochangee Samaj Nepal',
+            'email' => 'chochangeesamaj@gmail.com',
             'phone_number' => '9800000000',
             'address' => 'kathmandu',
             'link_facebook' => null,
@@ -23,8 +23,8 @@ class SiteSettingSeeder extends Seeder
             'link_map' => null,
             'img_logo' => null,
             'img_favicon' => null,
-            'homepage_title' => null,
-            'hmaepage_description' => null,
+            'homepage_title' => 'Welcome To Chochangay Samaj Nepal',
+            'hmaepage_description' => 'Dream Of Every Chochangay Samaj Community',
             'img_banner_homepage' => null
         ]);
     }
