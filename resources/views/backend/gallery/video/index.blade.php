@@ -1,0 +1,178 @@
+<style>
+    .buttonItems {
+        display: flex;
+        justify-content: flex-end;
+    }
+</style>
+<div class="modal-header">
+    <h1 class="modal-title fs-5" id="staticBackdropLabel">Videos - {{ @$title }}</h1>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+    <form id="videoForm" method="POST" action="{{ route('admin.gallery.video.save') }}" enctype="multipart/form-data">
+        <div class="row d-flex align-items-end">
+            <div class="col-md-9">
+                <input type="hidden" name="gallery_id" id="gallery_id" value="{{ @$id }}">
+                <input type="hidden" name="gallery_video_id" id="edit_id" value="">
+                <label for="video" class="form-label">Video URL <span class="required-field">*</span></label>
+                <input type="text" class="form-control" name="video" id="video" value="" />
+            </div>
+
+            {{-- <div class="col-md-3 video-url">
+                <!-- Video goes here -->
+            </div> --}}
+            <div class="col-md-3">
+                <button class="btn btn-primary" id="saveVideo"><i class="fas fa-save"></i> Save</button>
+            </div>
+        </div>
+    </form>
+    <div class="row mt-4">
+        <div class="table-responsive">
+            <div id="datatable-basic_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 mb-3">
+                        <div class="dataTables_length" id="datatable-basic_length">
+                            <table id="videoTable"
+                                class="table table-bordered text-nowrap w-100 dataTable no-footer mt-3"
+                                aria-describedby="datatable-basic_info">
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Video</th>
+                                        <th>Action</th>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+</div>
+
+
+<script>
+    $(document).on('click', '.editVideo', function(e) {
+        e.preventDefault();
+        var video = $(this).data('video');
+        var videoUrl = $(this).data('videourl');
+        var editId = $(this).data('id');
+        $('#video').val(video);
+        $('#edit_id').val(editId);
+        $('.video-url').html(videoUrl);
+    });
+
+    // Save Video gallery
+    $('#saveVideo').on('click', function(e) {
+        e.preventDefault();
+        showLoader();
+        $('#videoForm').ajaxSubmit(function(response) {
+            var rep = JSON.parse(response);
+            if (rep) {
+                hideLoader();
+                showNotification(rep.message, rep.type);
+                if (rep.type === 'success') {
+                    videoTable.draw();
+                    $('#videoForm')[0].reset();
+                    $('#gallery_video_id').val('');
+                    $('.video-url').html('');
+                    $('.edit-image').html(
+                        '<img src="{{ asset('/frontpanel/no-image.jpg') }}" alt="Thumbnail Image"width="100px" class="_image" id="">'
+                    );
+                }
+            } else {
+                hideLoader();
+            }
+        });
+    });
+
+    // Delete event video
+    $(document).on('click', '.deleteVideo', function(e) {
+        e.preventDefault();
+        Swal.fire({
+            title: "Are you sure you want to delete ?",
+            text: "You won't be able to revert it!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DB1F48",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                var id = $(this).data('id');
+                var data = {
+                    id: id,
+                };
+                var url = '{{ route("admin.gallery.video.delete") }}';
+                $.post(url, data, function(response) {
+                    var rep = JSON.parse(response);
+                    if (rep) {
+                        showNotification(rep.message, rep.type)
+
+                        if (rep.type === 'success') {
+                            $('#imageModel').modal('show');
+                            videoTable.draw();
+                            $('#videoForm')[0].reset();
+                            $('#gallery_video_id').val('');
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>
+
+
+<script>
+    var videoTable;
+    var gallery_id = '{{ @$id }}';
+    $(document).ready(function() {
+
+        videoTable = $('#videoTable').DataTable({
+            "sPaginationType": "full_numbers",
+            "bSearchable": false,
+            "lengthMenu": [
+                [5, 10, 15, 20, 25, -1],
+                [5, 10, 15, 20, 25, "All"]
+            ],
+            'iDisplayLength': 15,
+            "sDom": 'ltipr',
+            "bAutoWidth": false,
+            "aaSorting": [
+                [0, 'desc']
+            ],
+            "bSort": false,
+            "bProcessing": true,
+            "bServerSide": true,
+            "oLanguage": {
+                "sEmptyTable": "<p class='no_data_message text-center'>No data available.</p>"
+            },
+            "aoColumnDefs": [{
+                "bSortable": false,
+                "aTargets": [1]
+            }],
+            "aoColumns": [{
+                    "data": "sno"
+                },
+                {
+                    "data": "video"
+                },
+                {
+                    "data": "action"
+                },
+            ],
+            "ajax": {
+                "url": '{{ route("admin.gallery.video.list") }}',
+                "type": "POST",
+                "data": {
+                    gallery_id: gallery_id
+                }
+            }
+        });
+    });
+</script>
