@@ -103,7 +103,6 @@
                                                     <th>S.No</th>
                                                     <th>Name</th>
                                                     <th>Member Order</th>
-                                                    <th>Member Type</th>
                                                     <th>Designation</th>
                                                     <th>Facebook</th>
                                                     <th>Instagram</th>
@@ -254,9 +253,6 @@
                     },
                     {
                         "data": "order"
-                    },
-                    {
-                        "data": "category"
                     },
                     {
                         "data": "designation"

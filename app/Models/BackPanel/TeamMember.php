@@ -12,12 +12,6 @@ use Exception;
 class TeamMember extends Model
 {
     use HasFactory;
-
-    public function teamCategory()
-    {
-        return $this->belongsTo(TeamCategory::class,);
-    }
-
     // save
     public static function saveData($post)
     {
@@ -25,9 +19,9 @@ class TeamMember extends Model
             $dataArray = [
                 'name' => $post['name'],
                 'slug' =>  Str::slug($post['name']) . '-' . time(),
-                'team_category_id' => $post['category'],
                 'order' => $post['order'],
                 'designation' => $post['designation'],
+                'details' => $post['details'],
                 'facebook_url' => $post['facebook_url'],
                 'instagram_url' => $post['instagram_url'],
                 'twitter_url' => $post['twitter_url'],
@@ -54,11 +48,13 @@ class TeamMember extends Model
 
             if (!empty($post['id'])) {
                 $dataArray['updated_at'] = Carbon::now();
+                $dataArray['updated_by'] = $post['created_by'];
                 if (!TeamMember::where('id', $post['id'])->update($dataArray)) {
                     throw new Exception("Couldn't update Records", 1);
                 }
             } else {
                 $dataArray['created_at'] = Carbon::now();
+                $dataArray['created_by'] = $post['created_by'];
                 if (!TeamMember::insert($dataArray)) {
                     throw new Exception("Couldn't Save Records", 1);
                 }
@@ -103,16 +99,7 @@ class TeamMember extends Model
                 $offset = $get["start"];
             }
 
-            // $query = TeamMember::selectRaw("count(*) OVER() AS totalrecs, name,`order`,id as id, designation,facebook_url,instagram_url,linkedin_url,twitter_url,short_bio,phone_number,photo")
-            //     ->whereRaw($cond);
-
-            // $query = TeamMember::with('teamCategory')->where('status', 'Y')->orderBy('id', 'DESC')->limit(2)->get();
-          
-            // references
-            // $query = GalleryVideo::selectRaw("(SELECT COUNT(*) FROM gallery_videos WHERE status = 'Y') AS totalrecs, id as gallery_video_id, video_url")->where(['gallery_id' => $get['gallery_id'], 'status' => 'Y']);
-
-            $query = TeamMember::with('teamCategory')
-                ->whereRaw($cond);
+            $query = TeamMember::whereRaw($cond);
 
             if ($limit > -1) {
                 $result = $query->orderBy('order', 'asc')->offset($offset)->limit($limit)->get();

@@ -58,27 +58,14 @@
                     </a>
                 </li>
                 <li class="slide__category"><span class="category-name">Main Contents</span></li>
-                <li class="slide has-sub" id="mainMenu">
-                    <a href="javascript:void(0);" class="side-menu__item">
+                <li class="slide">
+                    <a href="{{ route('admin.member') }}" class="side-menu__item">
                         <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
                             <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5" />
                         </svg>
                         <span class="side-menu__label">Our Team</span>
-                        <i class="fe fe-chevron-right side-menu__angle"></i>
                     </a>
-                    <ul class="slide-menu child1">
-                        <li class="slide side-menu__label1">
-                            <a href="javascript:void(0);">Our Team</a>
-                        </li>
-                        <li class="slide" id="childMenu">
-                            <a href="{{ route('admin.teamcategory') }}" class="side-menu__item">Category</a>
-                        </li>
-                        <li class="slide">
-                            <a href="{{ route('admin.member') }}" class="side-menu__item">Team</a>
-                        </li>
-                    </ul>
                 </li>
-
                 <li class="slide">
                     <a href="{{ route('admin.message') }}" class="side-menu__item">
                         <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" width="16" height="16" viewBox="0 0 24 24">

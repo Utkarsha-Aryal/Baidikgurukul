@@ -259,7 +259,7 @@ class Common extends Model
                     throw new Exception("Couldn't Delete Data. Please try again", 1);
                 }
             } else {
-                if (!$class::where(['id' => $post['id']])->update(['status' => 'N', 'updated_at' => Carbon::now()])) {
+                if (!$class::where(['id' => $post['id']])->update(['status' => 'R', 'updated_at' => Carbon::now()])) {
                     throw new Exception("Couldn't Delete Data. Please try again", 1);
                 }
             }
@@ -270,16 +270,16 @@ class Common extends Model
     }
 
     // Delete data without image
-    // public static function deleteData($post, $class)
-    // {
-    //     try {
+    public static function deleteData($post, $class)
+    {
+        try {
 
-    //         if (!$class::where(['id' => $post['id']])->update(['status' => 'N'])) {
-    //             throw new Exception("Couldn't Delete Data. Please try again", 1);
-    //         }
-    //         return true;
-    //     } catch (Exception $e) {
-    //         throw $e;
-    //     }
-    // }
+            if (!$class::where(['id' => $post['id']])->update(['status' => 'N'])) {
+                throw new Exception("Couldn't Delete Data. Please try again", 1);
+            }
+            return true;
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
 }

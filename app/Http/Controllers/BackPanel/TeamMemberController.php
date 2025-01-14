@@ -3,13 +3,11 @@
 namespace App\Http\Controllers\BackPanel;
 
 use App\Http\Controllers\Controller;
-use App\Models\BackPanel\TeamCategory;
 use App\Models\BackPanel\TeamMember;
 use App\Models\Common;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use Exception;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 
@@ -36,25 +34,18 @@ class TeamMemberController extends Controller
     {
         try {
             $rules = [
-                'category' => 'required',
                 'name' => 'required|max:255',
                 'order' => 'required|max:255',
-                'photo' => 'nullable|file|mimes:jpg,jpeg,png'
+                'photo' => 'nullable|file|mimes:jpg,jpeg,png',
+                'designation' => 'required|max:255',
+                'facebook_url' => 'nullable|max:255',
+                'instagram_url' => 'nullable|max:255',
+                'twitter_url' => 'nullable|max:255',
+                'details' => 'nullable|max:5000',
+
             ];
-            if ($request->category == 'team') {
-
-                $rules['designation'] = 'required|max:255';
-                $rules['facebook_url'] = 'nullable|max:255';
-                $rules['instagram_url'] = 'nullable|max:255';
-                $rules['twitter_url'] = 'nullable|max:255';
-            }
-
-            if (empty($request->id)) {
-                $rules['photo'] = 'required:mimes:jpg,jpeg,png:max:2048';
-            }
 
             $message = [
-                'category.required' => 'Please select category.',
                 'name.required' => 'Please enter Name.',
                 'name.max' => 'name must not be less than 255 characters long.',
                 'order.required' => 'Please enter member order.',
@@ -69,10 +60,9 @@ class TeamMemberController extends Controller
             }
 
             $post = $request->all();
-
+            $post['created_by']=($this->userid);
             $type = 'success';
             $message = 'Records saved successfully';
-
             DB::beginTransaction();
 
             if (!TeamMember::saveData($post)) {
@@ -90,7 +80,6 @@ class TeamMemberController extends Controller
         }
         return json_encode(['type' => $type, 'message' => $message]);
     }
-
 
     // Get list
     public function list(Request $request)
@@ -120,7 +109,6 @@ class TeamMemberController extends Controller
                     $photo = '<img src="' . asset('/no-image.jpg') . '" height="30px" width="30px" alt="image"/>';
                 }
                 $array[$i]["photo"]  = $photo;
-                $array[$i]["category"]  = $row->teamCategory->team_category;
 
                 $action = '';
                 if (!empty($post['type']) && $post['type'] != 'trashed') {
@@ -134,7 +122,6 @@ class TeamMemberController extends Controller
             if (!$filtereddata) $filtereddata = 0;
             if (!$totalrecs) $totalrecs = 0;
         } catch (QueryException $e) {
-            dd($e);
             $array = [];
             $totalrecs = 0;
             $filtereddata = 0;
@@ -150,32 +137,26 @@ class TeamMemberController extends Controller
     public function form(Request $request)
     {
         try {
-            $category['category'] = TeamCategory::where(['status' => 'Y'])->get();
             $data = [];
             if (!empty($request->id)) {
-                $result = TeamMember::where(['id' => $request->id, 'status' => 'Y'])->first();
-                $data['id'] = $result->id;
-                $data['name'] = $result->name;
-                $data['order'] = $result->order;
-                $data['designation'] = $result->designation;
-                $data['facebook_url'] = $result->facebook_url;
-                $data['instagram_url'] = $result->instagram_url;
-                $data['twitter_url'] = $result->twitter_url;
-                // $data['category'] = $result->category;
-                $data['category_id'] = $result->teamCategory->id;
-                $data['photo'] = '<img class="_image" src="' . asset('/storage/community') . '/' . $result->photo . '" width="160px" alt="' . ' image"/>';
+                $data = TeamMember::where(['id' => $request->id, 'status' => 'Y'])->first();
+                if (!empty($data->photo)) {
+                    $data['photo'] = '<img class="_image" src="' . asset('/storage/community') . '/' . $data->photo . '" width="160px" alt="' . ' image"/>';
+                } else {
+                    $data['photo'] = '<img src="' . asset('/no-image.jpg') . '" height="140px" width="140px" alt="image"/>';
+                }
             }
         } catch (QueryException $e) {
             $data['error'] = $this->queryMessage;
         } catch (Exception $e) {
             $data['error'] = $e->getMessage();
         }
-        return view('backend.team-member.form', $data, $category);
+        return view('backend.team-member.form', $data);
     }
+
     // Delete
     public function delete(Request $request)
     {
-        // $message = "Record deleted successfully";
         try {
             $type = 'success';
             $message = 'Data deleted Successfully.';

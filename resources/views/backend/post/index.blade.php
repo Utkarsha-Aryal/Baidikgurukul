@@ -106,8 +106,8 @@
                                                     <th width="5%">S.No</th>
                                                     <th width="15%">Title</th>
                                                     <th width="10%">Category</th>
-                                                    <th width="10%">Date</th>
-                                                    <th width="15%">Event Address</th>
+                                                    {{-- <th width="10%">Date</th>
+                                                    <th width="15%">Event Address</th> --}}
                                                     <th width="20%">Details</th>
                                                     <th width="15%">Posted By</th>
                                                     <th width="5%">Thumbnail Image</th>
@@ -267,12 +267,12 @@
                     {
                         "data": "category"
                     },
-                    {
-                        "data": "event_date"
-                    },
-                    {
-                        "data": "event_address"
-                    },
+                    // {
+                    //     "data": "event_date"
+                    // },
+                    // {
+                    //     "data": "event_address"
+                    // },
                     {
                         "data": "details"
                     },
