@@ -78,11 +78,8 @@
         <div class="row mt-2">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                 <label for="details" class="form-label">Program Details <span class="required-field">*</span></label>
-                <!-- Quill Editor Container -->
-                <!-- <div id="details" name="details">{!! $details ?? '' !!}</div>
-                <input type="hidden" name="details" id="quill-content"> -->
-                <textarea name="details" id="editor">{!! $details ?? '' !!}</textarea>
-                <input type="hidden" name="details" id="details">
+                <textarea name="details" id="editor"> {{ @$details }} </textarea>
+                <input type="hidden" id="details" name="details">
             </div>
         </div>
 
@@ -130,22 +127,35 @@
         @endif
     </button>
 </div>
-
 <script>
     ClassicEditor
         .create(document.querySelector('#editor'), {
+            ckfinder: {
+                uploadUrl: "{{ route('upload.image', ['_token' => csrf_token()]) }}"
+            },
             toolbar: {
                 items: [
-                    'undo', 'redo', '|', 'heading', '|', 'bold', 'italic',
+                    'undo', 'redo', '|', 'heading', '|', 'bold', 'italic', '|', 'blockQuote', '|', 'imageUpload', 'imageStyle:full', 'imageStyle:alignLeft', 'imageStyle:alignCenter', 'imageStyle:alignRight'
                 ],
+                shouldNotGroupWhenFull: true
             },
+            heading: {
+                options: [{
+                    model: 'paragraph',
+                    title: 'Paragraph',
+                    class: 'ck-heading_paragraph'
+                }]
+            }
         })
         .then(editor => {
+            // Save reference to the editor instance
             window.editor = editor;
         })
         .catch(error => {
             console.error(error);
         });
+</script>
+<script>
 
     $(document).ready(function() {
 
