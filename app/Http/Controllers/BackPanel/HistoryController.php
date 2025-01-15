@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class HistoryController extends Controller
 {
@@ -272,5 +273,39 @@ class HistoryController extends Controller
             $data['message'] = $e->getMessage();
         }
         return view('backend.history.view', $data);
+    }
+
+    public function uploadImage(Request $request)
+    {
+        try {
+            if ($request->hasFile('upload')) {
+                $folder = storage_path('app/public/history/');
+
+                if (!Storage::exists($folder))
+                    Storage::makeDirectory($folder, 0775, true, true);
+
+                $file = $request->file('upload');
+                $newName = time() . '_' . rand(10, 9999999999999) . '_' . $file->getClientOriginalName();
+                $file->move($folder, $newName);
+
+                $url = asset('storage/history/' . $newName); // Public URL for the uploaded image
+
+                return response()->json([
+                    'uploaded' => 1,
+                    'fileName' => $newName,
+                    'url' => $url
+                ]);
+            } else {
+                return response()->json([
+                    'uploaded' => 0,
+                    'error' => ['message' => 'No file uploaded.']
+                ]);
+            }
+        } catch (Exception $e) {
+            return response()->json([
+                'uploaded' => 0,
+                'error' => ['message' => $e->getMessage()]
+            ], 500);
+        }
     }
 }

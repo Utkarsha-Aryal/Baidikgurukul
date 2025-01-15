@@ -150,7 +150,8 @@
                         </div>
                     </div>
                     {{-- it is only for v2 --}}
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                    
+                    {{-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                         <div class="row">
                             <label for="description" class="form-label">Event Feature Images
                                 <input class="form-control mt-2" type="file" name="feature_images[]"
@@ -178,7 +179,7 @@
                                 @endforeach
                             @endif
                         </div>
-                    </div>
+                    </div> --}}
 
                 </div>
             </div>

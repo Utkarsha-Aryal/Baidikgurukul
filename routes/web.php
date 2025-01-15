@@ -225,6 +225,7 @@ Route::group(['middleware' => 'admin'], function () {
             Route::post('/deletefeatureimage', [HistoryController::class, 'deleteFeatureImage'])->name('admin.history.deletefeatureimage');
             Route::post('/restore', [HistoryController::class, 'restore'])->name('admin.history.restore');
             Route::post('/view', [HistoryController::class, 'view'])->name('admin.history.view');
+            Route::post('/upload-image', [HistoryController::class, 'uploadImage'])->name('admin.history.upload.image');
         });
         //history end here
 
@@ -249,6 +250,7 @@ Route::group(['middleware' => 'admin'], function () {
             Route::post('/deletefeatureimage', [RitualController::class, 'deleteFeatureImage'])->name('admin.ritual.deletefeatureimage');
             Route::post('/restore', [RitualController::class, 'restore'])->name('admin.ritual.restore');
             Route::post('/view', [RitualController::class, 'view'])->name('admin.ritual.view');
+            Route::post('/upload-image', [RitualController::class, 'uploadImage'])->name('admin.ritual.upload.image');
         });
         //ritual end here
     });

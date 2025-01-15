@@ -78,9 +78,6 @@
         <div class="row mt-2">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                 <label for="details" class="form-label">History Details <span class="required-field">*</span></label>
-                <!-- Quill Editor Container -->
-                <!-- <div id="details" name="details">{!! $details ?? '' !!}</div>
-                <input type="hidden" name="details" id="quill-content"> -->
                 <textarea name="details" id="editor">{!! $details ?? '' !!}</textarea>
                 <input type="hidden" name="details" id="details">
             </div>
@@ -116,7 +113,8 @@
                         </div>
                     </div>
                     {{-- it is only for v2 --}}
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                    
+                    {{-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                         <div class="row">
                             <label for="description" class="form-label">Event Feature Images
                                 <input class="form-control mt-2" type="file" name="feature_images[]"
@@ -137,14 +135,13 @@
 
                                         <button type="button"
                                             class="delete_feature_image btn btn-danger label-btn ms-2"
-                                            id="delete_feature_image"
-                                            data-feature_image="{{ $featureImage }}">Delete<i
+                                            id="delete_feature_image" data-feature_image="{{ $featureImage }}">Delete<i
                                                 class="bi bi-trash label-btn-icon"></i></button>
                                     </div>
                                 @endforeach
                             @endif
                         </div>
-                    </div>
+                    </div> --}}
 
 
                 </div>
@@ -166,13 +163,27 @@
 <script>
     ClassicEditor
         .create(document.querySelector('#editor'), {
+            ckfinder: {
+                uploadUrl: "{{ route('admin.history.upload.image', ['_token' => csrf_token()]) }}"
+            },
             toolbar: {
                 items: [
-                    'undo', 'redo', '|', 'heading', '|', 'bold', 'italic',
+                    'undo', 'redo', '|', 'heading', '|', 'bold', 'italic', '|', 'blockQuote', '|',
+                    'imageUpload', 'imageStyle:full', 'imageStyle:alignLeft', 'imageStyle:alignCenter',
+                    'imageStyle:alignRight'
                 ],
+                shouldNotGroupWhenFull: true
             },
+            heading: {
+                options: [{
+                    model: 'paragraph',
+                    title: 'Paragraph',
+                    class: 'ck-heading_paragraph'
+                }]
+            }
         })
         .then(editor => {
+            // Save reference to the editor instance
             window.editor = editor;
         })
         .catch(error => {

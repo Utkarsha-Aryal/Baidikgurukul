@@ -222,6 +222,7 @@ class Common extends Model
             throw $e;
         }
     }
+    
     public static function deleteSingleDataTwoImage($post, $class, $filepath)
     {
         try {
@@ -250,6 +251,7 @@ class Common extends Model
             throw $e;
         }
     }
+    
     public static function deleteDataFileDoesnotExists($post, $class)
     {
         try {
@@ -282,4 +284,5 @@ class Common extends Model
             throw $e;
         }
     }
+    
 }
