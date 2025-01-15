@@ -34,7 +34,7 @@
             <img src="{{ $imgPath }}" class="rounded-circle" alt="School Logo" width="37" height="37">
         </a>
         <div class="logo_name">
-            <p>{{$siteSetting->name}}</p>
+            <p>{{ $siteSetting->name }}</p>
         </div>
     </div>
     <!-- End::main-sidebar-header -->
@@ -89,10 +89,12 @@
                     </a>
                 </li>
                 <li class="slide__category"><span class="category-name">Main Menu</span></li>
-               <li class="slide">
+                <li class="slide">
                     <a href="{{ route('admin.member') }}" class="side-menu__item">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
-                            <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5" />
+                        <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" width="16" height="16"
+                            fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5" />
                         </svg>
                         <span class="side-menu__label">Our Team</span>
                     </a>
@@ -120,8 +122,8 @@
 
                 {{-- <li class="slide">
                     <a href="{{ route('admin.service') }}" class="side-menu__item">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" width="16"
-                            height="16" viewBox="0 0 32 32">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" width="16" height="16"
+                            viewBox="0 0 32 32">
                             <path fill="currentColor"
                                 d="M26 20a2.97 2.97 0 0 0-1.855.66L22 19.423v-1.606a3 3 0 1 0-2 0v1.606l-2.145 1.239A2.97 2.97 0 0 0 16 20a3.02 3.02 0 1 0 2.925 2.353L21 21.155l2.075 1.198A2.998 2.998 0 1 0 26 20m-10 4a1 1 0 1 1 1-1a1 1 0 0 1-1 1m5-10a1 1 0 1 1-1 1a1 1 0 0 1 1-1m5 10a1 1 0 1 1 1-1a1 1 0 0 1-1 1" />
                             <path fill="currentColor"
@@ -166,15 +168,21 @@
 
                 <li class="slide">
                     <a href="{{ route('admin.donor') }}" class="side-menu__item">
-                        <svg xmlns="http://www.w3.org/2000/svg"class="side-menu__icon" width="16"
-                        height="16" viewBox="0 0 576 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M64 64C28.7 64 0 92.7 0 128L0 384c0 35.3 28.7 64 64 64l448 0c35.3 0 64-28.7 64-64l0-256c0-35.3-28.7-64-64-64L64 64zm64 320l-64 0 0-64c35.3 0 64 28.7 64 64zM64 192l0-64 64 0c0 35.3-28.7 64-64 64zM448 384c0-35.3 28.7-64 64-64l0 64-64 0zm64-192c-35.3 0-64-28.7-64-64l64 0 0 64zM288 160a96 96 0 1 1 0 192 96 96 0 1 1 0-192z"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg"class="side-menu__icon" width="16" height="16"
+                            viewBox="0 0 576 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                            <path
+                                d="M64 64C28.7 64 0 92.7 0 128L0 384c0 35.3 28.7 64 64 64l448 0c35.3 0 64-28.7 64-64l0-256c0-35.3-28.7-64-64-64L64 64zm64 320l-64 0 0-64c35.3 0 64 28.7 64 64zM64 192l0-64 64 0c0 35.3-28.7 64-64 64zM448 384c0-35.3 28.7-64 64-64l0 64-64 0zm64-192c-35.3 0-64-28.7-64-64l64 0 0 64zM288 160a96 96 0 1 1 0 192 96 96 0 1 1 0-192z" />
+                        </svg>
                         <span class="side-menu__label">Our Donor</span>
                     </a>
                 </li>
                 <li class="slide">
                     <a href="{{ route('admin.program') }}" class="side-menu__item">
-                        <svg xmlns="http://www.w3.org/2000/svg"class="side-menu__icon" width="16"
-                        height="16" viewBox="0 0 576 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M264.5 5.2c14.9-6.9 32.1-6.9 47 0l218.6 101c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 149.8C37.4 145.8 32 137.3 32 128s5.4-17.9 13.9-21.8L264.5 5.2zM476.9 209.6l53.2 24.6c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 277.8C37.4 273.8 32 265.3 32 256s5.4-17.9 13.9-21.8l53.2-24.6 152 70.2c23.4 10.8 50.4 10.8 73.8 0l152-70.2zm-152 198.2l152-70.2 53.2 24.6c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 405.8C37.4 401.8 32 393.3 32 384s5.4-17.9 13.9-21.8l53.2-24.6 152 70.2c23.4 10.8 50.4 10.8 73.8 0z"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg"class="side-menu__icon" width="16" height="16"
+                            viewBox="0 0 576 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                            <path
+                                d="M264.5 5.2c14.9-6.9 32.1-6.9 47 0l218.6 101c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 149.8C37.4 145.8 32 137.3 32 128s5.4-17.9 13.9-21.8L264.5 5.2zM476.9 209.6l53.2 24.6c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 277.8C37.4 273.8 32 265.3 32 256s5.4-17.9 13.9-21.8l53.2-24.6 152 70.2c23.4 10.8 50.4 10.8 73.8 0l152-70.2zm-152 198.2l152-70.2 53.2 24.6c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 405.8C37.4 401.8 32 393.3 32 384s5.4-17.9 13.9-21.8l53.2-24.6 152 70.2c23.4 10.8 50.4 10.8 73.8 0z" />
+                        </svg>
                         <span class="side-menu__label">Program</span>
                     </a>
                 </li>
@@ -216,6 +224,17 @@
                             <path d="M7.001 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0" />
                         </svg>
                         <span class="side-menu__label">FAQ</span>
+                    </a>
+                </li>
+
+                <li class="slide">
+                    <a href="{{ route('admin.ritual') }}" class="side-menu__item">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" width="16"
+                            height="16" fill="currentColor" class="bi bi-ban" viewBox="0 0 16 16">
+                            <path
+                                d="M15 8a6.97 6.97 0 0 0-1.71-4.584l-9.874 9.875A7 7 0 0 0 15 8M2.71 12.584l9.874-9.875a7 7 0 0 0-9.874 9.874ZM16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0" />
+                        </svg>
+                        <span class="side-menu__label">Ritual</span>
                     </a>
                 </li>
 

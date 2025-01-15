@@ -20,6 +20,7 @@ use App\Http\Controllers\BackPanel\EventController;
 use App\Http\Controllers\BackPanel\HistoryController;
 use App\Http\Controllers\BackPanel\FAQController;
 use App\Http\Controllers\BackPanel\ProgramController;
+use App\Http\Controllers\BackPanel\RitualController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -178,8 +179,8 @@ Route::group(['middleware' => 'admin'], function () {
         });
         /* Our team member-end*/
 
-         //Our program start here
-         Route::group(['prefix' => 'program'], function () {
+        //Our program start here
+        Route::group(['prefix' => 'program'], function () {
             Route::get('/', [ProgramController::class, 'index'])->name('admin.program');
             Route::post('/upload-image', [ProgramController::class, 'uploadImage'])->name('upload.image');
             Route::post('/save', [ProgramController::class, 'save'])->name('admin.program.save');
@@ -190,8 +191,8 @@ Route::group(['middleware' => 'admin'], function () {
         });
         //Our program end here
 
-         //Our donor start here
-         Route::group(['prefix' => 'donor'], function () {
+        //Our donor start here
+        Route::group(['prefix' => 'donor'], function () {
             Route::get('/', [DonorController::class, 'index'])->name('admin.donor');
             Route::post('/save', [DonorController::class, 'save'])->name('admin.donor.save');
             Route::any('/form', [DonorController::class, 'form'])->name('admin.donor.form');
@@ -210,6 +211,7 @@ Route::group(['middleware' => 'admin'], function () {
             Route::post('/delete', [EventController::class, 'delete'])->name('admin.event.delete');
             Route::post('/deletefeatureimage', [EventController::class, 'deleteFeatureImage'])->name('admin.event.deletefeatureimage');
             Route::post('/restore', [EventController::class, 'restore'])->name('admin.event.restore');
+            Route::post('/view', [EventController::class, 'view'])->name('admin.event.view');
         });
         /*Event end*/
 
@@ -222,6 +224,7 @@ Route::group(['middleware' => 'admin'], function () {
             Route::post('/delete', [HistoryController::class, 'delete'])->name('admin.history.delete');
             Route::post('/deletefeatureimage', [HistoryController::class, 'deleteFeatureImage'])->name('admin.history.deletefeatureimage');
             Route::post('/restore', [HistoryController::class, 'restore'])->name('admin.history.restore');
+            Route::post('/view', [HistoryController::class, 'view'])->name('admin.history.view');
         });
         //history end here
 
@@ -235,6 +238,19 @@ Route::group(['middleware' => 'admin'], function () {
             Route::post('/restore', [FAQController::class, 'restore'])->name('admin.faq.restore');
         });
         //FAQ end here
+
+        //ritual start here
+        Route::group(['prefix' => 'ritual'], function () {
+            Route::get('/', [RitualController::class, 'index'])->name('admin.ritual');
+            Route::post('/save', [RitualController::class, 'save'])->name('admin.ritual.save');
+            Route::any('/form', [RitualController::class, 'form'])->name('admin.ritual.form');
+            Route::post('/list', [RitualController::class, 'list'])->name('admin.ritual.list');
+            Route::post('/delete', [RitualController::class, 'delete'])->name('admin.ritual.delete');
+            Route::post('/deletefeatureimage', [RitualController::class, 'deleteFeatureImage'])->name('admin.ritual.deletefeatureimage');
+            Route::post('/restore', [RitualController::class, 'restore'])->name('admin.ritual.restore');
+            Route::post('/view', [RitualController::class, 'view'])->name('admin.ritual.view');
+        });
+        //ritual end here
     });
 });
 

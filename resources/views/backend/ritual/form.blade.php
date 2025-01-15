@@ -35,38 +35,21 @@
         top: 13px;
         right: 15px;
     }
-
-    label#thumbnail_image-error {
-        position: absolute;
-        top: 9rem !important
-    }
-
-    /* #ndp-nepali-box {
-        top: 65px !important;
-        left: 10px !important;
-    } */
-
-    input#nepali-datepicker {
-        width: 100% !important;
-        height: 50% !important;
-        border-radius: 0.2rem !important;
-        border: 0.1px solid rgb(236, 231, 231);
-        padding-left: 0.5rem !important;
-    }
 </style>
 <div class="modal-header">
-    <h1 class="modal-title fs-5" id="staticBackdropLabel">Event</h1>
+    <h1 class="modal-title fs-5" id="staticBackdropLabel">Ritual</h1>
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
 <div class="modal-body">
-    <form action="{{ route('admin.event.save') }}" method="POST" id="eventForm" enctype="multipart/form-data">
+    <form action="{{ route('admin.ritual.save') }}" method="POST" id="ritualForm" enctype="multipart/form-data">
 
         <div class="row  mt-2">
             <input type="hidden" name="id" id="id" value="{{ $id ?? '' }}">
             <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
-                <label for="title" class="form-label">Event Title <span class="required-field">*</span></label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="Enter title..."
-                    value="{{ $title ?? '' }}">
+                <label for="title" class="form-label">Rules For Rituals Title <span
+                        class="required-field">*</span></label>
+                <input type="text" class="form-control" id="title" name="title"
+                    placeholder="Enter rule for rituals title..." value="{{ $title ?? '' }}">
             </div>
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3">
                 <label for="title" class="form-label">Order <span class="required-field">*</span></label>
@@ -75,43 +58,11 @@
             </div>
         </div>
 
-        <div class="row mt-2">
-
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 datepick">
-                <label for="event_date" class="form-label">Event Date <span class="required-field">*</span></label>
-                {{-- <p> <input type="text" id="nepali-datepicker" name="event_date" placeholder="Select Date" value="{{ $event_date ?? '' }}"> </p> --}}
-                <input type="date" name="event_date" id="event_date" class="form-control"
-                    value="{{ $event_date ?? '' }}">
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
-                <label for="title" class="form-label">Event Address <span class="required-field">*</span></label>
-                <input type="text" class="form-control" id="event_address" name="event_address"
-                    placeholder="Enter event address..." value="{{ $address ?? '' }}">
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
-                <label for="title" class="form-label">Event Venue <span class="required-field">*</span></label>
-                <input type="text" class="form-control" id="event_venue" name="event_venue"
-                    placeholder="Enter event venue..." value="{{ $venue ?? '' }}">
-            </div>
-        </div>
-
-        <div class="row mt-2">
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 datepick">
-                <label for="event_date" class="form-label">Event Starting Time <span
-                        class="required-field">*</span></label>
-                <input type="time" class="form-control" id="event_time_start" name="event_time_start"
-                    placeholder="Enter starting time..." value="{{ $event_time_start ?? '' }}">
-            </div>
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
-                <label for="title" class="form-label">Event Ending Time <span class="required-field">*</span></label>
-                <input type="time" class="form-control" id="event_time_end" name="event_time_end"
-                    placeholder="Enter ending time.." value="{{ $event_time_end ?? '' }}">
-            </div>
-        </div>
 
         <div class="row mt-2">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                <label for="details" class="form-label">Event Details <span class="required-field">*</span></label>
+                <label for="details" class="form-label">Rules For Rituals Details <span
+                        class="required-field">*</span></label>
                 <!-- Quill Editor Container -->
                 <!-- <div id="details" name="details">{!! $details ?? '' !!}</div>
                 <input type="hidden" name="details" id="quill-content"> -->
@@ -124,35 +75,15 @@
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                 <div class="row">
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                        <label for="image">Event Thumbnail Image <span class="required-field">*</span></label>
-                        <div class="relative" id="edit-image">
-                            <div class="profile-user">
-                                <label for="thumbnail_image"
-                                    class="fe fe-camera profile-edit text-primary absolute"></label>
-                            </div>
-                            <input type="file" class="thumbnail_image" id="thumbnail_image"
-                                style="position: absolute; clip: rect(0, 0, 0, 0); pointer-events: none;"
-                                accept="image/*" name="image">
-                            <input type="hidden" class="form-control croppedImg" id="croppedImg" name="croppedImg">
-
-                            <div class="img-rectangle mt-2">
-                                @if (!empty($image))
-                                    {!! $image !!}
-                                @else
-                                    <img src="{{ asset('/no-image.jpg') }}" alt="Default Image" id="img_introduction"
-                                        class="_image">
-                                @endif
-                            </div>
-                        </div>
-                        <div class="row mt-4 ms-1">
-                            <p class="p-0 m-0">Accepted Format :<span class="text-muted"> jpg/jpeg/png</span></p>
-                            <p class="p-0 m-0">File size :<span class="text-muted"> (300x475) in pixels</span></p>
-                        </div>
+                        <label for="video_link" class="form-label">Rules For Rituals Video Link <span
+                                class="required-field">*</span></label>
+                        <input type="text" class="form-control" id="video_link" name="video_link"
+                            placeholder="Enter video link..." value="{{ $video_link ?? '' }}">
                     </div>
                     {{-- it is only for v2 --}}
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                         <div class="row">
-                            <label for="description" class="form-label">Event Feature Images
+                            <label for="description" class="form-label"> Feature Images
                                 <input class="form-control mt-2" type="file" name="feature_images[]"
                                     id="feature_images" multiple>
                         </div>
@@ -166,13 +97,12 @@
                                 @foreach ($decodedFeatureImages as $featureImage)
                                     <div id="feature_image">
 
-                                        <img src="{{ asset('/storage/event') . '/' . $featureImage }}"
+                                        <img src="{{ asset('/storage/ritual') . '/' . $featureImage }}"
                                             class="_feature-image imageThumb" alt="Feature Image" />
 
                                         <button type="button"
                                             class="delete_feature_image btn btn-danger label-btn ms-2"
-                                            id="delete_feature_image"
-                                            data-feature_image="{{ $featureImage }}">Delete<i
+                                            id="delete_feature_image" data-feature_image="{{ $featureImage }}">Delete<i
                                                 class="bi bi-trash label-btn-icon"></i></button>
                                     </div>
                                 @endforeach
@@ -187,7 +117,7 @@
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-    <button type="button" class="btn btn-primary saveEvent"><i class="fa fa-save"></i>
+    <button type="button" class="btn btn-primary saveRitual"><i class="fa fa-save"></i>
         @if (empty($id))
             Save
         @else
@@ -215,9 +145,6 @@
 
 <script>
     $(document).ready(function() {
-
-
-        // $("#datetime").datepicker();
 
         //uploaded image preview start
         $(document).on("change", "#feature_images", function(event) {
@@ -251,22 +178,12 @@
         });
 
 
-        $('#eventForm').validate({
+        $('#ritualForm').validate({
             rules: {
                 title: "required",
-                event_date: "required",
-                event_address: "required",
                 order_number: "required",
-                event_time_end: "required",
-                event_time_start: "required",
-                event_venue: "required",
+                video_link: "required",
                 details: "required",
-                image: {
-                    required: function() {
-                        var id = $('#id').val();
-                        return id === '';
-                    }
-                },
             },
             message: {
                 title: {
@@ -276,22 +193,7 @@
                 details: {
                     required: "This field is required."
                 },
-                event_date: {
-                    required: "This field is required."
-                },
-                event_address: {
-                    required: "This field is required."
-                },
-                image: {
-                    required: "This field is required."
-                },
-                event_time_end: {
-                    required: "This field is required."
-                },
-                event_time_start: {
-                    required: "This field is required."
-                },
-                event_venue: {
+                video_link: {
                     required: "This field is required."
                 },
                 order_number: {
@@ -307,22 +209,22 @@
         });
 
         // Save news
-        $('.saveEvent').off('click');
-        $('.saveEvent').on('click', function() {
-            if ($('#eventForm').valid()) {
+        $('.saveRitual').off('click');
+        $('.saveRitual').on('click', function() {
+            if ($('#ritualForm').valid()) {
                 $('#details').val(window.editor.getData());
                 showLoader();
 
-                $('#eventForm').ajaxSubmit(function(response) {
+                $('#ritualForm').ajaxSubmit(function(response) {
                     var result = JSON.parse(response);
                     if (result) {
                         if (result.type === 'success') {
                             showNotification(result.message, 'success');
                             hideLoader();
-                            eventTable.draw();
-                            $('#eventForm')[0].reset();
+                            ritualTable.draw();
+                            $('#ritualForm')[0].reset();
                             $('#id').val('');
-                            $('#eventModal').modal('hide');
+                            $('#ritualModal').modal('hide');
                         } else {
                             showNotification(result.message, 'error');
                             hideLoader();
@@ -334,28 +236,6 @@
             }
         });
 
-        // $('.delete_feature_image').on('click', function() {
-        //     var feature_image = $(this).data('feature_image');
-        //     var id = $('#id').val();
-        //     var url = '{{ route('admin.post.deletefeatureimage') }}';
-        //     $.ajax({
-        //         url: url,
-        //         type: 'POST',
-        //         data: {
-        //             feature_image: feature_image,
-        //             id: id,
-        //         },
-        //         success: function(response) {
-        //             // Handle success message or update UI
-        //             console.log(response);
-        //             // Reload or update UI to reflect changes
-        //         },
-        //         error: function(xhr, status, error) {
-        //             // Handle error
-        //             console.error(error);
-        //         }
-        //     });
-        // });
         // Delete feature image
         $('.delete_feature_image').off('click')
         $('.delete_feature_image').on('click', function() {
@@ -374,7 +254,7 @@
                     var feature_image = $(this).data('feature_image');
                     var id = $('#id').val();
 
-                    var url = "{{ route('admin.event.deletefeatureimage') }}";
+                    var url = "{{ route('admin.ritual.deletefeatureimage') }}";
 
                     var data = {
                         feature_image: feature_image,

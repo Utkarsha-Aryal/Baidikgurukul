@@ -118,11 +118,7 @@ class ProgramController extends Controller
                 $array[$i]["title"]    = Str::limit($row->title, 15, '...');
                 $array[$i]["details"]  =  strip_tags(Str::limit($row->details, 30, '...'));
                 $array[$i]["order_number"]  =  $row->order_number;
-                $image = asset('images/no-image.jpg');
-                if (!empty($row->image) && file_exists(public_path('/storage/program/' . $row->image))) {
-                    $image = asset("storage/program/" . $row->image);
-                }
-                $array[$i]["image"] = '<img src="' . $image . '" height="30px" width="30px" alt="image"/>';
+                $array[$i]["video_link"]  =  $row->video_link;
                 $action = '';
                 if (!empty($post['type']) && $post['type'] != 'trashed') {
                     $action .= '<a href="javascript:;" class="edit" title="Edit Data" data-id="' . $row->id . '"><i class="fa-solid fa-pen-to-square text-primary"></i></a> |';

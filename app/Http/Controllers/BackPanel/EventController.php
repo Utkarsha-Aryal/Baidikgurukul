@@ -25,16 +25,47 @@ class EventController extends Controller
     {
         try {
             $rules = [
-                'title' => 'required|min:5|max:255',
+                'title' => 'required|min:2|max:255',
                 'details' => 'required|min:5|max:5000',
+                'order_number' => 'required',
+                'event_date' => 'required',
+                'event_address' => 'required|min:1|max:20',
+                'event_time_end' => 'required',
+                'event_time_start' => 'required',
+                'event_venue' => 'required|min:1|max:40',
             ];
+
             if (empty($request->id)) {
                 $rules['image'] = 'required:mimes:jpg,jpeg,png:max:2048';
             }
 
             $message = [
-                'title.required' => 'Please enter title',
-                'details.required' => 'Please write in details',
+                'title.required' => 'Please enter a title.',
+                'title.min' => 'The title must be at least 2 characters long.',
+                'title.max' => 'The title may not be more than 255 characters.',
+
+                'details.required' => 'Please provide details.',
+                'details.min' => 'The details must be at least 5 characters long.',
+                'details.max' => 'The details may not exceed 5000 characters.',
+
+                'order_number.required' => 'Please provide an order number.',
+
+                'event_date.required' => 'Please specify the event date.',
+
+                'event_address.required' => 'Please provide an event address.',
+                'event_address.min' => 'The event address must be at least 1 character long.',
+                'event_address.max' => 'The event address may not exceed 20 characters.',
+
+                'event_time_end.required' => 'Please specify the event end time.',
+                'event_time_start.required' => 'Please specify the event start time.',
+
+                'event_venue.required' => 'Please provide the event venue.',
+                'event_venue.min' => 'The event venue must be at least 1 character long.',
+                'event_venue.max' => 'The event venue may not exceed 40 characters.',
+
+                'image.required' => 'Please upload an image.',
+                'image.mimes' => 'The image must be in jpg, jpeg, or png format.',
+                'image.max' => 'The image size may not exceed 2MB.',
             ];
 
             $validate = Validator::make($request->all(), $rules, $message);
@@ -42,13 +73,12 @@ class EventController extends Controller
             if ($validate->fails()) {
                 throw new Exception($validate->errors()->first(), 1);
             }
-
             $post = $request->all();
             $type = 'success';
             $message = 'Records saved successfully';
 
             DB::beginTransaction();
-
+            $post['created_by'] = $this->userid;
             if (!Event::saveData($post)) {
                 throw new Exception('Could not save record', 1);
             }
@@ -100,6 +130,7 @@ class EventController extends Controller
 
                 $action = '';
                 if (!empty($post['type']) && $post['type'] != 'trashed') {
+                    $action .= ' <a href="javascript:;" class="view" title="View Data" data-id="' . $row->id . '"><i class="fa-solid fa-eye" style="color: #008f47;"></i></a> | ';
                     $action .= '<a href="javascript:;" class="edit" title="Edit Data" data-id="' . $row->id . '"><i class="fa-solid fa-pen-to-square text-primary"></i></a> |';
                 } else {
                     $action .= '<a href="javascript:;" class="restore" title="Restore Data" data-id="' . $row->id . '"><i class="fa-solid fa-undo text-success"></i></a> ';
@@ -171,7 +202,7 @@ class EventController extends Controller
             $post = $request->all();
 
             DB::beginTransaction();
-            if (!History::deleteFeatureImageEvent($post)) {
+            if (!Event::deleteFeatureImageEvent($post)) {
                 throw new Exception("Couldn't Delete Feature Image. Please Try Again", 1);
             }
             // $this->form($request);
@@ -239,5 +270,30 @@ class EventController extends Controller
             $message = $e->getMessage();
         }
         return response()->json(['type' => $type, 'message' => $message]);
+    }
+
+    //view
+    public function view(Request $request)
+    {
+        try {
+            $post = $request->all();
+            $EventDetails = Event::where('id', $post['id'])
+                ->where('status', 'Y')
+                ->first();
+
+            $data = [
+                'EventDetails' => $EventDetails,
+            ];
+
+            $data['type'] = 'success';
+            $data['message'] = 'Successfully fetched data of Event.';
+        } catch (QueryException $e) {
+            $data['type'] = 'error';
+            $data['message'] = $this->queryMessage;
+        } catch (Exception $e) {
+            $data['type'] = 'error';
+            $data['message'] = $e->getMessage();
+        }
+        return view('backend.event.view', $data);
     }
 }

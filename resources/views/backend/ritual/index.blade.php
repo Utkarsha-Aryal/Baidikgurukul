@@ -1,7 +1,7 @@
 @extends('backend.layouts.main')
 
 @section('title')
-    History
+    Ritual
 @endsection
 <style>
     input#trashed_file {
@@ -12,11 +12,11 @@
     <!-- Page Header -->
     <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
         <div class="my-auto">
-            <h5 class="page-title fs-21 mb-1">History</h5>
+            <h5 class="page-title fs-21 mb-1">Ritual</h5>
             <nav>
                 <ol class="breadcrumb mb-0">
                     <li class="breadcrumb-item"><a href="javascript:void(0);">Dashboard</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">History</li>
+                    <li class="breadcrumb-item active" aria-current="page">Ritual</li>
                 </ol>
             </nav>
         </div>
@@ -28,7 +28,7 @@
         </div>
     </div>
     <!-- Modal -->
-    <div class="modal fade" id="historyModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    <div class="modal fade" id="ritualModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -80,7 +80,7 @@
             <div class="card custom-card">
                 <div class="card-header justify-content-between">
                     <div class="card-title">
-                        History List
+                        Ritual List
                     </div>
                     <div class="row ms-0">
                         <div class="form-check col-xl-12 col-lg-12 col-md-12 col-sm-12">
@@ -98,16 +98,16 @@
                             <div class="row">
                                 <div class="col-sm-12 col-md-12 mb-3">
                                     <div class="dataTables_length" id="datatable-basic_length">
-                                        <table id="historyTable"
+                                        <table id="ritualTable"
                                             class="table table-bordered text-nowrap w-100 dataTable no-footer mt-3"
                                             aria-describedby="datatable-basic_info">
                                             <thead>
                                                 <tr>
                                                     <th width="5%">S.No</th>
-                                                    <th width="15%">History Title</th>
-                                                    <th width="10%">History Details</th>
+                                                    <th width="15%">Title</th>
+                                                    <th width="10%">Details</th>
                                                     <th width="10%">Order Number</th>
-                                                    <th width="10%">History Image</th>
+                                                    <th width="10%">Video Link</th>
                                                     <th width="5%">Action</th>
                                             </thead>
                                             <tbody>
@@ -219,20 +219,20 @@
     {{-- crop image-end --}}
 
     <script>
-        var historyTable;
+        var ritualTable;
         $(document).ready(function() {
 
             $('.add').on('click', function(e) {
                 e.preventDefault();
-                var url = '{{ route('admin.history.form') }}';
+                var url = '{{ route('admin.ritual.form') }}';
                 $.get(url, function(response) {
-                    $('#historyModal .modal-content').html(response);
-                    $('#historyModal').modal('show');
+                    $('#ritualModal .modal-content').html(response);
+                    $('#ritualModal').modal('show');
                 });
             });
 
 
-            historyTable = $('#historyTable').DataTable({
+            ritualTable = $('#ritualTable').DataTable({
                 "sPaginationType": "full_numbers",
                 "bSearchable": false,
                 "lengthMenu": [
@@ -268,14 +268,14 @@
                         "data": "order_number"
                     },
                     {
-                        "data": "image"
+                        "data": "video_link"
                     },
                     {
                         "data": "action"
                     },
                 ],
                 "ajax": {
-                    "url": '{{ route('admin.history.list') }}',
+                    "url": '{{ route('admin.ritual.list') }}',
                     "type": "POST",
                     "data": function(d) {
                         var type = $('#trashed_file').is(':checked') == true ? 'trashed' :
@@ -306,20 +306,20 @@
             $(document).off('click', '.edit');
             $(document).on('click', '.edit', function() {
                 var id = $(this).data('id');
-                var url = '{{ route('admin.history.form') }}';
+                var url = '{{ route('admin.ritual.form') }}';
                 var data = {
                     id: id
                 };
                 $.post(url, data, function(response) {
-                    $('#historyModal .modal-content').html(response);
-                    $('#historyModal').modal('show');
+                    $('#ritualModal .modal-content').html(response);
+                    $('#ritualModal').modal('show');
                 });
             });
 
 
             $('#trashed_file').off('change');
             $('#trashed_file').on('change', function(e) {
-                historyTable.draw();
+                ritualTable.draw();
             });
 
 
@@ -330,8 +330,9 @@
                     'nottrashed';
 
                 Swal.fire({
-                    title: type === "nottrashed" ? "Are you sure you want to delete this history" :
-                        "Are you sure you want to delete permanently  this history",
+                    title: type === "nottrashed" ?
+                        "Are you sure you want to delete this Ritual Rules" :
+                        "Are you sure you want to delete permanently  this Ritual Rules",
                     text: "You won't be able to revert it!",
                     icon: "warning",
                     showCancelButton: true,
@@ -346,13 +347,13 @@
                             id: id,
                             type: type,
                         };
-                        var url = '{{ route('admin.history.delete') }}';
+                        var url = '{{ route('admin.ritual.delete') }}';
                         $.post(url, data, function(response) {
                             var result = JSON.parse(response);
                             if (result) {
                                 if (result.type === 'success') {
                                     showNotification(result.message, 'success');
-                                    historyTable.draw();
+                                    ritualTable.draw();
                                     hideLoader();
                                 } else {
                                     showNotification(result.message, 'error');
@@ -367,8 +368,8 @@
             $(document).off('click', '.restore');
             $(document).on('click', '.restore', function() {
                 Swal.fire({
-                    title: "Are you sure you want to restore History?",
-                    text: "This will restore the History.",
+                    title: "Are you sure you want to restore Ritual Rules?",
+                    text: "This will restore the Ritual Rules.",
                     icon: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#28a745",
@@ -382,12 +383,12 @@
                             id: id,
                             type: 'restore'
                         };
-                        var url = '{{ route('admin.history.restore') }}';
+                        var url = '{{ route('admin.ritual.restore') }}';
                         $.post(url, data, function(response) {
                             if (response) {
                                 if (response.type === 'success') {
                                     showNotification(response.message, 'success');
-                                    historyTable.draw();
+                                    ritualTable.draw();
                                     hideLoader();
                                 } else {
                                     showNotification(response.message, 'error');
@@ -402,13 +403,13 @@
             $(document).off('click', '.view');
             $(document).on('click', '.view', function() {
                 var id = $(this).data('id');
-                var url = '{{ route('admin.history.view') }}';
+                var url = '{{ route('admin.ritual.view') }}';
                 var data = {
                     id: id
                 };
                 $.post(url, data, function(response) {
-                    $('#historyModal .modal-content').html(response);
-                    $('#historyModal').modal('show');
+                    $('#ritualModal .modal-content').html(response);
+                    $('#ritualModal').modal('show');
                 });
             });
 

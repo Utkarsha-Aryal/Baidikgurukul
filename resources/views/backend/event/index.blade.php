@@ -104,15 +104,15 @@
                                             <thead>
                                                 <tr>
                                                     <th width="5%">S.No</th>
-                                                    <th width="15%">Title</th>
-                                                    <th width="10%">Details</th>
+                                                    <th width="15%">Event Title</th>
+                                                    <th width="10%">Event Details</th>
                                                     <th width="10%">Order Number</th>
                                                     <th width="10%">Event Date</th>
                                                     <th width="15%">Event Address</th>
                                                     <th width="15%">Event Venue</th>
                                                     <th width="20%">Event Starting Time</th>
                                                     <th width="15%">Event Ending Time</th>
-                                                    <th width="5%">Thumbnail Image</th>
+                                                    <th width="5%">Image</th>
                                                     <th width="5%">Action</th>
                                             </thead>
                                             <tbody>
@@ -416,6 +416,19 @@
                             }
                         });
                     }
+                });
+            });
+
+            $(document).off('click', '.view');
+            $(document).on('click', '.view', function() {
+                var id = $(this).data('id');
+                var url = '{{ route('admin.event.view') }}';
+                var data = {
+                    id: id
+                };
+                $.post(url, data, function(response) {
+                    $('#eventModal .modal-content').html(response);
+                    $('#eventModal').modal('show');
                 });
             });
 

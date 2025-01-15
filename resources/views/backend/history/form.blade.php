@@ -64,9 +64,9 @@
         <div class="row  mt-2">
             <input type="hidden" name="id" id="id" value="{{ $id ?? '' }}">
             <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
-                <label for="title" class="form-label">Title <span class="required-field">*</span></label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="Enter title..."
-                    value="{{ $title ?? '' }}">
+                <label for="title" class="form-label">History Title <span class="required-field">*</span></label>
+                <input type="text" class="form-control" id="title" name="title"
+                    placeholder="Enter history title..." value="{{ $title ?? '' }}">
             </div>
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3">
                 <label for="title" class="form-label">Order <span class="required-field">*</span></label>
@@ -76,18 +76,8 @@
         </div>
 
         <div class="row mt-2">
-
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                <label for="short_quote" class="form-label">Short Quote <span class="required-field">*</span></label>
-                <input type="text" class="form-control" id="short_quote" name="short_quote"
-                    placeholder="Enter short quote..." value="{{ $short_bio ?? '' }}">
-            </div>
-
-        </div>
-
-        <div class="row mt-2">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                <label for="details" class="form-label">Details <span class="required-field">*</span></label>
+                <label for="details" class="form-label">History Details <span class="required-field">*</span></label>
                 <!-- Quill Editor Container -->
                 <!-- <div id="details" name="details">{!! $details ?? '' !!}</div>
                 <input type="hidden" name="details" id="quill-content"> -->
@@ -100,7 +90,7 @@
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                 <div class="row">
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                        <label for="image">Thumbnail Image <span class="required-field">*</span></label>
+                        <label for="image">History Thumbnail Image <span class="required-field">*</span></label>
                         <div class="relative" id="edit-image">
                             <div class="profile-user">
                                 <label for="thumbnail_image"
@@ -128,7 +118,7 @@
                     {{-- it is only for v2 --}}
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                         <div class="row">
-                            <label for="description" class="form-label"> Feature Images
+                            <label for="description" class="form-label">Event Feature Images
                                 <input class="form-control mt-2" type="file" name="feature_images[]"
                                     id="feature_images" multiple>
                         </div>
@@ -142,7 +132,7 @@
                                 @foreach ($decodedFeatureImages as $featureImage)
                                     <div id="feature_image">
 
-                                        <img src="{{ asset('/storage/post') . '/' . $featureImage }}"
+                                        <img src="{{ asset('/storage/history') . '/' . $featureImage }}"
                                             class="_feature-image imageThumb" alt="Feature Image" />
 
                                         <button type="button"
@@ -155,6 +145,7 @@
                             @endif
                         </div>
                     </div>
+
 
                 </div>
             </div>
@@ -328,7 +319,7 @@
                     var feature_image = $(this).data('feature_image');
                     var id = $('#id').val();
 
-                    var url = "{{ route('admin.event.deletefeatureimage') }}";
+                    var url = "{{ route('admin.history.deletefeatureimage') }}";
 
                     var data = {
                         feature_image: feature_image,

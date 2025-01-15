@@ -1,10 +1,11 @@
 <?php
 
+
 namespace App\Http\Controllers\BackPanel;
 
 
 use App\Http\Controllers\Controller;
-use App\Models\BackPanel\History;
+use App\Models\BackPanel\Ritual;
 use App\Models\Common;
 use Exception;
 use Illuminate\Database\QueryException;
@@ -13,30 +14,28 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
-class HistoryController extends Controller
+class RitualController extends Controller
 {
     public function index()
     {
-        return view('backend.history.index');
+        return view('backend.ritual.index');
     }
     /* save */
     public function save(Request $request)
     {
         try {
             $rules = [
-                'title' => 'required|min:1|max:50',
+                'title' => 'required|min:5|max:255',
                 'details' => 'required|min:5|max:5000',
                 'order_number' => 'required',
+                'video_link' => 'required|url',
             ];
 
-            if (empty($request->id)) {
-                $rules['image'] = 'required:mimes:jpg,jpeg,png:max:512kb';
-            }
 
             $message = [
                 'title.required' => 'The title field is required.',
-                'title.min' => 'The title must be at least 1 character long.',
-                'title.max' => 'The title may not be more than 50 characters.',
+                'title.min' => 'The title must be at least 5 characters long.',
+                'title.max' => 'The title may not exceed 255 characters.',
 
                 'details.required' => 'Please provide details.',
                 'details.min' => 'The details must be at least 5 characters long.',
@@ -44,9 +43,8 @@ class HistoryController extends Controller
 
                 'order_number.required' => 'The order number field is required.',
 
-                'image.required' => 'An image is required.',
-                'image.mimes' => 'The image must be in jpg, jpeg, and png format.',
-                'image.max' => 'The image size must not exceed 512kb.',
+                'video_link.required' => 'A video link is required.',
+                'video_link.url' => 'The video link must be a valid URL.',
             ];
 
             $validate = Validator::make($request->all(), $rules, $message);
@@ -61,7 +59,7 @@ class HistoryController extends Controller
 
             DB::beginTransaction();
             $post['created_by'] = $this->userid;
-            if (!History::saveData($post)) {
+            if (!Ritual::saveData($post)) {
                 throw new Exception('Could not save record', 1);
             }
             DB::commit();
@@ -82,7 +80,7 @@ class HistoryController extends Controller
     {
         try {
             $post = $request->all();
-            $data = History::list($post);
+            $data = Ritual::list($post);
             $i = 0;
             $array = [];
             $filtereddata = ($data["totalfilteredrecs"] > 0 ? $data["totalfilteredrecs"] : $data["totalrecs"]);
@@ -97,6 +95,7 @@ class HistoryController extends Controller
                 $array[$i]["details"]  =  strip_tags(Str::limit($row->details, 30, '...'));
                 $array[$i]["short_bio"]  =  $row->short_bio;
                 $array[$i]["order_number"]  =  $row->order_number;
+                $array[$i]["video_link"]  =  $row->video_link;
 
 
                 $image = asset('images/no-image.jpg');
@@ -122,12 +121,10 @@ class HistoryController extends Controller
             if (!$filtereddata) $filtereddata = 0;
             if (!$totalrecs) $totalrecs = 0;
         } catch (QueryException $e) {
-            dd($e);
             $array = [];
             $totalrecs = 0;
             $filtereddata = 0;
         } catch (Exception $e) {
-            dd($e);
             $array = [];
             $totalrecs = 0;
             $filtereddata = 0;
@@ -141,9 +138,9 @@ class HistoryController extends Controller
         try {
             $data = [];
             if (!empty($request->id)) {
-                $data = History::where(['id' => $request->id, 'status' => 'Y'])->first();
+                $data = Ritual::where(['id' => $request->id, 'status' => 'Y'])->first();
                 if ($data->image) {
-                    $data['image'] = '<img src="' . asset('/storage/history') . '/' . $data->image . '" class="_image" height="160px" width="160px" alt="' . ' No image"/>';
+                    $data['image'] = '<img src="' . asset('/storage/ritual') . '/' . $data->image . '" class="_image" height="160px" width="160px" alt="' . ' No image"/>';
                 } else {
                     $data['image'] = '<img src="' . asset('/no-image.jpg') . '" class="_image" height="160px" width="160px" alt="' . ' No image"/>';
                 }
@@ -169,7 +166,7 @@ class HistoryController extends Controller
         } catch (Exception $e) {
             $data['error'] = $e->getMessage();
         }
-        return view('backend.history.form', $data);
+        return view('backend.ritual.form', $data);
     }
 
     public function deleteFeatureImage(Request $request)
@@ -180,7 +177,7 @@ class HistoryController extends Controller
             $post = $request->all();
 
             DB::beginTransaction();
-            if (!History::deleteFeatureImageHistory($post)) {
+            if (!Ritual::deleteFeatureImageRitual($post)) {
                 throw new Exception("Couldn't Delete Feature Image. Please Try Again", 1);
             }
             // $this->form($request);
@@ -204,9 +201,9 @@ class HistoryController extends Controller
         try {
             $type = 'success';
             $message = "Record deleted successfully";
-            $directory = storage_path('app/public/history');
+            $directory = storage_path('app/public/ritual');
             $post = $request->all();
-            $class = new History();
+            $class = new Ritual();
 
             DB::beginTransaction();
             if (!Common::deleteSingleData($post, $class, $directory)) {
@@ -231,9 +228,9 @@ class HistoryController extends Controller
         try {
             $post = $request->all();
             $type = 'success';
-            $message = "History restored successfully";
+            $message = "Ritual restored successfully";
             DB::beginTransaction();
-            $result = History::restoreData($post);
+            $result = Ritual::restoreData($post);
             if (!$result) {
                 throw new Exception("Could not restore Product. Please try again.", 1);
             }
@@ -250,16 +247,17 @@ class HistoryController extends Controller
         return response()->json(['type' => $type, 'message' => $message]);
     }
 
+    //view
     public function view(Request $request)
     {
         try {
             $post = $request->all();
-            $historytDetails = History::where('id', $post['id'])
+            $ritualDetails = Ritual::where('id', $post['id'])
                 ->where('status', 'Y')
                 ->first();
 
             $data = [
-                'historytDetails' => $historytDetails,
+                'ritualDetails' => $ritualDetails,
             ];
 
             $data['type'] = 'success';
@@ -271,6 +269,6 @@ class HistoryController extends Controller
             $data['type'] = 'error';
             $data['message'] = $e->getMessage();
         }
-        return view('backend.history.view', $data);
+        return view('backend.ritual.view', $data);
     }
 }
