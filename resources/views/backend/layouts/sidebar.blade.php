@@ -1,3 +1,27 @@
+<style>
+    .main-sidebar-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+
+        .header-logo {
+            /* height: 40px !important; */
+            width: 65px;
+            /* .ht-40{
+                height: 50px !important;
+            } */
+        }
+
+        .logo_name {
+            p {
+                font-size: 14px;
+                font-weight: 500;
+                margin: 0 !important;
+            }
+        }
+    }
+</style>
 <!-- Start::app-sidebar -->
 <aside class="app-sidebar sticky" id="sidebar">
 
@@ -9,6 +33,9 @@
             ?>
             <img src="{{ $imgPath }}" class="rounded-circle" alt="School Logo" width="37" height="37">
         </a>
+        <div class="logo_name">
+            <p>{{$siteSetting->name}}</p>
+        </div>
     </div>
     <!-- End::main-sidebar-header -->
 
