@@ -79,7 +79,8 @@ Site Setting
                         </div>
                         <div class="form-group col-6">
                             <div class="main-profile-overview">
-                                <div class="img-rectangle">
+                                {{-- <div class="img-rectangle"> --}}
+                                <div class="main-img-user profile-user user-profile">
                                     <label for="input_homepage_banner" class="fe fe-camera profile-edit text-primary"></label>
                                     <input type="file" id="input_homepage_banner" class="input_homepage_banner" style="position: absolute; clip: rect(0, 0, 0, 0); pointer-events: none;" accept="image/*" name="img_banner_homepage">
                                     <input type="hidden" class="form-control croppedImg" id="croppedImg" name="croppedImg">
@@ -90,7 +91,7 @@ Site Setting
                                     @if (!empty($siteSetting->img_banner_homepage) && Storage::exists('public/' . $imagePath))
                                     <img aorganizationlt="" src="{{ asset('/storage/setting') . '/' . $siteSettings['img_banner_homepage'] }}" alt="img" id="img_banner_homepage">
                                     @else
-                                    <img src="{{ asset('/no-image.jpg') }}" alt="Default Image" id='img_banner_homepage'>
+                                    <img src="{{ asset('/no-image.jpg') }}" alt="Default Image" id='img_banner_homepage' style="width: 90px">
 
                                     @endif
 

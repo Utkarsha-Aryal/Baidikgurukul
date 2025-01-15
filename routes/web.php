@@ -181,6 +181,7 @@ Route::group(['middleware' => 'admin'], function () {
          //Our program start here
          Route::group(['prefix' => 'program'], function () {
             Route::get('/', [ProgramController::class, 'index'])->name('admin.program');
+            Route::post('/upload-image', [ProgramController::class, 'uploadImage'])->name('upload.image');
             Route::post('/save', [ProgramController::class, 'save'])->name('admin.program.save');
             Route::any('/form', [ProgramController::class, 'form'])->name('admin.program.form');
             Route::post('/list', [ProgramController::class, 'list'])->name('admin.program.list');

@@ -4,32 +4,6 @@
 @endsection
 @section('styles')
 <style>
-    canvas {
-        display: block;
-        width: 100%;
-        max-width: 600px;
-        margin: 0 auto;
-    }
-
-    .sales-card {
-        margin: 10px;
-        border-radius: 15px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        background-color: #ffffff;
-        transition: all 0.3s ease;
-        /* background: linear-gradient(to bottom right, #ffffff, #f0f0f0); */
-    }
-
-    .sales-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-    }
-
-    .card-title {
-        font-size: 1.5rem;
-        font-weight: bold;
-        color: #505050;
-    }
 
     .card-text {
         font-size: 1.2rem;
@@ -51,54 +25,7 @@
         margin-bottom: 15px;
     }
 
-    .total-sales {
-        /* background: linear-gradient(to bottom right, #ddd1ff, #3ed38d); */
-        color: #007bff;
-    }
-
-    .year-sales {
-        /* background: linear-gradient(to bottom right, #cdfff3, #b58e1a); */
-        color: #ffc107;
-    }
-
-    .month-sales {
-        /* background: linear-gradient(to bottom right, #edf664, #1976d2); */
-        color: #28a745;
-    }
-
-    .daily-sales {
-        /* background: linear-gradient(to bottom right, #f2cccf, #d455b7); */
-        color: #dc3545;
-    }
-
-    .destination {
-        /* background: linear-gradient(to bottom right, #fbfde1, #6f268a); */
-        color: #007bff;
-    }
-
-    .package {
-        /* background: linear-gradient(to bottom right, #cdd7ff, #b5341a); */
-        color: #ffc107;
-    }
-
-    .trekking {
-        /* background: linear-gradient(to bottom right, #f69f64, #19d2cc); */
-        color: #28a745;
-    }
-
-    .activity {
-        /* background: linear-gradient(to bottom right, #f1ccf2, #66d455); */
-        color: #dc3545;
-    }
-
-    .table-striped tbody tr:nth-of-type(odd) {
-        background-color: #f9f9f9;
-    }
-
-    .table-striped tbody tr:hover {
-        background-color: #f1f1f1;
-    }
-
+   
     .badge {
         font-size: 0.8rem;
         padding: 0.5rem 0.8rem;
@@ -170,8 +97,6 @@
         margin: 0;
     }
 
-
-
     .bi {
         color: rgba(2, 131, 199, 1);
         height: 25px;
@@ -207,34 +132,6 @@
         color: rgba(138, 138, 138, 1);
 
     }
-
-    .chart_fieldvisit_flx {
-        background-color: white;
-        padding: 20px 30px;
-        width: 66%;
-        border-radius: 4px;
-        box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
-    }
-
-
-    .chart-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding-block: 20px;
-        width: 90%;
-    }
-
-    .chart {
-        display: flex;
-        align-items: flex-end;
-        /* Align bars to the bottom */
-        justify-content: space-between;
-        width: 100%;
-        height: 300px;
-        position: relative;
-    }
-
     .group {
         display: flex;
         justify-content: space-between;
@@ -243,59 +140,6 @@
         align-items: self-end;
     }
 
-    .bar {
-        width: 20px;
-        text-align: center;
-        color: white;
-        font-size: 12px;
-        line-height: 1.2;
-    }
-
-    .bar.pending {
-        background-color: rgba(2, 131, 199, 1);
-    }
-
-    .bar.completed {
-        background-color: rgba(165, 216, 221, 1);
-    }
-
-    .x-axis {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 10px;
-        width: 100%;
-    }
-
-    .x-axis span {
-        color: rgba(157, 157, 157, 1);
-    }
-
-    .legend {
-        display: flex;
-        justify-content: space-around;
-        /* margin-top: 20px; */
-        width: 300px;
-    }
-
-    .legend span {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .legend .color-box {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-    }
-
-    .pending-box {
-        background-color: #8ecae6;
-    }
-
-    .completed-box {
-        background-color: #219ebc;
-    }
 
     .project_txt_wrap {
         display: flex;
@@ -318,227 +162,9 @@
             border-radius: 4px;
             background-color: #007bff;
             margin-left: -10px;
-
-
         }
     }
 
-    .chart_number_container_flx {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding-top: 70px;
-    }
-
-    .chart_numbers {
-        width: 10%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 38px;
-        margin-bottom: 2rem;
-        padding: 0 !important;
-    }
-
-    .chart_numbers li {
-        font-size: 14px;
-        font-weight: 400;
-        color: rgba(157, 157, 157, 1);
-        list-style-type: none !important;
-    }
-
-    .chart_field_wrapper {
-        display: flex;
-        justify-content: space-between;
-        margin-block: 30px;
-    }
-
-    .field_notice_wrapper {
-        width: 32%;
-        display: flex;
-        flex-direction: column;
-        gap: 30px;
-    }
-
-    .field_visit_container {
-        background-color: white;
-        padding: 20px 20px;
-        box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
-        border-radius: 4px;
-
-    }
-
-    .first_visit_txt p {
-        font-size: 16px;
-        font-weight: 500;
-    }
-
-    .first_flx {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border-bottom: 0.5px solid rgba(217, 217, 217, 1);
-
-    }
-
-    .name_txt p {
-        font-size: 14px;
-        font-weight: 400;
-        position: relative;
-
-        &::before {
-            position: absolute;
-            content: " ";
-            height: 80%;
-            width: 2px;
-            border-radius: 4px;
-            background-color: #007bff;
-            left: -10px;
-
-        }
-    }
-
-    .qnty_flx p {
-        font-size: 14px;
-        font-weight: 400;
-        color: rgba(157, 157, 157, 1);
-    }
-
-    .qnty_flx1 p {
-        font-size: 14px;
-        font-weight: 400;
-    }
-
-    .second_flx {
-        display: flex;
-        justify-content: space-between;
-        margin-block: 15px;
-    }
-
-    .second_image_txt_flx {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .image_container {
-        height: 100%;
-        width: 35px;
-
-        img {
-            border-radius: 50%;
-            height: 100%;
-            width: 100%;
-        }
-    }
-
-    .txt_container p {
-        &:nth-child(1) {
-            font-size: 12px;
-            font-weight: 400;
-            margin: 0;
-        }
-
-        &:nth-child(2) {
-            font-size: 12px;
-            font-weight: 400;
-            color: #7f7b7a;
-            margin: 0;
-        }
-    }
-
-    .notice_wrapper_container {
-        background-color: white;
-        padding: 20px 20px;
-        box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
-        border-radius: 4px;
-
-    }
-
-    .notice_txt p {
-        font-size: 14px;
-        font-weight: 500;
-    }
-
-    .notice_date_flx {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-block: 10px;
-    }
-
-    .notice_txt p {
-        font-size: 14px;
-        font-weight: 500;
-        margin: 0;
-    }
-
-    .notice_date_icon {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 10px;
-
-        .bi {
-            height: 15px;
-            width: 15px;
-
-        }
-
-        P {
-            font-size: 14px;
-            font-weight: 500;
-            margin: 0;
-
-        }
-
-    }
-
-    .notice_grey_txt p {
-        font-size: 14px;
-        font-weight: 400;
-        color: #7f7b7a;
-        margin-bottom: 10px !important;
-        margin-block: 0;
-
-    }
-
-    .view_more {
-        border: none;
-        background: white;
-        padding: 0;
-        margin: 0;
-
-        a {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-
-            p {
-                font-size: 14px;
-                font-weight: 400;
-                color: #08c;
-                margin: 0;
-            }
-
-            .bi {
-                color: #08c;
-                height: 12px;
-                width: 12px;
-            }
-        }
-    }
-
-    .notice_wrapper_wrap {
-        margin-bottom: 10px;
-    }
-
-    .content_scroll {
-        /* max-height: 250px; */
-        overflow-y: auto;
-        margin-top: 10px;
-    }
 </style>
 @endsection
 @section('main-content')
