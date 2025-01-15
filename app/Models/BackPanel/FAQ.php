@@ -21,7 +21,6 @@ class FAQ extends Model
                 'question' => $post['question'],
                 'order_number' => $post['order_number'],
                 'answer' => $post['answer'],
-                'created_by' => Auth::user()->id
             ];
 
 
@@ -33,6 +32,7 @@ class FAQ extends Model
                 }
             } else {
                 $dataArray['created_at'] = Carbon::now();
+                $dataArray['created_by'] = $post['created_by'];
                 if (!FAQ::insert($dataArray)) {
                     throw new Exception("Couldn't Save Records", 1);
                 }

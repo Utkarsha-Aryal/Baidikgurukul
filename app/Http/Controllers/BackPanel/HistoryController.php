@@ -24,16 +24,29 @@ class HistoryController extends Controller
     {
         try {
             $rules = [
-                'title' => 'required|min:5|max:255',
+                'title' => 'required|min:1|max:50',
                 'details' => 'required|min:5|max:5000',
+                'order_number' => 'required',
             ];
+
             if (empty($request->id)) {
-                $rules['image'] = 'required:mimes:jpg,jpeg,png:max:2048';
+                $rules['image'] = 'required:mimes:jpg,jpeg,png:max:512kb';
             }
 
             $message = [
-                'title.required' => 'Please enter title',
-                'details.required' => 'Please write in details',
+                'title.required' => 'The title field is required.',
+                'title.min' => 'The title must be at least 1 character long.',
+                'title.max' => 'The title may not be more than 50 characters.',
+
+                'details.required' => 'Please provide details.',
+                'details.min' => 'The details must be at least 5 characters long.',
+                'details.max' => 'The details may not exceed 5000 characters.',
+
+                'order_number.required' => 'The order number field is required.',
+
+                'image.required' => 'An image is required.',
+                'image.mimes' => 'The image must be in jpg, jpeg, and png format.',
+                'image.max' => 'The image size must not exceed 512kb.',
             ];
 
             $validate = Validator::make($request->all(), $rules, $message);
@@ -47,7 +60,7 @@ class HistoryController extends Controller
             $message = 'Records saved successfully';
 
             DB::beginTransaction();
-
+            $post['created_by'] = $this->userid;
             if (!History::saveData($post)) {
                 throw new Exception('Could not save record', 1);
             }
@@ -95,6 +108,7 @@ class HistoryController extends Controller
 
                 $action = '';
                 if (!empty($post['type']) && $post['type'] != 'trashed') {
+                    $action .= ' <a href="javascript:;" class="view" title="View Data" data-id="' . $row->id . '"><i class="fa-solid fa-eye" style="color: #008f47;"></i></a> | ';
                     $action .= '<a href="javascript:;" class="edit" title="Edit Data" data-id="' . $row->id . '"><i class="fa-solid fa-pen-to-square text-primary"></i></a> |';
                 } else {
                     $action .= '<a href="javascript:;" class="restore" title="Restore Data" data-id="' . $row->id . '"><i class="fa-solid fa-undo text-success"></i></a> ';
@@ -166,7 +180,7 @@ class HistoryController extends Controller
             $post = $request->all();
 
             DB::beginTransaction();
-            if (!History::deleteFeatureImageEvent($post)) {
+            if (!History::deleteFeatureImageHistory($post)) {
                 throw new Exception("Couldn't Delete Feature Image. Please Try Again", 1);
             }
             // $this->form($request);
@@ -190,7 +204,7 @@ class HistoryController extends Controller
         try {
             $type = 'success';
             $message = "Record deleted successfully";
-            $directory = storage_path('app/public/event');
+            $directory = storage_path('app/public/history');
             $post = $request->all();
             $class = new History();
 
@@ -234,5 +248,29 @@ class HistoryController extends Controller
             $message = $e->getMessage();
         }
         return response()->json(['type' => $type, 'message' => $message]);
+    }
+
+    public function view(Request $request)
+    {
+        try {
+            $post = $request->all();
+            $historytDetails = History::where('id', $post['id'])
+                ->where('status', 'Y')
+                ->first();
+
+            $data = [
+                'historytDetails' => $historytDetails,
+            ];
+
+            $data['type'] = 'success';
+            $data['message'] = 'Successfully fetched data of History.';
+        } catch (QueryException $e) {
+            $data['type'] = 'error';
+            $data['message'] = $this->queryMessage;
+        } catch (Exception $e) {
+            $data['type'] = 'error';
+            $data['message'] = $e->getMessage();
+        }
+        return view('backend.history.view', $data);
     }
 }

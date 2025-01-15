@@ -2,9 +2,6 @@
 
 namespace App\Http\Controllers\BackPanel;
 
-
-namespace App\Http\Controllers\BackPanel;
-
 use App\Http\Controllers\Controller;
 use App\Models\BackPanel\FAQ;
 use App\Models\Common;
@@ -12,9 +9,8 @@ use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Validator;
 
 class FAQController extends Controller
 {
@@ -23,14 +19,40 @@ class FAQController extends Controller
         return view('backend.faq.index');
     }
 
-    //function to save testimonial
+    //save
     public function save(Request $request)
     {
         try {
+            $rules = [
+                'question' => 'required|min:2|max:255',
+                'answer' => 'required|min:2|max:255',
+                'order_number' => 'required',
+            ];
+
+            $message = [
+                'question.required' => 'The question field is required.',
+                'question.min' => 'The question must be at least 2 character long.',
+                'question.max' => 'The question may not be more than 255 characters.',
+
+                'answer.required' => 'The answer field is required.',
+                'answer.min' => 'The answer must be at least 2 characters long.',
+                'answer.max' => 'The answer may not exceed 255 characters.',
+
+                'order_number.required' => 'The order number field is required.',
+            ];
+
+
+            $validate = Validator::make($request->all(), $rules, $message);
+
+            if ($validate->fails()) {
+                throw new Exception($validate->errors()->first(), 1);
+            }
+
             $post = $request->all();
             $type = 'success';
             $message = 'Records saved successfully';
             DB::beginTransaction();
+            $post['created_by'] = $this->userid;
             $result = FAQ::saveData($post);
             if (!$result) {
                 throw new Exception('Could not save record', 1);
@@ -51,7 +73,7 @@ class FAQController extends Controller
         return response()->json(['type' => $type, 'message' => $message]);
     }
 
-    //function to list testimonial
+    //list
     public function list(Request $request)
     {
         try {
@@ -103,7 +125,7 @@ class FAQController extends Controller
         return response()->json(array("recordsFiltered" => $filtereddata, "recordsTotal" => $totalrecs, "data" => $array));
     }
 
-    //function to view testimonial
+    //view
     public function view(Request $request)
     {
         try {
@@ -126,7 +148,7 @@ class FAQController extends Controller
         return view('backend.testimonial.view', $data);
     }
 
-    // function to delete testimonial
+    // delete
     public function delete(Request $request)
     {
         try {
@@ -152,7 +174,7 @@ class FAQController extends Controller
         return response()->json(['type' => $type, 'message' => $message]);
     }
 
-    //function to restore testimonial
+    //restore
     public function restore(Request $request)
     {
         try {

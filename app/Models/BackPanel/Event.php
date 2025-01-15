@@ -18,7 +18,6 @@ class Event extends Model
     public static function saveData($post)
     {
         try {
-            // dd($post);
             $dataArray = [
                 'title' => $post['title'],
                 'slug' =>  Str::slug($post['title']) . '-' . time(),
@@ -29,7 +28,6 @@ class Event extends Model
                 'venue' => $post['event_venue'],
                 'event_time_start' => $post['event_time_start'],
                 'event_time_end' => $post['event_time_end'],
-                'created_by' => Auth::user()->id
             ];
 
             if (!empty($post['image'])) {
@@ -44,7 +42,7 @@ class Event extends Model
             if (!empty($post['feature_images'][0])) {
                 $imageNames = [];
                 foreach ($post['feature_images'] as $image) {
-                    $fileName = Common::uploadFile('post', $image);
+                    $fileName = Common::uploadFile('event', $image);
                     if (!$fileName) {
                         return false;
                     }
@@ -66,24 +64,22 @@ class Event extends Model
                 }
             }
 
-            $dataArray['created_at'] = Carbon::now();
 
             if (!empty($post['id'])) {
 
                 $dataArray['updated_by'] = Auth::user()->id;
-
-
                 $dataArray['updated_at'] = Carbon::now();
 
                 if (!Event::where('id', $post['id'])->update($dataArray)) {
                     throw new Exception("Couldn't update Records", 1);
                 }
             } else {
+                $dataArray['created_by'] = $post['created_by'];
+                $dataArray['created_at'] = Carbon::now();
                 if (!Event::insert($dataArray)) {
                     throw new Exception("Couldn't Save Records", 1);
                 }
             }
-
             return true;
         } catch (Exception $e) {
             throw $e;
@@ -108,7 +104,7 @@ class Event extends Model
                 $cond .= " and lower(title) like '%" . $get['columns'][1]['search']['value'] . "%'";
 
             if ($get['columns'][2]['search']['value'])
-                $cond .= " and lower(category) like '%" . $get['columns'][2]['search']['value'] . "%'";
+                $cond .= " and lower(details) like '%" . $get['columns'][2]['search']['value'] . "%'";
 
             $limit = 15;
             $offset = 0;

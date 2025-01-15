@@ -27,35 +27,19 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <th scope="row">Event Title</th>
-                            <td>{{ $EventDetails->title }}</td>
+                            <th scope="row">History Title</th>
+                            <td>{{ $historytDetails->title }}</td>
                         </tr>
                         <tr>
-                            <th scope="row">Event Details</th>
-                            <td>{!! $EventDetails->details !!}</td>
+                            <th scope="row">History Details</th>
+                            <td>{!! $historytDetails->details !!}</td>
                         </tr>
                         <tr>
-                            <th scope="row">Event Address</th>
-                            <td>{{ $EventDetails->address }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Event Venue</th>
-                            <td>{{ $EventDetails->venue }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Event Starting Time</th>
-                            <td>{{ $EventDetails->event_time_start }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Event End Time</th>
-                            <td>{{ $EventDetails->event_time_end }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Event Image</th>
+                            <th scope="row">History Image</th>
                             <?php
                             $photo = asset('images/no-image.jpg');
-                            if (!empty($EventDetails->image)) {
-                                $photo = asset('storage/event/' . $EventDetails->image);
+                            if (!empty($historytDetails->image)) {
+                                $photo = asset('storage/history/' . $historytDetails->image);
                             }
                             ?>
                             <td><img src="{{ $photo }}" height="100px" alt="Image">

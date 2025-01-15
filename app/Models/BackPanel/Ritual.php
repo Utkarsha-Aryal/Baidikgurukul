@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Models\BackPanel;
 
 use App\Models\Common;
@@ -12,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 
-class History extends Model
+class Ritual extends Model
 {
     use HasFactory;
 
@@ -25,21 +24,14 @@ class History extends Model
                 'slug' =>  Str::slug($post['title']) . '-' . time(),
                 'details' => $post['details'],
                 'order_number' => $post['order_number'],
+                'video_link' => $post['video_link'],
             ];
-
-            if (!empty($post['image'])) {
-                $fileName =  Common::uploadFile('history', $post['image']);
-                if (!$fileName) {
-                    return false;
-                }
-                $dataArray['image'] = $fileName;
-            }
 
 
             if (!empty($post['feature_images'][0])) {
                 $imageNames = [];
                 foreach ($post['feature_images'] as $image) {
-                    $fileName = Common::uploadFile('history', $image);
+                    $fileName = Common::uploadFile('ritual', $image);
                     if (!$fileName) {
                         return false;
                     }
@@ -51,7 +43,7 @@ class History extends Model
                 } else {
                     // $fetchOldData = Post::select('feature_image')->where('id', $post['id'])->first();//compare
                     // $oldData = json_decode($fetchOldData->documents);//compare
-                    $postData = Event::where('id', $post['id'])->first();
+                    $postData = Ritual::where('id', $post['id'])->first();
                     $fetchOldData = json_decode($postData->feature_image);
                     if (isset($fetchOldData)) {
                         $dataArray['feature_image'] = json_encode(array_merge($fetchOldData, $imageNames));
@@ -61,21 +53,20 @@ class History extends Model
                 }
             }
 
-
-
             if (!empty($post['id'])) {
 
 
                 $dataArray['updated_by'] = Auth::user()->id;
                 $dataArray['updated_at'] = Carbon::now();
 
-                if (!History::where('id', $post['id'])->update($dataArray)) {
+                if (!Ritual::where('id', $post['id'])->update($dataArray)) {
                     throw new Exception("Couldn't update Records", 1);
                 }
             } else {
                 $dataArray['created_by'] = $post['created_by'];
                 $dataArray['created_at'] = Carbon::now();
-                if (!History::insert($dataArray)) {
+
+                if (!Ritual::insert($dataArray)) {
                     throw new Exception("Couldn't Save Records", 1);
                 }
             }
@@ -104,7 +95,7 @@ class History extends Model
                 $cond .= " and lower(title) like '%" . $get['columns'][1]['search']['value'] . "%'";
 
             if ($get['columns'][2]['search']['value'])
-                $cond .= " and lower(details) like '%" . $get['columns'][2]['search']['value'] . "%'";
+                $cond .= " and lower(category) like '%" . $get['columns'][2]['search']['value'] . "%'";
 
             $limit = 15;
             $offset = 0;
@@ -113,7 +104,7 @@ class History extends Model
                 $offset = $get["start"];
             }
 
-            $query = History::selectRaw("(SELECT count(*) FROM histories WHERE{$cond}) AS totalrecs, title, id as id, details, short_bio, order_number,image")
+            $query = Ritual::selectRaw("(SELECT count(*) FROM rituals WHERE{$cond}) AS totalrecs, title, id as id, details,video_link, order_number")
                 ->whereRaw($cond);
 
             if ($limit > -1) {
@@ -141,7 +132,7 @@ class History extends Model
             $jsonArray = json_decode($postData->feature_image);
             $newArray = array_values(array_diff($jsonArray, [$post['feature_image']]));
 
-            $filepath = storage_path('app/public/history');
+            $filepath = storage_path('app/public/ritual');
 
             if (file_exists($filepath . '/' . $post['feature_image'])) {
                 unlink($filepath . '/' . $post['feature_image']);
@@ -162,14 +153,14 @@ class History extends Model
         }
     }
 
-    public static function deleteFeatureImageHistory($post)
+    public static function deleteFeatureImageRitual($post)
     {
         try {
-            $postData = History::where('id', $post['id'])->first();
+            $postData = Ritual::where('id', $post['id'])->first();
             $jsonArray = json_decode($postData->feature_image);
             $newArray = array_values(array_diff($jsonArray, [$post['feature_image']]));
 
-            $filepath = storage_path('app/public/history');
+            $filepath = storage_path('app/public/ritual');
 
             if (file_exists($filepath . '/' . $post['feature_image'])) {
                 unlink($filepath . '/' . $post['feature_image']);
@@ -198,7 +189,7 @@ class History extends Model
                 'status' => 'Y',
                 'updated_at' => Carbon::now(),
             ];
-            if (!History::where(['id' => $post['id']])->update($updateArray)) {
+            if (!Ritual::where(['id' => $post['id']])->update($updateArray)) {
                 throw new Exception("Couldn't Restore Data. Please try again", 1);
             }
             return true;

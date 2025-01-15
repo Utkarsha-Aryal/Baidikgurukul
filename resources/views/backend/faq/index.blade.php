@@ -328,8 +328,8 @@
             $(document).off('click', '.restore');
             $(document).on('click', '.restore', function() {
                 Swal.fire({
-                    title: "Are you sure you want to restore faq?",
-                    text: "This will restore the faq.",
+                    title: "Are you sure you want to restore Faq?",
+                    text: "This will restore the Faq.",
                     icon: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#28a745",
