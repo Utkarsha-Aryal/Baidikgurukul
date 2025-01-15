@@ -206,7 +206,7 @@
             border: 1px solid rgb(0, 99, 198) !important
         }
     </style>
-
+    @yield('styles')
 </head>
 
 <body>
