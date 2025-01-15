@@ -1,0 +1,9 @@
+@import "_mixins.scss";
+.gallery-inner-container {
+    margin-top: 90px;
+    .gallery-inner-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 20px;
+    }
+}

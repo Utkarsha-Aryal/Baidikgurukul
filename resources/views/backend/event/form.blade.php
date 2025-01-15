@@ -150,7 +150,7 @@
                         </div>
                     </div>
                     {{-- it is only for v2 --}}
-                    
+
                     {{-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                         <div class="row">
                             <label for="description" class="form-label">Event Feature Images
@@ -313,7 +313,6 @@
             if ($('#eventForm').valid()) {
                 $('#details').val(window.editor.getData());
                 showLoader();
-
                 $('#eventForm').ajaxSubmit(function(response) {
                     var result = JSON.parse(response);
                     if (result) {

@@ -1,0 +1,232 @@
+@extends('frontend.layouts.main')
+@section('title', 'About Us')
+@section('content')
+<section class="introduction_page">
+  <div class="img_before">
+    <img src="frontend\images\Mask group.png" alt="mask_group">
+  </div>
+  <div class="common_image_txt">
+    <div class="common_bg_wrapper">
+      <img src="frontend\images\image1.jpeg" alt="hands">
+    </div>
+    <div class="main_txt">
+      <p>Introduction</p>
+    </div>
+  </div>
+  <div class="img_after">
+    <img src="frontend\images\Mask group.png" alt="mask_group">
+  </div>
+</section>
+<section class="rituals_dreams">
+  <div class="container">
+    <div class="dreams_wrappper">
+      <div class="about-lt">
+        <div class="radius-o">
+          <div class="inner-o"></div>
+          <div class="dance-img">
+            <img src="frontend\images\cultural.png" alt="culture">
+          </div>
+        </div>
+      </div>
+      <div class="right_dreams_txt">
+        <div class="first_dreams_txt">
+          <p>About Chochangay Samaj Nepal</p>
+        </div>
+        <div class="second_txt">
+          <p>Dream Of Every <span class="blue">Chochangay
+              Samaj Nepal</span> Community</p>
+        </div>
+        <div class="third_dream_txt">
+          <p>Lorem ipsum dolor sit amet consectetur. Condimentum placerat nisi tellus ultrices quam ligula aliquam. Elementum nullam ultricies lacus eleifend vestibulum. Pellentesque nisl in habitasse nibh adipiscing eu ut mus accumsan. Adipiscing at placerat scelerisque gravida facilisis. Facilisis suscipit odio porta consequat quis mi. Aliquet diam nisl diam mauris mi. Faucibus duis in vitae congue purus. Vitae lorem sociis tellus nunc. Diam nibh sagittis tempor est tellus lorem curabitur eget fames. Amet feugiat morbi justo vitae. Ornare sapien sit turpis cursus odio est volutpat.
+            Imperdiet interdum leo in eu semper nulla turpis mattis. Blandit eleifend rhoncus egestas proin. Lacus viverra aliquet tortor vitae. Tortor tristique turpis lobortis quam. Elit in ut fames nisi ultrices.</p>
+        </div>
+        <button class="read_button">
+          <a href="#">
+            <p>READ MORE</p>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" />
+            </svg>
+          </a>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="mission_vision_container">
+  <div class="container">
+    <div class="ft_wrap">
+      <div class="lfr_row">
+        <p>We are focused on our Mission, Vision & Goals</p>
+      </div>
+      <div class="rght_row">
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Provident dignissimos accusamus saepe minima eius, voluptatem assumenda incidunt perspiciatis porro dolores.</p>
+      </div>
+    </div>
+
+    <div class="mission_vision_goal_wrapper">
+      <div class="mission_card_container">
+        <div class="mission_icon">
+          <img src="frontend\images\Mask group.svg" alt="mission">
+        </div>
+        <div class="mission_main">
+          <p>Mission</p>
+        </div>
+        <div class="mission_txt">
+          <p>Lorem ipsum dolor sit amet consectetur. Feugiat eu tristique congue morbi ac. Tempor turpis quis ornare duis platea interdum viverra. Cursus sapien orci vulputate lobortis sollicitudin euismod id. A neque tempus eget sit sit aliquam id. Odio amet purus sed semper sit. Parturient morbi laoreet sollicitudin velit aenean sit morbi vitae eu.</p>
+        </div>
+      </div>
+      <div class="mission_card_container">
+        <div class="mission_icon">
+          <img src="frontend\images\Mask group.svg" alt="mission">
+        </div>
+        <div class="mission_main">
+          <p>Vision</p>
+        </div>
+        <div class="mission_txt">
+          <p>Lorem ipsum dolor sit amet consectetur. Feugiat eu tristique congue morbi ac. Tempor turpis quis ornare duis platea interdum viverra. Cursus sapien orci vulputate lobortis sollicitudin euismod id. A neque tempus eget sit sit aliquam id. Odio amet purus sed semper sit. Parturient morbi laoreet sollicitudin velit aenean sit morbi vitae eu.</p>
+        </div>
+      </div>
+      <div class="mission_card_container">
+        <div class="mission_icon">
+          <img src="frontend\images\Mask group.svg" alt="mission">
+        </div>
+        <div class="mission_main">
+          <p>Goals</p>
+        </div>
+        <div class="mission_txt">
+          <p>Lorem ipsum dolor sit amet consectetur. Feugiat eu tristique congue morbi ac. Tempor turpis quis ornare duis platea interdum viverra. Cursus sapien orci vulputate lobortis sollicitudin euismod id. A neque tempus eget sit sit aliquam id. Odio amet purus sed semper sit. Parturient morbi laoreet sollicitudin velit aenean sit morbi vitae eu.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="timeline-container">
+      <div class="timeline-header">
+        <p>
+          Our History
+        </p>
+      </div>
+
+      <div class="timeline-item_odd">
+        <div class="timeline-item-content">
+          <h3>2077</h3>
+          <p>Lorem ipsum dolor sit amet consectetur. Fugiat eu tristique congue metus.</p>
+        </div>
+        <div class="timeline-items odd">
+          <div class="timeline-dot"></div>
+          <div class="timeline-line"></div>
+          <div class="timeline-second-dot"></div>
+        </div>
+      </div>
+
+      <div class="timeline-item_even">
+        <div class="timeline-item-content">
+          <h3>2078</h3>
+          <p>Lorem ipsum dolor sit amet consectetur. Fugiat eu tristique congue metus.</p>
+        </div>
+        <div class="timeline-items even">
+          <div class="timeline-dot"></div>
+          <div class="timeline-line"></div>
+          <div class="timeline-second-dot"></div>
+        </div>
+      </div>
+
+      <div class="timeline-item_odd">
+        <div class="timeline-item-content">
+          <h3>2079</h3>
+          <p>Lorem ipsum dolor sit amet consectetur. Fugiat eu tristique congue metus.</p>
+        </div>
+        <div class="timeline-items odd">
+          <div class="timeline-dot"></div>
+          <div class="timeline-line"></div>
+          <div class="timeline-second-dot"></div>
+        </div>
+      </div>
+
+      <div class="timeline-item_even">
+        <div class="timeline-item-content">
+          <h3>2080</h3>
+          <p>Lorem ipsum dolor sit amet consectetur. Fugiat eu tristique congue metus.</p>
+        </div>
+        <div class="timeline-items even">
+          <div class="timeline-dot"></div>
+          <div class="timeline-line"></div>
+          <div class="timeline-second-dot"></div>
+        </div>
+      </div>
+
+      <div class="timeline-item_odd">
+        <div class="timeline-item-content">
+          <h3>2081</h3>
+          <p>Lorem ipsum dolor sit amet consectetur. Fugiat eu tristique congue metus.</p>
+        </div>
+        <div class="timeline-items odd">
+          <div class="timeline-dot"></div>
+          <div class="timeline-line"></div>
+          <div class="timeline-second-dot"></div>
+        </div>
+      </div>
+      <div class="timeline-item_even">
+        <div class="timeline-item-content">
+          <h3>2082</h3>
+          <p>Lorem ipsum dolor sit amet consectetur. Fugiat eu tristique congue metus.</p>
+        </div>
+        <div class="timeline-items even">
+          <div class="timeline-dot"></div>
+          <div class="timeline-line"></div>
+          <div class="timeline-second-dot"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<section class="rights_for_dreams">
+  <div class="container">
+    <div class="rights_wrapper">
+      <div class="left_rights_txt">
+        <div class="quote_container">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-quote" viewBox="0 0 16 16">
+            <path d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388q0-.527.062-1.054.093-.558.31-.992t.559-.683q.34-.279.868-.279V3q-.868 0-1.52.372a3.3 3.3 0 0 0-1.085.992 4.9 4.9 0 0 0-.62 1.458A7.7 7.7 0 0 0 9 7.558V11a1 1 0 0 0 1 1zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612q0-.527.062-1.054.094-.558.31-.992.217-.434.559-.683.34-.279.868-.279V3q-.868 0-1.52.372a3.3 3.3 0 0 0-1.085.992 4.9 4.9 0 0 0-.62 1.458A7.7 7.7 0 0 0 3 7.558V11a1 1 0 0 0 1 1z" />
+          </svg>
+        </div>
+        <div class="first_txt">
+          <p>Dream Of Every <span class="blue">Chochangay
+              Samaj Community</span> Is To Gather Our Rights </p>
+        </div>
+        <div class="third_dream_txt">
+          <p>Lorem ipsum dolor sit amet consectetur. Quam dolor natoque nisl in amet arcu. Eget eu urna urna orci tincidunt. Aliquam commodo dictum euismod pellentesque leo gravida aliquam ipsum. In quisque lacus malesuada sit tempus id lacus urna rhoncus. Sit integer semper ac volutpat neque amet elit donec morbi. Tincidunt nulla et varius pellentesque morbi. Massa volu tpat elit massa amet eget egestas sem duis. Mi sit faucibus aliquet uet congue. Lacus lorem mauris dui in augue sit diam lectus. Dictum quis ut duis aliquam. Felis quam dolor morbi amet pellentesque orci. Nibh morbi enim venenatis mi amet urna pulvinar elit pharetra. Ornare nisl ut elem entum senectus quam gravida diam. Quam vitae imperdiet sed mauris quis arcu tristique malesuada. Sagittis blandit tincidunt molestie diam orn are facilisi laoreet. Ac proin scelerisque pretium facilisis vitae varius sag ittis pellentesque. Nisi mauris tristique justo lacinia. Nunc pellen tes que a tincidunt purus ultricies enim a integer. Maecenas dolor massa non nibh vitae. Pellentesque a tincidunt consectetur dignissim. Lacus metus aucto dui aliquam blandit dapibus vivamus. Gravida ut lobortis lorem faucibus odio ac id. Dignissim amet ac dis sollicitudin et. Gravida massa bibendum enim at praesent at.
+          </p>
+        </div>
+      </div>
+      <div class="right_rights_image">
+        <div class="image_container_wrapper">
+          <img src="frontend\images\curved.jpeg" alt="image">
+          <div class="image_designation_container">
+            <a href="#">
+              <p>Anusha Raimajhi</p>
+              <p>Chairperson</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="img_registration_wrap">
+  <div class="lft_img">
+    <img src="frontend\images\ritual.png" alt="ritual">
+  </div>
+  <div class="rght_txt">
+    <p>Entry Your Birth & Death
+      Registration Form
+      Keep Updated</p>
+    <button class="entry_form">
+      <a href="#">
+        <p>Entry Now</p>
+      </a>
+    </button>
+  </div>
+</div>
+
+
+@endsection

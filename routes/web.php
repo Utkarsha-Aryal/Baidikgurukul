@@ -21,6 +21,10 @@ use App\Http\Controllers\BackPanel\HistoryController;
 use App\Http\Controllers\BackPanel\FAQController;
 use App\Http\Controllers\BackPanel\ProgramController;
 use App\Http\Controllers\BackPanel\RitualController;
+use App\Http\Controllers\FrontPanel\FrontIntroductionController;
+use App\Http\Controllers\FrontPanel\FrontHomeController;
+use App\Http\Controllers\FrontPanel\FrontTeamController;
+use App\Http\Controllers\FrontPanel\FrontProgramController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -255,10 +259,13 @@ Route::group(['middleware' => 'admin'], function () {
         //ritual end here
     });
 });
-
 /* Backend-end */
 
 // Front End Start here  
+Route::get('/home', [FrontHomeController::class, 'index'])->name('home');
+Route::get('/about', [FrontIntroductionController::class, 'index'])->name('about');
+Route::get('/ourteam', [FrontTeamController::class, 'index'])->name('ourteam');
+Route::get('/program', [FrontProgramController::class, 'index'])->name('program');
 
 
 // Front End Start here 
