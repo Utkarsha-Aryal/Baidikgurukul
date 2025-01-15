@@ -1,0 +1,48 @@
+@import "_mixins.scss";
+.blogs-container-main {
+    margin-block: 60px;
+    .blogs-content-main {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 20px;
+        .blogs-r1 {
+            padding: 12px;
+            box-shadow:0 0 16px rgba($color: #000000, $alpha:0.2);
+            .blogs-img {
+                img {
+                    object-fit: cover;
+                }
+            }
+            .blogs-b1-header {
+                padding-top: 18px;
+                p {
+                    font-size: 14px;
+                    font-weight: 500;
+                    color: var(--primary-clr);
+                }
+            }
+            .blogs-b1-title {
+                padding-top: 5px;
+                p {
+                    font-size: 20px;
+                    font-weight: 500;
+                    margin: 0;
+                }
+            }
+            .blogs-b1-txt {
+                display: flex;
+                gap: 5px;
+                align-items: center;
+                color: $maroon;
+                .bi-calendar-week {
+                    height: 12px;
+                    width: 12px;
+                }
+                p {
+                    font-size: 14px;
+                    color: #737373;
+                }
+            }
+        }
+    }
+}

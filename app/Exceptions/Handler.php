@@ -22,20 +22,20 @@ class Handler extends ExceptionHandler
     /**
      * Register the exception handling callbacks for the application.
      */
-    public function register(): void
-    {
-        $this->reportable(function (Throwable $e) {
-            //
-        });
-        $this->renderable(function (HttpException $e, $request) {
+    // public function register(): void
+    // {
+    //     $this->reportable(function (Throwable $e) {
+    //         //
+    //     });
+    //     $this->renderable(function (HttpException $e, $request) {
 
-            $status = $e->getStatusCode();
+    //         $status = $e->getStatusCode();
 
-            if (view()->exists("errors.404")) {
-                return response()->view("errors.404", [], $status);
-            }
-        });
-    }
+    //         if (view()->exists("errors.404")) {
+    //             return response()->view("errors.404", [], $status);
+    //         }
+    //     });
+    // }
 
     // public function render($request, Throwable $e)
     // {
@@ -43,4 +43,3 @@ class Handler extends ExceptionHandler
     //     return parent::render($request, $e);
     // }
 }
-

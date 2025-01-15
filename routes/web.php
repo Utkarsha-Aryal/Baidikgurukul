@@ -21,6 +21,19 @@ use App\Http\Controllers\BackPanel\HistoryController;
 use App\Http\Controllers\BackPanel\FAQController;
 use App\Http\Controllers\BackPanel\ProgramController;
 use App\Http\Controllers\BackPanel\RitualController;
+use App\Http\Controllers\frontpanel\ContactController;
+use App\Http\Controllers\frontpanel\DonarController;
+use App\Http\Controllers\frontpanel\EventController as FrontEventController;
+use App\Http\Controllers\frontpanel\FaqController as FrontFAQController;
+use App\Http\Controllers\frontpanel\FormController;
+use App\Http\Controllers\frontpanel\GalleryController as FrontGalleryController;
+use App\Http\Controllers\frontpanel\HistoryController as FrontHistoryController;
+use App\Http\Controllers\FrontPanel\HomeController as FrontHomeController;
+use App\Http\Controllers\frontpanel\IntroductionController;
+use App\Http\Controllers\frontpanel\NewsController;
+use App\Http\Controllers\frontpanel\ProgramController as FrontProgramController;
+use App\Http\Controllers\frontpanel\RulesController;
+use App\Http\Controllers\frontpanel\TeamController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -255,10 +268,28 @@ Route::group(['middleware' => 'admin'], function () {
         //ritual end here
     });
 });
-
 /* Backend-end */
 
 // Front End Start here  
-
+Route::get('/', [FrontHomeController::class, 'index'])->name('home');
+Route::get('about', [IntroductionController::class, 'introduction'])->name('about');
+Route::get('new', [IntroductionController::class, 'new'])->name('new');
+Route::get('team', [TeamController::class, 'ourteam'])->name('ourteam');
+Route::get('teaminner', [TeamController::class, 'teaminner'])->name('teaminner');
+Route::get('program', [FrontProgramController::class, 'program'])->name('program');
+Route::get('gallery', [FrontGalleryController::class, 'gallery'])->name('gallery');
+Route::get('ginner', [FrontGalleryController::class, 'ginner'])->name('ginner');
+Route::get('news', [NewsController::class, 'news'])->name('news');
+Route::get('history', [FrontHistoryController::class, 'history'])->name('history');
+Route::get('rules', [RulesController::class, 'rules'])->name('rules');
+Route::get('faq', [FrontFAQController::class, 'faq'])->name('faq');
+Route::get('event', [FrontEventController::class, 'event'])->name('event');
+Route::get('einner', [FrontEventController::class, 'einner'])->name('einner');
+Route::get('einner', [FrontEventController::class, 'einner'])->name('einner');
+Route::get('contact', [ContactController::class, 'contact'])->name('contact');
+Route::get('ninner', [NewsController::class, 'ninner'])->name('ninner');
+Route::get('list', [DonarController::class, 'list'])->name('list');
+Route::get('pinner', [ProgramController::class, 'pinner'])->name('pinner');
+Route::get('form', [FormController::class, 'form'])->name('form');
 
 // Front End Start here 
