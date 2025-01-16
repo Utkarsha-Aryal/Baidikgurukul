@@ -283,6 +283,7 @@ Route::get('ginner', [FrontGalleryController::class, 'ginner'])->name('ginner');
 Route::get('news', [NewsController::class, 'news'])->name('news');
 Route::get('history', [FrontHistoryController::class, 'history'])->name('history');
 Route::get('rules', [RulesController::class, 'rules'])->name('rules');
+Route::get('birth', [RulesController::class, 'birth'])->name('birth');
 Route::get('faq', [FrontFAQController::class, 'faq'])->name('faq');
 Route::get('event', [FrontEventController::class, 'event'])->name('event');
 Route::get('einner', [FrontEventController::class, 'einner'])->name('einner');

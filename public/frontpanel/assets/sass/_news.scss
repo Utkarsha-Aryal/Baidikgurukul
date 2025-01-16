@@ -7,8 +7,9 @@
         gap: 20px;
         .blogs-r1 {
             padding: 12px;
-            box-shadow:0 0 16px rgba($color: #000000, $alpha:0.2);
+            box-shadow: 0 0 16px rgba($color: #000000, $alpha: 0.2);
             .blogs-img {
+                height: 230px;
                 img {
                     object-fit: cover;
                 }

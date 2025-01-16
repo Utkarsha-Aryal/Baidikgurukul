@@ -12,4 +12,9 @@ class RulesController extends Controller
         // Returns the 'history' view
         return view('frontend.rules.index');
     }
+    public function birth()
+    {
+        // Returns the 'history' view
+        return view('frontend.rules.birth');
+    }
 }
