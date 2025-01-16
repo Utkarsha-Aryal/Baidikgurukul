@@ -3,18 +3,18 @@
 @section('content')
 <section class="introduction_page">
     <div class="img_before">
-        <img src="frontend\images\Mask group.png" alt="mask_group">
+        <img src="{{ asset('frontpanel/assets/images/Mask group.png') }}" alt="">
     </div>
     <div class="common_image_txt">
         <div class="common_bg_wrapper">
-            <img src="frontend\images\image1.jpeg" alt="hands">
+            <img src="{{ asset('frontpanel/assets/images/image1.jpeg') }}" alt="">
         </div>
         <div class="main_txt">
-            <p>News & Blogs Inner Page</p>
+            <p>News & Blogs inner page</p>
         </div>
     </div>
     <div class="img_after">
-        <img src="frontend\images\Mask group.png" alt="mask_group">
+        <img src="{{ asset('frontpanel/assets/images/Mask group.png') }}" alt="">
     </div>
 </section>
 
