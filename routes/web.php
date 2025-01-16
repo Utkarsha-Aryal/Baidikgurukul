@@ -271,12 +271,13 @@ Route::group(['middleware' => 'admin'], function () {
 /* Backend-end */
 
 // Front End Start here  
-Route::get('/', [FrontHomeController::class, 'index'])->name('home');
+Route::get('/home', [FrontHomeController::class, 'index'])->name('home');
 Route::get('about', [IntroductionController::class, 'introduction'])->name('about');
 Route::get('new', [IntroductionController::class, 'new'])->name('new');
 Route::get('team', [TeamController::class, 'ourteam'])->name('ourteam');
 Route::get('teaminner', [TeamController::class, 'teaminner'])->name('teaminner');
 Route::get('program', [FrontProgramController::class, 'program'])->name('program');
+Route::get('program/inner', [FrontProgramController::class, 'inner'])->name('program.inner');
 Route::get('gallery', [FrontGalleryController::class, 'gallery'])->name('gallery');
 Route::get('ginner', [FrontGalleryController::class, 'ginner'])->name('ginner');
 Route::get('news', [NewsController::class, 'news'])->name('news');
@@ -284,7 +285,6 @@ Route::get('history', [FrontHistoryController::class, 'history'])->name('history
 Route::get('rules', [RulesController::class, 'rules'])->name('rules');
 Route::get('faq', [FrontFAQController::class, 'faq'])->name('faq');
 Route::get('event', [FrontEventController::class, 'event'])->name('event');
-Route::get('einner', [FrontEventController::class, 'einner'])->name('einner');
 Route::get('einner', [FrontEventController::class, 'einner'])->name('einner');
 Route::get('contact', [ContactController::class, 'contact'])->name('contact');
 Route::get('ninner', [NewsController::class, 'ninner'])->name('ninner');

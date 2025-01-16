@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+
 class ProgramController extends Controller
 {
     public function index()
@@ -20,40 +21,40 @@ class ProgramController extends Controller
         return view('backend.program.index');
     }
 
-     // Image upload of post
-     public function uploadImage(Request $request)
-     {
-         try {
-             if ($request->hasFile('upload')) {
-                 $folder = storage_path('app/public/program/');
- 
-                 if (!Storage::exists($folder))
-                     Storage::makeDirectory($folder, 0775, true, true);
- 
-                 $file = $request->file('upload');
-                 $newName = time() . '_' . rand(10, 9999999999999) . '_' . $file->getClientOriginalName();
-                 $file->move($folder, $newName);
- 
-                 $url = asset('storage/program/' . $newName); // Public URL for the uploaded image
- 
-                 return response()->json([
-                     'uploaded' => 1,
-                     'fileName' => $newName,
-                     'url' => $url
-                 ]);
-             } else {
-                 return response()->json([
-                     'uploaded' => 0,
-                     'error' => ['message' => 'No file uploaded.']
-                 ]);
-             }
-         } catch (Exception $e) {
-             return response()->json([
-                 'uploaded' => 0,
-                 'error' => ['message' => $e->getMessage()]
-             ], 500);
-         }
-     }
+    // Image upload of post
+    public function uploadImage(Request $request)
+    {
+        try {
+            if ($request->hasFile('upload')) {
+                $folder = storage_path('app/public/program/');
+
+                if (!Storage::exists($folder))
+                    Storage::makeDirectory($folder, 0775, true, true);
+
+                $file = $request->file('upload');
+                $newName = time() . '_' . rand(10, 9999999999999) . '_' . $file->getClientOriginalName();
+                $file->move($folder, $newName);
+
+                $url = asset('storage/program/' . $newName); // Public URL for the uploaded image
+
+                return response()->json([
+                    'uploaded' => 1,
+                    'fileName' => $newName,
+                    'url' => $url
+                ]);
+            } else {
+                return response()->json([
+                    'uploaded' => 0,
+                    'error' => ['message' => 'No file uploaded.']
+                ]);
+            }
+        } catch (Exception $e) {
+            return response()->json([
+                'uploaded' => 0,
+                'error' => ['message' => $e->getMessage()]
+            ], 500);
+        }
+    }
 
     /* save */
     public function save(Request $request)
@@ -119,6 +120,11 @@ class ProgramController extends Controller
                 $array[$i]["details"]  =  strip_tags(Str::limit($row->details, 30, '...'));
                 $array[$i]["order_number"]  =  $row->order_number;
                 $array[$i]["video_link"]  =  $row->video_link;
+                $image = asset('images/no-image.jpg');
+                if (!empty($row->image) && file_exists(public_path('/storage/program/' . $row->image))) {
+                    $image = asset("storage/program/" . $row->image);
+                }
+                $array[$i]["image"] = '<img src="' . $image . '" height="30px" width="30px" alt="image"/>';
                 $action = '';
                 if (!empty($post['type']) && $post['type'] != 'trashed') {
                     $action .= '<a href="javascript:;" class="edit" title="Edit Data" data-id="' . $row->id . '"><i class="fa-solid fa-pen-to-square text-primary"></i></a> |';

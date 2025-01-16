@@ -14,6 +14,10 @@ class Event extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'event_date' => 'datetime',
+    ];
+
 
     public static function saveData($post)
     {

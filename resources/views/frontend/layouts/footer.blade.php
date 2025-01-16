@@ -79,7 +79,11 @@
                                     </svg>
                                 </div>
                                 <div class="icon-txt">
-                                    <p><a href="tel:+1234567890">+977-9761812357</p>
+                                    @if (!empty($siteSetting->phone_number))
+                                        <p><a href="">{{ $siteSetting->phone_number ?? '' }}</a></p>
+                                    @else
+                                        <p><a href="">+977-9867886300</a></p>
+                                    @endif
                                 </div>
                             </div>
                             <div class="all-icon-box">
@@ -91,7 +95,11 @@
                                     </svg>
                                 </div>
                                 <div class="icon-txt">
-                                    <p><a href="mailto:yourname@example.com">Chohangeysamaj@gmail</a></p>
+                                    @if (!empty($siteSetting->email))
+                                        <p><a href="">{{ $siteSetting->email ?? '' }}</a></p>
+                                    @else
+                                        <p><a href="mailto:yourname@example.com">Chohangeysamaj@gmail</a></p>
+                                    @endif
                                 </div>
                             </div>
                             <div class="all-icon-box">
