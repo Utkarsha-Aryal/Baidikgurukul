@@ -64,6 +64,9 @@
 }
 .rituals_dreams {
     padding-block: 50px;
+    @include respond-to(tablet) {
+        padding: 0;
+    }
     .dreams_wrappper {
         display: flex;
         align-items: center;
@@ -426,8 +429,9 @@
             width: 30%;
             .image_container_wrapper {
                 position: relative;
+                height: 420px;
                 img {
-                    height: 530px;
+                    object-fit: cover;
                 }
                 .image_designation_container {
                     position: absolute;

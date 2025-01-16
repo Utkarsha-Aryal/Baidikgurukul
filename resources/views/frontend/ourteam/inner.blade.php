@@ -2,20 +2,20 @@
 @section('title', 'Our Team Inner')
 @section('content')
 <section class="introduction_page">
-  <div class="img_before">
-    <img src="frontend\images\Mask group.png" alt="mask_group">
-  </div>
-  <div class="common_image_txt">
-    <div class="common_bg_wrapper">
-      <img src="frontend\images\image1.jpeg" alt="hands">
+    <div class="img_before">
+        <img src="{{ asset('frontpanel/assets/images/Mask group.png') }}" alt="">
     </div>
-    <div class="main_txt">
-      <p>Our Team Inner</p>
+    <div class="common_image_txt">
+        <div class="common_bg_wrapper">
+            <img src="{{ asset('frontpanel/assets/images/image1.jpeg') }}" alt="">
+        </div>
+        <div class="main_txt">
+            <p>Our Team Inner</p>
+        </div>
     </div>
-  </div>
-  <div class="img_after">
-    <img src="frontend\images\Mask group.png" alt="mask_group">
-  </div>
+    <div class="img_after">
+        <img src="{{ asset('frontpanel/assets/images/Mask group.png') }}" alt="">
+    </div>
 </section>
 <div class="team_detail_flx">
     <div class="container">

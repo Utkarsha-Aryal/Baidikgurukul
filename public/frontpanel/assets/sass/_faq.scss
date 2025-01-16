@@ -37,13 +37,14 @@
                     position: absolute;
                     top: 0px;
                     right: 0px;
+                    bottom: 0;
                     color: #066ac8;
                     background: $blue;
-                    padding: 5px;
-                    width: 55px;
+                    padding-inline: 20px;
+                    // width: 55px;
                     display: flex;
                     align-items: center;
-                    justify-content: center;
+                    border-radius: 4px;
                     @include respond-to(mobile) {
                     }
 
@@ -51,6 +52,9 @@
                         position: absolute;
                         background: #066ac8;
                         border-radius: 4px;
+                        padding-block: 15px;
+                        bottom: initial;
+                        // bottom: none;
                     }
                     .icon {
                         color: white;

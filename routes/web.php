@@ -301,6 +301,7 @@ Route::get('news', [NewsController::class, 'news'])->name('news');
 Route::get('news/innerpage/{slug}', [NewsController::class, 'innerpage'])->name('news.inner.page');
 Route::get('history', [FrontHistoryController::class, 'history'])->name('history');
 Route::get('rules', [RulesController::class, 'rules'])->name('rules');
+Route::get('birth', [RulesController::class, 'birth'])->name('birth');
 Route::get('faq', [FrontFAQController::class, 'faq'])->name('faq');
 Route::get('event', [FrontEventController::class, 'event'])->name('event');
 Route::get('event/innerpage/{slug}', [FrontEventController::class, 'innerpage'])->name('event.inner.page');
