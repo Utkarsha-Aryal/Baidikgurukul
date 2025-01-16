@@ -31,7 +31,7 @@ class SiteSettingController extends Controller
                 'phone_number' => 'nullable|min:9|max:50',
                 'address' => 'required|min:3|max:255',
                 'link_facebook' => 'nullable|min:5|max:255',
-                'link_map' => 'nullable|min:5|max:255',
+                'link_map' => 'nullable|min:5|max:500',
                 'homepage_title' => 'nullable|min:5|max:255',
                 'hmaepage_description' => 'nullable|min:5|max:3000',
                 'img_banner_homepage' => 'nullable|mimes:jpg,jpeg,png|max:2048',
