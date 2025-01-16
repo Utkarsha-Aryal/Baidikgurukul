@@ -1,114 +1,84 @@
 @extends('frontend.layouts.main')
 @section('title', 'News & Blogs inner page')
 @section('content')
-<section class="introduction_page">
-    <div class="img_before">
-        <img src="{{ asset('frontpanel/assets/images/Mask group.png') }}" alt="">
-    </div>
-    <div class="common_image_txt">
-        <div class="common_bg_wrapper">
-            <img src="{{ asset('frontpanel/assets/images/image1.jpeg') }}" alt="">
+    <section class="introduction_page">
+        <div class="img_before">
+            <img src="{{ asset('frontpanel/assets/images/Mask group.png') }}" alt="">
         </div>
-        <div class="main_txt">
-            <p>News & Blogs inner page</p>
-        </div>
-    </div>
-    <div class="img_after">
-        <img src="{{ asset('frontpanel/assets/images/Mask group.png') }}" alt="">
-    </div>
-</section>
-
-<div class="container">
-    <div class="nb_details_container">
-        <div class="nb_left_container">
-            <div class="left_first_text">
-                <P>
-                    What Is Good For The Betterment Of Your
-                    Children Health
-                </P>
+        <div class="common_image_txt">
+            <div class="common_bg_wrapper">
+                <img src="{{ asset('frontpanel/assets/images/Mask group.png') }}" alt="">
             </div>
-            <div class="left_container_image">
-                <img src="frontend\images\Rectangle 165 (4).png">
-            </div>
-            <div class="left_container_content">
-                <p>Lorem ipsum dolor sit amet consectetur. Vestibulum varius mus id elit elit facilisis amet bibendum a. Vulputate ut porta pulvinar dictumst. Sagittis aliquam dis nec nunc amet quis. Faucibus elementum et nunc bibendum tortor eu ut. Feugiat donec ornare pretium vestibulum quis felis pharetra sagittis. Sit in ornare praesent porta pellentesque adipiscing massa aenean sit.<br><br>
-
-                    Phasellus nibh semper id maecenas lobortis mi est in. Ipsum dolor enim ipsum pharetra. Morbi faucibus curabitur hendrerit dui. Gravida nam est ut odio. Lorem nisi amet aliquet viverra euismod neque sed platea in. Massa blandit ac urna molestie nulla vehicula eleifend morbi. Malesuada molestie orci consequat ultrices bibendum. Viverra ullamcorper et eu at adipiscing. Pellentesque massa amet ut mi facilisis nisl donec id. Feugiat volutpat enim sit donec nec.
-
-                    Phasellus nibh semper id maecenas lobortis mi est in.<br><br> Ipsum dolor enim ipsum pharetra. Morbi faucibus curabitur hendrerit dui. Gravida nam est ut odio. Lorem nisi amet aliquet viverra euismod neque sed platea in. Massa blandit ac urna molestie nulla vehicula eleifend morbi. Malesuada molestie orci consequat ultrices bibendum. Viverra ullamcorper et eu at adipiscing. Pellentesque massa amet ut mi facilisis nisl donec id. Feugiat volutpat enim sit donec nec.
-                </p>
+            <div class="main_txt">
+                <p>News & Blogs Inner Page</p>
             </div>
         </div>
-        <div class="nb_right_wrapper_wrap">
-            <div class="nb_right_container">
-                <div class="right_first_text">
-                    <p>
-                        Recent News
-                    </p>
-                </div>
-                <div class="nb_right_wrapper">
-                    <div class="right_container_image">
-                        <img src="frontend\images\Rectangle 165 (4).png">
-                    </div>
-                    <div class="right_text">
-                        <p>What Is Good For The Education Of
-                            Your Children</p>
-                        <div class="right_calender">
-                            <p> <i class="fa-solid fa-calendar-week"></i>
-                                25 July, 2024
-                            </p>
-                        </div>
-                    </div>
-                </div>
+        <div class="img_after">
+            <img src="{{ asset('frontpanel/assets/images/Mask group.png') }}" alt="">
+        </div>
+    </section>
 
-                <div class="nb_right_wrapper">
-                    <div class="right_container_image">
-                        <img src="frontend\images\Rectangle 165 (4).png">
-                    </div>
-                    <div class="right_text">
-                        <p>What Is Good For The Education Of
-                            Your Children</p>
-                        <div class="right_calender">
-                            <p> <i class="fa-solid fa-calendar-week"></i>
-                                25 July, 2024
-                            </p>
-                        </div>
-                    </div>
+    <div class="container">
+        <div class="nb_details_container">
+            <div class="nb_left_container">
+                <div class="left_first_text">
+                    @if (!@empty($post->title))
+                        <P>
+                            {{ $post->title ?? '' }}
+                        </P>
+                    @endif
                 </div>
-
-                <div class="nb_right_wrapper">
-                    <div class="right_container_image">
-                        <img src="frontend\images\Rectangle 165 (4).png">
-                    </div>
-                    <div class="right_text">
-                        <p>What Is Good For The Education Of
-                            Your Children</p>
-                        <div class="right_calender">
-                            <p> <i class="fa-solid fa-calendar-week"></i>
-                                25 July, 2024
-                            </p>
-                        </div>
-                    </div>
+                <div class="left_container_image">
+                    @if (!empty($post->image) && Storage::exists('public/post/' . $post->image))
+                        <img src="{{ asset('storage/post/' . $post->image) }}" alt="">
+                    @else
+                        <img src="frontend\images\Rectangle 143 (2).png">
+                    @endif
                 </div>
-
-                <div class="nb_right_wrapper">
-                    <div class="right_container_image">
-                        <img src="frontend\images\Rectangle 165 (4).png">
-                    </div>
-                    <div class="right_text">
-                        <p>What Is Good For The Education Of
-                            Your Children</p>
-                        <div class="right_calender">
-                            <p> <i class="fa-solid fa-calendar-week"></i>
-                                25 July, 2024
-                            </p>
-                        </div>
-                    </div>
+                <div class="left_container_content">
+                    @if (!@empty($post->details))
+                        <P>
+                            {!! $post->details ?? '' !!}
+                        </P>
+                    @endif
                 </div>
+            </div>
+            <div class="nb_right_wrapper_wrap">
+                <div class="nb_right_container">
+                    <div class="right_first_text">
+                        <p>
+                            Recent News
+                        </p>
+                    </div>
+                    @if (!@empty($posts))
+                        @foreach ($posts as $post)
+                            <a href="{{ route('news.inner.page', $post->slug) }}">
 
+                                <div class="nb_right_wrapper">
+                                    <div class="right_container_image">
+                                        @if (!empty($post->image) && Storage::exists('public/post/' . $post->image))
+                                            <img src="{{ asset('storage/post/' . $post->image) }}" alt="">
+                                        @else
+                                            <img src="frontend\images\Rectangle 143 (2).png">
+                                        @endif
+                                    </div>
+                                    <div class="right_text">
+                                        <p>{{ $post->title ?? '' }}</p>
+                                        <div class="right_calender">
+                                            <p>
+                                                <i class="fa-solid fa-calendar-week"></i>
+                                                {{ !empty($post->created_at) ? $post->created_at->format('d F, Y') : $post->updated_at->format('d F, Y') }}
+                                            </p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        @endforeach
+                    @endif
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 @endsection

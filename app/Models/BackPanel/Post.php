@@ -15,6 +15,11 @@ class Post extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'date' => 'datetime',
+    ];
+
+
     public function postedBy()
     {
         return $this->belongsTo(User::class, 'user_id');

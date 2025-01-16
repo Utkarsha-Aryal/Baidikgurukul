@@ -134,7 +134,6 @@ class PostController extends Controller
         try {
             $data = [];
             if (!empty($request->id)) {
-                dd('yes');
                 $result = Post::where(['id' => $request->id, 'status' => 'Y'])->first();
                 $data['id'] = $result->id;
                 $data['title'] = $result->title;

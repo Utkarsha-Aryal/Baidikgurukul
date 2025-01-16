@@ -35,11 +35,13 @@ class HomeController extends Controller
                 ->first();
 
             $events = Event::where('status', 'Y')
+                ->orderBy('id', 'desc')
                 ->take(3)
                 ->get();
 
 
             $histories = History::where('status', 'Y')
+                ->orderBy('id', 'desc')
                 ->take(3)
                 ->get();
 

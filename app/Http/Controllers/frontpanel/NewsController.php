@@ -34,9 +34,31 @@ class NewsController extends Controller
         return view('frontend.news.index', $data);
     }
 
-    public function ninner()
+    public function innerpage($slug)
     {
+        try {
+            $type = 'success';
+            $message = 'Successfully fetched data';
+            $data = [];
+            $post = Post::where('slug', $slug)->first();
+            $posts = Post::where('status', 'Y')
+                ->orderBy('id', 'desc')
+                ->get();
 
-        return view('frontend.news.inner');
+
+            $data = [
+                'post' => $post,
+                'posts' => $posts,
+                'type' => $type,
+                'message' => $message
+            ];
+        } catch (QueryException $e) {
+            $data['type'] = 'error';
+            $data['message'] = $this->queryMessage;
+        } catch (Exception $e) {
+            $data['type'] = 'error';
+            $data['message'] = $e->getMessage();
+        }
+        return view('frontend.news.inner', $data);
     }
 }

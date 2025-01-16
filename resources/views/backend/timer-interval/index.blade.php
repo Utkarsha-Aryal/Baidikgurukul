@@ -1,8 +1,15 @@
 @extends('backend.layouts.main')
 
 @section('title')
-    Team Category
+    Time Interval
 @endsection
+
+<!-- Nepali Datepicker CSS -->
+<link href="https://nepalidatepicker.sajanmaharjan.com.np/nepali.datepicker/css/nepali.datepicker.v4.0.1.min.css"
+    rel="stylesheet" type="text/css" />
+<!-- Nepali Date Picker JS -->
+<script src="https://cdn.jsdelivr.net/npm/nepali-date-picker@2.0.7/dist/nepali-date-picker.min.js"></script>
+
 <style>
     .iconpicker-popover.popover.bottom {
         opacity: 1;
@@ -11,16 +18,42 @@
     input#trashed_file {
         border: 1px solid rgb(0, 99, 198) !important
     }
+
+    #ndp-nepali-box {
+        top: 60px !important;
+        left: 10px !important;
+    }
+
+    input#nepali-datepicker-start {
+        width: 100% !important;
+        height: 50% !important;
+        border-radius: 0.2rem !important;
+        border: 0.1px solid rgb(236, 231, 231);
+        padding-left: 0.5rem !important;
+    }
+
+    input#nepali-datepicker-end {
+        width: 100% !important;
+        height: 50% !important;
+        border-radius: 0.2rem !important;
+        border: 0.1px solid rgb(236, 231, 231);
+        padding-left: 0.5rem !important;
+    }
+
+    input#nepali-datepicker-end {
+        position: relative;
+    }
 </style>
+
 @section('main-content')
     <!-- Page Header -->
     <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
         <div class="my-auto">
-            <h5 class="page-title fs-21 mb-1">Team Category</h5>
+            <h5 class="page-title fs-21 mb-1"> Time Interval </h5>
             <nav>
                 <ol class="breadcrumb mb-0">
                     <li class="breadcrumb-item"><a href="javascript:void(0);">Dashboard</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Team Category</li>
+                    <li class="breadcrumb-item active" aria-current="page"> Time Interval </li>
                 </ol>
             </nav>
         </div>
@@ -31,17 +64,20 @@
     <div class="row">
         <div class="col-xl-4">
             <div class="card custom-card">
-                <form action="{{ route('admin.teamcategory.save') }}" method="POST" id="team_category_form"
+                <form action="{{ route('admin.timeinterval.save') }}" method="POST" id="time-form"
                     enctype="multipart/form-data">
                     <div class="card-body">
                         <div class="row gy-4">
-
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                <label for="yearSelectstart" class="form-label">Select Starting Year:</label>
+                                <select class="form-select" id="yearSelectstart" name="start_date"></select>
                                 <input type="hidden" name="id" value="" id="id">
-                                <label for="team_category" >Team Category <span
-                                        class="required-field">*</span></label>
-                                <input type="text" class="form-control" id="team_category"
-                                    placeholder="eg ishan roka" name="team_category">
+                            </div>
+                        </div>
+                        <div class="row gy-4">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                <label for="yearSelectend" class="form-label">Select Ending Year:</label>
+                                <select class="form-select" id="yearSelectend" name="end_date"></select>
                             </div>
                         </div>
                     </div>
@@ -55,7 +91,7 @@
             <div class="card custom-card">
                 <div class="card-header justify-content-between">
                     <div class="card-title">
-                        Team Category List
+                        Time Interval List
                     </div>
                     <div class="row ms-0">
                         <div class="form-check col-xl-12 col-lg-12 col-md-12 col-sm-12">
@@ -73,13 +109,14 @@
                             <div class="row">
                                 <div class="col-sm-12 col-md-12 mb-3">
                                     <div class="dataTables_length" id="datatable-basic_length">
-                                        <table id="team_categoryTable"
+                                        <table id="time_interval_table"
                                             class="table table-bordered text-nowrap w-100 dataTable no-footer mt-3"
                                             aria-describedby="datatable-basic_info">
                                             <thead>
                                                 <tr>
                                                     <th>S.No</th>
-                                                    <th>Team Category</th>
+                                                    <th>Start Date</th>
+                                                    <th>End Date</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -100,9 +137,50 @@
 
 @section('script')
     <script>
-        var team_categoryTable;
+        const currentYear = new Date().getFullYear();
+
+        const startYear = currentYear + 25;
+        const endYear = currentYear + 75;
+
+        const yearSelectStart = document.getElementById('yearSelectstart');
+
+        const emptyOption = document.createElement('option');
+        emptyOption.value = "";
+        emptyOption.textContent = "Select a Year";
+        emptyOption.selected = true;
+        emptyOption.disabled = true;
+        yearSelectStart.appendChild(emptyOption);
+
+        for (let year = startYear; year <= endYear; year++) {
+            const option = document.createElement('option');
+            option.value = year;
+            option.textContent = year;
+            yearSelectStart.appendChild(option);
+        }
+
+        const startYearEnd = currentYear + 25;
+        const endYearEnd = currentYear + 75;
+
+        const yearSelectEnd = document.getElementById('yearSelectend');
+
+        const emptyOptionEnd = document.createElement('option');
+        emptyOptionEnd.value = "";
+        emptyOptionEnd.textContent = "Select a Year";
+        emptyOptionEnd.selected = true;
+        emptyOptionEnd.disabled = true;
+        yearSelectEnd.appendChild(emptyOptionEnd);
+
+        for (let year = startYearEnd; year <= endYearEnd; year++) {
+            const option = document.createElement('option');
+            option.value = year;
+            option.textContent = year;
+            yearSelectEnd.appendChild(option);
+        }
+
+
+        var time_interval_table;
         $(document).ready(function() {
-            team_categoryTable = $('#team_categoryTable').DataTable({
+            time_interval_table = $('#time_interval_table').DataTable({
                 "sPaginationType": "full_numbers",
                 "bSearchable": false,
                 "lengthMenu": [
@@ -129,74 +207,42 @@
                         "data": "sno"
                     },
                     {
-                        "data": "team_category"
+                        "data": "start_date"
                     },
-
+                    {
+                        "data": "end_date"
+                    },
                     {
                         "data": "action"
                     },
                 ],
                 "ajax": {
-                    "url": '{{ route("admin.teamcategory.list") }}',
+                    "url": '{{ route('admin.timeinterval.list') }}',
                     "type": "POST",
                     "data": function(d) {
-                        var type = $('#trashed_file').is(':checked') == true ? 'trashed' :
-                            'nottrashed';
+                        var type = $('#trashed_file').is(':checked') == true ? 'trashed' : 'nottrashed';
                         d.type = type;
                     }
                 },
-                "initComplete": function() {
-                    // Ensure text input fields in the header for specific columns with placeholders
-                    this.api().columns([1]).every(function() {
-                        var column = this;
-                        var input = document.createElement("input");
-                        var columnName = column.header().innerText.trim();
-                        // Append input field to the header, set placeholder, and apply CSS styling
-                        $(input).appendTo($(column.header()).empty())
-                            .attr('placeholder', columnName).css('width',
-                                '100%') // Set width to 100%
-                            .addClass(
-                                'search-input-highlight') // Add a CSS class for highlighting
-                            .on('keyup change', function() {
-                                column.search(this.value).draw();
-                            });
-                    });
-                }
             });
 
-            $('#team_category_form').validate({
-                rules: {
-                    team_category: "required"
-                },
-                message: {
-                    team_category: {
-                        required: "This field is required."
-                    },
-                },
-                highlight: function(element) {
-                    $(element).addClass("border-danger")
-                },
-                unhighlight: function(element) {
-                    $(element).removeClass("border-danger")
-                },
-            });
-
-            // Save Team Category
+            // Save the data logic
             $('.saveData').off('click');
             $('.saveData').on('click', function() {
-                if ($('#team_category_form').valid()) {
+                if ($('#time-form').valid()) {
                     showLoader();
-                    $('#team_category_form').ajaxSubmit(function(response) {
+                    $('#time-form').ajaxSubmit(function(response) {
                         var result = JSON.parse(response);
                         if (result) {
                             if (result.type === 'success') {
                                 $('.saveData').html('<i class="fa fa-save"></i> Save');
                                 showNotification(result.message, 'success');
                                 hideLoader();
-                                team_categoryTable.draw();
-                                $('#team_category_form')[0].reset();
+                                time_interval_table.draw();
+                                $('#time-form')[0].reset();
                                 $('#id').val('');
-
+                                $('#yearSelectstart').val('');
+                                $('#yearSelectend').val('');
                             } else {
                                 showNotification(result.message, 'error');
                                 hideLoader();
@@ -209,24 +255,25 @@
             });
 
             // update Team Category
-            $(document).on('click', '.edit_team_category', function(e) {
+            $(document).on('click', '.edit', function(e) {
                 e.preventDefault();
                 $('#id').val($(this).data('id'));
                 $('.saveData').html('<i class="fa fa-save"></i> Update');
-                $('#team_category').val($(this).data('team_category'));
+                $('#yearSelectstart').val($(this).data('start_date'));
+                $('#yearSelectend').val($(this).data('end_date'));
             });
 
 
             // view trashed items-start
             $('#trashed_file').off('change');
             $('#trashed_file').on('change', function(e) {
-                team_categoryTable.draw();
+                time_interval_table.draw();
             });
             // view trashed items-ends
 
             // Delete Team Category
-            $(document).off('click', '.delete_team_category');
-            $(document).on('click', '.delete_team_category', function() {
+            $(document).off('click', '.delete');
+            $(document).on('click', '.delete', function() {
 
                 var type = $('#trashed_file').is(':checked') == true ? 'trashed' :
                     'nottrashed';
@@ -247,14 +294,16 @@
                             id: id,
                             type: type,
                         };
-                        var url = '{{ route("admin.teamcategory.delete") }}';
+                        var url = '{{ route('admin.timeinterval.delete') }}';
                         $.post(url, data, function(response) {
                             var rep = JSON.parse(response);
                             if (rep) {
                                 showNotification(rep.message, rep.type);
                                 if (rep.type === 'success') {
-                                    team_categoryTable.draw();
-                                    $('#team_category_form')[0].reset();
+                                    time_interval_table.draw();
+                                    $('#time-form')[0].reset();
+                                    $('#yearSelectstart').val('');
+                                    $('#yearSelectend').val('');
                                     $('#id').val('');
                                 }
                             }

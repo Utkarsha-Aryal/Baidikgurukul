@@ -25,6 +25,8 @@ class TeamMember extends Model
                 'facebook_url' => $post['facebook_url'],
                 'instagram_url' => $post['instagram_url'],
                 'twitter_url' => $post['twitter_url'],
+                'time_interval_id' => $post['time_interval_id'],
+                'team_category_id' => $post['team_category_id'],
 
             ];
 

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\BackPanel;
 
 use App\Http\Controllers\Controller;
+use App\Models\BackPanel\TeamCategory;
 use App\Models\BackPanel\TeamMember;
+use App\Models\BackPanel\TimeInterval;
 use App\Models\Common;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
@@ -22,10 +24,7 @@ class TeamMemberController extends Controller
 
     // Home page
     public function index()
-
-
     {
-
         return view('backend.team-member.index');
     }
 
@@ -60,7 +59,7 @@ class TeamMemberController extends Controller
             }
 
             $post = $request->all();
-            $post['created_by']=($this->userid);
+            $post['created_by'] = ($this->userid);
             $type = 'success';
             $message = 'Records saved successfully';
             DB::beginTransaction();
@@ -138,13 +137,24 @@ class TeamMemberController extends Controller
     {
         try {
             $data = [];
+            $categories = TeamCategory::where('status', 'Y')->get();
+            $timeIntervals = TimeInterval::where('status', 'Y')->get();
+            $data = [
+                'categories' => $categories,
+                'timeIntervals' => $timeIntervals
+            ];
             if (!empty($request->id)) {
-                $data = TeamMember::where(['id' => $request->id, 'status' => 'Y'])->first();
-                if (!empty($data->photo)) {
-                    $data['photo'] = '<img class="_image" src="' . asset('/storage/community') . '/' . $data->photo . '" width="160px" alt="' . ' image"/>';
+                $member = TeamMember::where(['id' => $request->id, 'status' => 'Y'])->first();
+                if (!empty($member->photo)) {
+                    $member['photo'] = '<img class="_image" src="' . asset('/storage/community') . '/' . $member->photo . '" width="160px" alt="' . ' image"/>';
                 } else {
-                    $data['photo'] = '<img src="' . asset('/no-image.jpg') . '" height="140px" width="140px" alt="image"/>';
+                    $member['photo'] = '<img src="' . asset('/no-image.jpg') . '" height="140px" width="140px" alt="image"/>';
                 }
+                $data = [
+                    'categories' => $categories,
+                    'timeIntervals' => $timeIntervals,
+                    'member' => $member,
+                ];
             }
         } catch (QueryException $e) {
             $data['error'] = $this->queryMessage;
