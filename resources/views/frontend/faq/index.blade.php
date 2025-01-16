@@ -1,89 +1,52 @@
 @extends('frontend.layouts.main')
 @section('title', 'Faq')
 @section('content')
-<section class="introduction_page">
-    <div class="img_before">
-        <img src="frontend\images\Mask group.png" alt="mask_group">
-    </div>
-    <div class="common_image_txt">
-        <div class="common_bg_wrapper">
-            <img src="frontend\images\image1.jpeg" alt="hands">
+    <section class="introduction_page">
+        <div class="img_before">
+            <img src="{{ asset('frontpanel/assets/images/Mask group.png') }}" alt="">
         </div>
-        <div class="main_txt">
-            <p> FAQ</p>
+        <div class="common_image_txt">
+            <div class="common_bg_wrapper">
+                <img src="{{ asset('frontpanel/assets/images/image1.jpeg') }}" alt="">
+            </div>
+            <div class="main_txt">
+                <p> FAQ</p>
+            </div>
         </div>
-    </div>
-    <div class="img_after">
-        <img src="frontend\images\Mask group.png" alt="mask_group">
-    </div>
-</section>
-<div class="faq2_section">
-    <div class="container">
-        <div class="left_container">
-            <div class="left_faq_container">
-                <div class="faq_accordion">
-                    <div class="question">
-                        <P>What is Chochangay Samaj Nepal?</p>
-                        <div class="icon_container">
-                            <i class="icon bi bi-chevron-down"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="icon  bi bi-chevron-down" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
-                                </svg>
-                            </i>
-                        </div>
-                    </div>
-                    <div class="answer">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat porro placeat eligendi a repudiandae cupiditate voluptas, dolorem commodi quisquam sapiente. Explicabo nesciunt cupiditate sapiente!</p>
-                    </div>
-                </div>
+        <div class="img_after">
+            <img src="{{ asset('frontpanel/assets/images/Mask group.png') }}" alt="">
+        </div>
+    </section>
+    <div class="faq2_section">
+        <div class="container">
+            <div class="left_container">
+                <div class="left_faq_container">
+                    @if (!@empty($faqs))
+                        @foreach ($faqs as $faq)
+                            <div class="faq_accordion">
+                                <div class="question">
+                                    <P>{{ $faq->question ?? '' }}</p>
+                                    <div class="icon_container">
+                                        <i class="icon bi bi-chevron-down"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="16" height="16" fill="currentColor"
+                                                class="icon  bi bi-chevron-down" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd"
+                                                    d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+                                            </svg>
+                                        </i>
+                                    </div>
+                                </div>
+                                <div class="answer">
+                                    <p>{{ $faq->answer }}</p>
+                                </div>
+                            </div>
+                        @endforeach
+                    @endif
 
-                <div class="faq_accordion">
-                    <div class="question">
-                        <p>What is the history of Chochangay community in Nepal?</p>
-                        <div class="icon_container">
-                            <i class="icon bi bi-chevron-down"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="icon bi bi-chevron-down" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
-                                </svg></i>
-                        </div>
 
-                    </div>
-                    <div class="answer">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat porro placeat eligendi a repudiandae cupiditate voluptas, dolorem commodi quisquam sapiente. Explicabo nesciunt cupiditate sapiente!</p>
-                    </div>
-                </div>
-
-                <div class="faq_accordion">
-                    <div class="question">
-                        <p>What kind of organization is Chochangay Samaj Nepal?</p>
-                        <div class="icon_container">
-                            <i class="icon bi bi-chevron-down"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="icon bi bi-chevron-down" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
-                                </svg>
-                            </i>
-                        </div>
-
-                    </div>
-                    <div class="answer">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat porro placeat eligendi a repudiandae cupiditate voluptas, dolorem commodi quisquam sapiente. Explicabo nesciunt cupiditate sapiente!</p>
-                    </div>
-                </div>
-
-                <div class="faq_accordion">
-                    <div class="question">
-                        <p>How can i fill the Population entry form?</p>
-                        <div class="icon_container">
-                            <i class="icon bi bi-chevron-down"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="icon bi bi-chevron-down" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
-                                </svg></i>
-                        </div>
-
-                    </div>
-                    <div class="answer">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat porro placeat eligendi a repudiandae cupiditate voluptas, dolorem commodi quisquam sapiente. Explicabo nesciunt cupiditate sapiente!</p>
-                    </div>
                 </div>
             </div>
         </div>
-    </div>
     @endsection
     <script>
         document.addEventListener("DOMContentLoaded", () => {

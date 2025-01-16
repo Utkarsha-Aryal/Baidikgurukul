@@ -14,6 +14,8 @@ use App\Http\Controllers\BackPanel\PostController;
 use App\Http\Controllers\BackPanel\ServiceController;
 use App\Http\Controllers\BackPanel\SiteSettingController;
 use App\Http\Controllers\BackPanel\TeamMemberController;
+use App\Http\Controllers\BackPanel\TeamCategoryController;
+use App\Http\Controllers\BackPanel\TimeIntervalController;
 use App\Http\Controllers\BackPanel\TestimonialController;
 use App\Http\Controllers\BackPanel\TimelineController;
 use App\Http\Controllers\BackPanel\EventController;
@@ -192,6 +194,21 @@ Route::group(['middleware' => 'admin'], function () {
         });
         /* Our team member-end*/
 
+
+        Route::group(['prefix' => 'memberCategory'], function () {
+            Route::get('/', [TeamCategoryController::class, 'index'])->name('admin.teamcategory');
+            Route::post('/save', [TeamCategoryController::class, 'save'])->name('admin.teamcategory.save');
+            Route::post('/list', [TeamCategoryController::class, 'list'])->name('admin.teamcategory.list');
+            Route::post('/delete', [TeamCategoryController::class, 'delete'])->name('admin.teamcategory.delete');
+        });
+
+
+        Route::group(['prefix' => 'timeinterval'], function () {
+            Route::get('/', [TimeIntervalController::class, 'index'])->name('admin.timeinterval');
+            Route::post('/save', [TimeIntervalController::class, 'save'])->name('admin.timeinterval.save');
+            Route::post('/list', [TimeIntervalController::class, 'list'])->name('admin.timeinterval.list');
+            Route::post('/delete', [TimeIntervalController::class, 'delete'])->name('admin.timeinterval.delete');
+        });
         //Our program start here
         Route::group(['prefix' => 'program'], function () {
             Route::get('/', [ProgramController::class, 'index'])->name('admin.program');
@@ -281,13 +298,14 @@ Route::get('program/inner', [FrontProgramController::class, 'inner'])->name('pro
 Route::get('gallery', [FrontGalleryController::class, 'gallery'])->name('gallery');
 Route::get('ginner', [FrontGalleryController::class, 'ginner'])->name('ginner');
 Route::get('news', [NewsController::class, 'news'])->name('news');
+Route::get('news/innerpage/{slug}', [NewsController::class, 'innerpage'])->name('news.inner.page');
 Route::get('history', [FrontHistoryController::class, 'history'])->name('history');
 Route::get('rules', [RulesController::class, 'rules'])->name('rules');
 Route::get('faq', [FrontFAQController::class, 'faq'])->name('faq');
 Route::get('event', [FrontEventController::class, 'event'])->name('event');
-Route::get('einner', [FrontEventController::class, 'einner'])->name('einner');
+Route::get('event/innerpage/{slug}', [FrontEventController::class, 'innerpage'])->name('event.inner.page');
+
 Route::get('contact', [ContactController::class, 'contact'])->name('contact');
-Route::get('ninner', [NewsController::class, 'ninner'])->name('ninner');
 Route::get('list', [DonarController::class, 'list'])->name('list');
 Route::get('pinner', [ProgramController::class, 'pinner'])->name('pinner');
 Route::get('form', [FormController::class, 'form'])->name('form');
