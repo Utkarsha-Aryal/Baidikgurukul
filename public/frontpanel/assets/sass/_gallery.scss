@@ -18,6 +18,12 @@
         width: 140px;
         font-weight: 500;
         font-size: 20px;
+        @include respond-to(tablet) {
+            font-size: 18px;
+        }
+        @include respond-to(mobile) {
+            font-size: 16px !important;
+        }
     }
     .tab.active {
         background-color: $blue;
@@ -27,21 +33,39 @@
         display: none;
         .gallery-content-main {
             display: grid;
-            // grid-template-columns: 1fr 1fr 1fr;
             grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
             gap: 20px;
+            @include respond-to(tablet) {
+                grid-template-columns: 1fr 1fr;
+            }
+            @include respond-to(mobile) {
+                grid-template-columns: 1fr !important;
+            }
             .gallery-r1 {
                 .gallery-g1-title {
                     padding-top: 20px;
                     p {
                         font-weight: 500;
                         font-size: 20px;
+                        color: #000000;
+                        @include respond-to(tablet) {
+                            font-size: 18px;
+                        }
+                        @include respond-to(mobile) {
+                            font-size: 16px !important;
+                        }
                     }
                 }
                 .gallery-g1-txt {
                     margin-block: 15px;
                     p {
                         color: #737373;
+                        @include respond-to(tablet) {
+                            font-size: 14px;
+                        }
+                        @include respond-to(mobile) {
+                            font-size: 12px !important;
+                        }
                     }
                 }
                 .g1-img {
@@ -50,6 +74,7 @@
                         height: 100%;
                         width: 100%;
                         object-fit: cover;
+                        border: none;
                     }
                     img {
                         height: 100%;

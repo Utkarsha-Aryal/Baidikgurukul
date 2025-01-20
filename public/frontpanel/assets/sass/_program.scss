@@ -68,63 +68,53 @@
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         gap: 20px;
-        .program-r1 {
-            .r1-img {
-                img {
-                    height: 174px;
-                    object-fit: cover;
-                }
-            }
-            .program-r1-title {
-                margin-block: 20px;
-                p {
-                    font-size: 20px;
-                    font-weight: 500;
-                }
-            }
-            .readmore-none {
-                display: flex;
-                align-items: center;
-                gap: 5px;
-                margin-block: 20px;
-                p {
-                    color: $blue;
-                    font-size: 12px;
-                }
-                .bi {
-                    color: $blue;
-                    height: 14px;
-                    width: 14px;
-                }
-            }
+        @include respond-to(tablet) {
+            grid-template-columns: 1fr 1fr;
         }
-    }
-}
-.program-container-main {
-    margin-top: 50px;
-    .program-content {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 20px;
+        @include respond-to(mobile) {
+            grid-template-columns: 1fr !important;
+        }
         .program-r1 {
-            .r1-img {
+               .r1-img {
                 img {
-                    height: 174px;
+                    height: 180px;
+                    width: 100%;
                     object-fit: cover;
+                    @include respond-to(tablet) {
+                        height: 300px;
+                    }
+                    @include respond-to(mobile) {
+                        height: 220px !important;
+                    }
                 }
             }
             .program-r1-title {
                 margin-block: 20px;
+                @include respond-to(mobile) {
+                    margin-bottom: 15px !important;
+                }
                 p {
                     font-size: 20px;
                     font-weight: 500;
+                    @include respond-to(tablet) {
+                        font-size: 18px;
+                    }
+                }
+            }
+            .program-r1-txt {
+                margin-bottom: 20px;
+                @include respond-to(mobile) {
+                    margin-bottom: 15px !important;
+                }
+                p {
+                    font-size: 14px;
+                    color: #737373;
                 }
             }
             .readmore-none {
                 display: flex;
                 align-items: center;
                 gap: 5px;
-                margin-block: 20px;
                 p {
                     color: $blue;
                     font-size: 12px;

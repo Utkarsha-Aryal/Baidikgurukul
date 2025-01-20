@@ -1,17 +1,32 @@
 @import "_mixins.scss";
 .blogs-container-main {
-    margin-block: 60px;
+    margin-top: 90px;
     .blogs-content-main {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         gap: 20px;
+        @include respond-to(tablet) {
+            grid-template-columns: 1fr 1fr;
+        }
+        @include respond-to(mobile) {
+            grid-template-columns: 1fr !important;
+        }
         .blogs-r1 {
             padding: 12px;
-            box-shadow: 0 0 16px rgba($color: #000000, $alpha: 0.2);
+            box-shadow:
+                0 0 1px 0 rgba(0, 0, 0, 0.2),
+                0 0px 2px 0 rgba(0, 0, 0, 0.19);
             .blogs-img {
-                height: 230px;
                 img {
+                    width: 100%;
+                    height: 200px;
                     object-fit: cover;
+                    @include respond-to(tablet) {
+                        height: 280px;
+                    }
+                    @include respond-to(mobile) {
+                        height: 300px !important;
+                    }
                 }
             }
             .blogs-b1-header {
@@ -19,7 +34,7 @@
                 p {
                     font-size: 14px;
                     font-weight: 500;
-                    color: var(--primary-clr);
+                    color: $blue;
                 }
             }
             .blogs-b1-title {
@@ -27,14 +42,17 @@
                 p {
                     font-size: 20px;
                     font-weight: 500;
-                    margin: 0;
+                    @include respond-to(tablet) {
+                        font-size: 18px;
+                    }
                 }
             }
             .blogs-b1-txt {
                 display: flex;
                 gap: 5px;
                 align-items: center;
-                color: $maroon;
+                color: $blue;
+                padding-top: 15px;
                 .bi-calendar-week {
                     height: 12px;
                     width: 12px;

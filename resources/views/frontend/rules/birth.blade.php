@@ -36,11 +36,11 @@
             </div>
             <div class="ritual-lt-rt2">
                 <div class="ritual-img-lt">
-                    <img src="{{asset('frontpanel\assets1\images\gallery\b.jpg')}}">
+                    <img src="assets/image/ritual/ritual1.png">
                 </div>
                 <div class="ritual-img-rt">
-                    <img src="{{asset('frontpanel\assets1\images\gallery\a.jpg')}}">
-                    <img src="{{asset('frontpanel\assets1\images\gallery\b.jpg')}}">
+                    <img src="assets/image/ritual/ritual2.png">
+                    <img src="assets/image/ritual/ritual3.png">
                 </div>
             </div>
             <div class="ritual-main-txt">
@@ -51,25 +51,33 @@
                     vivamus sit ac. Sodales viverra facilisi pulvinar amet a.
                 </p>
             </div>
-            <div class="procedure-wrapper">
-                <div class="procedure-lt">
-                    <div class="procedure-title">
-                        <p>Procedures</p>
-                    </div>
-                    <div class="procedure-txt">
-                        <p>Lorem ipsum dolor sit amet consectetur. Et fames suscipit faucibus consectetur vel cursus
-                            dolor est sit. Tellus et ut tempor est. Posuere tellus fringilla mi ultrices nullam elit
-                            nunc urna aenean. Lorem senectus sit lorem egestas augue lacus turpis a donec. Pellentesque
-                            sed est ultrices eu massa dignissim facilisi venenatis. Vitae eu ac urna aliquet convallis
-                            molestie massa. Facilisi mauris vitae dolor interdum morbi pretium. Nulla ante enim lorem
-                            interdum ac aliquet sit odio enim. Sed faucibus erat mi fringilla. Neque fringilla id dolor
-                            felis ut eu in platea mattis. Et natoque nunc nisi dolor fermentum turpis nunc. Ut ultrices
-                            risus id ante accumsan massa ipsum. Dolor porttitor ac tristique quisque ut velit imperdiet
-                            fermentum. Metus eu et morbi euismod.</p>
-                    </div>
+            <div class="procedure-container">
+                <div class="procedure-title">
+                    <p>Procedures</p>
                 </div>
-                <div class="procedure-rt">
-                    <img src="{{asset('frontpanel\assets1\images\gallery\a.jpg')}}">
+                <div class="procedure-wrapper">
+                    <div class="procedure-lt">
+                        <div class="procedure-txt">
+                            <p>Lorem ipsum dolor sit amet consectetur. Et fames suscipit faucibus consectetur vel cursus
+                                dolor est sit. Tellus et ut tempor est. Posuere tellus fringilla mi ultrices nullam elit
+                                nunc urna aenean. Lorem senectus sit lorem egestas augue lacus turpis a donec.
+                                Pellentesque
+                                sed est ultrices eu massa dignissim facilisi venenatis. Vitae eu ac urna aliquet
+                                convallis
+                                molestie massa. Facilisi mauris vitae dolor interdum morbi pretium. Nulla ante enim
+                                lorem
+                                interdum ac aliquet sit odio enim. Sed faucibus erat mi fringilla. Neque fringilla id
+                                dolor
+                                felis ut eu in platea mattis. Et natoque nunc nisi dolor fermentum turpis nunc. Ut
+                                ultrices
+                                risus id ante accumsan massa ipsum. Dolor porttitor ac tristique quisque ut velit
+                                imperdiet
+                                fermentum. Metus eu et morbi euismod.</p>
+                        </div>
+                    </div>
+                    <div class="procedure-rt">
+                        <img src="assets/image/ritual/procedure.png">
+                    </div>
                 </div>
             </div>
         </div>
