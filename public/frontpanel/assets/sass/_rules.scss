@@ -5,6 +5,9 @@
         display: flex;
         gap: 40px;
         justify-content: space-between;
+        @include respond-to(mobile) {
+            flex-direction: column;
+        }
         .tabs {
             background-color: rgba(239, 247, 255, 1);
             box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
@@ -12,11 +15,17 @@
             transition: all 0.3s ease-in-out;
             height: 40%;
             width: 30% !important;
+            @include respond-to(mobile) {
+                width: 90% !important;
+            }
             .first_txt {
                 padding-inline: 20px;
                 p {
                     font-size: 18px;
                     font-weight: 500;
+                    @include respond-to(mobile) {
+                        font-size: 16px;
+                    }
                 }
             }
             .tab {
@@ -47,6 +56,9 @@
         }
         .content {
             width: 70%;
+            @include respond-to(mobile) {
+                width: 100% !important;
+            }
             #content1 {
                 width: 100% !important;
                 .first_content_wrapper {
@@ -56,6 +68,12 @@
                             font-weight: 500;
                             color: rgb(13, 19, 23);
                             margin: 0;
+                            @include respond-to(mobile) {
+                                font-size: 22px !important;
+                            }
+                            @include respond-to(tablet) {
+                                font-size: 26px;
+                            }
                         }
                     }
                     .second_txt {
@@ -63,6 +81,12 @@
                             font-size: 18px;
                             font-weight: 400;
                             color: rgba(115, 115, 115, 1);
+                            @include respond-to(mobile) {
+                                font-size: 14px !important;
+                            }
+                            @include respond-to(tablet) {
+                                font-size: 16px;
+                            }
                         }
                     }
                     .third_image_wrapper {
@@ -90,6 +114,12 @@
                             font-size: 18px;
                             font-weight: 400;
                             color: rgba(115, 115, 115, 1);
+                            @include respond-to(mobile) {
+                                font-size: 14px !important;
+                            }
+                            @include respond-to(tablet) {
+                                font-size: 16px;
+                            }
                         }
                     }
                     .fifth_txt {
@@ -99,6 +129,12 @@
                             color: rgba(0, 0, 0, 1);
                             text-align: start;
                             margin: 0;
+                            @include respond-to(mobile) {
+                                font-size: 14px !important;
+                            }
+                            @include respond-to(tablet) {
+                                font-size: 16px !important;
+                            }
                         }
                     }
                     .sixth_txt {
@@ -115,6 +151,13 @@
                             font-weight: 400;
                             color: rgba(115, 115, 115, 1);
                             margin: 0;
+                            @include respond-to(mobile) {
+                                font-size: 14px !important;
+                                margin-block: 10px;
+                            }
+                            @include respond-to(tablet) {
+                                font-size: 16px;
+                            }
                         }
                     }
                     .blue_bg_image {
@@ -155,6 +198,9 @@
                                 color: $white;
                                 text-align: center;
                                 margin: 0;
+                                @include respond-to(mobile) {
+                                    font-size: 22px !important;
+                                }
                             }
                         }
                     }
@@ -169,6 +215,9 @@
                             font-weight: 500;
                             color: rgb(13, 19, 23);
                             margin: 0;
+                            @include respond-to(mobile) {
+                                font-size: 22px !important;
+                            }
                         }
                     }
                     .second_txt {
@@ -176,6 +225,9 @@
                             font-size: 18px;
                             font-weight: 400;
                             color: rgba(115, 115, 115, 1);
+                            @include respond-to(mobile) {
+                                font-size: 14px !important;
+                            }
                         }
                     }
                     .third_image_wrapper {
@@ -203,6 +255,9 @@
                             font-size: 18px;
                             font-weight: 400;
                             color: rgba(115, 115, 115, 1);
+                            @include respond-to(mobile) {
+                                font-size: 14px !important;
+                            }
                         }
                     }
                     .fifth_txt {
@@ -212,6 +267,9 @@
                             color: rgba(0, 0, 0, 1);
                             text-align: start;
                             margin: 0;
+                            @include respond-to(mobile) {
+                                font-size: 22px !important;
+                            }
                         }
                     }
                     .sixth_txt {
@@ -228,6 +286,9 @@
                             font-weight: 400;
                             color: rgba(115, 115, 115, 1);
                             margin: 0;
+                            @include respond-to(mobile) {
+                                font-size: 14px !important;
+                            }
                         }
                     }
                     .blue_bg_image {
@@ -268,6 +329,9 @@
                                 color: $white;
                                 text-align: center;
                                 margin: 0;
+                                @include respond-to(mobile) {
+                                    font-size: 22px !important;
+                                }
                             }
                         }
                     }
@@ -282,6 +346,9 @@
                             font-weight: 500;
                             color: rgb(13, 19, 23);
                             margin: 0;
+                            @include respond-to(mobile) {
+                                font-size: 22px !important;
+                            }
                         }
                     }
                     .second_txt {
@@ -395,6 +462,9 @@
                             font-weight: 500;
                             color: rgb(13, 19, 23);
                             margin: 0;
+                            @include respond-to(mobile) {
+                                font-size: 22px !important;
+                            }
                         }
                     }
                     .second_txt {

@@ -1,5 +1,6 @@
 @extends('frontend.layouts.main')
 @section('title', 'Our Population Entry Form')
+
 <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
 
 <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'>
@@ -83,6 +84,19 @@
         color: lightgrey;
         display: flex;
         justify-content: center;
+
+    }
+
+    @media only screen and (max-width:768) {
+        #progressbar {
+            flex-direction: column;
+        }
+    }
+
+    @media only screen and (max-width:992) {
+        #progressbar {
+            width: 100%;
+        }
     }
 
     #progressbar .active {
@@ -90,6 +104,13 @@
         display: flex;
         flex-direction: column-reverse;
         gap: 20px;
+
+    }
+
+    @media only screen and (max-width:768) {
+        #progressbar.active {
+            width: 90%;
+        }
     }
 
     #progressbar li {
@@ -103,6 +124,8 @@
         flex-direction: column-reverse;
         gap: 20px;
     }
+
+
 
     #progressbar #step1:before {
         content: "1"
@@ -130,7 +153,7 @@
         background: lightgray;
         border-radius: 50%;
         margin: 0 auto 10px auto;
-        padding: 2px
+        padding: 2px;
     }
 
     #progressbar li:after {
@@ -161,6 +184,11 @@
         background-color: rgba(239, 247, 255, 1);
         padding: 30px 30px;
         border-radius: 4px;
+    }
+    @media only screen and (max-width:768) {
+        .personal_info_container {
+            padding: 10px;
+        }
     }
 
     .personal_txt_svg {
@@ -208,7 +236,12 @@
         width: 100%;
         font-size: 14px;
         font-weight: 400;
+    }
 
+    @media only screen and (max-width:768) {
+        input {
+            padding: 8px !important;
+        }
     }
 
     input[type="number"]::-webkit-outer-spin-button,
@@ -230,6 +263,12 @@
         width: 75%;
         display: flex;
         flex-direction: column;
+    }
+
+    @media only screen and (max-width:768) {
+        .form_submit_container {
+            width: 100% !important;
+        }
     }
 
     .submit_btn {

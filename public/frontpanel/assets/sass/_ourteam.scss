@@ -107,6 +107,18 @@
                     display: grid;
                     grid-template-columns: 1fr 1fr 1fr;
                     gap: 40px;
+                    @include respond-to(mobile) {
+                        grid-template-columns: 1fr !important;
+                    }
+                    @include respond-to(tablet) {
+                        grid-template-columns: 1fr 1fr;
+                    }
+                    @include respond-to(mobile) {
+                        grid-template-columns: 1fr !important;
+                    }
+                    @include respond-to(tablet) {
+                        grid-template-columns: 1fr 1fr;
+                    }
                     .image_container_wrap {
                         position: relative;
                         cursor: pointer;
@@ -127,6 +139,9 @@
                                 text-align: center;
                                 margin-block: 10px !important;
                                 margin-inline: 0;
+                                @include respond-to(mobile) {
+                                    font-size: 16px;
+                                }
                             }
                             p {
                                 font-size: 16px;
@@ -134,6 +149,9 @@
                                 font-weight: 400;
                                 text-align: center;
                                 margin: 0;
+                                @include respond-to(mobile) {
+                                    font-size: 14px;
+                                }
                             }
                         }
                         .img_default_bg {
@@ -152,6 +170,9 @@
                                 margin-block: 10px !important;
                                 margin-inline: 20px;
                                 margin-block: 0;
+                                @include respond-to(mobile) {
+                                    font-size: 16px;
+                                }
                             }
                             p {
                                 font-size: 16px;
@@ -159,6 +180,9 @@
                                 font-weight: 400;
                                 margin-inline: 20px;
                                 margin-block: 0;
+                                @include respond-to(mobile) {
+                                    font-size: 12px;
+                                }
                             }
                         }
                         .img_wrap {
@@ -167,6 +191,9 @@
                             object-fit: cover;
                             position: relative;
                             margin-top: 80px;
+                            @include respond-to(mobile){
+                                height: 200px;
+                            }
                             .share_icon {
                                 position: absolute;
                                 cursor: pointer;
@@ -227,6 +254,12 @@
                     display: grid;
                     grid-template-columns: 1fr 1fr 1fr;
                     gap: 40px;
+                    @include respond-to(mobile) {
+                        grid-template-columns: 1fr !important;
+                    }
+                    @include respond-to(tablet) {
+                        grid-template-columns: 1fr 1fr;
+                    }
                     .image_container_wrap {
                         position: relative;
                         cursor: pointer;
@@ -247,6 +280,9 @@
                                 text-align: center;
                                 margin-block: 10px !important;
                                 margin-inline: 0;
+                                @include respond-to(mobile) {
+                                    font-size: 16px;
+                                }
                             }
                             p {
                                 font-size: 16px;
@@ -254,6 +290,9 @@
                                 font-weight: 400;
                                 text-align: center;
                                 margin: 0;
+                                @include respond-to(mobile) {
+                                    font-size: 14px;
+                                }
                             }
                         }
                         .img_default_bg {
@@ -272,6 +311,9 @@
                                 margin-block: 10px !important;
                                 margin-inline: 20px;
                                 margin-block: 0;
+                                @include respond-to(mobile) {
+                                    font-size: 16px;
+                                }
                             }
                             p {
                                 font-size: 16px;
@@ -287,6 +329,9 @@
                             object-fit: cover;
                             position: relative;
                             margin-top: 80px;
+                            @include respond-to(mobile){
+                                height: 200px;
+                            }
                             .share_icon {
                                 position: absolute;
                                 cursor: pointer;
@@ -347,6 +392,12 @@
                     display: grid;
                     grid-template-columns: 1fr 1fr 1fr;
                     gap: 40px;
+                    @include respond-to(mobile) {
+                        grid-template-columns: 1fr !important;
+                    }
+                    @include respond-to(tablet) {
+                        grid-template-columns: 1fr 1fr;
+                    }
                     .image_container_wrap {
                         position: relative;
                         cursor: pointer;
@@ -367,6 +418,9 @@
                                 text-align: center;
                                 margin-block: 10px !important;
                                 margin-inline: 0;
+                                @include respond-to(mobile) {
+                                    font-size: 16px;
+                                }
                             }
                             p {
                                 font-size: 16px;
@@ -374,6 +428,9 @@
                                 font-weight: 400;
                                 text-align: center;
                                 margin: 0;
+                                @include respond-to(mobile) {
+                                    font-size: 14px;
+                                }
                             }
                         }
                         .img_default_bg {
@@ -392,6 +449,9 @@
                                 margin-block: 10px !important;
                                 margin-inline: 20px;
                                 margin-block: 0;
+                                @include respond-to(mobile) {
+                                    font-size: 16px;
+                                }
                             }
                             p {
                                 font-size: 16px;
@@ -399,6 +459,9 @@
                                 font-weight: 400;
                                 margin-inline: 20px;
                                 margin-block: 0;
+                                @include respond-to(mobile) {
+                                    font-size: 14px;
+                                }
                             }
                         }
                         .img_wrap {
@@ -407,6 +470,9 @@
                             object-fit: cover;
                             position: relative;
                             margin-top: 80px;
+                            @include respond-to(mobile){
+                                height: 200px;
+                            }
                             .share_icon {
                                 position: absolute;
                                 cursor: pointer;
@@ -467,6 +533,12 @@
                     display: grid;
                     grid-template-columns: 1fr 1fr 1fr;
                     gap: 40px;
+                    @include respond-to(mobile) {
+                        grid-template-columns: 1fr !important;
+                    }
+                    @include respond-to(tablet) {
+                        grid-template-columns: 1fr 1fr;
+                    }
                     .image_container_wrap {
                         position: relative;
                         cursor: pointer;
@@ -487,6 +559,9 @@
                                 text-align: center;
                                 margin-block: 10px !important;
                                 margin-inline: 0;
+                                @include respond-to(mobile) {
+                                    font-size: 16px;
+                                }
                             }
                             p {
                                 font-size: 16px;
@@ -494,6 +569,9 @@
                                 font-weight: 400;
                                 text-align: center;
                                 margin: 0;
+                                @include respond-to(mobile) {
+                                    font-size: 14px;
+                                }
                             }
                         }
                         .img_default_bg {
@@ -512,6 +590,9 @@
                                 margin-block: 10px !important;
                                 margin-inline: 20px;
                                 margin-block: 0;
+                                @include respond-to(mobile) {
+                                    font-size: 16px;
+                                }
                             }
                             p {
                                 font-size: 16px;
@@ -519,6 +600,9 @@
                                 font-weight: 400;
                                 margin-inline: 20px;
                                 margin-block: 0;
+                                @include respond-to(mobile) {
+                                    font-size: 14px;
+                                }
                             }
                         }
                         .img_wrap {
@@ -527,6 +611,9 @@
                             object-fit: cover;
                             position: relative;
                             margin-top: 80px;
+                            @include respond-to(mobile){
+                                height: 200px;
+                            }
                             .share_icon {
                                 position: absolute;
                                 cursor: pointer;

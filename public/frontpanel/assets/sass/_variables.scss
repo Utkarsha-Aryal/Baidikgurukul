@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kavoon&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kavoon&family=Monda:wght@400..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
-
+@import "_mixins.scss";
 $blue: rgba(6, 106, 200, 1);
 $maroon: rgba(169, 2, 98, 1);
 $white: rgba(252, 252, 252, 1);
-$grey:rgba(115, 115, 115, 1);
+$grey: rgba(115, 115, 115, 1);
 
 body {
     font-family: "Rubik", serif;
@@ -33,4 +33,35 @@ button {
     cursor: pointer;
     border: none;
     background: none;
+}
+.img_after {
+    @include respond-to(mobile) {
+        height: 100px !important;
+        width: 100px !important;
+    }
+}
+.img_before {
+    @include respond-to(mobile) {
+        height: 100px !important;
+        width: 100px !important;
+    }
+}
+.common_image_txt {
+    .main_txt {
+        p {
+            @include respond-to(mobile) {
+                font-size: 22px !important;
+            }
+        }
+    }
+}
+.common_bg_wrapper {
+    @include respond-to(mobile) {
+        height: 150px !important;
+    }
+}
+.team_tab_section{
+    @include respond-to(tablet){
+       margin-block: 30px !important;
+    }
 }

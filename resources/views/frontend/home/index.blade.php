@@ -259,16 +259,29 @@
 <script>
     var swiper = new Swiper(".mySwiper", {
         slidesPerView: 3,
-        spaceBetween: 10, // Space between slide
+        spaceBetween: 20, // Space between slide
         navigation: {
             nextEl: ".swiper-next",
             prevEl: ".swiper-prev",
         },
+        breakpoints: {
+            // When the screen width is 992px or less (Tablet)
+            992: {
+                slidesPerView: 3, // Show 2 slides per view (tablet)
+            },
+            // When the screen width is 768px or less (Mobile)
+            786: {
+                slidesPerView: 2, // Show 1 slide per view (mobile)
+            },
+            0: {
+                slidesPerView: 1,
+                 // Show 1 slide per view (mobile)
+            }
+        }
     });
 </script>
 
 <div class="Event_page">
-
     <div class="container">
         <div class="lf-image">
             <img src="{{asset('frontpanel\assets\images\Untitled-1 1 (1).png')}}" alt="">
