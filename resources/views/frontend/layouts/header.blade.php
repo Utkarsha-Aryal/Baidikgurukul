@@ -107,47 +107,56 @@
     <div id="sticky_nav_menu">
         <div class="container">
             <div class="nav_menu_wrapper">
-                <div class="logo_wrapper">
-                    <div class="nav_logo">
-                        @if (!empty($siteSetting->img_logo))
-                            <img src={{ asset('storage/setting') . '/' . $siteSetting->img_logo }}>
-                        @else
-                            <img src="{{ asset('frontpanel/assets/images/WhatsApp Image 2024-12-26 at 10.57.06 AM 1@2x.png') }}"
-                                alt="">
-                        @endif
+                <a href="{{ route('home') }}">
+                    <div class="logo_wrapper">
+                        <div class="nav_logo">
+                            @if (!empty($siteSetting->img_logo))
+                                <img src={{ asset('storage/setting') . '/' . $siteSetting->img_logo }}>
+                            @else
+                                <img src="{{ asset('frontpanel/assets/images/WhatsApp Image 2024-12-26 at 10.57.06 AM 1@2x.png') }}"
+                                    alt="">
+                            @endif
+                        </div>
+                        <div class="logo_txt">
+                            <p>Chochangay <br>
+                                Samaj Nepal</p>
+                        </div>
                     </div>
-                    <div class="logo_txt">
-                        <p>Chochangay <br>
-                            Samaj Nepal</p>
-                    </div>
-                </div>
+                </a>
                 <div class="nav_list_menu">
                     <ul class="navigation_list">
                         <li><a href="{{ route('home') }}">Home</a></li>
                         <li><a href="#">About Us</a>
                             <ul class="dropdown">
                                 <li><a href="{{ route('about') }}">Introduction</a></li>
-                                <li><a href="{{ route('ourteam') }}">Our Team <svg xmlns="http://www.w3.org/2000/svg"
-                                            width="16" height="16" fill="currentColor"
-                                            class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                <li><a href="#">Our Team <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                            height="16" fill="currentColor" class="bi bi-chevron-right"
+                                            viewBox="0 0 16 16">
                                             <path fill-rule="evenodd"
                                                 d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708" />
                                         </svg></a>
-                                    <ul class="nested-dropdown">
-                                        <li><a href="#">Our Core Team</a></li>
-                                        <li><a href="#">Our Team 2</a></li>
-                                        <li><a href="#">Our Team 3</a></li>
-                                        <li><a href="#">Our Team 4</a></li>
-                                    </ul>
+                                    @if (count($teamcategory) > 0)
+                                        <ul class="nested-dropdown">
+                                            @if (!@empty($teamcategory))
+                                                @foreach ($teamcategory as $category)
+                                                    <li><a
+                                                            href="{{ route('ourteam', $category->slug) }}">{{ $category->team_category }}</a>
+                                                    </li>
+                                                @endforeach
+                                            @else
+                                                <p>No Member Available</p>
+                                            @endif
+                                        </ul>
+                                    @endif
                                 </li>
-                                <li><a href="history">Our Historical Place</a></li>
+                                <li><a href="{{ route('history') }}">Our Historical Place</a></li>
                                 <li><a href="rules">Our Rules for Rituals</a></li>
                             </ul>
                         </li>
                         <li><a href="{{ route('program') }}">Program</a></li>
-                        <li><a href="gallery">Gallery</a></li>
-                        <li><a href="news">News & Blogs</a></li>
-                        <li><a href="contact">Contact</a></li>
+                        <li><a href="{{ route('gallery') }}">Gallery</a></li>
+                        <li><a href="{{ route('news') }}">News & Blogs</a></li>
+                        <li><a href="{{ route('contact') }}">Contact</a></li>
                     </ul>
                     <button class="donar_list">
                         <a href="list">

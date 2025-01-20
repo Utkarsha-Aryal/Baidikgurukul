@@ -27,14 +27,16 @@
                     </div>
                     @if (!empty($histories) && count($histories) > 0)
                         @foreach ($histories as $index => $history)
-                            <div class="tab {{ $index === 0 ? 'active' : '' }}" id="tab{{ $index }}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd"
-                                        d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" />
-                                </svg>
-                                <p>{{ $history->title }}</p>
-                            </div>
+                            <a href="#" class="tab-link" data-index="{{ $index }}">
+                                <div class="tab {{ $index === 0 ? 'active' : '' }}" id="tab{{ $index }}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" />
+                                    </svg>
+                                    <p>{{ $history->title }}</p>
+                                </div>
+                            </a>
                         @endforeach
                     @else
                         <p>No Data Found</p>
@@ -51,7 +53,9 @@
                                         <p>{{ $history->title }}</p>
                                     </div>
                                     <div class="second_txt">
-                                        <p>{!! $history->details !!}</p>
+                                        <p>
+                                            {!! $history->details !!}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -65,36 +69,25 @@
     </section>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // Add event listeners dynamically for each tab
-            let tabs = document.querySelectorAll(".tab");
-            tabs.forEach(function(tab, index) {
+            const tabs = document.querySelectorAll(".tab-link");
+            const contents = document.querySelectorAll(".content-item");
+
+            tabs.forEach((tab) => {
                 tab.addEventListener("click", function(event) {
                     event.preventDefault();
-                    showContent(`content${index}`);
-                    setActiveTab(`tab${index}`);
+
+                    // Get the index of the clicked tab
+                    const index = this.getAttribute("data-index");
+
+                    // Remove active class from all tabs and hide all content
+                    tabs.forEach((t) => t.querySelector(".tab").classList.remove("active"));
+                    contents.forEach((content) => (content.style.display = "none"));
+
+                    // Activate the clicked tab and show its corresponding content
+                    document.getElementById(`tab${index}`).classList.add("active");
+                    document.getElementById(`content${index}`).style.display = "block";
                 });
             });
-
-            function showContent(contentId) {
-                // Hide all content items
-                let contents = document.querySelectorAll(".content-item");
-                contents.forEach(function(content) {
-                    content.style.display = "none";
-                });
-
-                // Show the selected content
-                document.getElementById(contentId).style.display = "block";
-            }
-
-            function setActiveTab(tabId) {
-                // Remove active class from all tabs
-                tabs.forEach(function(tab) {
-                    tab.classList.remove("active");
-                });
-
-                // Add active class to the clicked tab
-                document.getElementById(tabId).classList.add("active");
-            }
         });
     </script>
 @endsection

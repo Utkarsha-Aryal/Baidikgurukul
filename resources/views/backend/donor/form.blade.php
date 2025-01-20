@@ -65,13 +65,13 @@
         <div class="row  mt-2">
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                 <label for="name" class="form-label">Name <span class="required-field">*</span></label>
-                <input type="text" class="form-control" id="name" name="name"
-                    placeholder="Enter donar name" value="{{ $name ?? '' }}">
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter donar name"
+                    value="{{ $name ?? '' }}">
             </div>
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3">
-                <label for="amount" class="form-label">Amount <span class="required-field">*</span></label>
-                <input type="number" class="form-control" id="amount" name="amount"
-                    placeholder="Enter amount..." value="{{ $amount ?? '' }}">
+                <label for="amount" class="form-label">Amount/Item <span class="required-field">*</span></label>
+                <input type="text" class="form-control" id="amount" name="amount"
+                    placeholder="Enter amount or item..." value="{{ $amount ?? '' }}">
             </div>
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3">
                 <label for="title" class="form-label">Order <span class="required-field">*</span></label>

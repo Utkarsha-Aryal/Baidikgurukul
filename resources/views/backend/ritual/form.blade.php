@@ -70,44 +70,10 @@
 
         <div class="row mt-2">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                <div class="row">
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                        <label for="video_link" class="form-label">Rules For Rituals Video Link <span
-                                class="required-field">*</span></label>
-                        <input type="text" class="form-control" id="video_link" name="video_link"
-                            placeholder="Enter video link..." value="{{ $video_link ?? '' }}">
-                    </div>
-                    {{-- it is only for v2 --}}
-
-                    {{-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
-                        <div class="row">
-                            <label for="description" class="form-label"> Feature Images
-                                <input class="form-control mt-2" type="file" name="feature_images[]"
-                                    id="feature_images" multiple>
-                        </div>
-                        <div class="row mt-2 ms-1">
-                            <p class="p-0 m-0">Multiple Images Can Be Uploaded </p>
-                            <p class="p-0 m-0">Accepted Format :<span class="text-muted"> jpg/jpeg/png</span></p>
-                        </div>
-
-                        <div class="row">
-                            @if (!empty($decodedFeatureImages))
-                                @foreach ($decodedFeatureImages as $featureImage)
-                                    <div id="feature_image">
-
-                                        <img src="{{ asset('/storage/ritual') . '/' . $featureImage }}"
-                                            class="_feature-image imageThumb" alt="Feature Image" />
-
-                                        <button type="button"
-                                            class="delete_feature_image btn btn-danger label-btn ms-2"
-                                            id="delete_feature_image" data-feature_image="{{ $featureImage }}">Delete<i
-                                                class="bi bi-trash label-btn-icon"></i></button>
-                                    </div>
-                                @endforeach
-                            @endif
-                        </div>
-                    </div> --}}
-                </div>
+                <label for="video_link" class="form-label">Rules For Rituals Video Link <span
+                        class="required-field">*</span></label>
+                <input type="text" class="form-control" id="video_link" name="video_link"
+                    placeholder="Enter video link..." value="{{ $video_link ?? '' }}">
             </div>
         </div>
     </form>

@@ -18,9 +18,42 @@
                 <input type="text" class="form-control" name="video" id="video" value="" />
             </div>
 
-            {{-- <div class="col-md-3 video-url">
-                <!-- Video goes here -->
-            </div> --}}
+            <div class="row mt-3">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                    <div class="row">
+                        <label for="image" class="form-label">Photo </label>
+                        <div class="relative" id="edit-image">
+                            <div class="profile-user">
+                                <label for="image" class="fe fe-camera profile-edit text-primary absolute"></label>
+                            </div>
+                            <input type="file" class="image" id="image"
+                                style="position: absolute; clip: rect(0, 0, 0, 0); pointer-events: none;"
+                                accept="image/*"name="image">
+
+                            <div class="img-rectangle mt-2">
+                                @if (!empty($image))
+                                    {!! $image !!}
+                                @else
+                                    <img src="{{ asset('/no-image.jpg') }}" alt="Default Image" id="img_introduction"
+                                        class="ishan">
+                                @endif
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-2 ms-1">
+                        <p class="p-0 m-0">Accepted Format :<span class="text-muted"> jpg/jpeg/png</span></p>
+                        <p class="p-0 m-0">File size :<span class="text-muted"> (300x475) in pixels</span></p>
+                    </div>
+                </div>
+                <div class="form-check col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                    <input class="form-check-input" type="checkbox" value="Y" id="display_in_home"
+                        name="display_in_home" {{ @$display_in_home === 'Y' ? 'checked' : '' }}>
+                    <label class="form-check-label" for="display_in_home">
+                        Display in home
+                    </label>
+                </div>
+            </div>
             <div class="col-md-3">
                 <button class="btn btn-primary" id="saveVideo"><i class="fas fa-save"></i> Save</button>
             </div>
@@ -65,6 +98,14 @@
         $('#video').val(video);
         $('#edit_id').val(editId);
         $('.video-url').html(videoUrl);
+    })
+
+    $('#image').on('change', function(event) {
+        var selectedFile = event.target.files[0];
+
+        if (selectedFile) {
+            $('.ishan').attr('src', URL.createObjectURL(selectedFile));
+        }
     });
 
     // Save Video gallery
@@ -108,7 +149,7 @@
                 var data = {
                     id: id,
                 };
-                var url = '{{ route("admin.gallery.video.delete") }}';
+                var url = '{{ route('admin.gallery.video.delete') }}';
                 $.post(url, data, function(response) {
                     var rep = JSON.parse(response);
                     if (rep) {
@@ -167,7 +208,7 @@
                 },
             ],
             "ajax": {
-                "url": '{{ route("admin.gallery.video.list") }}',
+                "url": '{{ route('admin.gallery.video.list') }}',
                 "type": "POST",
                 "data": {
                     gallery_id: gallery_id

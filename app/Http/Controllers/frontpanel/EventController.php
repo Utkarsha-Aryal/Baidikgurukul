@@ -12,8 +12,27 @@ class EventController extends Controller
 {
     public function event()
     {
-        // Returns the 'history' view
-        return view('frontend.event.index');
+        try {
+            $type = 'success';
+            $message = 'Successfully fetched data';
+            $data = [];
+            $events = Event::where('status', 'Y')
+                ->orderBy('id', 'desc')
+                ->paginate(3);
+
+            $data = [
+                'events' => $events,
+                'type' => $type,
+                'message' => $message
+            ];
+        } catch (QueryException $e) {
+            $data['type'] = 'error';
+            $data['message'] = $this->queryMessage;
+        } catch (Exception $e) {
+            $data['type'] = 'error';
+            $data['message'] = $e->getMessage();
+        }
+        return view('frontend.event.index', $data);
     }
 
 
