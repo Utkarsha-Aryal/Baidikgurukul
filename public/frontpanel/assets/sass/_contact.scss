@@ -3,74 +3,51 @@
     margin-top: 90px;
     margin-bottom: 90px;
     .contact-content {
-        display: flex;
-        gap: 20px;
-        justify-content: space-between;
-        .contact-content-lt {
-            width: 50%;
-            .contact-lt-header {
-                p {
-                    font-size: 36px;
-                    font-weight: 600;
-                }
+        .contact-content-lt-rt1 {
+            display: flex;
+            gap: 20px;
+            align-items: start;
+            @include respond-to(mobile) {
+                flex-direction: column-reverse !important;
+                gap: 0px !important;
             }
-            .contact-lt-txt {
-                margin-block: 12px;
-                p {
-                    color: #737373;
-                    font-size: 15px;
-                    font-weight: 500;
+            .contact-lt1 {
+                width: 50%;
+                @include respond-to(mobile) {
+                    width: 100% !important;
                 }
-            }
-            .contact-lt-form {
-                display: flex;
-                flex-direction: column;
-                gap: 16px;
-                input[type="text"],
-                [type="email"],
-                select {
-                    font-size: 16px;
-                    padding: 18px 32px;
-                    display: inline-block;
-                    background-color: #d2daed2b;
-                    color: #000000;
-                    border: none;
-                    outline: none;
-                    box-sizing: border-box;
-                }
-                ::placeholder {
-                    color: #9c9c9c;
-                }
-                #msg {
-                    padding-bottom: 85px;
-                }
-            }
-            .submit-btn {
-                margin-top: 32px;
-                button {
-                    border: none;
-                    padding: 12px 18px;
-                    background-color: $blue;
-                    border-radius: 4px;
-                    cursor: pointer;
+                .contact-lt-header {
                     p {
-                        color: $white;
-                        font-weight: 500;
-                        margin: 0;
+                        font-size: 36px;
+                        font-weight: 600;
+                        @include respond-to(mobile) {
+                            font-size: 28px !important;
+                        }
                     }
                 }
-                button:hover {
-                    background-color: $maroon;
+                .contact-lt-txt {
+                    margin-block: 12px;
+                    p {
+                        color: #737373;
+                        font-size: 15px;
+                        font-weight: 500;
+                        @include respond-to(mobile) {
+                            font-size: 14px !important;
+                        }
+                    }
                 }
             }
-        }
-        .contact-content-rt {
-            width: 50%;
-            .contact-rt-wrapper {
+            .contact-rt1 {
                 display: flex;
+                gap: 20px;
                 justify-content: space-between;
+                width: 50%;
+                @include respond-to(mobile) {
+                    width: 100% !important;
+                    gap: 10px !important;
+                }
                 .contact-rt {
-                    .contact-rt1 {
+                    .contact-rt1a {
                         display: flex;
                         gap: 5px;
                         align-items: center;
@@ -78,15 +55,14 @@
                             font-size: 24px;
                             color: #0d1317;
                             font-weight: 500;
+                            @include respond-to(mobile) {
+                                font-size: 18px !important;
+                            }
                         }
                         .bi {
                             width: 24px;
                             height: 24px;
                             color: $blue;
-                            border: 1px solid $blue;
-                            border-radius: 50%;
-                            padding: 5px;
-                            cursor: pointer;
                         }
                     }
                     .rt-desc {
@@ -96,49 +72,102 @@
                             font-size: 18px;
                             color: #737373;
                             font-weight: 500;
+                            @include respond-to(mobile) {
+                                font-size: 16px !important;
+                            }
                         }
                     }
                 }
             }
-            iframe {
-                width: 100%;
-                height: 335px;
+        }
+        .contact-content-lt-rt2 {
+            display: flex;
+            gap: 20px;
+            @include respond-to(mobile) {
+                flex-direction: column !important;
             }
-            .contact-iframe {
-                border: none;
+            .contact-lt2 {
+                width: 50%;
+                @include respond-to(mobile) {
+                    width: 100%;
+                }
+                .contact-lt-form {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 16px;
+                    @include respond-to(mobile) {
+                        gap: 8px !important;
+                    }
+                    input[type="text"],
+                    [type="email"],
+                    select {
+                        font-size: 16px;
+                        padding: 18px 32px;
+                        display: inline-block;
+                        background-color: #d2daed2b;
+                        color: #000000;
+                        border: none;
+                        outline: none;
+                        box-sizing: border-box;
+                        @include respond-to(mobile) {
+                            font-size: 14px !important;
+                            padding: 8px 12px !important;
+                        }
+                    }
+                    ::placeholder {
+                        color: #9c9c9c;
+                    }
+                    #msg {
+                        padding-bottom: 85px;
+                    }
+                }
+                .submit-btn {
+                    margin-top: 32px;
+                    button {
+                        border: none;
+                        padding: 12px 32px;
+                        background-color: $blue;
+                        border-radius: 4px;
+                        cursor: pointer;
+                        p {
+                            color: $grey;
+                            font-weight: 500;
+                        }
+                    }
+                    button:hover {
+                        background-color: $maroon;
+                    }
+                }
+            }
+            .contact-rt2 {
+                width: 50%;
+                @include respond-to(mobile) {
+                    width: 100% !important;
+                }
+                iframe {
+                    width: 100%;
+                    height: 335px;
+                }
+                .contact-iframe {
+                    border: none;
+                }
             }
         }
     }
-}
-@keyframes buttonScale {
-    0% {
-        transform: scale(1);
+    @keyframes buttonScale {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.1);
+        }
+        100% {
+            transform: scale(1);
+        }
     }
-    50% {
-        transform: scale(1.1);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-.submit-btn {
-    button:active {
-        animation: buttonScale 0.3s ease;
-    }
-}
-@keyframes iconScale {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.5);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-.contact-rt1 {
-    .bi:hover {
-        animation: iconScale 1s ease;
+    .submit-btn {
+        button:active {
+            animation: buttonScale 0.3s ease;
+        }
     }
 }

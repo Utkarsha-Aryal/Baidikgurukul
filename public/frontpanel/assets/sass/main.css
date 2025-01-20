@@ -1689,34 +1689,123 @@ button {
   margin-top: 90px;
   margin-bottom: 90px;
 }
-.contact-container-main .contact-content {
+.contact-container-main .contact-content .contact-content-lt-rt1 {
   display: flex;
   gap: 20px;
-  justify-content: space-between;
+  align-items: start;
 }
-.contact-container-main .contact-content .contact-content-lt {
+@media (max-width: 768px) {
+  .contact-container-main .contact-content .contact-content-lt-rt1 {
+    flex-direction: column-reverse !important;
+    gap: 0px !important;
+  }
+}
+.contact-container-main .contact-content .contact-content-lt-rt1 .contact-lt1 {
   width: 50%;
 }
-.contact-container-main .contact-content .contact-content-lt .contact-lt-header p {
+@media (max-width: 768px) {
+  .contact-container-main .contact-content .contact-content-lt-rt1 .contact-lt1 {
+    width: 100% !important;
+  }
+}
+.contact-container-main .contact-content .contact-content-lt-rt1 .contact-lt1 .contact-lt-header p {
   font-size: 36px;
   font-weight: 600;
 }
-.contact-container-main .contact-content .contact-content-lt .contact-lt-txt {
+@media (max-width: 768px) {
+  .contact-container-main .contact-content .contact-content-lt-rt1 .contact-lt1 .contact-lt-header p {
+    font-size: 28px !important;
+  }
+}
+.contact-container-main .contact-content .contact-content-lt-rt1 .contact-lt1 .contact-lt-txt {
   margin-block: 12px;
 }
-.contact-container-main .contact-content .contact-content-lt .contact-lt-txt p {
+.contact-container-main .contact-content .contact-content-lt-rt1 .contact-lt1 .contact-lt-txt p {
   color: #737373;
   font-size: 15px;
   font-weight: 500;
 }
-.contact-container-main .contact-content .contact-content-lt .contact-lt-form {
+@media (max-width: 768px) {
+  .contact-container-main .contact-content .contact-content-lt-rt1 .contact-lt1 .contact-lt-txt p {
+    font-size: 14px !important;
+  }
+}
+.contact-container-main .contact-content .contact-content-lt-rt1 .contact-rt1 {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  width: 50%;
+}
+@media (max-width: 768px) {
+  .contact-container-main .contact-content .contact-content-lt-rt1 .contact-rt1 {
+    width: 100% !important;
+    gap: 10px !important;
+  }
+}
+.contact-container-main .contact-content .contact-content-lt-rt1 .contact-rt1 .contact-rt .contact-rt1a {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.contact-container-main .contact-content .contact-content-lt-rt1 .contact-rt1 .contact-rt .contact-rt1a p {
+  font-size: 24px;
+  color: #0d1317;
+  font-weight: 500;
+}
+@media (max-width: 768px) {
+  .contact-container-main .contact-content .contact-content-lt-rt1 .contact-rt1 .contact-rt .contact-rt1a p {
+    font-size: 18px !important;
+  }
+}
+.contact-container-main .contact-content .contact-content-lt-rt1 .contact-rt1 .contact-rt .contact-rt1a .bi {
+  width: 24px;
+  height: 24px;
+  color: rgb(6, 106, 200);
+}
+.contact-container-main .contact-content .contact-content-lt-rt1 .contact-rt1 .contact-rt .rt-desc {
+  margin-top: 15px;
+  margin-bottom: 40px;
+}
+.contact-container-main .contact-content .contact-content-lt-rt1 .contact-rt1 .contact-rt .rt-desc p {
+  font-size: 18px;
+  color: #737373;
+  font-weight: 500;
+}
+@media (max-width: 768px) {
+  .contact-container-main .contact-content .contact-content-lt-rt1 .contact-rt1 .contact-rt .rt-desc p {
+    font-size: 16px !important;
+  }
+}
+.contact-container-main .contact-content .contact-content-lt-rt2 {
+  display: flex;
+  gap: 20px;
+}
+@media (max-width: 768px) {
+  .contact-container-main .contact-content .contact-content-lt-rt2 {
+    flex-direction: column !important;
+  }
+}
+.contact-container-main .contact-content .contact-content-lt-rt2 .contact-lt2 {
+  width: 50%;
+}
+@media (max-width: 768px) {
+  .contact-container-main .contact-content .contact-content-lt-rt2 .contact-lt2 {
+    width: 100%;
+  }
+}
+.contact-container-main .contact-content .contact-content-lt-rt2 .contact-lt2 .contact-lt-form {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
-.contact-container-main .contact-content .contact-content-lt .contact-lt-form input[type=text],
-.contact-container-main .contact-content .contact-content-lt .contact-lt-form [type=email],
-.contact-container-main .contact-content .contact-content-lt .contact-lt-form select {
+@media (max-width: 768px) {
+  .contact-container-main .contact-content .contact-content-lt-rt2 .contact-lt2 .contact-lt-form {
+    gap: 8px !important;
+  }
+}
+.contact-container-main .contact-content .contact-content-lt-rt2 .contact-lt2 .contact-lt-form input[type=text],
+.contact-container-main .contact-content .contact-content-lt-rt2 .contact-lt2 .contact-lt-form [type=email],
+.contact-container-main .contact-content .contact-content-lt-rt2 .contact-lt2 .contact-lt-form select {
   font-size: 16px;
   padding: 18px 32px;
   display: inline-block;
@@ -1726,76 +1815,55 @@ button {
   outline: none;
   box-sizing: border-box;
 }
-.contact-container-main .contact-content .contact-content-lt .contact-lt-form ::-moz-placeholder {
+@media (max-width: 768px) {
+  .contact-container-main .contact-content .contact-content-lt-rt2 .contact-lt2 .contact-lt-form input[type=text],
+  .contact-container-main .contact-content .contact-content-lt-rt2 .contact-lt2 .contact-lt-form [type=email],
+  .contact-container-main .contact-content .contact-content-lt-rt2 .contact-lt2 .contact-lt-form select {
+    font-size: 14px !important;
+    padding: 8px 12px !important;
+  }
+}
+.contact-container-main .contact-content .contact-content-lt-rt2 .contact-lt2 .contact-lt-form ::-moz-placeholder {
   color: #9c9c9c;
 }
-.contact-container-main .contact-content .contact-content-lt .contact-lt-form ::placeholder {
+.contact-container-main .contact-content .contact-content-lt-rt2 .contact-lt2 .contact-lt-form ::placeholder {
   color: #9c9c9c;
 }
-.contact-container-main .contact-content .contact-content-lt .contact-lt-form #msg {
+.contact-container-main .contact-content .contact-content-lt-rt2 .contact-lt2 .contact-lt-form #msg {
   padding-bottom: 85px;
 }
-.contact-container-main .contact-content .contact-content-lt .submit-btn {
+.contact-container-main .contact-content .contact-content-lt-rt2 .contact-lt2 .submit-btn {
   margin-top: 32px;
 }
-.contact-container-main .contact-content .contact-content-lt .submit-btn button {
+.contact-container-main .contact-content .contact-content-lt-rt2 .contact-lt2 .submit-btn button {
   border: none;
-  padding: 12px 18px;
+  padding: 12px 32px;
   background-color: rgb(6, 106, 200);
   border-radius: 4px;
   cursor: pointer;
 }
-.contact-container-main .contact-content .contact-content-lt .submit-btn button p {
-  color: rgb(252, 252, 252);
+.contact-container-main .contact-content .contact-content-lt-rt2 .contact-lt2 .submit-btn button p {
+  color: rgb(115, 115, 115);
   font-weight: 500;
-  margin: 0;
 }
-.contact-container-main .contact-content .contact-content-lt .submit-btn button:hover {
+.contact-container-main .contact-content .contact-content-lt-rt2 .contact-lt2 .submit-btn button:hover {
   background-color: rgb(169, 2, 98);
 }
-.contact-container-main .contact-content .contact-content-rt {
+.contact-container-main .contact-content .contact-content-lt-rt2 .contact-rt2 {
   width: 50%;
 }
-.contact-container-main .contact-content .contact-content-rt .contact-rt-wrapper {
-  display: flex;
-  justify-content: space-between;
+@media (max-width: 768px) {
+  .contact-container-main .contact-content .contact-content-lt-rt2 .contact-rt2 {
+    width: 100% !important;
+  }
 }
-.contact-container-main .contact-content .contact-content-rt .contact-rt-wrapper .contact-rt .contact-rt1 {
-  display: flex;
-  gap: 5px;
-  align-items: center;
-}
-.contact-container-main .contact-content .contact-content-rt .contact-rt-wrapper .contact-rt .contact-rt1 p {
-  font-size: 24px;
-  color: #0d1317;
-  font-weight: 500;
-}
-.contact-container-main .contact-content .contact-content-rt .contact-rt-wrapper .contact-rt .contact-rt1 .bi {
-  width: 24px;
-  height: 24px;
-  color: rgb(6, 106, 200);
-  border: 1px solid rgb(6, 106, 200);
-  border-radius: 50%;
-  padding: 5px;
-  cursor: pointer;
-}
-.contact-container-main .contact-content .contact-content-rt .contact-rt-wrapper .contact-rt .rt-desc {
-  margin-top: 15px;
-  margin-bottom: 40px;
-}
-.contact-container-main .contact-content .contact-content-rt .contact-rt-wrapper .contact-rt .rt-desc p {
-  font-size: 18px;
-  color: #737373;
-  font-weight: 500;
-}
-.contact-container-main .contact-content .contact-content-rt iframe {
+.contact-container-main .contact-content .contact-content-lt-rt2 .contact-rt2 iframe {
   width: 100%;
   height: 335px;
 }
-.contact-container-main .contact-content .contact-content-rt .contact-iframe {
+.contact-container-main .contact-content .contact-content-lt-rt2 .contact-rt2 .contact-iframe {
   border: none;
 }
-
 @keyframes buttonScale {
   0% {
     transform: scale(1);
@@ -1807,23 +1875,8 @@ button {
     transform: scale(1);
   }
 }
-.submit-btn button:active {
+.contact-container-main .submit-btn button:active {
   animation: buttonScale 0.3s ease;
-}
-
-@keyframes iconScale {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.5);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-.contact-rt1 .bi:hover {
-  animation: iconScale 1s ease;
 }
 
 .introduction_page {
@@ -3259,34 +3312,123 @@ button {
   margin-top: 90px;
   margin-bottom: 90px;
 }
-.contact-container-main .contact-content {
+.contact-container-main .contact-content .contact-content-lt-rt1 {
   display: flex;
   gap: 20px;
-  justify-content: space-between;
+  align-items: start;
 }
-.contact-container-main .contact-content .contact-content-lt {
+@media (max-width: 768px) {
+  .contact-container-main .contact-content .contact-content-lt-rt1 {
+    flex-direction: column-reverse !important;
+    gap: 0px !important;
+  }
+}
+.contact-container-main .contact-content .contact-content-lt-rt1 .contact-lt1 {
   width: 50%;
 }
-.contact-container-main .contact-content .contact-content-lt .contact-lt-header p {
+@media (max-width: 768px) {
+  .contact-container-main .contact-content .contact-content-lt-rt1 .contact-lt1 {
+    width: 100% !important;
+  }
+}
+.contact-container-main .contact-content .contact-content-lt-rt1 .contact-lt1 .contact-lt-header p {
   font-size: 36px;
   font-weight: 600;
 }
-.contact-container-main .contact-content .contact-content-lt .contact-lt-txt {
+@media (max-width: 768px) {
+  .contact-container-main .contact-content .contact-content-lt-rt1 .contact-lt1 .contact-lt-header p {
+    font-size: 28px !important;
+  }
+}
+.contact-container-main .contact-content .contact-content-lt-rt1 .contact-lt1 .contact-lt-txt {
   margin-block: 12px;
 }
-.contact-container-main .contact-content .contact-content-lt .contact-lt-txt p {
+.contact-container-main .contact-content .contact-content-lt-rt1 .contact-lt1 .contact-lt-txt p {
   color: #737373;
   font-size: 15px;
   font-weight: 500;
 }
-.contact-container-main .contact-content .contact-content-lt .contact-lt-form {
+@media (max-width: 768px) {
+  .contact-container-main .contact-content .contact-content-lt-rt1 .contact-lt1 .contact-lt-txt p {
+    font-size: 14px !important;
+  }
+}
+.contact-container-main .contact-content .contact-content-lt-rt1 .contact-rt1 {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  width: 50%;
+}
+@media (max-width: 768px) {
+  .contact-container-main .contact-content .contact-content-lt-rt1 .contact-rt1 {
+    width: 100% !important;
+    gap: 10px !important;
+  }
+}
+.contact-container-main .contact-content .contact-content-lt-rt1 .contact-rt1 .contact-rt .contact-rt1a {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.contact-container-main .contact-content .contact-content-lt-rt1 .contact-rt1 .contact-rt .contact-rt1a p {
+  font-size: 24px;
+  color: #0d1317;
+  font-weight: 500;
+}
+@media (max-width: 768px) {
+  .contact-container-main .contact-content .contact-content-lt-rt1 .contact-rt1 .contact-rt .contact-rt1a p {
+    font-size: 18px !important;
+  }
+}
+.contact-container-main .contact-content .contact-content-lt-rt1 .contact-rt1 .contact-rt .contact-rt1a .bi {
+  width: 24px;
+  height: 24px;
+  color: rgb(6, 106, 200);
+}
+.contact-container-main .contact-content .contact-content-lt-rt1 .contact-rt1 .contact-rt .rt-desc {
+  margin-top: 15px;
+  margin-bottom: 40px;
+}
+.contact-container-main .contact-content .contact-content-lt-rt1 .contact-rt1 .contact-rt .rt-desc p {
+  font-size: 18px;
+  color: #737373;
+  font-weight: 500;
+}
+@media (max-width: 768px) {
+  .contact-container-main .contact-content .contact-content-lt-rt1 .contact-rt1 .contact-rt .rt-desc p {
+    font-size: 16px !important;
+  }
+}
+.contact-container-main .contact-content .contact-content-lt-rt2 {
+  display: flex;
+  gap: 20px;
+}
+@media (max-width: 768px) {
+  .contact-container-main .contact-content .contact-content-lt-rt2 {
+    flex-direction: column !important;
+  }
+}
+.contact-container-main .contact-content .contact-content-lt-rt2 .contact-lt2 {
+  width: 50%;
+}
+@media (max-width: 768px) {
+  .contact-container-main .contact-content .contact-content-lt-rt2 .contact-lt2 {
+    width: 100%;
+  }
+}
+.contact-container-main .contact-content .contact-content-lt-rt2 .contact-lt2 .contact-lt-form {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
-.contact-container-main .contact-content .contact-content-lt .contact-lt-form input[type=text],
-.contact-container-main .contact-content .contact-content-lt .contact-lt-form [type=email],
-.contact-container-main .contact-content .contact-content-lt .contact-lt-form select {
+@media (max-width: 768px) {
+  .contact-container-main .contact-content .contact-content-lt-rt2 .contact-lt2 .contact-lt-form {
+    gap: 8px !important;
+  }
+}
+.contact-container-main .contact-content .contact-content-lt-rt2 .contact-lt2 .contact-lt-form input[type=text],
+.contact-container-main .contact-content .contact-content-lt-rt2 .contact-lt2 .contact-lt-form [type=email],
+.contact-container-main .contact-content .contact-content-lt-rt2 .contact-lt2 .contact-lt-form select {
   font-size: 16px;
   padding: 18px 32px;
   display: inline-block;
@@ -3296,76 +3438,55 @@ button {
   outline: none;
   box-sizing: border-box;
 }
-.contact-container-main .contact-content .contact-content-lt .contact-lt-form ::-moz-placeholder {
+@media (max-width: 768px) {
+  .contact-container-main .contact-content .contact-content-lt-rt2 .contact-lt2 .contact-lt-form input[type=text],
+  .contact-container-main .contact-content .contact-content-lt-rt2 .contact-lt2 .contact-lt-form [type=email],
+  .contact-container-main .contact-content .contact-content-lt-rt2 .contact-lt2 .contact-lt-form select {
+    font-size: 14px !important;
+    padding: 8px 12px !important;
+  }
+}
+.contact-container-main .contact-content .contact-content-lt-rt2 .contact-lt2 .contact-lt-form ::-moz-placeholder {
   color: #9c9c9c;
 }
-.contact-container-main .contact-content .contact-content-lt .contact-lt-form ::placeholder {
+.contact-container-main .contact-content .contact-content-lt-rt2 .contact-lt2 .contact-lt-form ::placeholder {
   color: #9c9c9c;
 }
-.contact-container-main .contact-content .contact-content-lt .contact-lt-form #msg {
+.contact-container-main .contact-content .contact-content-lt-rt2 .contact-lt2 .contact-lt-form #msg {
   padding-bottom: 85px;
 }
-.contact-container-main .contact-content .contact-content-lt .submit-btn {
+.contact-container-main .contact-content .contact-content-lt-rt2 .contact-lt2 .submit-btn {
   margin-top: 32px;
 }
-.contact-container-main .contact-content .contact-content-lt .submit-btn button {
+.contact-container-main .contact-content .contact-content-lt-rt2 .contact-lt2 .submit-btn button {
   border: none;
-  padding: 12px 18px;
+  padding: 12px 32px;
   background-color: rgb(6, 106, 200);
   border-radius: 4px;
   cursor: pointer;
 }
-.contact-container-main .contact-content .contact-content-lt .submit-btn button p {
-  color: rgb(252, 252, 252);
+.contact-container-main .contact-content .contact-content-lt-rt2 .contact-lt2 .submit-btn button p {
+  color: rgb(115, 115, 115);
   font-weight: 500;
-  margin: 0;
 }
-.contact-container-main .contact-content .contact-content-lt .submit-btn button:hover {
+.contact-container-main .contact-content .contact-content-lt-rt2 .contact-lt2 .submit-btn button:hover {
   background-color: rgb(169, 2, 98);
 }
-.contact-container-main .contact-content .contact-content-rt {
+.contact-container-main .contact-content .contact-content-lt-rt2 .contact-rt2 {
   width: 50%;
 }
-.contact-container-main .contact-content .contact-content-rt .contact-rt-wrapper {
-  display: flex;
-  justify-content: space-between;
+@media (max-width: 768px) {
+  .contact-container-main .contact-content .contact-content-lt-rt2 .contact-rt2 {
+    width: 100% !important;
+  }
 }
-.contact-container-main .contact-content .contact-content-rt .contact-rt-wrapper .contact-rt .contact-rt1 {
-  display: flex;
-  gap: 5px;
-  align-items: center;
-}
-.contact-container-main .contact-content .contact-content-rt .contact-rt-wrapper .contact-rt .contact-rt1 p {
-  font-size: 24px;
-  color: #0d1317;
-  font-weight: 500;
-}
-.contact-container-main .contact-content .contact-content-rt .contact-rt-wrapper .contact-rt .contact-rt1 .bi {
-  width: 24px;
-  height: 24px;
-  color: rgb(6, 106, 200);
-  border: 1px solid rgb(6, 106, 200);
-  border-radius: 50%;
-  padding: 5px;
-  cursor: pointer;
-}
-.contact-container-main .contact-content .contact-content-rt .contact-rt-wrapper .contact-rt .rt-desc {
-  margin-top: 15px;
-  margin-bottom: 40px;
-}
-.contact-container-main .contact-content .contact-content-rt .contact-rt-wrapper .contact-rt .rt-desc p {
-  font-size: 18px;
-  color: #737373;
-  font-weight: 500;
-}
-.contact-container-main .contact-content .contact-content-rt iframe {
+.contact-container-main .contact-content .contact-content-lt-rt2 .contact-rt2 iframe {
   width: 100%;
   height: 335px;
 }
-.contact-container-main .contact-content .contact-content-rt .contact-iframe {
+.contact-container-main .contact-content .contact-content-lt-rt2 .contact-rt2 .contact-iframe {
   border: none;
 }
-
 @keyframes buttonScale {
   0% {
     transform: scale(1);
@@ -3377,23 +3498,8 @@ button {
     transform: scale(1);
   }
 }
-.submit-btn button:active {
+.contact-container-main .submit-btn button:active {
   animation: buttonScale 0.3s ease;
-}
-
-@keyframes iconScale {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.5);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-.contact-rt1 .bi:hover {
-  animation: iconScale 1s ease;
 }
 
 .container .nb_details_container {
