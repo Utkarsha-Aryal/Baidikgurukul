@@ -109,6 +109,8 @@ class GalleryController extends Controller
                     $action .= '<span style="margin-left: 20px;"></span>'; //Space placement to sepearte from each other
                     $action .= '<a href="javascript:;" class="editGallery" title="Edit Data" data-id="' . $row->id . '" data-name="' . $row->name . '" data-image="' . $row->image  . '"><i class="fa-solid fa-pencil" style="color: #1757c4;"></i></a>';
                     $action .= '<span style="margin-left: 20px;"></span>'; //Space placement to sepearte from each other
+                } else {
+                    $action .= '<a href="javascript:;" class="restore" title="Restore Data" data-id="' . $row->id . '"><i class="fa-solid fa-undo text-success"></i></a> | ';
                 }
                 $action .= '<a href="javascript:;" class="deleteGallery" title="Delete Data" data-id="' . $row->id . '"><i class="fa-solid fa-trash" style="color: #f70808;"></i></a>';
                 $array[$i]["action"]  = $action;
@@ -155,5 +157,30 @@ class GalleryController extends Controller
             $message = $e->getMessage();
         }
         return json_encode(['type' => $type, 'message' => $message]);
+    }
+
+    //restore
+    public function restore(Request $request)
+    {
+        try {
+            $post = $request->all();
+            $type = 'success';
+            $message = "Gallery restored successfully";
+            DB::beginTransaction();
+            $result = Gallery::restoreData($post);
+            if (!$result) {
+                throw new Exception("Could not restore Gallery. Please try again.", 1);
+            }
+            DB::commit();
+        } catch (QueryException $e) {
+            DB::rollBack();
+            $type = 'error';
+            $message = $this->queryMessage;
+        } catch (Exception $e) {
+            DB::rollBack();
+            $type = 'error';
+            $message = $e->getMessage();
+        }
+        return response()->json(['type' => $type, 'message' => $message]);
     }
 }

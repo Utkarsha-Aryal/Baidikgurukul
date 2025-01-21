@@ -68,11 +68,6 @@
                 <input type="text" class="form-control" id="title" name="title" placeholder="Enter title..."
                     value="{{ $title ?? '' }}">
             </div>
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3">
-                <label for="title" class="form-label">Order <span class="required-field">*</span></label>
-                <input type="number" class="form-control" id="order_number" name="order_number"
-                    placeholder="Enter order number..." value="{{ $order_number ?? '' }}">
-            </div>
         </div>
 
         <div class="row mt-2">
@@ -81,7 +76,8 @@
                 <label for="event_date" class="form-label">Event Date <span class="required-field">*</span></label>
                 {{-- <p> <input type="text" id="nepali-datepicker" name="event_date" placeholder="Select Date" value="{{ $event_date ?? '' }}"> </p> --}}
                 <input type="date" name="event_date" id="event_date" class="form-control"
-                    value="{{ $event_date ?? '' }}">
+                    value="{{ isset($event_date) ? \Carbon\Carbon::parse($event_date)->format('Y-m-d') : '' }}">
+
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
                 <label for="title" class="form-label">Event Address <span class="required-field">*</span></label>
@@ -96,16 +92,21 @@
         </div>
 
         <div class="row mt-2">
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 datepick">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 ">
                 <label for="event_date" class="form-label">Event Starting Time <span
                         class="required-field">*</span></label>
                 <input type="time" class="form-control" id="event_time_start" name="event_time_start"
                     placeholder="Enter starting time..." value="{{ $event_time_start ?? '' }}">
             </div>
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
                 <label for="title" class="form-label">Event Ending Time <span class="required-field">*</span></label>
                 <input type="time" class="form-control" id="event_time_end" name="event_time_end"
                     placeholder="Enter ending time.." value="{{ $event_time_end ?? '' }}">
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
+                <label for="title" class="form-label">Order <span class="required-field">*</span></label>
+                <input type="number" class="form-control" id="order_number" name="order_number"
+                    placeholder="Enter order number..." value="{{ $order_number ?? '' }}">
             </div>
         </div>
 
@@ -200,13 +201,28 @@
 <script>
     ClassicEditor
         .create(document.querySelector('#editor'), {
+            ckfinder: {
+                uploadUrl: "{{ route('admin.event.upload.image', ['_token' => csrf_token()]) }}"
+            },
             toolbar: {
                 items: [
-                    'undo', 'redo', '|', 'heading', '|', 'bold', 'italic',
+                    'undo', 'redo', '|', 'heading', '|', 'bold', 'italic', '|', 'blockQuote', '|',
+                    'bulletedList', 'numberedList', '|',
+                    'imageUpload', 'imageStyle:full', 'imageStyle:alignLeft', 'imageStyle:alignCenter',
+                    'imageStyle:alignRight'
                 ],
+                shouldNotGroupWhenFull: true
             },
+            heading: {
+                options: [{
+                    model: 'paragraph',
+                    title: 'Paragraph',
+                    class: 'ck-heading_paragraph'
+                }]
+            }
         })
         .then(editor => {
+            // Save reference to the editor instance
             window.editor = editor;
         })
         .catch(error => {

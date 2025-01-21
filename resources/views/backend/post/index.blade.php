@@ -379,6 +379,54 @@
                     }
                 });
             });
+
+            $(document).off('click', '.restore');
+            $(document).on('click', '.restore', function() {
+                Swal.fire({
+                    title: "Are you sure you want to restore Post?",
+                    text: "This will restore the Post.",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#28a745",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, Restore it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        showLoader();
+                        var id = $(this).data('id');
+                        var data = {
+                            id: id,
+                            type: 'restore'
+                        };
+                        var url = '{{ route('admin.post.restore') }}';
+                        $.post(url, data, function(response) {
+                            if (response) {
+                                if (response.type === 'success') {
+                                    showNotification(response.message, 'success');
+                                    postTable.draw();
+                                    hideLoader();
+                                } else {
+                                    showNotification(response.message, 'error');
+                                    hideLoader();
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+
+            $(document).off('click', '.view');
+            $(document).on('click', '.view', function() {
+                var id = $(this).data('id');
+                var url = '{{ route('admin.post.view') }}';
+                var data = {
+                    id: id
+                };
+                $.post(url, data, function(response) {
+                    $('#postModal .modal-content').html(response);
+                    $('#postModal').modal('show');
+                });
+            });
         });
     </script>
 @endsection

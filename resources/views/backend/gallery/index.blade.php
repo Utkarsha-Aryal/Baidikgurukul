@@ -147,7 +147,7 @@
                 var data = {
                     id: id
                 };
-                var url = '{{ route("admin.gallery.image.index") }}';
+                var url = '{{ route('admin.gallery.image.index') }}';
                 $.post(url, data, function(response) {
                     $('#imageModel .modal-content').html(response);
                     $('#imageModel').modal('show');
@@ -162,7 +162,7 @@
                     id: id
                 };
 
-                var url = '{{ route("admin.gallery.video.index") }}'
+                var url = '{{ route('admin.gallery.video.index') }}'
                 $.post(url, data, function(response) {
                     $('#imageModel .modal-content').html(response);
                     $('#imageModel').modal('show');
@@ -209,7 +209,7 @@
                     },
                 ],
                 "ajax": {
-                    "url": '{{ route("admin.gallery.list") }}',
+                    "url": '{{ route('admin.gallery.list') }}',
                     "type": "POST",
                     "data": function(d) {
                         var type = $('#trashed_file').is(':checked') == true ? 'trashed' :
@@ -337,7 +337,7 @@
                             id: id,
                             type: type,
                         };
-                        var url = '{{ route("admin.gallery.delete") }}';
+                        var url = '{{ route('admin.gallery.delete') }}';
                         $.post(url, data, function(response) {
                             var rep = JSON.parse(response);
                             if (rep) {
@@ -347,6 +347,43 @@
                                     table.draw();
                                     $('#service-form')[0].reset();
                                     $('#id').val('');
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+
+
+            //restore gallery
+            $(document).off('click', '.restore');
+            $(document).on('click', '.restore', function() {
+                Swal.fire({
+                    title: "Are you sure you want to restore Gallery?",
+                    text: "This will restore the Gallery.",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#28a745",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, Restore it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        showLoader();
+                        var id = $(this).data('id');
+                        var data = {
+                            id: id,
+                            type: 'restore'
+                        };
+                        var url = '{{ route('admin.gallery.restore') }}';
+                        $.post(url, data, function(response) {
+                            if (response) {
+                                if (response.type === 'success') {
+                                    showNotification(response.message, 'success');
+                                    table.draw();
+                                    hideLoader();
+                                } else {
+                                    showNotification(response.message, 'error');
+                                    hideLoader();
                                 }
                             }
                         });

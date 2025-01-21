@@ -130,7 +130,10 @@ Route::group(['middleware' => 'admin'], function () {
             Route::any('/form', [PostController::class, 'form'])->name('admin.post.form');
             Route::post('/list', [PostController::class, 'list'])->name('admin.post.list');
             Route::post('/delete', [PostController::class, 'delete'])->name('admin.post.delete');
+            Route::post('/view', [PostController::class, 'view'])->name('admin.post.view');
+            Route::post('/restore', [PostController::class, 'restore'])->name('admin.post.restore');
             Route::post('/deletefeatureimage', [PostController::class, 'deleteFeatureImage'])->name('admin.post.deletefeatureimage');
+            Route::post('/upload-image', [PostController::class, 'uploadImage'])->name('admin.post.upload.image');
         });
         /*post=> News/Notice/Article/Events-end*/
 
@@ -159,6 +162,7 @@ Route::group(['middleware' => 'admin'], function () {
             Route::post('/save', [TimelineController::class, 'save'])->name('admin.timeline.save');
             Route::post('/list', [TimelineController::class, 'list'])->name('admin.timeline.list');
             Route::post('/delete', [TimelineController::class, 'delete'])->name('admin.timeline.delete');
+            Route::post('/restore', [TimelineController::class, 'restore'])->name('admin.timeline.restore');
         });
         /*timeline-end */
 
@@ -168,6 +172,7 @@ Route::group(['middleware' => 'admin'], function () {
             Route::post('/save', [GalleryController::class, 'save'])->name('admin.gallery.save');
             Route::post('/list', [GalleryController::class, 'list'])->name('admin.gallery.list');
             Route::post('/delete', [GalleryController::class, 'delete'])->name('admin.gallery.delete');
+            Route::post('/restore', [GalleryController::class, 'restore'])->name('admin.gallery.restore');
 
             Route::group(['prefix' => 'image'], function () {
                 Route::post('/', [GalleryImageController::class, 'index'])->name('admin.gallery.image.index');
@@ -192,6 +197,7 @@ Route::group(['middleware' => 'admin'], function () {
             Route::any('/form', [TeamMemberController::class, 'form'])->name('admin.member.form');
             Route::post('/list', [TeamMemberController::class, 'list'])->name('admin.member.list');
             Route::post('/delete', [TeamMemberController::class, 'delete'])->name('admin.member.delete');
+            Route::post('/restore', [TeamMemberController::class, 'restore'])->name('admin.member.restore');
         });
         /* Our team member-end*/
 
@@ -201,6 +207,7 @@ Route::group(['middleware' => 'admin'], function () {
             Route::post('/save', [TeamCategoryController::class, 'save'])->name('admin.teamcategory.save');
             Route::post('/list', [TeamCategoryController::class, 'list'])->name('admin.teamcategory.list');
             Route::post('/delete', [TeamCategoryController::class, 'delete'])->name('admin.teamcategory.delete');
+            Route::post('/restore', [TeamCategoryController::class, 'restore'])->name('admin.teamcategory.restore');
         });
 
 
@@ -209,6 +216,7 @@ Route::group(['middleware' => 'admin'], function () {
             Route::post('/save', [TimeIntervalController::class, 'save'])->name('admin.timeinterval.save');
             Route::post('/list', [TimeIntervalController::class, 'list'])->name('admin.timeinterval.list');
             Route::post('/delete', [TimeIntervalController::class, 'delete'])->name('admin.timeinterval.delete');
+            Route::post('/restore', [TimeIntervalController::class, 'restore'])->name('admin.timeinterval.restore');
         });
         //Our program start here
         Route::group(['prefix' => 'program'], function () {
@@ -219,6 +227,7 @@ Route::group(['middleware' => 'admin'], function () {
             Route::post('/list', [ProgramController::class, 'list'])->name('admin.program.list');
             Route::post('/delete', [ProgramController::class, 'delete'])->name('admin.program.delete');
             Route::post('/restore', [ProgramController::class, 'restore'])->name('admin.program.restore');
+            Route::post('/view', [ProgramController::class, 'view'])->name('admin.program.view');
         });
         //Our program end here
 
@@ -230,6 +239,8 @@ Route::group(['middleware' => 'admin'], function () {
             Route::post('/list', [DonorController::class, 'list'])->name('admin.donor.list');
             Route::post('/delete', [DonorController::class, 'delete'])->name('admin.donor.delete');
             Route::post('/restore', [DonorController::class, 'restore'])->name('admin.donor.restore');
+            Route::post('/view', [DonorController::class, 'view'])->name('admin.donor.view');
+            Route::post('/upload-image', [DonorController::class, 'uploadImage'])->name('admin.donar.upload.image');
         });
         //Our donor end here
 
@@ -243,6 +254,7 @@ Route::group(['middleware' => 'admin'], function () {
             Route::post('/deletefeatureimage', [EventController::class, 'deleteFeatureImage'])->name('admin.event.deletefeatureimage');
             Route::post('/restore', [EventController::class, 'restore'])->name('admin.event.restore');
             Route::post('/view', [EventController::class, 'view'])->name('admin.event.view');
+            Route::post('/upload-image', [EventController::class, 'uploadImage'])->name('admin.event.upload.image');
         });
         /*Event end*/
 

@@ -94,7 +94,7 @@ class Gallery extends Model
                 $offset = $get["start"];
             }
 
-            $query = Gallery::selectRaw("(SELECT count(*) FROM galleries) AS totalrecs, name,image, id as id")
+            $query = Gallery::selectRaw("(SELECT count(*) FROM galleries where{$cond}) AS totalrecs, name,image, id as id")
                 ->whereRaw($cond);
 
             if ($limit > -1) {
@@ -154,6 +154,23 @@ class Gallery extends Model
             return $dataArray;
         } catch (Exception $th) {
             throw $th;
+        }
+    }
+
+    //restore
+    public static function restoreData($post)
+    {
+        try {
+            $updateArray = [
+                'status' => 'Y',
+                'updated_at' => Carbon::now(),
+            ];
+            if (!Gallery::where(['id' => $post['id']])->update($updateArray)) {
+                throw new Exception("Couldn't Restore Data. Please try again", 1);
+            }
+            return true;
+        } catch (Exception $e) {
+            throw $e;
         }
     }
 }

@@ -106,7 +106,7 @@
                                                     <th width="5%">S.No</th>
                                                     <th width="15%">Title</th>
                                                     <th width="10%">Details</th>
-                                                    <th width="10%">Order Number</th>
+                                                    <th width="5%">Order</th>
                                                     <th width="10%">Video Link</th>
                                                     <th width="5%">Action</th>
                                             </thead>

@@ -83,6 +83,8 @@ class TimelineController extends Controller
                 $action = '';
                 if (!empty($post['type']) && $post['type'] != 'trashed') {
                     $action .= '<a href="javascript:;" class=" edittimeline" name="Edit Data" data-id="' . $row->id . '" data-year="' . $row->year . '" data-details="' . $row->details . '"><i class="fa-solid fa-pen-to-square text-primary"></i></a>';
+                } else {
+                    $action .= '<a href="javascript:;" class="restore" title="Restore Data" data-id="' . $row->id . '"><i class="fa-solid fa-undo text-success"></i></a> ';
                 }
                 $action .= ' | <a href="javascript:;" class="deletetimeline" name="Delete Data" data-id="' . $row->id . '"><i class="fa fa-trash text-danger"></i></a>';
                 $array[$i]["action"]  = $action;
@@ -129,4 +131,56 @@ class TimelineController extends Controller
         }
         return json_encode(['type' => $type, 'message' => $message]);
     }
+
+    //view
+    public function view(Request $request)
+    {
+        try {
+            $post = $request->all();
+            $timelineDetails = Timeline::where('id', $post['id'])
+                ->where('status', 'Y')
+                ->first();
+
+            $data = [
+                'timelineDetails' => $timelineDetails,
+            ];
+
+            $data['type'] = 'success';
+            $data['message'] = 'Successfully fetched data of Time Line.';
+        } catch (QueryException $e) {
+            $data['type'] = 'error';
+            $data['message'] = $this->queryMessage;
+        } catch (Exception $e) {
+            $data['type'] = 'error';
+            $data['message'] = $e->getMessage();
+        }
+        return view('backend.post.view', $data);
+    }
+
+    //restore
+    public function restore(Request $request)
+    {
+        try {
+            $post = $request->all();
+            $type = 'success';
+            $message = "Time line restored successfully";
+            DB::beginTransaction();
+            $result = Timeline::restoreData($post);
+            if (!$result) {
+                throw new Exception("Could not restore Timeline. Please try again.", 1);
+            }
+            DB::commit();
+        } catch (QueryException $e) {
+            DB::rollBack();
+            $type = 'error';
+            $message = $this->queryMessage;
+        } catch (Exception $e) {
+            DB::rollBack();
+            $type = 'error';
+            $message = $e->getMessage();
+        }
+        return response()->json(['type' => $type, 'message' => $message]);
+    }
+
+    
 }

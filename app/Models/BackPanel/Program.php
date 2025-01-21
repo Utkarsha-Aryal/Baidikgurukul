@@ -33,7 +33,7 @@ class Program extends Model
                 $dataArray['image'] = $fileName;
             }
 
-           
+
             if (!empty($post['id'])) {
                 $dataArray['updated_by'] = $post['created_by'];
                 $dataArray['updated_at'] = Carbon::now();
@@ -73,7 +73,7 @@ class Program extends Model
                 $cond .= " and lower(title) like '%" . $get['columns'][1]['search']['value'] . "%'";
 
             if ($get['columns'][2]['search']['value'])
-                $cond .= " and lower(order) like '%" . $get['columns'][2]['search']['value'] . "%'";
+                $cond .= " and lower(details) like '%" . $get['columns'][2]['search']['value'] . "%'";
 
             $limit = 15;
             $offset = 0;

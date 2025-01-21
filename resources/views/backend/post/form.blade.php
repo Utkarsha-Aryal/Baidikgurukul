@@ -81,7 +81,8 @@
             </div>
             <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
                 <label for="title" class="form-label">Title <span class="required-field">*</span></label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="Enter title..." value="{{ @$title }}">
+                <input type="text" class="form-control" id="title" name="title" placeholder="Enter title..."
+                    value="{{ @$title }}">
             </div>
         </div>
 
@@ -90,12 +91,14 @@
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 datepick" style="display: none" id="show_event_date">
                 <label for="event_date" class="form-label">Date <span class="required-field">*</span></label>
                 <p>
-                    <input type="text" id="nepali-datepicker" name="event_date" placeholder="Select Date" value="{{ @$event_date }}">
+                    <input type="text" id="nepali-datepicker" name="event_date" placeholder="Select Date"
+                        value="{{ @$event_date }}">
                 </p>
             </div>
             <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9" style="display: none" id="show_event_address">
                 <label for="title" class="form-label">Event Address <span class="required-field">*</span></label>
-                <input type="text" class="form-control" id="event_address" name="event_address" placeholder="Enter event address..." value="{{ @$event_address }}">
+                <input type="text" class="form-control" id="event_address" name="event_address"
+                    placeholder="Enter event address..." value="{{ @$event_address }}">
             </div>
         </div>
         <div class="row mt-2">
@@ -115,16 +118,20 @@
                         <label for="image">Thumbnail Image <span class="required-field">*</span></label>
                         <div class="relative" id="edit-image">
                             <div class="profile-user">
-                                <label for="thumbnail_image" class="fe fe-camera profile-edit text-primary absolute"></label>
+                                <label for="thumbnail_image"
+                                    class="fe fe-camera profile-edit text-primary absolute"></label>
                             </div>
-                            <input type="file" class="thumbnail_image" id="thumbnail_image" style="position: absolute; clip: rect(0, 0, 0, 0); pointer-events: none;" accept="image/*" name="image">
+                            <input type="file" class="thumbnail_image" id="thumbnail_image"
+                                style="position: absolute; clip: rect(0, 0, 0, 0); pointer-events: none;"
+                                accept="image/*" name="image">
                             <input type="hidden" class="form-control croppedImg" id="croppedImg" name="croppedImg">
 
                             <div class="img-rectangle mt-2">
                                 @if (!empty($image))
-                                {!! $image !!}
+                                    {!! $image !!}
                                 @else
-                                <img src="{{ asset('/no-image.jpg') }}" alt="Default Image" id="img_introduction" class="_image">
+                                    <img src="{{ asset('/no-image.jpg') }}" alt="Default Image" id="img_introduction"
+                                        class="_image">
                                 @endif
                             </div>
                         </div>
@@ -137,7 +144,8 @@
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                         <div class="row">
                             <label for="description" class="form-label"> Feature Images
-                                <input class="form-control mt-2" type="file" name="feature_images[]" id="feature_images" multiple>
+                                <input class="form-control mt-2" type="file" name="feature_images[]"
+                                    id="feature_images" multiple>
                         </div>
                         <div class="row mt-2 ms-1">
                             <p class="p-0 m-0">Multiple Images Can Be Uploaded </p>
@@ -146,14 +154,19 @@
 
                         <div class="row">
                             @if (!empty($decodedFeatureImages))
-                            @foreach ($decodedFeatureImages as $featureImage)
-                            <div id="feature_image">
+                                @foreach ($decodedFeatureImages as $featureImage)
+                                    <div id="feature_image">
 
-                                <img src="{{ asset('/storage/post') . '/' . $featureImage }}" class="_feature-image imageThumb" alt="Feature Image" />
+                                        <img src="{{ asset('/storage/post') . '/' . $featureImage }}"
+                                            class="_feature-image imageThumb" alt="Feature Image" />
 
-                                <button type="button" class="delete_feature_image btn btn-danger label-btn ms-2" id="delete_feature_image" data-feature_image="{{ $featureImage }}">Delete<i class="bi bi-trash label-btn-icon"></i></button>
-                            </div>
-                            @endforeach
+                                        <button type="button"
+                                            class="delete_feature_image btn btn-danger label-btn ms-2"
+                                            id="delete_feature_image"
+                                            data-feature_image="{{ $featureImage }}">Delete<i
+                                                class="bi bi-trash label-btn-icon"></i></button>
+                                    </div>
+                                @endforeach
                             @endif
                         </div>
                     </div>
@@ -167,9 +180,9 @@
     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
     <button type="button" class="btn btn-primary saveNews"><i class="fa fa-save"></i>
         @if (empty($id))
-        Save
+            Save
         @else
-        Update
+            Update
         @endif
     </button>
 </div>
@@ -177,13 +190,28 @@
 <script>
     ClassicEditor
         .create(document.querySelector('#editor'), {
+            ckfinder: {
+                uploadUrl: "{{ route('admin.post.upload.image', ['_token' => csrf_token()]) }}"
+            },
             toolbar: {
                 items: [
-                    'undo', 'redo', '|', 'heading', '|', 'bold', 'italic',
+                    'undo', 'redo', '|', 'heading', '|', 'bold', 'italic', '|', 'blockQuote', '|',
+                    'bulletedList', 'numberedList', '|', // Add list options here
+                    'imageUpload', 'imageStyle:full', 'imageStyle:alignLeft', 'imageStyle:alignCenter',
+                    'imageStyle:alignRight'
                 ],
+                shouldNotGroupWhenFull: true
             },
+            heading: {
+                options: [{
+                    model: 'paragraph',
+                    title: 'Paragraph',
+                    class: 'ck-heading_paragraph'
+                }]
+            }
         })
         .then(editor => {
+            // Save reference to the editor instance
             window.editor = editor;
         })
         .catch(error => {

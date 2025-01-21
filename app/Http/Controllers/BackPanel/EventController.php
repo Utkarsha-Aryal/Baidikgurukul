@@ -5,7 +5,6 @@ namespace App\Http\Controllers\BackPanel;
 
 use App\Http\Controllers\Controller;
 use App\Models\BackPanel\Event;
-use App\Models\BackPanel\History;
 use App\Models\Common;
 use Exception;
 use Illuminate\Database\QueryException;
@@ -13,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class EventController extends Controller
 {
@@ -118,7 +118,7 @@ class EventController extends Controller
                 $array[$i]["event_time_start"]  =  $row->event_time_start;
                 $array[$i]["event_time_end"]  =  $row->event_time_end;
                 $array[$i]["order_number"]  =  $row->order_number;
-                $array[$i]["event_date"]  =  $row->event_date;
+                $array[$i]["event_date"] = date("Y-m-d", strtotime($row->event_date));
 
 
                 $image = asset('images/no-image.jpg');
@@ -257,7 +257,7 @@ class EventController extends Controller
             DB::beginTransaction();
             $result = Event::restoreData($post);
             if (!$result) {
-                throw new Exception("Could not restore Product. Please try again.", 1);
+                throw new Exception("Could not restore Event. Please try again.", 1);
             }
             DB::commit();
         } catch (QueryException $e) {
@@ -295,5 +295,40 @@ class EventController extends Controller
             $data['message'] = $e->getMessage();
         }
         return view('backend.event.view', $data);
+    }
+
+    // Image upload of Eevnt
+    public function uploadImage(Request $request)
+    {
+        try {
+            if ($request->hasFile('upload')) {
+                $folder = storage_path('app/public/event/');
+
+                if (!Storage::exists($folder))
+                    Storage::makeDirectory($folder, 0775, true, true);
+
+                $file = $request->file('upload');
+                $newName = time() . '_' . rand(10, 9999999999999) . '_' . $file->getClientOriginalName();
+                $file->move($folder, $newName);
+
+                $url = asset('storage/program/' . $newName);
+
+                return response()->json([
+                    'uploaded' => 1,
+                    'fileName' => $newName,
+                    'url' => $url
+                ]);
+            } else {
+                return response()->json([
+                    'uploaded' => 0,
+                    'error' => ['message' => 'No file uploaded.']
+                ]);
+            }
+        } catch (Exception $e) {
+            return response()->json([
+                'uploaded' => 0,
+                'error' => ['message' => $e->getMessage()]
+            ], 500);
+        }
     }
 }

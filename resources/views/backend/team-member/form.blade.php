@@ -36,10 +36,9 @@
                             {{ $item->team_category }}
                         </option>
                     @endforeach
-
-
                 </select>
             </div>
+
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                 <label for="time_interval_id" class="form-label">Time<span class="required-field">*</span></label>
                 <select class="form-select" aria-label="Default select example" id="time_interval_id"
@@ -51,27 +50,32 @@
                             {{ $item->year_interval }}
                         </option>
                     @endforeach
-
                 </select>
             </div>
-            <input type="hidden" name="id" id="id" value="{{ $member->id ?? '' }}" />
+
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                 <label for="name" class="form-label">Name <span class="required-field">*</span></label>
                 <input type="text" class="form-control" id="name" name="name" placeholder="Enter name..."
                     value="{{ $member->name ?? '' }}">
             </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                <label for="designation" class="form-label">Designation <span class="required-field">*</span></label>
-                <input type="text" class="form-control" id="designation" name="designation"
-                    placeholder="Enter Designation..." value="{{ $member->designation ?? '' }}">
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                <label for="order" class="form-label">Order <span class="required-field">*</span></label>
-                <input type="number" class="form-control" id="order" name="order" placeholder="Enter Order"
-                    value="{{ $member->order ?? '' }}">
-            </div>
 
+            <div class="row mt-3 ">
+                <input type="hidden" name="id" id="id" value="{{ $member->id ?? '' }}" />
+
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                    <label for="designation" class="form-label">Designation <span
+                            class="required-field">*</span></label>
+                    <input type="text" class="form-control" id="designation" name="designation"
+                        placeholder="Enter Designation..." value="{{ $member->designation ?? '' }}">
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                    <label for="order" class="form-label">Order <span class="required-field">*</span></label>
+                    <input type="number" class="form-control" id="order" name="order" placeholder="Enter Order"
+                        value="{{ $member->order ?? '' }}">
+                </div>
+            </div>
         </div>
+
         <div class="row mt-3 ">
 
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">

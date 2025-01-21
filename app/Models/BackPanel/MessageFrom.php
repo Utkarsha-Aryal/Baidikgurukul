@@ -71,21 +71,12 @@ class MessageFrom extends Model
             if ($get['columns'][2]['search']['value'])
                 $cond .= " and lower(designation) like '%" . $get['columns'][2]['search']['value'] . "%'";
 
-            if ($get['columns'][3]['search']['value'])
-                $cond .= " and lower(order) like '%" . $get['columns'][3]['search']['value'] . "%'";
-            if ($get['columns'][4]['search']['value'])
-                $cond .= " and lower(display_in_home) like '%" . $get['columns'][4]['search']['value'] . "%'";
-
-
             $limit = 15;
             $offset = 0;
             if (!empty($get["length"]) && $get["length"]) {
                 $limit = $get['length'];
                 $offset = $get["start"];
             }
-
-            // $query = MessageFrom::selectRaw("(SELECT COUNT(*) FROM message_froms WHERE status = 'Y') AS totalrecs, name, id as id,message,designation,display_in_home,order, image")
-            //     ->whereRaw($cond);
 
             $query = MessageFrom::selectRaw("count(*) OVER() AS totalrecs, name, id as id,message,designation,display_in_home,`order`, image")
                 ->whereRaw($cond);

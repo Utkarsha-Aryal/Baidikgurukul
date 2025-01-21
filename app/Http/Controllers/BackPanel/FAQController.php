@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class FAQController extends Controller
 {
@@ -87,8 +88,8 @@ class FAQController extends Controller
             unset($data["totalrecs"]);
             foreach ($data as $row) {
                 $array[$i]["sno"] = $i + 1;
-                $array[$i]["question"] = $row->question;
-                $array[$i]["answer"] = $row->answer;
+                $array[$i]["question"] = Str::limit($row->question, 30, '...');
+                $array[$i]["answer"] = Str::limit($row->answer, 30, '...');
                 $array[$i]["order_number"] = $row->order_number;
                 $action = '';
 

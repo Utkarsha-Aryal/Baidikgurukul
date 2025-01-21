@@ -106,12 +106,10 @@
                                                     <th width="5%">S.No</th>
                                                     <th width="15%">Event Title</th>
                                                     <th width="10%">Event Details</th>
-                                                    <th width="10%">Order Number</th>
+                                                    <th width="10%">Order</th>
                                                     <th width="10%">Event Date</th>
                                                     <th width="15%">Event Address</th>
                                                     <th width="15%">Event Venue</th>
-                                                    <th width="20%">Event Starting Time</th>
-                                                    <th width="15%">Event Ending Time</th>
                                                     <th width="5%">Image</th>
                                                     <th width="5%">Action</th>
                                             </thead>
@@ -280,12 +278,6 @@
                     },
                     {
                         "data": "venue"
-                    },
-                    {
-                        "data": "event_time_start"
-                    },
-                    {
-                        "data": "event_time_end"
                     },
                     {
                         "data": "image"

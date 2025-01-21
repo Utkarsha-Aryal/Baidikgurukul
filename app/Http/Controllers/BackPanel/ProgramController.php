@@ -127,6 +127,7 @@ class ProgramController extends Controller
                 $array[$i]["image"] = '<img src="' . $image . '" height="30px" width="30px" alt="image"/>';
                 $action = '';
                 if (!empty($post['type']) && $post['type'] != 'trashed') {
+                    $action .= ' <a href="javascript:;" class="view" title="View Data" data-id="' . $row->id . '"><i class="fa-solid fa-eye" style="color: #008f47;"></i></a> | ';
                     $action .= '<a href="javascript:;" class="edit" title="Edit Data" data-id="' . $row->id . '"><i class="fa-solid fa-pen-to-square text-primary"></i></a> |';
                 } else {
                     $action .= '<a href="javascript:;" class="restore" title="Restore Data" data-id="' . $row->id . '"><i class="fa-solid fa-undo text-success"></i></a> ';
@@ -222,5 +223,30 @@ class ProgramController extends Controller
             $message = $e->getMessage();
         }
         return response()->json(['type' => $type, 'message' => $message]);
+    }
+
+    //view
+    public function view(Request $request)
+    {
+        try {
+            $post = $request->all();
+            $programDetail = Program::where('id', $post['id'])
+                ->where('status', 'Y')
+                ->first();
+
+            $data = [
+                'programDetail' => $programDetail,
+            ];
+
+            $data['type'] = 'success';
+            $data['message'] = 'Successfully fetched data of Program.';
+        } catch (QueryException $e) {
+            $data['type'] = 'error';
+            $data['message'] = $this->queryMessage;
+        } catch (Exception $e) {
+            $data['type'] = 'error';
+            $data['message'] = $e->getMessage();
+        }
+        return view('backend.program.view', $data);
     }
 }
