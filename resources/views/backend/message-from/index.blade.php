@@ -61,14 +61,14 @@
                                             aria-describedby="datatable-basic_info">
                                             <thead>
                                                 <tr>
-                                                    <th>S.No</th>
+                                                    <th width="5%">S.No</th>
                                                     <th>Name</th>
                                                     <th>Designation</th>
                                                     <th>Message Order</th>
                                                     <th>Display In Home</th>
                                                     <th>Message</th>
                                                     <th>Photo</th>
-                                                    <th>Action</th>
+                                                    <th width="5%">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -243,6 +243,21 @@
                     }
                 });
             });
+
+            $(document).off('click', '.view');
+            $(document).on('click', '.view', function() {
+                var id = $(this).data('id');
+                var url = '{{ route('admin.message.view') }}';
+                var data = {
+                    id: id
+                };
+                $.post(url, data, function(response) {
+                    $('#modal .modal-content').html(response);
+                    $('#modal').modal('show');
+                });
+            });
+
+
         });
     </script>
 @endsection

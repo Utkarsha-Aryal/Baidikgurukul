@@ -23,6 +23,7 @@ use App\Http\Controllers\BackPanel\HistoryController;
 use App\Http\Controllers\BackPanel\FAQController;
 use App\Http\Controllers\BackPanel\ProgramController;
 use App\Http\Controllers\BackPanel\RitualController;
+use App\Http\Controllers\BackPanel\EnquiryController as BackEnquiryController;
 use App\Http\Controllers\frontpanel\ContactController;
 use App\Http\Controllers\frontpanel\DonarController;
 use App\Http\Controllers\frontpanel\EventController as FrontEventController;
@@ -36,6 +37,7 @@ use App\Http\Controllers\frontpanel\NewsController;
 use App\Http\Controllers\frontpanel\ProgramController as FrontProgramController;
 use App\Http\Controllers\frontpanel\RulesController;
 use App\Http\Controllers\frontpanel\TeamController;
+use App\Http\Controllers\frontpanel\EnquiryController;
 use App\Http\Controllers\ContactController as frontContact;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -120,6 +122,7 @@ Route::group(['middleware' => 'admin'], function () {
             Route::post('/list', [MessageFromController::class, 'list'])->name('admin.message.list');
             Route::post('form', [MessageFromController::class, 'form'])->name('admin.message.form');
             Route::post('/delete', [MessageFromController::class, 'delete'])->name('admin.message.delete');
+            Route::post('/view', [MessageFromController::class, 'view'])->name('admin.message.view');
         });
         /* Message from-end */
 
@@ -198,6 +201,7 @@ Route::group(['middleware' => 'admin'], function () {
             Route::post('/list', [TeamMemberController::class, 'list'])->name('admin.member.list');
             Route::post('/delete', [TeamMemberController::class, 'delete'])->name('admin.member.delete');
             Route::post('/restore', [TeamMemberController::class, 'restore'])->name('admin.member.restore');
+            Route::post('/view', [TeamMemberController::class, 'view'])->name('admin.member.view');
         });
         /* Our team member-end*/
 
@@ -296,6 +300,16 @@ Route::group(['middleware' => 'admin'], function () {
             Route::post('/upload-image', [RitualController::class, 'uploadImage'])->name('admin.ritual.upload.image');
         });
         //ritual end here
+
+        //ritual start here
+        Route::group(['prefix' => 'contact'], function () {
+            Route::get('/', [BackEnquiryController::class, 'index'])->name('admin.enquiry');
+            Route::post('/list', [BackEnquiryController::class, 'list'])->name('admin.enquiry.list');
+            Route::post('/delete', [BackEnquiryController::class, 'delete'])->name('admin.enquiry.delete');
+            Route::post('/view', [BackEnquiryController::class, 'view'])->name('admin.enquiry.view');
+            Route::post('/restore', [BackEnquiryController::class, 'restore'])->name('admin.enquiry.restore');
+        });
+        //ritual end here
     });
 });
 /* Backend-end */
@@ -343,6 +357,6 @@ Route::get('list', [DonarController::class, 'list'])->name('list');
 Route::get('form', [FormController::class, 'form'])->name('form');
 
 
-Route::post('senddata', [frontContact::class, 'save'])->name('contact.save');
+Route::post('senddata', [EnquiryController::class, 'save'])->name('enquiry.save');
 
 // Front End Start here 
