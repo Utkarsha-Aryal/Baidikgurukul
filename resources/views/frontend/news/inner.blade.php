@@ -43,7 +43,7 @@
                     @endif
                 </div>
             </div>
-            <div class="nb_right_wrapper_wrap">
+            <div class="nb_right_content_container">
                 <div class="nb_right_wrapper">
                     <div class="nb_right_container">
                         <div class="right_first_text">

@@ -9,6 +9,9 @@
             <div class="common_bg_wrapper">
                 <img src="{{ asset('frontpanel/assets/images/image1.jpeg') }}" alt="">
             </div>
+            <div class="main_txt">
+                <p>News & Blogs</p>
+            </div>
             <div class="img_after">
                 <img src="{{ asset('frontpanel/assets/images/Mask group.png') }}" alt="">
             </div>

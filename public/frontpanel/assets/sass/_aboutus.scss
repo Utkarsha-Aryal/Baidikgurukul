@@ -73,12 +73,21 @@
     @include respond-to(tablet) {
         padding: 0;
     }
-    .dreams_wrappper {
+    .dreams_wrappper_wrap {
         display: flex;
         align-items: center;
         justify-content: space-between;
+        height: 100% !important;
+        margin-top: 30px;
+        @include respond-to(tablet){
+            flex-direction: column;
+        }
         .about-lt {
             width: 50%;
+            align-self: self-start;
+            @include respond-to(tablet){
+               display: none;
+            }
             .radius-o {
                 position: relative;
                 height: 408px;
@@ -106,6 +115,9 @@
         }
         .right_dreams_txt {
             width: 48%;
+            @include respond-to(tablet){
+                width: 100%;
+            }
             .first_dreams_txt {
                 p {
                     font-size: 16px;
@@ -133,6 +145,12 @@
                     .blue {
                         color: $blue;
                     }
+                    @include respond-to(mobile){
+                        font-size: 22px !important;
+                     }
+                     @include respond-to(tablet){
+                        font-size: 28px;
+                     }
                 }
             }
             .third_dream_txt {
@@ -142,6 +160,9 @@
                     font-weight: 400;
                     text-align: justify;
                     color: rgba(115, 115, 115, 1);
+                    @include respond-to(mobile){
+                        font-size: 14px;
+                     }
                 }
             }
             .read_button {
@@ -179,6 +200,9 @@
                 @include respond-to(mobile) {
                     font-size: 22px;
                 }
+                @include respond-to(tablet){
+                    font-size: 28px;
+                 }
             }
         }
         .rght_row {
@@ -221,6 +245,7 @@
                 }
             }
             .mission_main {
+                margin-block: 20px;
                 p {
                     font-size: 24px;
                     font-weight: 500;
@@ -531,9 +556,13 @@
             font-size: 40px;
             font-weight: 600;
             color: $white;
+            margin-block: 30px;
             @include respond-to(mobile) {
                 font-size: 22px;
             }
+            @include respond-to(tablet){
+                font-size: 28px;
+             }
         }
         .entry_form {
             background-color: white !important;

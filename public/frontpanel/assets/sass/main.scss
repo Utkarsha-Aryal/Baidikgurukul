@@ -31,6 +31,7 @@
         .email_contact_container {
             background-color: rgba(169, 2, 98, 1);
             width: 50%;
+            padding: 10.5px;
             .nav_top_left {
                 display: flex;
                 align-items: center;
@@ -56,6 +57,7 @@
                             font-size: 16px;
                             font-weight: 400;
                             color: white;
+                            margin: 0;
                         }
                     }
                 }
@@ -82,6 +84,7 @@
             background-color: rgba(6, 106, 200, 1);
             width: 53%;
             position: relative;
+            padding: 10px;
             &::after {
                 content: "";
                 position: absolute;
@@ -90,7 +93,7 @@
                 right: 100%;
                 width: 20px;
                 background-color: rgba(6, 106, 200, 1);
-                clip-path: polygon(100% 100%, 100% 1%, 0 100%);
+                clip-path: polygon(120% 100%, 100% 1%, 0 100%);
                 transform: skewX(0deg);
                 z-index: 1;
             }
@@ -132,6 +135,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            padding-block: 8px;
             .logo_wrapper {
                 display: flex;
                 align-items: center;
@@ -276,7 +280,7 @@
                                     width: 100px;
                                     left: 79px !important;
                                 }
-                                @include respond-to(tablet){
+                                @include respond-to(tablet) {
                                     left: 80px;
                                 }
 
@@ -355,7 +359,7 @@
                             align-items: center;
                             gap: 8px;
                             background-color: rgba(6, 106, 200, 1);
-                            padding: 0 10px;
+                            padding: 10px 10px;
                             .bi {
                                 color: white;
                             }
@@ -482,7 +486,7 @@
                         align-items: center;
                         gap: 8px;
                         background-color: rgba(6, 106, 200, 1);
-                        padding: 0 10px;
+                        padding: 10px 10px;
                         .bi {
                             color: white;
                         }
@@ -612,6 +616,7 @@
             box-shadow: 0 0 16px rgba($color: #cae9ed, $alpha: 0.5);
             @include respond-to(mobile) {
                 width: 100%;
+                gap: 25px;
             }
             .first_txt {
                 padding-inline: 20px;
@@ -630,7 +635,7 @@
                     align-items: center;
                     gap: 8px;
                     background-color: rgba(6, 106, 200, 1);
-                    padding: 0 10px;
+                    padding: 10px 10px;
                     .bi {
                         color: white;
                     }
@@ -1552,7 +1557,7 @@
         @include respond-to(mobile) {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 0 !important;
+            gap: 25px !important;
         }
         .fcol1 {
             display: flex;
@@ -1662,9 +1667,8 @@
                         display: flex;
                         gap: 5px;
                         align-items: center;
+                        margin-block:15px;
                         .ficon-border {
-                            height: 22px;
-                            width: 22px;
                             background-color: $maroon;
                             padding: 8px;
                             border-radius: 4px;
@@ -1699,7 +1703,7 @@
                     }
                 }
                 .letter-txt {
-                    margin-bottom: 28px;
+                    margin-block: 10px 30px;
                     p {
                         font-size: 14px;
                         color: $white;
@@ -1740,8 +1744,6 @@
     }
 
     .ficon-border {
-        height: 22px;
-        width: 22px;
         background-color: $maroon;
         padding: 8px;
         border-radius: 4px;
