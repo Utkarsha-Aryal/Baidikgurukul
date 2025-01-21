@@ -55,11 +55,12 @@
                             <div class="bottom-fl"></div>
                         </div>
                         <ul>
-                            <li><a href=""><span class="greater">></span> Historical Place</a></li>
-                            <li><a href=""><span class="greater">></span> Introduction</a></li>
-                            <li><a href=""><span class="greater">></span> Program</a></li>
-                            <li><a href="faq"><span class="greater">></span> FAQ</a></li>
-                            <li><a href=""><span class="greater">></span> Gallery</a></li>
+
+                            <li><a href="{{route('history')}}"><span class="greater">></span> Historical Place</a></li>
+                            <li><a href="{{route('about')}}"><span class="greater">></span> Introduction</a></li>
+                            <li><a href="{{route('program')}}"><span class="greater">></span> Program</a></li>
+                            <li><a href="{{route('faq')}}"><span class="greater">></span> FAQ</a></li>
+                            <li><a href="{{route('gallery')}}"><span class="greater">></span> Gallery</a></li>
                         </ul>
                     </div>
                 </div>
@@ -80,9 +81,9 @@
                                 </div>
                                 <div class="icon-txt">
                                     @if (!empty($siteSetting->phone_number))
-                                        <p><a href="">{{ $siteSetting->phone_number ?? '' }}</a></p>
+                                    <p><a href="">{{ $siteSetting->phone_number ?? '' }}</a></p>
                                     @else
-                                        <p><a href="">+977-9867886300</a></p>
+                                    <p><a href="">+977-9867886300</a></p>
                                     @endif
                                 </div>
                             </div>
@@ -96,9 +97,9 @@
                                 </div>
                                 <div class="icon-txt">
                                     @if (!empty($siteSetting->email))
-                                        <p><a href="">{{ $siteSetting->email ?? '' }}</a></p>
+                                    <p><a href="">{{ $siteSetting->email ?? '' }}</a></p>
                                     @else
-                                        <p><a href="mailto:yourname@example.com">Chohangeysamaj@gmail</a></p>
+                                    <p><a href="mailto:yourname@example.com">Chohangeysamaj@gmail</a></p>
                                     @endif
                                 </div>
                             </div>
@@ -145,8 +146,9 @@
                     <p>@copy 2025 Chochangay Samaj Nepal. All Rights Reserved.</p>
                 </div>
                 <div class="right_frow">
-                    <p>Designed and Developed by: <a href="https://g.co/kgs/G1iBeJK" target="_blank"><span
-                                class="red">Code</span><span class="blue">Logic</span></a> Technologies.</p>
+
+                    <p>Designed and Developed by: <a href="https://g.co/kgs/G1iBeJK" target="_blank"><span class="red">Code</span><span class="blue">Logic</span></a> Technologies.</p>
+
                 </div>
 
             </div>

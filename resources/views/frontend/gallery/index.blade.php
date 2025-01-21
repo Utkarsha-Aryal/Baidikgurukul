@@ -1,20 +1,20 @@
 @extends('frontend.layouts.main')
 @section('title', 'Our Gallery')
 @section('content')
-    <section class="introduction_page">
+<section class="introduction_page">
         <div class="img_before">
-            <link rel="stylesheet" href="{{ asset('frontpanel/assets/images/Mask group.png') }}">
+            <img src="{{ asset('frontpanel/assets/images/Mask group.png') }}" alt="">
         </div>
         <div class="common_image_txt">
             <div class="common_bg_wrapper">
-                <link rel="stylesheet" href="{{ asset('frontpanel/assets/images/image1.jpeg') }}">
+                <img src="{{ asset('frontpanel/assets/images/image1.jpeg') }}" alt="hands">
             </div>
             <div class="main_txt">
                 <p>Our Gallery</p>
             </div>
         </div>
         <div class="img_after">
-            <link rel="stylesheet" href="{{ asset('frontpanel/assets/images/Mask group.png') }}">
+            <img src="{{ asset('frontpanel/assets/images/Mask group.png') }}" alt="">
         </div>
     </section>
     <div class="gallery-container-main">
