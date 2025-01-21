@@ -107,10 +107,10 @@
                                             aria-describedby="datatable-basic_info">
                                             <thead>
                                                 <tr>
-                                                    <th>S.No</th>
+                                                    <th width="5%">S.No</th>
                                                     <th>Album Name</th>
                                                     <th>Thumbnail Image</th>
-                                                    <th>Action</th>
+                                                    <th width="5%">Action</th>
                                             </thead>
                                             <tbody>
                                             </tbody>

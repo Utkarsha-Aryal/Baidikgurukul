@@ -114,7 +114,8 @@ class TeamMember extends Model
             designation,
             facebook_url,
             instagram_url,
-            twitter_url
+            twitter_url,
+            details
         ")
                 ->whereRaw($cond);
 

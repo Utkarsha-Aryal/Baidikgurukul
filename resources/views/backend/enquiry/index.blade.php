@@ -1,61 +1,48 @@
 @extends('backend.layouts.main')
 
 @section('title')
-    Team Category
+    Enquiry
 @endsection
 <style>
-    .iconpicker-popover.popover.bottom {
-        opacity: 1;
-    }
-
     input#trashed_file {
         border: 1px solid rgb(0, 99, 198) !important
     }
 </style>
 @section('main-content')
-    <!-- Page Header -->
     <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
         <div class="my-auto">
-            <h5 class="page-title fs-21 mb-1">Team Category</h5>
+            <h5 class="page-title fs-21 mb-1">Enquiry</h5>
             <nav>
                 <ol class="breadcrumb mb-0">
                     <li class="breadcrumb-item"><a href="javascript:void(0);">Dashboard</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Team Category</li>
+                    <li class="breadcrumb-item active" aria-current="page">Enquiry</li>
                 </ol>
             </nav>
+        </div>
+        <div class="d-flex my-xl-auto right-content">
+            <div class="pe-1 mb-xl-0">
+                <button type="button" class="btn btn-primary add" data-bs-toggle="modal" data-bs-target="#add"><i
+                        class="fa fa-add"></i> Add</button>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                {{-- Content goes here --}}
+            </div>
         </div>
     </div>
     <!-- Page Header Close -->
 
-    <!-- Start::row-1 -->
-    <div class="row">
-        <div class="col-xl-4">
-            <div class="card custom-card">
-                <form action="{{ route('admin.teamcategory.save') }}" method="POST" id="team_category_form"
-                    enctype="multipart/form-data">
-                    <div class="card-body">
-                        <div class="row gy-4">
-
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                                <input type="hidden" name="id" value="" id="id">
-                                <label for="team_category" class="form-label">Team Category <span
-                                        class="required-field">*</span></label>
-                                <input type="text" class="form-control" id="team_category"
-                                    placeholder="Enter team category" name="team_category">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer d-flex justify-content-end">
-                        <button type="button" class="btn btn-primary saveData"><i class="fa fa-save"></i> Save</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <div class="col-xl-8">
+    <div class="row ">
+        <div class="col-xl-12">
             <div class="card custom-card">
                 <div class="card-header justify-content-between">
                     <div class="card-title">
-                        Team Category List
+                        Enquiry List
                     </div>
                     <div class="row ms-0">
                         <div class="form-check col-xl-12 col-lg-12 col-md-12 col-sm-12">
@@ -73,15 +60,17 @@
                             <div class="row">
                                 <div class="col-sm-12 col-md-12 mb-3">
                                     <div class="dataTables_length" id="datatable-basic_length">
-                                        <table id="team_categoryTable"
+                                        <table id="enquiryTable"
                                             class="table table-bordered text-nowrap w-100 dataTable no-footer mt-3"
                                             aria-describedby="datatable-basic_info">
                                             <thead>
                                                 <tr>
                                                     <th width="5%">S.No</th>
-                                                    <th width="80%">Team Category</th>
-                                                    <th width="10%">Action</th>
-                                                </tr>
+                                                    <th>First Name</th>
+                                                    <th>Last Name</th>
+                                                    <th>Email</th>
+                                                    <th>Message</th>
+                                                    <th width="5%">Action</th>
                                             </thead>
                                             <tbody>
                                             </tbody>
@@ -95,14 +84,15 @@
             </div>
         </div>
     </div>
-    <!--End::row-1 -->
 @endsection
 
 @section('script')
     <script>
-        var team_categoryTable;
+        var table;
         $(document).ready(function() {
-            team_categoryTable = $('#team_categoryTable').DataTable({
+
+
+            table = $('#enquiryTable').DataTable({
                 "sPaginationType": "full_numbers",
                 "bSearchable": false,
                 "lengthMenu": [
@@ -129,15 +119,23 @@
                         "data": "sno"
                     },
                     {
-                        "data": "team_category"
+                        "data": "first_name"
                     },
-
+                    {
+                        "data": "last_name"
+                    },
+                    {
+                        "data": "email"
+                    },
+                    {
+                        "data": "message"
+                    },
                     {
                         "data": "action"
                     },
                 ],
                 "ajax": {
-                    "url": '{{ route('admin.teamcategory.list') }}',
+                    "url": '{{ route('admin.enquiry.list') }}',
                     "type": "POST",
                     "data": function(d) {
                         var type = $('#trashed_file').is(':checked') == true ? 'trashed' :
@@ -164,76 +162,22 @@
                 }
             });
 
-            $('#team_category_form').validate({
-                rules: {
-                    team_category: "required"
-                },
-                message: {
-                    team_category: {
-                        required: "This field is required."
-                    },
-                },
-                highlight: function(element) {
-                    $(element).addClass("border-danger")
-                },
-                unhighlight: function(element) {
-                    $(element).removeClass("border-danger")
-                },
-            });
 
-            // Save Team Category
-            $('.saveData').off('click');
-            $('.saveData').on('click', function() {
-                if ($('#team_category_form').valid()) {
-                    showLoader();
-                    $('#team_category_form').ajaxSubmit(function(response) {
-                        var result = JSON.parse(response);
-                        if (result) {
-                            if (result.type === 'success') {
-                                $('.saveData').html('<i class="fa fa-save"></i> Save');
-                                showNotification(result.message, 'success');
-                                hideLoader();
-                                team_categoryTable.draw();
-                                $('#team_category_form')[0].reset();
-                                $('#id').val('');
-
-                            } else {
-                                showNotification(result.message, 'error');
-                                hideLoader();
-                            }
-                        } else {
-                            hideLoader();
-                        }
-                    });
-                }
-            });
-
-            // update Team Category
-            $(document).on('click', '.edit_team_category', function(e) {
-                e.preventDefault();
-                $('#id').val($(this).data('id'));
-                $('.saveData').html('<i class="fa fa-save"></i> Update');
-                $('#team_category').val($(this).data('team_category'));
-            });
-
-
-            // view trashed items-start
             $('#trashed_file').off('change');
             $('#trashed_file').on('change', function(e) {
-                team_categoryTable.draw();
+                table.draw();
             });
-            // view trashed items-ends
 
-            // Delete Team Category
-            $(document).off('click', '.delete_team_category');
-            $(document).on('click', '.delete_team_category', function() {
+
+            $(document).off('click', '.delete');
+            $(document).on('click', '.delete', function() {
 
                 var type = $('#trashed_file').is(':checked') == true ? 'trashed' :
                     'nottrashed';
 
                 Swal.fire({
-                    title: type === "nottrashed" ? "Are you sure you want to delete this item" :
-                        "Are you sure you want to delete permanently  this item",
+                    title: type === "nottrashed" ? "Are you sure you want to delete this Query" :
+                        "Are you sure you want to delete permanently  this Query",
                     text: "You won't be able to revert it!",
                     icon: "warning",
                     showCancelButton: true,
@@ -242,20 +186,23 @@
                     confirmButtonText: "Yes, Delete it!"
                 }).then((result) => {
                     if (result.isConfirmed) {
+                        showLoader();
                         var id = $(this).data('id');
                         var data = {
                             id: id,
                             type: type,
                         };
-                        var url = '{{ route('admin.teamcategory.delete') }}';
+                        var url = '{{ route('admin.enquiry.delete') }}';
                         $.post(url, data, function(response) {
-                            var rep = JSON.parse(response);
-                            if (rep) {
-                                showNotification(rep.message, rep.type);
-                                if (rep.type === 'success') {
-                                    team_categoryTable.draw();
-                                    $('#team_category_form')[0].reset();
-                                    $('#id').val('');
+                            var result = JSON.parse(response);
+                            if (result) {
+                                if (result.type === 'success') {
+                                    showNotification(result.message, 'success');
+                                    table.draw();
+                                    hideLoader();
+                                } else {
+                                    showNotification(result.message, 'error');
+                                    hideLoader();
                                 }
                             }
                         });
@@ -263,13 +210,11 @@
                 });
             });
 
-
-            // Restore
             $(document).off('click', '.restore');
             $(document).on('click', '.restore', function() {
                 Swal.fire({
-                    title: "Are you sure you want to restore Team Category?",
-                    text: "This will restore the Team Category.",
+                    title: "Are you sure you want to restore Query?",
+                    text: "This will restore the Query.",
                     icon: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#28a745",
@@ -283,12 +228,12 @@
                             id: id,
                             type: 'restore'
                         };
-                        var url = '{{ route('admin.teamcategory.restore') }}';
+                        var url = '{{ route('admin.enquiry.restore') }}';
                         $.post(url, data, function(response) {
                             if (response) {
                                 if (response.type === 'success') {
                                     showNotification(response.message, 'success');
-                                    team_categoryTable.draw();
+                                    table.draw();
                                     hideLoader();
                                 } else {
                                     showNotification(response.message, 'error');
@@ -300,6 +245,20 @@
                 });
             });
 
+
+
+            $(document).off('click', '.view');
+            $(document).on('click', '.view', function() {
+                var id = $(this).data('id');
+                var url = '{{ route('admin.enquiry.view') }}';
+                var data = {
+                    id: id
+                };
+                $.post(url, data, function(response) {
+                    $('#modal .modal-content').html(response);
+                    $('#modal').modal('show');
+                });
+            });
 
         });
     </script>

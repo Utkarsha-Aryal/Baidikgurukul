@@ -172,7 +172,7 @@
                             <li><a href="{{ route('contact') }}">Contact</a></li>
                         </ul>
                         <button class="donar_list">
-                            <a href="list">
+                            <a href="{{ route('list') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     fill="currentColor" class="bi bi-list-ul" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"

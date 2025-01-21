@@ -100,14 +100,15 @@
                                             aria-describedby="datatable-basic_info">
                                             <thead>
                                                 <tr>
-                                                    <th>S.No</th>
+                                                    <th width="5%">S.No</th>
                                                     <th>Name</th>
                                                     <th>Designation</th>
+                                                    <th>Detail</th>
                                                     <th>Facebook</th>
                                                     <th>Instagram</th>
                                                     <th>Twitter</th>
                                                     <th>Photo</th>
-                                                    <th>Action</th>
+                                                    <th width="5%">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -252,6 +253,9 @@
                     },
                     {
                         "data": "designation"
+                    },
+                    {
+                        "data": "details"
                     },
                     {
                         "data": "facebook_url",
@@ -423,6 +427,21 @@
                     }
                 });
             });
+
+            //view
+            $(document).off('click', '.view');
+            $(document).on('click', '.view', function() {
+                var id = $(this).data('id');
+                var url = '{{ route('admin.member.view') }}';
+                var data = {
+                    id: id
+                };
+                $.post(url, data, function(response) {
+                    $('#modal .modal-content').html(response);
+                    $('#modal').modal('show');
+                });
+            });
+
         });
     </script>
 @endsection
