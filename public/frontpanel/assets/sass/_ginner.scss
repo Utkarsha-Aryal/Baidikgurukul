@@ -1,26 +1,25 @@
 @import "_mixins.scss";
-gallery-inner-container {
-    margin-top: 90px;
+.gallery-inner-container {
+    margin-block: 60px;
     .gallery-inner-wrapper {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         gap: 20px;
-        align-self: auto;
         @include respond-to(mobile) {
             grid-template-columns: 1fr 1fr !important;
             gap: 15px !important;
         }
         .g-inner-img {
+            height: 230px;
+            width: 100%;
+            @include respond-to(tablet) {
+                height: 200px;
+            }
+            @include respond-to(mobile) {
+                height: 160px !important;
+            }
             img {
-                height: 230px;
-                width: 100%;
-                object-fit: cover;
-                @include respond-to(tablet) {
-                    height: 200px;
-                }
-                @include respond-to(mobile) {
-                    height: 160px !important;
-                }
+                object-fit: cover !important;
             }
         }
     }
