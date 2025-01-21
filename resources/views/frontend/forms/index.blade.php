@@ -117,7 +117,7 @@
                                                 <input type="text" placeholder="Province" name="Province">
                                             </label>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                                fill="currentColor" class="form_icon bi bi-chevron-down" viewBox="0 0 16 16">
                                                 <path fill-rule="evenodd"
                                                     d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
                                             </svg>
@@ -126,12 +126,12 @@
                                             <label for="Municipality">
                                                 <input type="number" placeholder="Municipality" name="Municipality">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                                    fill="currentColor" class="form_icon bi bi-chevron-down" viewBox="0 0 16 16">
                                                     <path fill-rule="evenodd"
                                                         d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
                                                 </svg>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                                    fill="currentColor" class="form_icon bi bi-chevron-down" viewBox="0 0 16 16">
                                                     <path fill-rule="evenodd"
                                                         d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
                                                 </svg>
@@ -144,7 +144,7 @@
                                             <label for="Ward">
                                                 <input type="text" placeholder="Ward" name="Ward">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                                    fill="currentColor" class="form_icon bi bi-chevron-down" viewBox="0 0 16 16">
                                                     <path fill-rule="evenodd"
                                                         d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
                                                 </svg>
@@ -154,7 +154,7 @@
                                             <label for="Tole">
                                                 <input type="text" placeholder="Tole" name="Tole">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                                    fill="currentColor" class="form_icon bi bi-chevron-down" viewBox="0 0 16 16">
                                                     <path fill-rule="evenodd"
                                                         d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
                                                 </svg>
@@ -169,7 +169,7 @@
                                             <label for="Country">
                                                 <input type="text" placeholder="Country" name="Country">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                                    fill="currentColor" class="form_icon bi bi-chevron-down" viewBox="0 0 16 16">
                                                     <path fill-rule="evenodd"
                                                         d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
                                                 </svg>
@@ -179,7 +179,7 @@
                                             <label for="City">
                                                 <input type="text" placeholder="City" name="City">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                                    fill="currentColor" class="form_icon bi bi-chevron-down" viewBox="0 0 16 16">
                                                     <path fill-rule="evenodd"
                                                         d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
                                                 </svg>
@@ -191,7 +191,7 @@
                                             <label for="Tole/Area">
                                                 <input type="text" placeholder="Tole/Area" name="Tole/Area">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                                    fill="currentColor" class="form_icon bi bi-chevron-down" viewBox="0 0 16 16">
                                                     <path fill-rule="evenodd"
                                                         d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
                                                 </svg>
@@ -201,7 +201,7 @@
                                             <label for="Postal Code">
                                                 <input type="number" placeholder="Postal Code" name="Postal Code">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                                    fill="currentColor" class="form_icon bi bi-chevron-down" viewBox="0 0 16 16">
                                                     <path fill-rule="evenodd"
                                                         d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
                                                 </svg>
@@ -265,7 +265,7 @@
                                                 <input type="text" placeholder="Company/Institution"
                                                     name="Company/Institution">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                                    fill="currentColor" class="form_icon bi bi-chevron-down" viewBox="0 0 16 16">
                                                     <path fill-rule="evenodd"
                                                         d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
                                                 </svg>
@@ -277,7 +277,7 @@
                                             <label for="Country">
                                                 <input type="text" placeholder="Country" name="Country">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                                    fill="currentColor" class="form_icon bi bi-chevron-down" viewBox="0 0 16 16">
                                                     <path fill-rule="evenodd"
                                                         d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
                                                 </svg>

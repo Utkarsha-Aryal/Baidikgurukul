@@ -613,10 +613,11 @@
             flex-direction: column;
             justify-content: center;
             height: 180px;
+            gap: 25px;
             box-shadow: 0 0 16px rgba($color: #cae9ed, $alpha: 0.5);
             @include respond-to(mobile) {
                 width: 100%;
-                gap: 25px;
+               
             }
             .first_txt {
                 padding-inline: 20px;

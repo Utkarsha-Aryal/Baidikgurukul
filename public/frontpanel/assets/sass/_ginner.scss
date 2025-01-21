@@ -5,21 +5,26 @@
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         gap: 20px;
-        @include respond-to(mobile) {
+        align-self: auto;
+        @include respond-to(tablet) {
             grid-template-columns: 1fr 1fr !important;
             gap: 15px !important;
         }
-        .g-inner-img {
-            height: 230px;
-            width: 100%;
-            @include respond-to(tablet) {
-                height: 200px;
-            }
-            @include respond-to(mobile) {
-                height: 160px !important;
-            }
-            img {
-                object-fit: cover !important;
+        @include respond-to(mobile) {
+            grid-template-columns: 1fr !important;
+            gap: 15px !important;
+        }
+        .g1-img{
+            #myIframe {
+                height: 250px;
+                width: 100% !important;
+                object-fit: cover;
+                @include respond-to(tablet) {
+                    height: 250px;
+                }
+                @include respond-to(mobile) {
+                    height: 200px !important;
+                }
             }
         }
     }

@@ -17,7 +17,6 @@
                 p {
                     font-size: 18px;
                     font-weight: 500;
-                   
                 }
             }
             .tab {
@@ -25,6 +24,7 @@
                 align-items: center;
                 gap: 10px;
                 cursor: pointer;
+                margin-block: 15px;
                 .bi {
                     color: $blue;
                 }
@@ -37,6 +37,7 @@
                     background-color: $blue;
                     padding-inline: 10px;
                     border-radius: 4px;
+                    padding-block: 12px;
                     .bi {
                         color: $white;
                     }
@@ -48,6 +49,69 @@
         }
         .content {
             width: 70%;
+            #content0 {
+                width: 100% !important;
+                .first_content_wrapper {
+                    .first_txt {
+                        p {
+                            font-size: 30px;
+                            font-weight: 500;
+                            color: rgb(13, 19, 23);
+                            margin: 0;
+                        }
+                    }
+                    .second_txt {
+                        margin-block: 20px;
+                        p {
+                            font-size: 18px;
+                            font-weight: 400;
+                            color: rgba(115, 115, 115, 1);
+                        }
+                    }
+                    .third_image_wrapper {
+                        display: flex;
+                        gap: 20px;
+                        .left_bigger_image {
+                            height: 110px;
+                            width: 50%;
+                        }
+                        .right_smaller_images {
+                            width: 50%;
+                            gap: 10px;
+                            display: flex;
+                            flex-direction: column;
+                            .first_img {
+                                height: 50px;
+                            }
+                            .second_img {
+                                height: 50px;
+                            }
+                        }
+                    }
+                    .forth_txt {
+                        p {
+                            font-size: 18px;
+                            font-weight: 400;
+                            color: rgba(115, 115, 115, 1);
+                        }
+                    }
+                    .fifth_txt {
+                        p {
+                            font-size: 24px;
+                            font-weight: 400;
+                            color: rgba(115, 115, 115, 1);
+                            text-align: center;
+                        }
+                    }
+                    .sixth_txt {
+                        p {
+                            font-size: 18px;
+                            font-weight: 400;
+                            color: rgba(115, 115, 115, 1);
+                        }
+                    }
+                }
+            }
             #content1 {
                 width: 100% !important;
                 .first_content_wrapper {
@@ -60,6 +124,7 @@
                         }
                     }
                     .second_txt {
+                        margin-block: 20px;
                         p {
                             font-size: 18px;
                             font-weight: 400;
@@ -122,6 +187,7 @@
                         }
                     }
                     .second_txt {
+                        margin-block: 20px;
                         p {
                             font-size: 18px;
                             font-weight: 400;
@@ -184,6 +250,7 @@
                         }
                     }
                     .second_txt {
+                        margin-block: 20px;
                         p {
                             font-size: 18px;
                             font-weight: 400;
@@ -246,6 +313,7 @@
                         }
                     }
                     .second_txt {
+                        margin-block: 20px;
                         p {
                             font-size: 18px;
                             font-weight: 400;
