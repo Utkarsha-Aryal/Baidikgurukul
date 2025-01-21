@@ -20,11 +20,11 @@
     <div class="gallery-inner-container">
         <div class="container">
             <div class="gallery-inner-wrapper">
-                @foreach ($videos as $video)
-                    <div class="g1-img">
+                <div class="g1-img">
+                    @foreach ($videos as $video)
                         <iframe src="{{ $video->video_url }}" frameborder="0"></iframe>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>

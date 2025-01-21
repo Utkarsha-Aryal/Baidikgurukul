@@ -58,6 +58,12 @@
                 font-size: 36px;
                 font-weight: 500;
                 color: white;
+                @include respond-to(mobile) {
+                    font-size: 22px !important;
+                }
+                @include respond-to(mobile) {
+                    font-size: 28px;
+                }
             }
         }
     }
@@ -158,21 +164,37 @@
     .ft_wrap {
         display: flex;
         justify-content: space-between;
+        @include respond-to(mobile) {
+            flex-direction: column;
+        }
         .lfr_row {
             width: 49%;
+            @include respond-to(mobile) {
+                width: 100%;
+            }
             p {
                 font-size: 35px;
                 font-weight: 500;
                 margin: 0;
+                @include respond-to(mobile) {
+                    font-size: 22px;
+                }
             }
         }
         .rght_row {
             width: 48%;
+            @include respond-to(mobile) {
+                width: 100%;
+            }
             p {
                 font-size: 18px;
                 font-size: 500;
                 color: rgba(115, 115, 115, 1);
                 margin: 0;
+                @include respond-to(mobile) {
+                    font-size: 14px;
+                    margin-block: 10px;
+                }
             }
         }
     }
@@ -180,6 +202,10 @@
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         gap: 20px;
+        @include respond-to(mobile) {
+            grid-template-columns: 1fr;
+            gap: 0;
+        }
         .mission_card_container {
             background-color: rgba(239, 247, 255, 1);
             padding: 20px;
@@ -189,11 +215,18 @@
             .mission_icon {
                 height: 30px;
                 width: 30px;
+                @include respond-to(mobile) {
+                    height: 15px;
+                    width: 15px;
+                }
             }
             .mission_main {
                 p {
                     font-size: 24px;
                     font-weight: 500;
+                    @include respond-to(mobile) {
+                        font-size: 16px;
+                    }
                 }
             }
             .mission_txt {
@@ -203,6 +236,9 @@
                     color: $grey;
                     text-align: justify;
                     margin: 0;
+                    @include respond-to(mobile) {
+                        font-size: 14px;
+                    }
                 }
             }
         }
@@ -210,6 +246,9 @@
 }
 .timeline-container {
     position: relative;
+    @include respond-to(mobile) {
+        display: none;
+    }
     &::before {
         content: "";
         position: absolute;
@@ -467,25 +506,42 @@
     justify-content: space-between;
     padding-block: 30px;
     height: 350px;
+    @include respond-to(mobile) {
+        height: auto;
+    }
     .lft_img {
         width: 50%;
         filter: grayscale(100%);
         height: 100%;
+        @include respond-to(mobile) {
+            display: none;
+        }
     }
     .rght_txt {
         width: 50%;
         background-color: $blue;
         padding-inline: 20px;
         height: 100%;
+        @include respond-to(mobile) {
+            width: 100%;
+            height: auto;
+            text-align: center;
+        }
         p {
             font-size: 40px;
             font-weight: 600;
             color: $white;
+            @include respond-to(mobile) {
+                font-size: 22px;
+            }
         }
         .entry_form {
             background-color: white !important;
             padding: 8px 15px;
             margin-bottom: 20px;
+            @include respond-to(mobile) {
+                padding: 4px 8px;
+            }
             a {
                 display: inline-block;
                 p {
@@ -493,6 +549,9 @@
                     font-weight: 400;
                     margin: 0;
                     color: $blue;
+                    @include respond-to(mobile) {
+                        font-size: 12px;
+                    }
                 }
             }
         }

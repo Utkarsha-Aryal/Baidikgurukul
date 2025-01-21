@@ -48,7 +48,7 @@
                                 </div>
                             @endforeach
                         @else
-                            <p>N Date Found</p>
+                            <p>No Date Found</p>
                         @endif
                     </div>
                 </div>

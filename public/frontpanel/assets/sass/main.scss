@@ -22,6 +22,7 @@
 @import "_birth.scss";
 
 // header section ends here
+
 .header_container {
     .nav_header_wrapper {
         display: flex;
@@ -35,10 +36,16 @@
                 align-items: center;
                 gap: 20px;
                 margin-left: 100px;
+                @include respond-to(tablet) {
+                    margin-left: 30px;
+                }
                 .email_wrapper {
                     display: flex;
                     align-items: center;
                     gap: 10px;
+                    @include respond-to(tablet) {
+                        display: none;
+                    }
                     .email_icon {
                         color: white;
                         height: 16px;
@@ -91,6 +98,9 @@
                 display: flex;
                 align-items: center;
                 gap: 20px;
+                @include respond-to(mobile) {
+                    gap: 10px;
+                }
                 .social_txt {
                     p {
                         font-size: 16px;
@@ -130,138 +140,230 @@
                     img {
                         height: 60px;
                         width: 63px;
+                        @include respond-to(mobile) {
+                            height: 50px;
+                            width: 50px;
+                            border-radius: 50%;
+                        }
                     }
                 }
                 .logo_txt {
                     p {
                         font-size: 20px;
                         font-weight: 600;
+                        @include respond-to(mobile) {
+                            font-size: 14px !important;
+                        }
+                        @include respond-to(tablet) {
+                            font-size: 18px;
+                        }
                     }
                 }
             }
-            .nav_list_menu {
+            .nav_list_hamburger_menu {
                 display: flex;
                 align-items: center;
-                gap: 20px;
-                .navigation_list {
+                position: relative;
+                @include respond-to(tablet) {
+                    flex-direction: row-reverse;
+                    align-items: center;
+                    gap: 20px;
+                    width: 100%;
+                }
+                .hamburger-menu {
+                    display: none;
+                    .bi {
+                        height: 50px;
+                        width: 35px;
+                    }
+                    @include respond-to(tablet) {
+                        display: block;
+                    }
+                }
+                .cross_sign {
+                    display: none; /* Hidden by default */
+                    cursor: pointer;
+                    width: 30px; /* Adjust size as necessary */
+                    height: 30px;
+                    position: absolute;
+                    top: 10px; /* Adjust positioning */
+                    right: 10px;
+                    z-index: 99999;
+                    .bi {
+                        height: 30px;
+                        width: 30px;
+                        @include respond-to(mobile) {
+                            height: 23px;
+                            width: 23px;
+                        }
+                    }
+                    &.active {
+                        display: block;
+                    }
+                }
+                .nav_list_menu {
                     display: flex;
                     align-items: center;
                     gap: 20px;
-                    li {
-                        position: relative;
-                        a {
-                            font-size: 16px;
-                            font-weight: 600;
-                            position: relative;
-                            &:hover {
-                                color: $blue;
-                            }
 
-                            &::after {
-                                content: "";
-                                position: absolute;
-                                bottom: 0;
-                                left: 0;
-                                width: 0;
-                                height: 2px;
-                                background-color: $blue;
-                                transition:
-                                    width 0.3s ease,
-                                    left 0.3s ease;
-                                border-radius: 4px;
-                                margin-block: -2px;
-                            }
-                            &:hover::after {
-                                width: 50%;
-                                right: 0;
-                                margin-top: 10px;
-                            }
-                        }
-                        .dropdown {
-                            display: none; /* Hidden by default */
+                    .navigation_list {
+                        display: flex;
+                        align-items: center;
+                        gap: 20px;
+                        @include respond-to(tablet) {
+                            transform: translateX(-100%);
                             position: absolute;
-                            top: 100%; /* Position below the parent */
+                            top: -20px;
                             left: 0;
-                            background-color: rgba(239, 247, 255, 1);
-                            border: 1px solid #ddd;
-                            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-                            z-index: 100;
-                            width: 160px;
-                            padding: 10px 10px;
-                            border-top: 2px solid $blue;
-
-                            li {
-                                padding-block: 8px;
-                                border-bottom: 1.5px dashed rgba(180, 218, 254, 1);
-                                &:nth-child(4) {
-                                    border-bottom: none;
+                            width: 100%;
+                            z-index: 9999;
+                            background-color: white;
+                            display: none;
+                        }
+                        &.active {
+                            display: block;
+                            flex-direction: column !important;
+                            transform: translateX(0);
+                            width: 100%;
+                        }
+                        li {
+                            position: relative;
+                            @include respond-to(tablet) {
+                                margin-block: 15px;
+                            }
+                            a {
+                                font-size: 16px;
+                                font-weight: 600;
+                                position: relative;
+                                &:hover {
+                                    color: $blue;
                                 }
-                                &:nth-child(2) {
-                                    a {
-                                        display: flex;
-                                        align-items: center;
-                                        justify-content: space-between;
-                                        .bi {
-                                            color: rgba(0, 0, 0, 1);
+
+                                &::after {
+                                    content: "";
+                                    position: absolute;
+                                    bottom: 0;
+                                    left: 0;
+                                    width: 0;
+                                    height: 2px;
+                                    background-color: $blue;
+                                    transition:
+                                        width 0.3s ease,
+                                        left 0.3s ease;
+                                    border-radius: 4px;
+                                    margin-block: -2px;
+                                }
+                                &:hover::after {
+                                    width: 50%;
+                                    right: 0;
+                                    margin-top: 10px;
+                                }
+                            }
+                            .dropdown {
+                                display: none; /* Hidden by default */
+                                position: absolute;
+                                top: 100%; /* Position below the parent */
+                                left: 0;
+                                background-color: rgba(239, 247, 255, 1);
+                                border: 1px solid #ddd;
+                                box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+                                z-index: 100;
+                                width: 160px;
+                                padding: 10px 10px;
+                                border-top: 2px solid $blue;
+                                @include respond-to(mobile) {
+                                    padding: 0 10px;
+                                    width: 100px;
+                                    left: 79px !important;
+                                }
+                                @include respond-to(tablet){
+                                    left: 80px;
+                                }
+
+                                li {
+                                    padding-block: 8px;
+                                    border-bottom: 1.5px dashed rgba(180, 218, 254, 1);
+                                    @include respond-to(mobile) {
+                                        padding: 0;
+                                    }
+                                    &:nth-child(4) {
+                                        border-bottom: none;
+                                    }
+                                    &:nth-child(2) {
+                                        a {
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: space-between;
+                                            .bi {
+                                                color: rgba(0, 0, 0, 1);
+                                            }
                                         }
                                     }
-                                }
-                                a {
-                                    color: rgba(115, 115, 115, 1);
-                                    font-size: 15px;
+                                    a {
+                                        color: rgba(115, 115, 115, 1);
+                                        font-size: 15px;
 
-                                    &::after {
-                                        display: none;
-                                    }
-                                    &:hover {
-                                        color: $blue;
-                                    }
-                                }
-                                .nested-dropdown {
-                                    display: none; /* Hidden by default */
-                                    position: absolute;
-                                    top: 0; /* Position below the parent */
-                                    left: 160px;
-                                    background-color: rgba(239, 247, 255, 1);
-                                    border: 1px solid #ddd;
-                                    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-                                    z-index: 100;
-                                    width: 160px;
-                                    padding: 10px 10px;
-                                    border-top: 2px solid $blue;
-                                    li {
-                                        &:nth-child(4) {
-                                            border-bottom: none;
+                                        &::after {
+                                            display: none;
                                         }
                                         &:hover {
                                             color: $blue;
                                         }
                                     }
-                                }
-                                &:hover .nested-dropdown {
-                                    display: block;
+                                    .nested-dropdown {
+                                        display: none; /* Hidden by default */
+                                        position: absolute;
+                                        top: 0; /* Position below the parent */
+                                        left: 160px;
+                                        background-color: rgba(239, 247, 255, 1);
+                                        border: 1px solid #ddd;
+                                        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+                                        z-index: 100;
+                                        width: 160px;
+                                        padding: 10px 10px;
+                                        border-top: 2px solid $blue;
+                                        li {
+                                            &:nth-child(4) {
+                                                border-bottom: none;
+                                            }
+                                            &:hover {
+                                                color: $blue;
+                                            }
+                                        }
+                                        @include respond-to(tablet) {
+                                            left: 80px;
+                                            width: 100px;
+                                        }
+                                        @include respond-to(mobile) {
+                                            left: 80px;
+                                            width: 65px !important;
+                                        }
+                                    }
+                                    &:hover .nested-dropdown {
+                                        display: block;
+                                    }
                                 }
                             }
-                        }
-                        &:hover .dropdown {
-                            display: block;
+                            &:hover .dropdown {
+                                display: block;
+                            }
                         }
                     }
-                }
-                .donar_list {
-                    a {
-                        display: flex;
-                        align-items: center;
-                        gap: 8px;
-                        background-color: rgba(6, 106, 200, 1);
-                        padding: 0 10px;
-                        .bi {
-                            color: white;
-                        }
-                        p {
-                            font-size: 12px;
-                            font-weight: 500;
-                            color: white;
+                    .donar_list {
+                        a {
+                            display: flex;
+                            align-items: center;
+                            gap: 8px;
+                            background-color: rgba(6, 106, 200, 1);
+                            padding: 0 10px;
+                            .bi {
+                                color: white;
+                            }
+                            p {
+                                font-size: 12px;
+                                font-weight: 500;
+                                color: white;
+                            }
                         }
                     }
                 }
@@ -312,6 +414,9 @@
                 position: relative;
                 z-index: 99;
                 height: 300px;
+                @include respond-to(mobile) {
+                    display: none;
+                }
                 img {
                     filter: grayscale(100%);
                 }
@@ -338,6 +443,9 @@
             .overlay_txt {
                 width: 50%;
                 position: relative;
+                @include respond-to(mobile) {
+                    width: 100%;
+                }
                 .first_txt {
                     display: flex;
                     gap: 8px;
@@ -360,6 +468,12 @@
                         font-weight: 600;
                         color: white;
                         margin: 0;
+                        @include respond-to(mobile) {
+                            font-size: 22px !important;
+                        }
+                        @include respond-to(tablet) {
+                            font-size: 32px;
+                        }
                     }
                 }
                 .explore_button {
@@ -413,9 +527,16 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        @include respond-to(mobile) {
+            flex-direction: column;
+            gap: 20px;
+        }
         .rules_wrapper_left {
             width: 48%;
             position: relative;
+            @include respond-to(mobile) {
+                width: 100%;
+            }
             .bg_image_gradient {
                 height: 180px;
                 &::after {
@@ -443,6 +564,9 @@
                         font-weight: 600;
                         color: white;
                         margin: 0;
+                        @include respond-to(mobile) {
+                            font-size: 18px;
+                        }
                     }
                 }
                 .second_rituals_txt {
@@ -452,6 +576,9 @@
                         font-weight: 400;
                         color: white;
                         margin: 0;
+                        @include respond-to(mobile) {
+                            font-size: 12px;
+                        }
                     }
                 }
                 .read_more {
@@ -463,6 +590,9 @@
                             font-size: 14px;
                             font-weight: 500;
                             color: white;
+                            @include respond-to(mobile) {
+                                font-size: 12px;
+                            }
                         }
                         .bi {
                             color: white;
@@ -480,11 +610,17 @@
             justify-content: center;
             height: 180px;
             box-shadow: 0 0 16px rgba($color: #cae9ed, $alpha: 0.5);
+            @include respond-to(mobile) {
+                width: 100%;
+            }
             .first_txt {
                 padding-inline: 20px;
                 p {
                     font-size: 16px;
                     font-weight: 400;
+                    @include respond-to(mobile) {
+                        font-size: 12px;
+                    }
                 }
             }
             .register_button {
@@ -502,6 +638,9 @@
                         font-size: 12px;
                         font-weight: 500;
                         color: white;
+                        @include respond-to(mobile) {
+                            font-size: 10px;
+                        }
                     }
                 }
             }
@@ -517,7 +656,7 @@
         align-items: center;
         justify-content: space-between;
         height: 500px;
-        @include respond-to(tablet){
+        @include respond-to(tablet) {
             height: 100%;
         }
         .about-lt {
@@ -587,6 +726,12 @@
                     .blue {
                         color: $blue;
                     }
+                    @include respond-to(mobile) {
+                        font-size: 22px !important;
+                    }
+                    @include respond-to(tablet) {
+                        font-size: 28px;
+                    }
                 }
             }
             .third_dream_txt {
@@ -596,6 +741,9 @@
                     font-weight: 400;
                     text-align: justify;
                     color: rgba(115, 115, 115, 1);
+                    @include respond-to(mobile) {
+                        font-size: 14px;
+                    }
                 }
             }
             .read_button {
@@ -624,6 +772,7 @@
         @include respond-to(tablet) {
             flex-direction: column;
             gap: 20px;
+            margin: 0;
         }
         .left_rights_txt {
             width: 55%;
@@ -648,6 +797,9 @@
                     .blue {
                         color: $blue;
                     }
+                    @include respond-to(mobile) {
+                        font-size: 22px;
+                    }
                 }
             }
             .third_dream_txt {
@@ -657,6 +809,9 @@
                     font-weight: 400;
                     text-align: justify;
                     color: rgba(115, 115, 115, 1);
+                    @include respond-to(mobile) {
+                        font-size: 14px;
+                    }
                 }
             }
 
@@ -724,9 +879,15 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        @include respond-to(mobile) {
+            flex-direction: column;
+        }
         .program_initiative_txt {
             padding-block: 30px;
             width: 90%;
+            @include respond-to(mobile) {
+                width: 100%;
+            }
             .first_program_txt {
                 position: relative;
                 &::after {
@@ -776,6 +937,11 @@
             display: flex;
             align-items: center;
             gap: 20px;
+            @include respond-to(mobile) {
+                margin-bottom: 20px;
+                width: 100%;
+                justify-content: center;
+            }
             .swiper-prev {
                 background-color: white;
                 border-radius: 50%;
@@ -828,10 +994,11 @@
                     // grid-template-columns: 1fr 1fr 1fr;
                     margin-bottom: 30px;
                     .swiper_content_card {
-                        width: 330px;
                         .card_image {
                             height: 300px;
-                            width: 330px;
+                            @include respond-to(mobile) {
+                                height: 200px;
+                            }
                         }
                         .first_txt {
                             margin-block: 10px;
@@ -840,6 +1007,9 @@
                                 font-weight: 600;
                                 color: rgba(0, 0, 0, 1);
                                 margin: 0;
+                                @include respond-to(mobile) {
+                                    font-size: 18px;
+                                }
                             }
                         }
                         .second_txt {
@@ -980,6 +1150,7 @@
                         align-items: center;
                         box-sizing: border-box;
                         padding: 10px;
+                        gap: 20px;
                         box-shadow: 0 0 16px rgba(139, 202, 241, 0.4);
                         transition: all 0.3s ease-in-out;
                         @include respond-to(mobile) {
@@ -989,6 +1160,9 @@
                         }
                         .date_info {
                             width: 15%;
+                            @include respond-to(mobile) {
+                                width: 100%;
+                            }
                             .date1 {
                                 p {
                                     font-size: 20px;
@@ -1017,6 +1191,10 @@
                             border-left: 2px dashed rgba(180, 218, 254, 1);
                             border-right: 2px dashed rgba(180, 218, 254, 1);
                             padding-inline: 20px;
+                            width: 60%;
+                            @include respond-to(mobile) {
+                                width: 100%;
+                            }
                             @include respond-to(mobile) {
                                 border: none;
                             }
@@ -1108,6 +1286,7 @@
                                 font-weight: 500;
                                 margin: 0;
                                 color: $blue;
+                                display: flex;
                                 @include respond-to(mobile) {
                                     font-size: 12px;
                                     white-space: nowrap;
@@ -1232,7 +1411,10 @@
             align-items: center;
             justify-content: space-between;
             .second_program_txt {
-                width: 80%;
+                width: 75%;
+                @include respond-to(mobile) {
+                    width: 70%;
+                }
                 p {
                     font-size: 36px;
                     font-weight: 600;
@@ -1245,20 +1427,29 @@
                         font-size: 30px;
                     }
                     @include respond-to(mobile) {
-                        font-size: 24px;
+                        font-size: 22px;
                     }
                 }
             }
             .view_all_txt {
-                width: 15%;
+                width: 20%;
+                @include respond-to(mobile) {
+                    width: 25%;
+                }
                 a {
                     display: flex;
                     align-items: center;
-                    gap: 10px;
+                    gap: 5px;
                     p {
                         font-size: 16px;
                         font-weight: 500;
                         margin: 0;
+                        @include respond-to(tablet) {
+                            font-size: 14px;
+                        }
+                        @include respond-to(mobile) {
+                            font-size: 12px;
+                        }
                     }
                 }
             }
@@ -1307,6 +1498,9 @@
                     font-weight: 600;
                     color: rgba(0, 0, 0, 1);
                     margin: 0;
+                    @include respond-to(mobile) {
+                        font-size: 18px;
+                    }
                 }
             }
             .second_txt {
@@ -1376,6 +1570,11 @@
                     img {
                         height: 60px;
                         width: 63px;
+                        @include respond-to(mobile) {
+                            height: 45px;
+                            width: 45px;
+                            border-radius: 50%;
+                        }
                     }
                 }
                 .logo_txt {
@@ -1383,6 +1582,12 @@
                         font-size: 20px;
                         font-weight: 600;
                         color: $white;
+                        @include respond-to(mobile) {
+                            font-size: 16px !important;
+                        }
+                        @include respond-to(tablet) {
+                            font-size: 18px;
+                        }
                     }
                 }
             }

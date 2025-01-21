@@ -109,11 +109,12 @@
                                 </div>
 
                                 <div class="right_event_img">
-                                    <img src="frontend\images\Rectangle 148 (2).png">
+                                    <img src="{{ asset('frontpanel/assets/images/Rectangle 148 (2).png') }}"
+                                        alt="">
                                 </div>
                             </div>
                             <div style="margin-top: 2rem;">
-                                {{ $events->links('pagination::simple-bootstrap-5') }}
+                                {{ $events->links('pagination::bootstrap-4') }}
                             </div>
                         </div>
                     </div>

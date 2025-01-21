@@ -14,7 +14,7 @@ class GalleryController extends Controller
 {
     public function gallery()
     {
-        // try {
+        try {
         $type = 'success';
         $message = 'Successfully fetched data';
 
@@ -55,20 +55,20 @@ class GalleryController extends Controller
             'type' => $type,
             'message' => $message
         ];
-        // } catch (QueryException $e) {
-        //     $data['type'] = 'error';
-        //     $data['message'] = $this->queryMessage;
-        // } catch (Exception $e) {
-        //     $data['type'] = 'error';
-        //     $data['message'] = $e->getMessage();
-        // }
+        } catch (QueryException $e) {
+            $data['type'] = 'error';
+            $data['message'] = $this->queryMessage;
+        } catch (Exception $e) {
+            $data['type'] = 'error';
+            $data['message'] = $e->getMessage();
+        }
         return view('frontend.gallery.index', $data);
     }
 
 
     public function ginner($slug)
     {
-        // try {
+        try {
         $type = 'success';
         $message = 'Successfully fetched data';
         $data = [];
@@ -90,13 +90,13 @@ class GalleryController extends Controller
             'type' => $type,
             'message' => $message
         ];
-        // } catch (QueryException $e) {
-        //     $data['type'] = 'error';
-        //     $data['message'] = $this->queryMessage;
-        // } catch (Exception $e) {
-        //     $data['type'] = 'error';
-        //     $data['message'] = $e->getMessage();
-        // }
+        } catch (QueryException $e) {
+            $data['type'] = 'error';
+            $data['message'] = $this->queryMessage;
+        } catch (Exception $e) {
+            $data['type'] = 'error';
+            $data['message'] = $e->getMessage();
+        }
         return view('frontend.gallery.video', $data);
     }
 

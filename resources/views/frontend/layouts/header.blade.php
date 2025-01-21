@@ -107,67 +107,81 @@
     <div id="sticky_nav_menu">
         <div class="container">
             <div class="nav_menu_wrapper">
-                <a href="{{ route('home') }}">
-                    <div class="logo_wrapper">
-                        <div class="nav_logo">
-                            @if (!empty($siteSetting->img_logo))
-                                <img src={{ asset('storage/setting') . '/' . $siteSetting->img_logo }}>
-                            @else
-                                <img src="{{ asset('frontpanel/assets/images/WhatsApp Image 2024-12-26 at 10.57.06 AM 1@2x.png') }}"
-                                    alt="">
-                            @endif
-                        </div>
-                        <div class="logo_txt">
-                            <p>Chochangay <br>
-                                Samaj Nepal</p>
-                        </div>
+                <div class="logo_wrapper">
+                    <div class="nav_logo">
+                        @if (!empty($siteSetting->img_logo))
+                            <img src={{ asset('storage/setting') . '/' . $siteSetting->img_logo }}>
+                        @else
+                            <img src="{{ asset('frontpanel/assets/images/WhatsApp Image 2024-12-26 at 10.57.06 AM 1@2x.png') }}"
+                                alt="">
+                        @endif
                     </div>
-                </a>
-                <div class="nav_list_menu">
-                    <ul class="navigation_list">
-                        <li><a href="{{ route('home') }}">Home</a></li>
-                        <li><a href="#">About Us</a>
-                            <ul class="dropdown">
-                                <li><a href="{{ route('about') }}">Introduction</a></li>
-                                <li><a href="#">Our Team <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                            height="16" fill="currentColor" class="bi bi-chevron-right"
-                                            viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd"
-                                                d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708" />
-                                        </svg></a>
-                                    @if (count($teamcategory) > 0)
-                                        <ul class="nested-dropdown">
-                                            @if (!@empty($teamcategory))
-                                                @foreach ($teamcategory as $category)
-                                                    <li><a
-                                                            href="{{ route('ourteam', $category->slug) }}">{{ $category->team_category }}</a>
-                                                    </li>
-                                                @endforeach
-                                            @else
-                                                <p>No Member Available</p>
-                                            @endif
-                                        </ul>
-                                    @endif
-                                </li>
-                                <li><a href="{{ route('history') }}">Our Historical Place</a></li>
-                                <li><a href="rules">Our Rules for Rituals</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="{{ route('program') }}">Program</a></li>
-                        <li><a href="{{ route('gallery') }}">Gallery</a></li>
-                        <li><a href="{{ route('news') }}">News & Blogs</a></li>
-                        <li><a href="{{ route('contact') }}">Contact</a></li>
-                    </ul>
-                    <button class="donar_list">
-                        <a href="list">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                fill="currentColor" class="bi bi-list-ul" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
-                                    d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2" />
-                            </svg>
-                            <p>DONAR LIST</p>
-                        </a>
-                    </button>
+                    <div class="logo_txt">
+                        <p>Chochangay <br>
+                            Samaj Nepal</p>
+                    </div>
+                </div>
+                <div class="nav_list_hamburger_menu">
+                    <div class="hamburger-menu" aria-label="Toggle navigation">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-list" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
+                        </svg>
+                    </div>
+                    <div class="cross_sign" aria-label="Close navigation">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-x-lg" viewBox="0 0 16 16">
+                            <path
+                                d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+                        </svg>
+                    </div>
+                    <div class="nav_list_menu">
+                        <ul class="navigation_list">
+                            <li><a href="{{ route('home') }}">Home</a></li>
+                            <li><a href="#">About Us</a>
+                                <ul class="dropdown">
+                                    <li><a href="{{ route('about') }}">Introduction</a></li>
+                                    <li><a href="#">Our Team <svg xmlns="http://www.w3.org/2000/svg"
+                                                width="16" height="16" fill="currentColor"
+                                                class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd"
+                                                    d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708" />
+                                            </svg></a>
+                                        @if (count($teamcategory) > 0)
+                                            <ul class="nested-dropdown">
+                                                @if (!@empty($teamcategory))
+                                                    @foreach ($teamcategory as $category)
+                                                        <li><a
+                                                                href="{{ route('ourteam', $category->slug) }}">{{ $category->team_category }}</a>
+                                                        </li>
+                                                    @endforeach
+                                                @else
+                                                    <p>No Member Available</p>
+                                                @endif
+                                            </ul>
+                                        @endif
+                                    </li>
+                                    <li><a href="{{ route('history') }}">Our Historical Place</a></li>
+                                    <li><a href="rules">Our Rules for Rituals</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="{{ route('program') }}">Program</a></li>
+                            <li><a href="{{ route('gallery') }}">Gallery</a></li>
+                            <li><a href="{{ route('news') }}">News & Blogs</a></li>
+                            <li><a href="{{ route('contact') }}">Contact</a></li>
+                        </ul>
+                        <button class="donar_list">
+                            <a href="list">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-list-ul" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2" />
+                                </svg>
+                                <p>DONAR LIST</p>
+                            </a>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -186,6 +200,35 @@
             stickyNavMenu.classList.add('sticky');
         } else {
             stickyNavMenu.classList.remove('sticky');
+        }
+    });
+</script>
+<script>
+    // Select elements
+    const hamburgerMenu = document.querySelector('.hamburger-menu');
+    const crossSign = document.querySelector('.cross_sign');
+    const navMenu = document.querySelector('.navigation_list');
+
+    // Show menu and cross sign when hamburger is clicked
+    hamburgerMenu.addEventListener('click', function(event) {
+        navMenu.classList.add('active');
+        crossSign.style.display = 'block';
+        event.stopPropagation();
+    });
+
+    // Hide menu and revert to hamburger icon when cross sign is clicked
+    crossSign.addEventListener('click', function(event) {
+        navMenu.classList.remove('active');
+        crossSign.style.display = 'none';
+        event.stopPropagation();
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+        if (!navMenu.contains(event.target) && !hamburgerMenu.contains(event.target) && !crossSign.contains(
+                event.target)) {
+            navMenu.classList.remove('active');
+            crossSign.style.display = 'none';
         }
     });
 </script>

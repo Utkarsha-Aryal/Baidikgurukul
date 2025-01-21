@@ -20,17 +20,16 @@
     <div class="gallery-inner-container">
         <div class="container">
             <div class="gallery-inner-wrapper">
-                @foreach ($images as $imagePath)
+                @foreach ($images as $image)
                     <div class="g-inner-img">
-                        <div class="g1-img">
-                            @if (!empty($imagePath->image) && Storage::exists('public/gallery-image/' . $imagePath->image))
-                                <img src="{{ asset('storage/gallery-image/' . $imagePath->image) }}" alt="">
-                            @else
-                                <img src="{{ asset('frontpanel/assets/images/cultural.png') }}" alt="">
-                            @endif
-                        </div>
+                        @if (!empty($image->image) && Storage::exists('public/gallery-image/' . $image->image))
+                            <img src="{{ asset('storage/gallery-image/' . $image->image) }}" alt="">
+                        @else
+                            <img src="{{ asset('frontpanel/assets/images/cultural.png') }}" alt="">
+                        @endif
                     </div>
                 @endforeach
+
             </div>
         </div>
     </div>

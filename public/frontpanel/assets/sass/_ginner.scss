@@ -1,9 +1,27 @@
 @import "_mixins.scss";
-.gallery-inner-container {
+gallery-inner-container {
     margin-top: 90px;
     .gallery-inner-wrapper {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         gap: 20px;
+        align-self: auto;
+        @include respond-to(mobile) {
+            grid-template-columns: 1fr 1fr !important;
+            gap: 15px !important;
+        }
+        .g-inner-img {
+            img {
+                height: 230px;
+                width: 100%;
+                object-fit: cover;
+                @include respond-to(tablet) {
+                    height: 200px;
+                }
+                @include respond-to(mobile) {
+                    height: 160px !important;
+                }
+            }
+        }
     }
 }
