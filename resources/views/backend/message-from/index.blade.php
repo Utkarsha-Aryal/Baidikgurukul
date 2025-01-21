@@ -159,7 +159,7 @@
                 },
                 "initComplete": function() {
                     // Ensure text input fields in the header for specific columns with placeholders
-                    this.api().columns([1, 2, 3]).every(function() {
+                    this.api().columns([1, 2]).every(function() {
                         var column = this;
                         var input = document.createElement("input");
                         var columnName = column.header().innerText.trim();

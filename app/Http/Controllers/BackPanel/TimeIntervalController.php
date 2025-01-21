@@ -67,32 +67,34 @@ class TimeIntervalController extends Controller
     public function list(Request $request)
     {
         try {
-        $post = $request->all();
-        $data = TimeInterval::list($post);
-        $i = 0;
-        $array = [];
-        $filtereddata = ($data["totalfilteredrecs"] > 0 ? $data["totalfilteredrecs"] : $data["totalrecs"]);
-        $totalrecs = $data["totalrecs"];
+            $post = $request->all();
+            $data = TimeInterval::list($post);
+            $i = 0;
+            $array = [];
+            $filtereddata = ($data["totalfilteredrecs"] > 0 ? $data["totalfilteredrecs"] : $data["totalrecs"]);
+            $totalrecs = $data["totalrecs"];
 
-        unset($data["totalfilteredrecs"]);
-        unset($data["totalrecs"]);
-        foreach ($data as $row) {
-            $array[$i]["sno"] = $i + 1;
-            $array[$i]["start_date"]    = $row->start_date;
-            $array[$i]["end_date"]    = $row->end_date;
+            unset($data["totalfilteredrecs"]);
+            unset($data["totalrecs"]);
+            foreach ($data as $row) {
+                $array[$i]["sno"] = $i + 1;
+                $array[$i]["start_date"]    = $row->start_date;
+                $array[$i]["end_date"]    = $row->end_date;
 
-            $action = '';
-            if (!empty($post['type']) && $post['type'] != 'trashed') {
-                $action .= '<a href="javascript:;" class="edit" name="Edit Data" data-id="' . $row->id . '" data-start_date="' . $row->start_date . '" data-end_date="' . $row->end_date . '"><i class="fa-solid fa-pen-to-square text-primary"></i></a> ';
+                $action = '';
+                if (!empty($post['type']) && $post['type'] != 'trashed') {
+                    $action .= '<a href="javascript:;" class="edit" name="Edit Data" data-id="' . $row->id . '" data-start_date="' . $row->start_date . '" data-end_date="' . $row->end_date . '"><i class="fa-solid fa-pen-to-square text-primary"></i></a> ';
+                } else {
+                    $action .= '<a href="javascript:;" class="restore" title="Restore Data" data-id="' . $row->id . '"><i class="fa-solid fa-undo text-success"></i></a> ';
+                }
+                $action .= '| <a href="javascript:;" class="delete" name="Delete Data" data-id="' . $row->id . '"><i class="fa fa-trash text-danger"></i></a>';
+
+                $array[$i]["action"]  = $action;
+                $i++;
             }
-            $action .= '| <a href="javascript:;" class="delete" name="Delete Data" data-id="' . $row->id . '"><i class="fa fa-trash text-danger"></i></a>';
 
-            $array[$i]["action"]  = $action;
-            $i++;
-        }
-
-        if (!$filtereddata) $filtereddata = 0;
-        if (!$totalrecs) $totalrecs = 0;
+            if (!$filtereddata) $filtereddata = 0;
+            if (!$totalrecs) $totalrecs = 0;
         } catch (QueryException $e) {
             $array = [];
             $totalrecs = 0;
@@ -131,5 +133,30 @@ class TimeIntervalController extends Controller
             $message = $e->getMessage();
         }
         return json_encode(['type' => $type, 'message' => $message]);
+    }
+
+    //restore
+    public function restore(Request $request)
+    {
+        try {
+            $post = $request->all();
+            $type = 'success';
+            $message = "Time Interval restored successfully";
+            DB::beginTransaction();
+            $result = TimeInterval::restoreData($post);
+            if (!$result) {
+                throw new Exception("Could not restore Time Interval. Please try again.", 1);
+            }
+            DB::commit();
+        } catch (QueryException $e) {
+            DB::rollBack();
+            $type = 'error';
+            $message = $this->queryMessage;
+        } catch (Exception $e) {
+            DB::rollBack();
+            $type = 'error';
+            $message = $e->getMessage();
+        }
+        return response()->json(['type' => $type, 'message' => $message]);
     }
 }

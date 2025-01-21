@@ -55,7 +55,7 @@ class TeamCategory extends Model
             $cond = " status = 'Y'";
 
             if (!empty($post['type']) && $post['type'] === "trashed") {
-                $cond = " status = 'N'";
+                $cond = " status = 'R'";
             }
 
             if ($get['columns'][1]['search']['value'])
@@ -84,6 +84,23 @@ class TeamCategory extends Model
                 $ndata = array();
             }
             return $ndata;
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
+    //restore 
+    public static function restoreData($post)
+    {
+        try {
+            $updateArray = [
+                'status' => 'Y',
+                'updated_at' => Carbon::now(),
+            ];
+            if (!TeamCategory::where(['id' => $post['id']])->update($updateArray)) {
+                throw new Exception("Couldn't Restore Data. Please try again", 1);
+            }
+            return true;
         } catch (Exception $e) {
             throw $e;
         }

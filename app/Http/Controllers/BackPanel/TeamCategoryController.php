@@ -87,10 +87,11 @@ class TeamCategoryController extends Controller
                 $action = '';
                 if (!empty($post['type']) && $post['type'] != 'trashed') {
                     $action .= '<a href="javascript:;" class=" edit_team_category" name="Edit Data" data-id="' . $row->id . '" data-team_category="' . $row->team_category . '"><i class="fa-solid fa-pen-to-square text-primary"></i></a> ';
+                } else {
+                    $action .= '<a href="javascript:;" class="restore" title="Restore Data" data-id="' . $row->id . '"><i class="fa-solid fa-undo text-success"></i></a> ';
                 }
-                if ($row->teamMember->count() == 0) {
-                    $action .= '| <a href="javascript:;" class="delete_team_category" name="Delete Data" data-id="' . $row->id . '"><i class="fa fa-trash text-danger"></i></a>';
-                }
+                $action .= '| <a href="javascript:;" class="delete_team_category" name="Delete Data" data-id="' . $row->id . '"><i class="fa fa-trash text-danger"></i></a>';
+
                 $array[$i]["action"]  = $action;
                 $i++;
             }
@@ -135,5 +136,30 @@ class TeamCategoryController extends Controller
             $message = $e->getMessage();
         }
         return json_encode(['type' => $type, 'message' => $message]);
+    }
+
+    //restore
+    public function restore(Request $request)
+    {
+        try {
+            $post = $request->all();
+            $type = 'success';
+            $message = "Team Category restored successfully";
+            DB::beginTransaction();
+            $result = TeamCategory::restoreData($post);
+            if (!$result) {
+                throw new Exception("Could not restore Team Category. Please try again.", 1);
+            }
+            DB::commit();
+        } catch (QueryException $e) {
+            DB::rollBack();
+            $type = 'error';
+            $message = $this->queryMessage;
+        } catch (Exception $e) {
+            DB::rollBack();
+            $type = 'error';
+            $message = $e->getMessage();
+        }
+        return response()->json(['type' => $type, 'message' => $message]);
     }
 }

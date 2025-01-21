@@ -38,10 +38,10 @@
 
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                                 <input type="hidden" name="id" value="" id="id">
-                                <label for="team_category" >Team Category <span
+                                <label for="team_category" class="form-label">Team Category <span
                                         class="required-field">*</span></label>
                                 <input type="text" class="form-control" id="team_category"
-                                    placeholder="eg ishan roka" name="team_category">
+                                    placeholder="Enter team category" name="team_category">
                             </div>
                         </div>
                     </div>
@@ -78,9 +78,9 @@
                                             aria-describedby="datatable-basic_info">
                                             <thead>
                                                 <tr>
-                                                    <th>S.No</th>
-                                                    <th>Team Category</th>
-                                                    <th>Action</th>
+                                                    <th width="10%">S.No</th>
+                                                    <th width="80%">Team Category</th>
+                                                    <th width="10%">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -137,7 +137,7 @@
                     },
                 ],
                 "ajax": {
-                    "url": '{{ route("admin.teamcategory.list") }}',
+                    "url": '{{ route('admin.teamcategory.list') }}',
                     "type": "POST",
                     "data": function(d) {
                         var type = $('#trashed_file').is(':checked') == true ? 'trashed' :
@@ -247,7 +247,7 @@
                             id: id,
                             type: type,
                         };
-                        var url = '{{ route("admin.teamcategory.delete") }}';
+                        var url = '{{ route('admin.teamcategory.delete') }}';
                         $.post(url, data, function(response) {
                             var rep = JSON.parse(response);
                             if (rep) {
@@ -262,6 +262,45 @@
                     }
                 });
             });
+
+
+            // Restore
+            $(document).off('click', '.restore');
+            $(document).on('click', '.restore', function() {
+                Swal.fire({
+                    title: "Are you sure you want to restore Team Category?",
+                    text: "This will restore the Team Category.",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#28a745",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, Restore it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        showLoader();
+                        var id = $(this).data('id');
+                        var data = {
+                            id: id,
+                            type: 'restore'
+                        };
+                        var url = '{{ route('admin.teamcategory.restore') }}';
+                        $.post(url, data, function(response) {
+                            if (response) {
+                                if (response.type === 'success') {
+                                    showNotification(response.message, 'success');
+                                    team_categoryTable.draw();
+                                    hideLoader();
+                                } else {
+                                    showNotification(response.message, 'error');
+                                    hideLoader();
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+
+
         });
     </script>
 @endsection

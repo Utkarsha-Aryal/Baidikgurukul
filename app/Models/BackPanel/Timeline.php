@@ -81,4 +81,21 @@ class Timeline extends Model
             throw $e;
         }
     }
+
+    //restore
+    public static function restoreData($post)
+    {
+        try {
+            $updateArray = [
+                'status' => 'Y',
+                'updated_at' => Carbon::now(),
+            ];
+            if (!Timeline::where(['id' => $post['id']])->update($updateArray)) {
+                throw new Exception("Couldn't Restore Data. Please try again", 1);
+            }
+            return true;
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
 }

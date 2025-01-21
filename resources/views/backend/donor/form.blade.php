@@ -142,100 +142,34 @@
         @endif
     </button>
 </div>
-
 <script>
     ClassicEditor
         .create(document.querySelector('#editor'), {
+            ckfinder: {
+                uploadUrl: "{{ route('admin.donar.upload.image', ['_token' => csrf_token()]) }}"
+            },
             toolbar: {
                 items: [
-                    'undo', 'redo', '|', 'heading', '|', 'bold', 'italic',
+                    'undo', 'redo', '|', 'heading', '|', 'bold', 'italic', '|', 'blockQuote', '|',
+                    'bulletedList', 'numberedList', '|',
+                    'imageUpload', 'imageStyle:full', 'imageStyle:alignLeft', 'imageStyle:alignCenter',
+                    'imageStyle:alignRight'
                 ],
+                shouldNotGroupWhenFull: true
             },
+            heading: {
+                options: [{
+                    model: 'paragraph',
+                    title: 'Paragraph',
+                    class: 'ck-heading_paragraph'
+                }]
+            }
         })
         .then(editor => {
+            // Save reference to the editor instance
             window.editor = editor;
         })
         .catch(error => {
             console.error(error);
         });
-
-    $(document).ready(function() {
-
-        $('#thumbnail_image').on('change', function(event) {
-            const selectedFile = event.target.files[0];
-
-            if (selectedFile) {
-                $('._image').attr('src', URL.createObjectURL(selectedFile));
-            }
-        });
-
-
-        $('#form').validate({
-            rules: {
-                name: "required",
-                amount: "required",
-                title: "required",
-                order_number: "required",
-                details: "required",
-                image: {
-                    required: function() {
-                        var id = $('#id').val();
-                        return id === '';
-                    }
-                },
-            },
-            message: {
-                name: {
-                    required: "This field is required."
-                },
-                amount: {
-                    required: "This field is required."
-                },
-                title: {
-                    required: "This field is required."
-                },
-
-                details: {
-                    required: "This field is required."
-                },
-                order_number: {
-                    required: "This field is required."
-                },
-            },
-            highlight: function(element) {
-                $(element).addClass('border-danger')
-            },
-            unhighlight: function(element) {
-                $(element).removeClass('border-danger')
-            },
-        });
-
-        // Save news
-        $('.saveData').off('click');
-        $('.saveData').on('click', function() {
-            if ($('#form').valid()) {
-                $('#details').val(window.editor.getData());
-                showLoader();
-
-                $('#form').ajaxSubmit(function(response) {
-                    var result = response;
-                    if (result) {
-                        if (result.type === 'success') {
-                            showNotification(result.message, 'success');
-                            hideLoader();
-                            table.draw();
-                            $('#form')[0].reset();
-                            $('#id').val('');
-                            $('#modal').modal('hide');
-                        } else {
-                            showNotification(result.message, 'error');
-                            hideLoader();
-                        }
-                    } else {
-                        hideLoader();
-                    }
-                });
-            }
-        });
-    });
 </script>

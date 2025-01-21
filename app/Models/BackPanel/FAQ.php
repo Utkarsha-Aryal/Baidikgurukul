@@ -57,7 +57,7 @@ class FAQ extends Model
                 $cond = " status = 'N'";
             }
             if ($get['columns'][1]['search']['value'])
-                $cond .= " and lower(name) like '%" . $get['columns'][1]['search']['value'] . "%'";
+                $cond .= " and lower(question) like '%" . $get['columns'][1]['search']['value'] . "%'";
 
             $limit = 15;
             $offset = 0;

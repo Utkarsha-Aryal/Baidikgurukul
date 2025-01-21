@@ -24,6 +24,8 @@ class Post extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    //save
     public static function saveData($post)
     {
         try {
@@ -147,6 +149,7 @@ class Post extends Model
         }
     }
 
+
     public static function deleteFeatureImage($post)
     {
         try {
@@ -168,6 +171,23 @@ class Post extends Model
             $postData->feature_image = json_encode($newArray);
             if (!$postData->update()) {
                 throw new Exception("Error updating feature image");
+            }
+            return true;
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
+    //restore
+    public static function restoreData($post)
+    {
+        try {
+            $updateArray = [
+                'status' => 'Y',
+                'updated_at' => Carbon::now(),
+            ];
+            if (!Post::where(['id' => $post['id']])->update($updateArray)) {
+                throw new Exception("Couldn't Restore Data. Please try again", 1);
             }
             return true;
         } catch (Exception $e) {

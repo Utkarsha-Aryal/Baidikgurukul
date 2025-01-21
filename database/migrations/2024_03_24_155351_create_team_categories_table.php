@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('team_category')->nullable();
             $table->string('slug')->nullable();
-            $table->enum('status', ['Y', 'N'])->default('Y');
+            $table->enum('status', ['Y', 'N', 'R'])->default('Y');
             $table->timestamps();
         });
     }

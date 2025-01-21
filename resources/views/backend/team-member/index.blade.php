@@ -102,7 +102,6 @@
                                                 <tr>
                                                     <th>S.No</th>
                                                     <th>Name</th>
-                                                    <th>Member Order</th>
                                                     <th>Designation</th>
                                                     <th>Facebook</th>
                                                     <th>Instagram</th>
@@ -252,12 +251,8 @@
                         "data": "name"
                     },
                     {
-                        "data": "order"
-                    },
-                    {
                         "data": "designation"
                     },
-
                     {
                         "data": "facebook_url",
                         "render": function(data, type, row) {
@@ -313,7 +308,7 @@
                 },
                 "initComplete": function() {
                     // Ensure text input fields in the header for specific columns with placeholders
-                    this.api().columns([1, 2, 3, 4]).every(function() {
+                    this.api().columns([1, 2]).every(function() {
                         var column = this;
                         var input = document.createElement("input");
                         var columnName = column.header().innerText.trim();
@@ -385,6 +380,42 @@
                                     hideLoader();
                                 } else {
                                     showNotification(result.message, 'error');
+                                    hideLoader();
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+
+            //restore
+            $(document).off('click', '.restore');
+            $(document).on('click', '.restore', function() {
+                Swal.fire({
+                    title: "Are you sure you want to restore Team Member?",
+                    text: "This will restore the Team Member.",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#28a745",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, Restore it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        showLoader();
+                        var id = $(this).data('id');
+                        var data = {
+                            id: id,
+                            type: 'restore'
+                        };
+                        var url = '{{ route('admin.member.restore') }}';
+                        $.post(url, data, function(response) {
+                            if (response) {
+                                if (response.type === 'success') {
+                                    showNotification(response.message, 'success');
+                                    table.draw();
+                                    hideLoader();
+                                } else {
+                                    showNotification(response.message, 'error');
                                     hideLoader();
                                 }
                             }

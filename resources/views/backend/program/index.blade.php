@@ -399,6 +399,19 @@
                 });
             });
 
+            $(document).off('click', '.view');
+            $(document).on('click', '.view', function() {
+                var id = $(this).data('id');
+                var url = '{{ route('admin.program.view') }}';
+                var data = {
+                    id: id
+                };
+                $.post(url, data, function(response) {
+                    $('#modal .modal-content').html(response);
+                    $('#modal').modal('show');
+                });
+            });
+
         });
     </script>
 @endsection
