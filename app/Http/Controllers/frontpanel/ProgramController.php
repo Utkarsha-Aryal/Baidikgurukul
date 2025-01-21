@@ -35,9 +35,31 @@ class ProgramController extends Controller
         return view('frontend.program.index', $data);
     }
 
-    public function inner()
+    public function inner($slug)
     {
+        try {
+            $type = 'success';
+            $message = 'Successfully fetched data';
+            $data = [];
+            $program = Program::where('slug', $slug)->first();
+            $programs = Program::where('status', 'Y')
+                ->orderBy('id', 'desc')
+                ->get();
 
-        return view('frontend.program.inner');
+
+            $data = [
+                'program' => $program,
+                'programs' => $programs,
+                'type' => $type,
+                'message' => $message
+            ];
+        } catch (QueryException $e) {
+            $data['type'] = 'error';
+            $data['message'] = $this->queryMessage;
+        } catch (Exception $e) {
+            $data['type'] = 'error';
+            $data['message'] = $e->getMessage();
+        }
+        return view('frontend.program.inner', $data);
     }
 }

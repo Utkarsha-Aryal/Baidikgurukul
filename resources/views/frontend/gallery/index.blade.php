@@ -3,18 +3,18 @@
 @section('content')
     <section class="introduction_page">
         <div class="img_before">
-            <img src="frontend\images\Mask group.png" alt="mask_group">
+            <link rel="stylesheet" href="{{ asset('frontpanel/assets/images/Mask group.png') }}">
         </div>
         <div class="common_image_txt">
             <div class="common_bg_wrapper">
-                <img src="frontend\images\image1.jpeg" alt="hands">
+                <link rel="stylesheet" href="{{ asset('frontpanel/assets/images/image1.jpeg') }}">
             </div>
             <div class="main_txt">
                 <p>Our Gallery</p>
             </div>
         </div>
         <div class="img_after">
-            <img src="frontend\images\Mask group.png" alt="mask_group">
+            <link rel="stylesheet" href="{{ asset('frontpanel/assets/images/Mask group.png') }}">
         </div>
     </section>
     <div class="gallery-container-main">
@@ -28,235 +28,104 @@
         <div class="container">
             <div id="all" class="content active">
                 <div class="gallery-content-main">
-                    <div class="gallery-r1">
-                        <a href="ginner">
-                            <div class="g1-img">
-                                <iframe src="https://www.youtube.com/embed/7q4o8Y5POdE?si=jLABvm_qw4tw8oZk"
-                                    title="YouTube video player" frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    @if (!@empty($galleries) && count($galleries) > 0)
+                        @foreach ($galleries as $gallery)
+                            <div class="gallery-r1">
+                                <a href="{{ route('ginner', $gallery->slug) }}">
+                                    <div class="g1-img">
+                                        @if (!empty($videoImage) && Storage::exists('public/community/' . $videoImage))
+                                            <img src="{{ asset('storage/community/' . $videoImage) }}" alt="">
+                                        @else
+                                            <img src="{{ asset('frontpanel/assets/images/cultural.png') }}" alt="">
+                                        @endif
+                                    </div>
+                                </a>
+                                <div class="gallery-g1-title">
+                                    <p>{{ $gallery->name ?? '' }}</p>
+                                </div>
+                                <div class="gallery-g1-txt">
+                                    <p>{{ count($gallery->videos) }} Videos</p>
+                                </div>
                             </div>
-                        </a>
-                        <div class="gallery-g1-title">
-                            <p>Our Events Photo for the awareness programee in KTM</p>
-                        </div>
-                        <div class="gallery-g1-txt">
-                            <p>20 Videos</p>
-                        </div>
-                    </div>
-                    <div class="gallery-r1">
-                        <div class="g1-img">
-                            <img src="frontend\images\ritual.png">
-                        </div>
-                        <div class="gallery-g1-title">
-                            <p>Our Events Photo for the awareness programee in KTM</p>
-                        </div>
-                        <div class="gallery-g1-txt">
-                            <p>20 Photos</p>
-                        </div>
-                    </div>
-                    <div class="gallery-r1">
-                        <div class="g1-img">
-                            <img src="frontend\images\ritual.png">
-                        </div>
-                        <div class="gallery-g1-title">
-                            <p>Our Events Photo for the awareness programee in KTM</p>
-                        </div>
-                        <div class="gallery-g1-txt">
-                            <p>11 videos</p>
-                        </div>
-                    </div>
-                    <div class="gallery-r1">
-                        <div class="g1-img">
-                            <img src="frontend\images\ritual.png">
-                        </div>
-                        <div class="gallery-g1-title">
-                            <p>Our Events Photo for the awareness programee in KTM</p>
-                        </div>
-                        <div class="gallery-g1-txt">
-                            <p>20 Photos</p>
-                        </div>
-                    </div>
-                    <div class="gallery-r1">
-                        <div class="g1-img">
-                            <img src="frontend\images\ritual.png">
-                        </div>
-                        <div class="gallery-g1-title">
-                            <p>Our Events Photo for the awareness programee in KTM</p>
-                        </div>
-                        <div class="gallery-g1-txt">
-                            <p>20 Photos</p>
-                        </div>
-                    </div>
-                    <div class="gallery-r1">
-                        <div class="g1-img">
-                            <img src="frontend\images\ritual.png">
-                        </div>
-                        <div class="gallery-g1-title">
-                            <p>Our Events Photo for the awareness programee in KTM</p>
-                        </div>
-                        <div class="gallery-g1-txt">
-                            <p>11 videos</p>
-                        </div>
-                    </div>
+                            <div class="gallery-r1">
+                                <a href="{{ route('image.inner', $gallery->slug) }}">
+                                    <div class="g1-img">
+
+                                        @if (!empty($gallery->image) && Storage::exists('public/gallery-image/' . $gallery->image))
+                                            <img src="{{ asset('storage/gallery-image/' . $gallery->image) }}"
+                                                alt="">
+                                        @else
+                                            <img src="{{ asset('frontpanel/assets/images/cultural.png') }}" alt="">
+                                        @endif
+                                    </div>
+                                    <div class="gallery-g1-title">
+                                        <p>{{ $gallery->name ?? '' }}</p>
+                                    </div>
+                                    <div class="gallery-g1-txt">
+                                        <p>{{ count($gallery->images) }} Photos</p>
+                                    </div>
+                                </a>
+                            </div>
+                        @endforeach
+                    @else
+                        <p>No video and image available</p>
+                    @endif
                 </div>
             </div>
             <div id="images" class="content">
                 <div class="gallery-content-main">
-                    <div class="gallery-r1">
-                        <div class="g1-img">
-                            <img src="frontend\images\Rectangle 170 (3).png">
-                        </div>
-                        <div class="gallery-g1-title">
-                            <p>Our Sports week Glimpses of 2080</p>
-                        </div>
-                        <div class="gallery-g1-txt">
-                            <p>27 Photos</p>
-                        </div>
-                    </div>
-                    <div class="gallery-r1">
-                        <div class="g1-img">
-                            <img src="frontend\images\Rectangle 170 (3).png">
-                        </div>
-                        <div class="gallery-g1-title">
-                            <p>Our Picnic Photo of 2081</p>
-                        </div>
-                        <div class="gallery-g1-txt">
-                            <p>36 Photos</p>
-                        </div>
-                    </div>
-                    <div class="gallery-r1">
-                        <div class="g1-img">
-                            <img src="frontend\images\Rectangle 170 (3).png">
-                        </div>
-                        <div class="gallery-g1-title">
-                            <p>Our Events Photo for the awareness programee in KTM</p>
-                        </div>
-                        <div class="gallery-g1-txt">
-                            <p>2 Photos</p>
-                        </div>
-                    </div>
-                    <div class="gallery-r1">
-                        <div class="g1-img">
-                            <img src="frontend\images\Rectangle 170 (3).png">
-                        </div>
-                        <div class="gallery-g1-title">
-                            <p>Our Events Photo for the awareness programee in KTM</p>
-                        </div>
-                        <div class="gallery-g1-txt">
-                            <p>27 Photos</p>
-                        </div>
-                    </div>
-                    <div class="gallery-r1">
-                        <div class="g1-img">
-                            <img src="frontend\images\Rectangle 170 (3).png">
-                        </div>
-                        <div class="gallery-g1-title">
-                            <p>Our Birthday Photos</p>
-                        </div>
-                        <div class="gallery-g1-txt">
-                            <p>36 Photos</p>
-                        </div>
-                    </div>
-                    <div class="gallery-r1">
-                        <div class="g1-img">
-                            <img src="frontend\images\Rectangle 170 (3).png">
-                        </div>
-                        <div class="gallery-g1-title">
-                            <p>Our Picnic Photo of 2080</p>
-                        </div>
-                        <div class="gallery-g1-txt">
-                            <p>2 Photos</p>
-                        </div>
-                    </div>
+                    @if (!@empty($galleries) && count($galleries) > 0)
+                        @foreach ($galleries as $gallery)
+                            <div class="gallery-r1"> <a href="{{ route('image.inner', $gallery->slug) }}">
+
+                                    <div class="g1-img">
+                                        @if (!empty($gallery->image) && Storage::exists('public/gallery-image/' . $gallery->image))
+                                            <img src="{{ asset('storage/gallery-image/' . $gallery->image) }}"
+                                                alt="">
+                                        @else
+                                            <img src="{{ asset('frontpanel/assets/images/Rectangle 170 (3).png') }}"
+                                                alt="">
+                                        @endif
+                                    </div>
+                                </a>
+                                <div class="gallery-g1-title">
+                                    <p>{{ $gallery->name ?? '' }}</p>
+                                </div>
+                                <div class="gallery-g1-txt">
+                                    <p>{{ count($gallery->images) }} Photos</p>
+                                </div>
+                            </div>
+                        @endforeach
+                    @else
+                        <p>No image available</p>
+                    @endif
                 </div>
             </div>
             <div id="videos" class="content">
                 <div class="gallery-content-main">
-                    <div class="gallery-r1">
-                        <div class="g1-img">
-                            <iframe src="https://www.youtube.com/embed/7q4o8Y5POdE?si=jLABvm_qw4tw8oZk"
-                                title="YouTube video player" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        </div>
-                        <div class="gallery-g1-title">
-                            <p>Our Events Video for the awareness programee in KTM</p>
-                        </div>
-                        <div class="gallery-g1-txt">
-                            <p>20 Videos</p>
-                        </div>
-                    </div>
-                    <div class="gallery-r1">
-                        <div class="g1-img">
-                            <iframe src="https://www.youtube.com/embed/7q4o8Y5POdE?si=jLABvm_qw4tw8oZk"
-                                title="YouTube video player" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        </div>
-                        <div class="gallery-g1-title">
-                            <p>Our Events Video for the awareness programee in KTM</p>
-                        </div>
-                        <div class="gallery-g1-txt">
-                            <p>21 Videos</p>
-                        </div>
-                    </div>
-                    <div class="gallery-r1">
-                        <div class="g1-img">
-                            <iframe src="https://www.youtube.com/embed/7q4o8Y5POdE?si=jLABvm_qw4tw8oZk"
-                                title="YouTube video player" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        </div>
-                        <div class="gallery-g1-title">
-                            <p>Our Birthday Videos</p>
-                        </div>
-                        <div class="gallery-g1-txt">
-                            <p>7 Videos</p>
-                        </div>
-                    </div>
-                    <div class="gallery-r1">
-                        <div class="g1-img">
-                            <iframe src="https://www.youtube.com/embed/7q4o8Y5POdE?si=jLABvm_qw4tw8oZk"
-                                title="YouTube video player" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        </div>
-                        <div class="gallery-g1-title">
-                            <p>Our Sports Videos</p>
-                        </div>
-                        <div class="gallery-g1-txt">
-                            <p>20 Videos</p>
-                        </div>
-                    </div>
-                    <div class="gallery-r1">
-                        <div class="g1-img">
-                            <iframe src="https://www.youtube.com/embed/7q4o8Y5POdE?si=jLABvm_qw4tw8oZk"
-                                title="YouTube video player" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        </div>
-                        <div class="gallery-g1-title">
-                            <p>Our Daily Videos</p>
-                        </div>
-                        <div class="gallery-g1-txt">
-                            <p>21 Videos</p>
-                        </div>
-                    </div>
-                    <div class="gallery-r1">
-                        <div class="g1-img">
-                            <iframe src="https://www.youtube.com/embed/7q4o8Y5POdE?si=jLABvm_qw4tw8oZk"
-                                title="YouTube video player" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        </div>
-                        <div class="gallery-g1-title">
-                            <p>Our Events Video for the awareness programee in KTM</p>
-                        </div>
-                        <div class="gallery-g1-txt">
-                            <p>7 Videos</p>
-                        </div>
-                    </div>
+                    @if (!@empty($galleries) && count($galleries) > 0)
+                        @foreach ($galleries as $gallery)
+                            <div class="gallery-r1"> <a href="{{ route('ginner', $gallery->slug) }}">
+
+                                    <div class="g1-img">
+                                        @if (!empty($videoImage) && Storage::exists('public/community/' . $videoImage))
+                                            <img src="{{ asset('storage/community/' . $videoImage) }}" alt="">
+                                        @else
+                                            <img src="{{ asset('frontpanel/assets/images/cultural.png') }}" alt="">
+                                        @endif
+                                    </div>
+                                    <div class="gallery-g1-title">
+                                        <p>{{ $gallery->name ?? '' }}</p>
+                                    </div>
+                                    <div class="gallery-g1-txt">
+                                        <p>{{ count($gallery->videos) }} Videos</p>
+                                    </div>
+                                </a>
+                            </div>
+                        @endforeach
+                    @else
+                        <p>No video available</p>
+                    @endif
                 </div>
             </div>
         </div>

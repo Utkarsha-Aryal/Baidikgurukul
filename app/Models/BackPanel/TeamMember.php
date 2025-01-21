@@ -13,6 +13,12 @@ class TeamMember extends Model
 {
     use HasFactory;
     // save
+
+    public function timeInterval()
+    {
+        return $this->belongsTo(TimeInterval::class, 'time_interval_id');
+    }
+
     public static function saveData($post)
     {
         try {

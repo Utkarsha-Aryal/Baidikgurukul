@@ -24,7 +24,7 @@
                 <tr>
                     <th>S.N</th>
                     <th>Donar Name</th>
-                    <th>Amount</th>
+                    <th>Amount/Item</th>
                     <th>Donation Title</th>
                 </tr>
                 @if (!empty($doners))

@@ -1,31 +1,49 @@
 @extends('frontend.layouts.main')
 @section('title', 'Our Rules For Our Rituals From Birth To Death')
 @section('content')
-<section class="introduction_page">
-    <div class="img_before">
-        <img src="{{ asset('frontpanel/assets/images/Mask group.png') }}" alt="">
-    </div>
-    <div class="common_image_txt">
-        <div class="common_bg_wrapper">
-            <img src="{{ asset('frontpanel/assets/images/image1.jpeg') }}" alt="">
+    <section class="introduction_page">
+        <div class="img_before">
+            <img src="{{ asset('frontpanel/assets/images/Mask group.png') }}" alt="">
         </div>
-        <div class="main_txt">
-            <p>Our Rules For Our Rituals From Birth To Death</p>
+        <div class="common_image_txt">
+            <div class="common_bg_wrapper">
+                <img src="{{ asset('frontpanel/assets/images/image1.jpeg') }}" alt="">
+            </div>
+            <div class="main_txt">
+                <p>Our Rules For Our Rituals From Birth To Death</p>
+            </div>
         </div>
-    </div>
-    <div class="img_after">
-        <img src="{{ asset('frontpanel/assets/images/Mask group.png') }}" alt="">
-    </div>
-</section>
+        <div class="img_after">
+            <img src="{{ asset('frontpanel/assets/images/Mask group.png') }}" alt="">
+        </div>
+    </section>
 
-<div class="ritual-container">
-    <div class="container">
-        <div class="ritual-wrapper">
-            <div class="ritual-lt-rt1">
-                <div class="ritual-title">
-                    <p>Rules for Rituals from Birth to Death Of Our Chochange Community</p>
+    <div class="ritual-container">
+        <div class="container">
+            <div class="ritual-wrapper">
+                <div class="ritual-lt-rt1">
+                    <div class="ritual-title">
+                        <p>Rules for Rituals from Birth to Death Of Our Chochange Community</p>
+                    </div>
+                    <div class="ritual-txt">
+                        <p>Lorem ipsum dolor sit amet consectetur. Sapien feugiat blandit placerat iaculis sed. Leo sed
+                            porttitor suspendisse ac faucibus venenatis. Morbi ut proin diam eget vestibulum venenatis duis
+                            tortor. Integer sapien fermentum integer tincidunt eget sapien sit vel laoreet. Amet blandit id
+                            neque turpis felis sollicitudin augue. Ut id amet venenatis quis vel egestas. Eu iaculis id id
+                            vivamus sit ac. Sodales viverra facilisi pulvinar amet a.
+                        </p>
+                    </div>
                 </div>
-                <div class="ritual-txt">
+                <div class="ritual-lt-rt2">
+                    <div class="ritual-img-lt">
+                        <img src="{{ asset('frontpanel\assets1\images\gallery\b.jpg') }}">
+                    </div>
+                    <div class="ritual-img-rt">
+                        <img src="{{ asset('frontpanel\assets1\images\gallery\a.jpg') }}">
+                        <img src="{{ asset('frontpanel\assets1\images\gallery\b.jpg') }}">
+                    </div>
+                </div>
+                <div class="ritual-main-txt">
                     <p>Lorem ipsum dolor sit amet consectetur. Sapien feugiat blandit placerat iaculis sed. Leo sed
                         porttitor suspendisse ac faucibus venenatis. Morbi ut proin diam eget vestibulum venenatis duis
                         tortor. Integer sapien fermentum integer tincidunt eget sapien sit vel laoreet. Amet blandit id
@@ -82,5 +100,4 @@
             </div>
         </div>
     </div>
-</div>
 @endsection

@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('gallery_videos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('gallery_id')->constrained('galleries', 'id'); // Foreign key referencing gallery event table
+            $table->foreignId('gallery_id')->constrained('galleries', 'id');
+            $table->string('video_image')->nullable();
             $table->string('video_url');
             $table->enum('status', ['Y', 'N'])->default('Y');
             $table->timestamps();

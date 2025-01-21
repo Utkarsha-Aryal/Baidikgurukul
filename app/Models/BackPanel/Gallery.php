@@ -15,13 +15,13 @@ class Gallery extends Model
 
     public function images()
     {
-        return $this->hasMany(GalleryImage::class)->where('status', 'Y');
+        return $this->hasMany(GalleryImage::class);
     }
 
 
     public function videos()
     {
-        return $this->hasMany(GalleryVideo::class)->where('status', 'Y');
+        return $this->hasMany(GalleryVideo::class);
     }
 
 

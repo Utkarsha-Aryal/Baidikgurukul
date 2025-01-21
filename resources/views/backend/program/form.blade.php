@@ -41,6 +41,13 @@
         top: 9rem !important
     }
 
+    .ck-content img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+
     /* #ndp-nepali-box {
         top: 65px !important;
         left: 10px !important;
@@ -65,8 +72,8 @@
             <input type="hidden" name="id" id="id" value="{{ $id ?? '' }}">
             <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
                 <label for="title" class="form-label">Program Name <span class="required-field">*</span></label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="Enter program name..."
-                    value="{{ $title ?? '' }}">
+                <input type="text" class="form-control" id="title" name="title"
+                    placeholder="Enter program name..." value="{{ $title ?? '' }}">
             </div>
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3">
                 <label for="title" class="form-label">Order <span class="required-field">*</span></label>
@@ -133,9 +140,45 @@
             ckfinder: {
                 uploadUrl: "{{ route('upload.image', ['_token' => csrf_token()]) }}"
             },
+            image: {
+                resizeOptions: [{
+                        name: 'resizeImage:original',
+                        value: null,
+                        icon: 'original'
+                    },
+                    {
+                        name: 'resizeImage:custom',
+                        value: 'custom',
+                        icon: 'custom'
+                    },
+                    {
+                        name: 'resizeImage:50',
+                        value: '50',
+                        icon: 'medium'
+                    },
+                    {
+                        name: 'resizeImage:75',
+                        value: '75',
+                        icon: 'large'
+                    }
+                ],
+                toolbar: [
+                    'imageStyle:full',
+                    'imageStyle:alignLeft',
+                    'imageStyle:alignCenter',
+                    'imageStyle:alignRight',
+                    'resizeImage:50',
+                    'resizeImage:75',
+                    'resizeImage:original',
+                    'resizeImage:custom',
+                ],
+            },
             toolbar: {
                 items: [
-                    'undo', 'redo', '|', 'heading', '|', 'bold', 'italic', '|', 'blockQuote', '|', 'imageUpload', 'imageStyle:full', 'imageStyle:alignLeft', 'imageStyle:alignCenter', 'imageStyle:alignRight'
+                    'undo', 'redo', '|', 'heading', '|', 'bold', 'italic', '|', 'blockQuote', '|',
+                    'imageUpload', 'imageStyle:full', 'imageStyle:alignLeft', 'imageStyle:alignCenter',
+                    'imageStyle:alignRight', 'resizeImage:50', 'resizeImage:75', 'resizeImage:original',
+                    'resizeImage:custom'
                 ],
                 shouldNotGroupWhenFull: true
             },
@@ -148,7 +191,6 @@
             }
         })
         .then(editor => {
-            // Save reference to the editor instance
             window.editor = editor;
         })
         .catch(error => {
@@ -156,7 +198,6 @@
         });
 </script>
 <script>
-
     $(document).ready(function() {
 
         $('#thumbnail_image').on('change', function(event) {

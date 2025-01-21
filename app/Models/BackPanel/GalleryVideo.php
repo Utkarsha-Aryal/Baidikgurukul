@@ -30,7 +30,13 @@ class GalleryVideo extends Model
                 'video_url' => $post['video'],
 
             ];
-
+            if (!empty($post['image'])) {
+                $fileName =  Common::uploadFile('community', $post['image']);
+                if (!$fileName) {
+                    return false;
+                }
+                $dataArray['video_image'] = $fileName;
+            }
             if (!empty($post['gallery_video_id'])) {
                 $dataArray['updated_at'] = Carbon::now();
                 if (!GalleryVideo::where('id', $post['gallery_video_id'])->update($dataArray)) {

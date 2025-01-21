@@ -21,7 +21,7 @@
         <div class="container">
             <div class="left_container">
                 <div class="left_faq_container">
-                    @if (!@empty($faqs))
+                    @if (!@empty($faqs) && count($faqs) > 0)
                         @foreach ($faqs as $faq)
                             <div class="faq_accordion">
                                 <div class="question">
@@ -41,6 +41,8 @@
                                 </div>
                             </div>
                         @endforeach
+                    @else
+                        <p>No FAQ available</p>
                     @endif
 
 

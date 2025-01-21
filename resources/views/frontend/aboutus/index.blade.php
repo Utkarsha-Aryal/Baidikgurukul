@@ -41,18 +41,9 @@
 
                     </div>
                     <div class="third_dream_txt">
-                        <p>{{ Str::limit($aboutus->introduction, 1700, '...') }}</p>
+                        {{-- <p>{!! Str::limit($aboutus->introduction, 1000, '...') !!}</p> --}}
+                        <p>{!! $aboutus->introduction !!}</p>
                     </div>
-                    <button class="read_button">
-                        <a href="#">
-                            <p>READ MORE</p>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
-                                    d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" />
-                            </svg>
-                        </a>
-                    </button>
                 </div>
             </div>
         </div>
@@ -109,82 +100,32 @@
         </div>
         <div class="container">
             <div class="timeline-container">
-                <div class="timeline-header">
-                    <p>
-                        Our History
-                    </p>
-                </div>
+                @if (count($timelines) > 0)
+                    <div class="timeline-header">
+                        <p>
+                            Our History
+                        </p>
+                    </div>
+                @else
+                    <p>No data found</p>
+                @endif
 
-                <div class="timeline-item_odd">
-                    <div class="timeline-item-content">
-                        <h3>2077</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur. Fugiat eu tristique congue metus.</p>
-                    </div>
-                    <div class="timeline-items odd">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-line"></div>
-                        <div class="timeline-second-dot"></div>
-                    </div>
-                </div>
-
-                <div class="timeline-item_even">
-                    <div class="timeline-item-content">
-                        <h3>2078</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur. Fugiat eu tristique congue metus.</p>
-                    </div>
-                    <div class="timeline-items even">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-line"></div>
-                        <div class="timeline-second-dot"></div>
-                    </div>
-                </div>
-
-                <div class="timeline-item_odd">
-                    <div class="timeline-item-content">
-                        <h3>2079</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur. Fugiat eu tristique congue metus.</p>
-                    </div>
-                    <div class="timeline-items odd">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-line"></div>
-                        <div class="timeline-second-dot"></div>
-                    </div>
-                </div>
-
-                <div class="timeline-item_even">
-                    <div class="timeline-item-content">
-                        <h3>2080</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur. Fugiat eu tristique congue metus.</p>
-                    </div>
-                    <div class="timeline-items even">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-line"></div>
-                        <div class="timeline-second-dot"></div>
-                    </div>
-                </div>
-
-                <div class="timeline-item_odd">
-                    <div class="timeline-item-content">
-                        <h3>2081</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur. Fugiat eu tristique congue metus.</p>
-                    </div>
-                    <div class="timeline-items odd">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-line"></div>
-                        <div class="timeline-second-dot"></div>
-                    </div>
-                </div>
-                <div class="timeline-item_even">
-                    <div class="timeline-item-content">
-                        <h3>2082</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur. Fugiat eu tristique congue metus.</p>
-                    </div>
-                    <div class="timeline-items even">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-line"></div>
-                        <div class="timeline-second-dot"></div>
-                    </div>
-                </div>
+                @if (!empty($timelines))
+                    @foreach ($timelines as $index => $timeline)
+                        <div class="{{ $index % 2 == 0 ? 'timeline-item_odd' : 'timeline-item_even' }}">
+                            <div class="timeline-item-content">
+                                <h3>{{ $timeline->year }}</h3>
+                                <p>{{ $timeline->details }}</p>
+                            </div>
+                            <div class="timeline-items {{ $index % 2 == 0 ? 'odd' : 'even' }}">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-line"></div>
+                                <div class="timeline-second-dot"></div>
+                            </div>
+                        </div>
+                    @endforeach
+                @else
+                @endif
             </div>
         </div>
     </div>
@@ -204,7 +145,21 @@
                                 Samaj Community</span> Is To Gather Our Rights </p>
                     </div>
                     <div class="third_dream_txt">
-                        {!! Str::limit($message->message, 500, '...') !!}
+                        @if (!@empty($message->message))
+                            {!! Str::limit($message->message, 800, '...') !!}
+                            <button class="read_button">
+                                <a href="{{ route('about') }}">
+                                    <p>READ MORE</p>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" />
+                                    </svg>
+                                </a>
+                            </button>
+                        @else
+                            <p>No Data Available</p>
+                        @endif
                     </div>
                 </div>
                 <div class="right_rights_image">

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\BackPanel\AboutUs;
 use App\Models\BackPanel\MessageFrom;
+use App\Models\BackPanel\Timeline;
 use Exception;
 use Illuminate\Database\QueryException;
 
@@ -23,8 +24,13 @@ class IntroductionController extends Controller
                 ->where('display_in_home', 'Y')
                 ->first();
 
+            $timelines = Timeline::where('status', 'Y')
+                ->orderBy('id', 'asc')
+                ->get();
+
             $data = [
                 'aboutus' => $aboutus,
+                'timelines' => $timelines,
                 'type' => $type,
                 'message' => $message
             ];

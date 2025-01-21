@@ -36,6 +36,7 @@ use App\Http\Controllers\frontpanel\NewsController;
 use App\Http\Controllers\frontpanel\ProgramController as FrontProgramController;
 use App\Http\Controllers\frontpanel\RulesController;
 use App\Http\Controllers\frontpanel\TeamController;
+use App\Http\Controllers\ContactController as frontContact;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -289,26 +290,47 @@ Route::group(['middleware' => 'admin'], function () {
 
 // Front End Start here  
 Route::get('/home', [FrontHomeController::class, 'index'])->name('home');
+
 Route::get('about', [IntroductionController::class, 'introduction'])->name('about');
+
 Route::get('new', [IntroductionController::class, 'new'])->name('new');
-Route::get('team', [TeamController::class, 'ourteam'])->name('ourteam');
-Route::get('teaminner', [TeamController::class, 'teaminner'])->name('teaminner');
+
+Route::get('team/{slug}', [TeamController::class, 'ourteam'])->name('ourteam');
+Route::get('teaminner/{slug}', [TeamController::class, 'teaminner'])->name('teaminner');
+Route::get('year/{slug}', [TeamController::class, 'teamyear'])->name('teamyear');
+
 Route::get('program', [FrontProgramController::class, 'program'])->name('program');
-Route::get('program/inner', [FrontProgramController::class, 'inner'])->name('program.inner');
+Route::get('program/innerpage/{slug}', [FrontProgramController::class, 'inner'])->name('program.inner');
+
 Route::get('gallery', [FrontGalleryController::class, 'gallery'])->name('gallery');
-Route::get('ginner', [FrontGalleryController::class, 'ginner'])->name('ginner');
+Route::get('videinner/{slug}', [FrontGalleryController::class, 'ginner'])->name('ginner');
+Route::get('imageinner/{slug}', [FrontGalleryController::class, 'imageInner'])->name('image.inner');
+
 Route::get('news', [NewsController::class, 'news'])->name('news');
 Route::get('news/innerpage/{slug}', [NewsController::class, 'innerpage'])->name('news.inner.page');
-Route::get('history', [FrontHistoryController::class, 'history'])->name('history');
+
+Route::get('historyinner', [FrontHistoryController::class, 'history'])->name('history');
+Route::get('historyinner/{slug}', [FrontHistoryController::class, 'inner'])->name('history.inner');
+Route::get('historyinners/{slug}', [FrontHistoryController::class, 'inners'])->name('history.inners');
+
+
+// Route::get('history', [RulesController::class, 'history'])->name('history');
 Route::get('rules', [RulesController::class, 'rules'])->name('rules');
+
 Route::get('birth', [RulesController::class, 'birth'])->name('birth');
+
 Route::get('faq', [FrontFAQController::class, 'faq'])->name('faq');
+
 Route::get('event', [FrontEventController::class, 'event'])->name('event');
 Route::get('event/innerpage/{slug}', [FrontEventController::class, 'innerpage'])->name('event.inner.page');
 
 Route::get('contact', [ContactController::class, 'contact'])->name('contact');
+
 Route::get('list', [DonarController::class, 'list'])->name('list');
-Route::get('pinner', [ProgramController::class, 'pinner'])->name('pinner');
+
 Route::get('form', [FormController::class, 'form'])->name('form');
+
+
+Route::post('senddata', [frontContact::class, 'save'])->name('contact.save');
 
 // Front End Start here 
