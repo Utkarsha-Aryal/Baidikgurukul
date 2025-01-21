@@ -61,9 +61,9 @@
 <div class="modal-body">
     <form action="{{ route('admin.event.save') }}" method="POST" id="eventForm" enctype="multipart/form-data">
 
-        <div class="row  mt-2">
+        <div class="row">
             <input type="hidden" name="id" id="id" value="{{ $id ?? '' }}">
-            <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                 <label for="title" class="form-label">Event Title <span class="required-field">*</span></label>
                 <input type="text" class="form-control" id="title" name="title" placeholder="Enter title..."
                     value="{{ $title ?? '' }}">
@@ -72,7 +72,7 @@
 
         <div class="row mt-2">
 
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 datepick">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
                 <label for="event_date" class="form-label">Event Date <span class="required-field">*</span></label>
                 {{-- <p> <input type="text" id="nepali-datepicker" name="event_date" placeholder="Select Date" value="{{ $event_date ?? '' }}"> </p> --}}
                 <input type="date" name="event_date" id="event_date" class="form-control"

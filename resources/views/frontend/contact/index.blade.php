@@ -1,4 +1,6 @@
 @extends('frontend.layouts.main')
+
+
 @section('title', 'Contact')
 @section('content')
     <section class="introduction_page">
@@ -23,22 +25,25 @@
             <div class="contact-content">
                 <div class="contact-content-lt">
                     <div class="contact-lt-header">
-                        <p>Have a question ? Let’s get in touch with us.</p>
+                        <p>Have a question? Let’s get in touch with us.</p>
                     </div>
                     <div class="contact-lt-txt">
-                        <p>Fill up the Form and our team will get back to within 24 hrs</p>
+                        <p>Fill up the Form and our team will get back to you within 24 hrs</p>
                     </div>
-                    <div class="contact-lt-form">
-                        <input type="text" id="fname" placeholder="First Name">
-                        <input type="text" id="lmail" placeholder="Last Name">
-                        <input type="email" id="mail" placeholder="Email Address">
-                        <input type="text" id="msg" placeholder="Type message">
-                    </div>
-                    <div class="submit-btn">
-                        <button onclick="alert('On Progress')">
-                            <p>SUBMIT</p>
-                        </button>
-                    </div>
+                    <form action=" {{ route('enquiry.save') }}" id="contactUsForm" method="POST">
+                        <div class="contact-lt-form">
+                            @csrf
+                            <input type="text" id="fname" name="first_name" placeholder="First Name">
+                            <input type="text" id="lname" name="last_name" placeholder="Last Name">
+                            <input type="email" id="mail" name="email" placeholder="Email Address">
+                            <input type="text" id="msg" name="message" placeholder="Type message">
+                        </div>
+                        <div class="submit-btn">
+                            <button type="submit" class="submitData">
+                                <p>SUBMIT</p>
+                            </button>
+                        </div>
+                    </form>
                 </div>
                 <div class="contact-content-rt">
                     <div class="contact-rt-wrapper">
@@ -88,4 +93,83 @@
         </div>
     </div>
 
+
+
+    <script>
+        $(document).ready(function() {
+
+            $('#contactUsForm').validate({
+                rules: {
+                    first_name: {
+                        required: true,
+                        minlength: 2
+                    },
+                    last_name: {
+                        required: true,
+                        minlength: 2
+                    },
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    message: {
+                        required: true,
+                        minlength: 10
+                    }
+                },
+                messages: {
+                    first_name: {
+                        required: 'Please enter your first name.',
+                        minlength: 'First name must be at least 2 characters long.'
+                    },
+                    last_name: {
+                        required: 'Please enter your last name.',
+                        minlength: 'Last name must be at least 2 characters long.'
+                    },
+                    email: {
+                        required: 'Please enter your email address.',
+                        email: 'Please enter a valid email address.'
+                    },
+                    message: {
+                        required: 'Please enter a message.',
+                        minlength: 'Message must be at least 10 characters long.'
+                    }
+                },
+                errorElement: 'label',
+                errorPlacement: function(error, element) {
+                    error.addClass('error-message');
+                    error.insertAfter(element);
+                }
+            });
+
+            $('.submitData').on('click', function(e) {
+                e.preventDefault(); // Prevent the default form submission
+
+                // Check if the form is valid
+                if ($('#contactUsForm').valid()) {
+                    showLoader(); // Show loader during form submission
+
+                    $('#contactUsForm').ajaxSubmit({
+                        success: function(response) {
+                            if (response && response.type === 'success') {
+                                showNotification(response.message, 'success');
+                                $('#contactUsForm')[0].reset(); // Reset the form
+                            } else {
+                                showNotification(response.message, 'error');
+                            }
+                            hideLoader(); // Hide loader
+                        },
+                        error: function(xhr) {
+                            hideLoader(); // Hide loader on error
+                            const response = xhr.responseJSON;
+                            showNotification(response && response.message ? response.message :
+                                'An error occurred', 'error');
+                        }
+                    });
+                }
+            });
+
+
+        });
+    </script>
 @endsection

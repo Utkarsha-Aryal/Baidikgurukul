@@ -106,7 +106,6 @@
                                                     <th width="5%">S.No</th>
                                                     <th width="15%">Event Title</th>
                                                     <th width="10%">Event Details</th>
-                                                    <th width="10%">Order</th>
                                                     <th width="10%">Event Date</th>
                                                     <th width="15%">Event Address</th>
                                                     <th width="15%">Event Venue</th>
@@ -266,9 +265,6 @@
                     },
                     {
                         "data": "details"
-                    },
-                    {
-                        "data": "order_number"
                     },
                     {
                         "data": "event_date"

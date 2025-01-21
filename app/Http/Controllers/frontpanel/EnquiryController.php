@@ -1,16 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\frontpanel;
+
 
 use App\Http\Controllers\Controller;
-use App\Models\Contact;
+use App\Models\BackPanel\Enquiry as BackPanelEnquiry;
 use Illuminate\Http\Request;
-use Exception;
 use Illuminate\Database\QueryException;
-use Illuminate\Support\Facades\DB;
+use Exception;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
-class ContactController extends Controller
+class EnquiryController extends Controller
 {
     public function save(Request $request)
     {
@@ -35,20 +36,21 @@ class ContactController extends Controller
                 'message.max' => 'Message cannot exceed 255 characters.'
             ];
 
-            $validate = Validator::make($request->all(), $rules, $message);
-
-            if ($validate->fails()) {
-                throw new Exception($validate->errors()->first(), 1);
+            $validation = Validator::make($request->all(), $rules, $message);
+            if ($validation->fails()) {
+                throw new Exception($validation->errors()->first(), 1);
             }
+
             $post = $request->all();
             $type = 'success';
-            $message = 'Data send successfully';
+            $message = 'Your query has been send successfully.';
 
             DB::beginTransaction();
-            $post['created_by'] = $this->userid;
-            if (!Contact::saveData($post)) {
-                throw new Exception('Could not send data', 1);
+            $result = BackPanelEnquiry::saveData($post);
+            if (!$result) {
+                throw new Exception("Could't sent.", 1);
             }
+
             DB::commit();
         } catch (QueryException $e) {
             DB::rollBack();
@@ -59,6 +61,6 @@ class ContactController extends Controller
             $type = 'error';
             $message = $e->getMessage();
         }
-        return json_encode(['type' => $type, 'message' => $message]);
+        return response()->json(['type' => $type, 'message' => $message]);
     }
 }

@@ -146,7 +146,9 @@
                     <p>@copy 2025 Chochangay Samaj Nepal. All Rights Reserved.</p>
                 </div>
                 <div class="right_frow">
+
                     <p>Designed and Developed by: <a href="https://g.co/kgs/G1iBeJK" target="_blank"><span class="red">Code</span><span class="blue">Logic</span></a> Technologies.</p>
+
                 </div>
 
             </div>
