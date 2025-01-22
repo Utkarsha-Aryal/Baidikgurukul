@@ -1,9 +1,9 @@
-@extends('frontend.layouts.main')
+@extends('frontend.layout2.main2')
 @section('title', 'Our Events')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-@section('content')
+@section('content2')
 <section class="introduction_page">
     <div class="img_before">
         <img src="{{ asset('frontpanel/assets/images/Mask group.png') }}" alt="">

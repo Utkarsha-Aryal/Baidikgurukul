@@ -1,6 +1,6 @@
-@extends('frontend.layouts.main')
+@extends('frontend.layout2.main2')
 @section('title', 'Our Gallery')
-@section('content')
+@section('content2')
     <section class="introduction_page">
         <div class="img_before">
             <link rel="stylesheet" href="{{ asset('frontpanel/assets/images/Mask group.png') }}">
