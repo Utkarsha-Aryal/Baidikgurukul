@@ -1,16 +1,18 @@
 @extends('frontend.layout2.main2')
 @section('title', 'News & Blogs inner page')
+
 @section('content2')
     <section class="introduction_page">
+
         <div class="img_before">
             <img src="{{ asset('frontpanel/assets/images/Mask group.png') }}" alt="">
         </div>
         <div class="common_image_txt">
             <div class="common_bg_wrapper">
-                <img src="{{ asset('frontpanel/assets/images/Mask group.png') }}" alt="">
+                <img src="{{ asset('frontpanel/assets/images/image1.jpeg') }}" alt="hands">
             </div>
             <div class="main_txt">
-                <p>News & Blogs Inner Page</p>
+                <p>News & blogs Inner Page</p>
             </div>
         </div>
         <div class="img_after">

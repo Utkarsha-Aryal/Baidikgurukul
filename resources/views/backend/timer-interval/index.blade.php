@@ -4,44 +4,9 @@
     Time Interval
 @endsection
 
-<!-- Nepali Datepicker CSS -->
-<link href="https://nepalidatepicker.sajanmaharjan.com.np/nepali.datepicker/css/nepali.datepicker.v4.0.1.min.css"
-    rel="stylesheet" type="text/css" />
-<!-- Nepali Date Picker JS -->
-<script src="https://cdn.jsdelivr.net/npm/nepali-date-picker@2.0.7/dist/nepali-date-picker.min.js"></script>
-
 <style>
-    .iconpicker-popover.popover.bottom {
-        opacity: 1;
-    }
-
-    input#trashed_file {
-        border: 1px solid rgb(0, 99, 198) !important
-    }
-
-    #ndp-nepali-box {
-        top: 60px !important;
-        left: 10px !important;
-    }
-
-    input#nepali-datepicker-start {
-        width: 100% !important;
-        height: 50% !important;
-        border-radius: 0.2rem !important;
-        border: 0.1px solid rgb(236, 231, 231);
-        padding-left: 0.5rem !important;
-    }
-
-    input#nepali-datepicker-end {
-        width: 100% !important;
-        height: 50% !important;
-        border-radius: 0.2rem !important;
-        border: 0.1px solid rgb(236, 231, 231);
-        padding-left: 0.5rem !important;
-    }
-
-    input#nepali-datepicker-end {
-        position: relative;
+    .req {
+        color: red;
     }
 </style>
 
@@ -67,24 +32,35 @@
                 <form action="{{ route('admin.timeinterval.save') }}" method="POST" id="time-form"
                     enctype="multipart/form-data">
                     <div class="card-body">
+
                         <div class="row gy-4">
+                            <!-- Starting Year -->
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                                <label for="yearSelectstart" class="form-label">Select Starting Year:</label>
+                                <label for="yearSelectstart" class="form-label">Select Starting Year <span
+                                        class="req">*</span></label>
                                 <select class="form-select" id="yearSelectstart" name="start_date"></select>
                                 <input type="hidden" name="id" value="" id="id">
                             </div>
                         </div>
-                        <div class="row gy-4">
+
+
+                        <div class="row mt-2">
+
+                            <!-- Ending Year -->
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                                <label for="yearSelectend" class="form-label">Select Ending Year:</label>
+                                <label for="yearSelectend" class="form-label">Select Ending Year <span
+                                        class="req">*</span></label>
                                 <select class="form-select" id="yearSelectend" name="end_date"></select>
                             </div>
+
                         </div>
+
                     </div>
                     <div class="card-footer d-flex justify-content-end">
                         <button type="button" class="btn btn-primary saveData"><i class="fa fa-save"></i> Save</button>
                     </div>
                 </form>
+
             </div>
         </div>
         <div class="col-xl-8">
@@ -114,10 +90,10 @@
                                             aria-describedby="datatable-basic_info">
                                             <thead>
                                                 <tr>
-                                                    <th>S.No</th>
+                                                    <th width="5%">S.No</th>
                                                     <th>Start Date</th>
                                                     <th>End Date</th>
-                                                    <th>Action</th>
+                                                    <th width="10%">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -226,7 +202,36 @@
                 },
             });
 
-            // Save the data logic
+            $('#time-form').validate({
+                rules: {
+                    start_date: {
+                        required: true,
+                    },
+                    end_date: {
+                        required: true,
+                    },
+                },
+                messages: {
+                    start_date: {
+                        required: "Please select a starting year.",
+                    },
+                    end_date: {
+                        required: "Please select an ending year.",
+                    },
+                },
+                highlight: function(element) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function(element) {
+                    $(element).removeClass('is-invalid');
+                },
+                errorPlacement: function(error, element) {
+                    error.addClass('text-danger');
+                    element.closest('.col-xl-12').append(error);
+                },
+            });
+
+            // Save Data Logic
             $('.saveData').off('click');
             $('.saveData').on('click', function() {
                 if ($('#time-form').valid()) {
@@ -253,6 +258,7 @@
                     });
                 }
             });
+
 
             // update Team Category
             $(document).on('click', '.edit', function(e) {
@@ -311,6 +317,45 @@
                     }
                 });
             });
+
+
+            //restore
+            $(document).off('click', '.restore');
+            $(document).on('click', '.restore', function() {
+                Swal.fire({
+                    title: "Are you sure you want to restore Time Interval?",
+                    text: "This will restore the Time Interval.",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#28a745",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, Restore it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        showLoader();
+                        var id = $(this).data('id');
+                        var data = {
+                            id: id,
+                            type: 'restore'
+                        };
+                        var url = '{{ route('admin.timeinterval.restore') }}';
+                        $.post(url, data, function(response) {
+                            if (response) {
+                                if (response.type === 'success') {
+                                    showNotification(response.message, 'success');
+                                    time_interval_table.draw();
+                                    hideLoader();
+                                } else {
+                                    showNotification(response.message, 'error');
+                                    hideLoader();
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+
+
         });
     </script>
 @endsection

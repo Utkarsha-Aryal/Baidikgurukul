@@ -1,6 +1,8 @@
 @extends('frontend.layout2.main2')
 @section('title', 'About Us')
+
 @section('content2')
+
     <section class="introduction_page">
         <div class="img_before">
             <img src="{{ asset('frontpanel/assets/images/Mask group.png') }}" alt="">
@@ -39,82 +41,84 @@
                     <div class="second_txt">
                         <p>{{ $aboutus->aboutus_title }}</p>
 
-                </div>
-                <div class="third_dream_txt">
-                    {{-- <p>{!! Str::limit($aboutus->introduction, 1000, '...') !!}</p> --}}
-                    <p>{!! $aboutus->introduction !!}</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<div class="mission_vision_container">
-    <div class="container">
-        <div class="ft_wrap">
-            <div class="lfr_row">
-                <p>We are focused on our Mission, Vision & Goals</p>
-            </div>
-            <div class="rght_row">
-                <p>The Magar community aims to ensure its continued growth, resilience, and contribution to society, all
-                    while staying true to its roots and cultural identity.</p>
-            </div>
-        </div>
-
-        <div class="mission_vision_goal_wrapper">
-            <div class="mission_card_container">
-                <div class="mission_icon">
-                    <img src="{{ asset('frontpanel/assets/images/Mask group.svg') }}" alt="">
-                </div>
-                <div class="mission_main">
-                    <p>Mission</p>
-                </div>
-                <div class="mission_txt">
-                    <p>{{ $aboutus->mission ?? '' }}</p>
-                </div>
-            </div>
-            <div class="mission_card_container">
-                <div class="mission_icon">
-                    <img src="{{ asset('frontpanel/assets/images/Mask group.svg') }}" alt="">
-
-                </div>
-                <div class="mission_main">
-                    <p>Vision</p>
-                </div>
-                <div class="mission_txt">
-                    <p>{{ $aboutus->vision ?? '' }}</p>
-                </div>
-            </div>
-            <div class="mission_card_container">
-                <div class="mission_icon">
-                    <img src="{{ asset('frontpanel/assets/images/Mask group.svg') }}" alt="">
-
-                </div>
-                <div class="mission_main">
-                    <p>Goals</p>
-                </div>
-                <div class="mission_txt">
-                    <p>{{ $aboutus->goals ?? '' }}</p>
+                    </div>
+                    <div class="third_dream_txt">
+                        {{-- <p>{!! Str::limit($aboutus->introduction, 1000, '...') !!}</p> --}}
+                        <p>{!! $aboutus->introduction !!}</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container">
-        <div class="timeline-container">
-            @if (count($timelines) > 0)
-            <div class="timeline-header">
-                <p>
-                    Our History
-                </p>
+    </section>
+    <div class="mission_vision_container">
+        <div class="container">
+            <div class="ft_wrap">
+                <div class="lfr_row">
+                    <p>We are focused on our Mission, Vision & Goals</p>
+                </div>
+                <div class="rght_row">
+                    <p>The Magar community aims to ensure its continued growth, resilience, and contribution to society, all
+                        while staying true to its roots and cultural identity.</p>
+                </div>
             </div>
-            @else
-            <p>No data found</p>
-            @endif
+
+            <div class="mission_vision_goal_wrapper">
+                <div class="mission_card_container">
+                    <div class="mission_icon">
+                        <img src="{{ asset('frontpanel/assets/images/Mask group.svg') }}" alt="">
+                    </div>
+                    <div class="mission_main">
+                        <p>Mission</p>
+                    </div>
+                    <div class="mission_txt">
+                        <p>{{ $aboutus->mission ?? '' }}</p>
+                    </div>
+                </div>
+                <div class="mission_card_container">
+                    <div class="mission_icon">
+                        <img src="{{ asset('frontpanel/assets/images/Mask group.svg') }}" alt="">
+
+                    </div>
+                    <div class="mission_main">
+                        <p>Vision</p>
+                    </div>
+                    <div class="mission_txt">
+                        <p>{{ $aboutus->vision ?? '' }}</p>
+                    </div>
+                </div>
+                <div class="mission_card_container">
+                    <div class="mission_icon">
+                        <img src="{{ asset('frontpanel/assets/images/Mask group.svg') }}" alt="">
+
+                    </div>
+                    <div class="mission_main">
+                        <p>Goals</p>
+                    </div>
+                    <div class="mission_txt">
+                        <p>{{ $aboutus->goals ?? '' }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="timeline-container">
+                @if (count($timelines) > 0)
+                    <div class="timeline-header">
+                        <p>
+                            Our History
+                        </p>
+                    </div>
+                @else
+                    <p>No data found</p>
+                @endif
 
                 @if (!empty($timelines))
                     @foreach ($timelines as $index => $timeline)
                         <div class="{{ $index % 2 == 0 ? 'timeline-item_odd' : 'timeline-item_even' }}">
                             <div class="timeline-item-content">
+
                                 <h3>{{ $timeline->year }}</h3>
+
                                 <p>{{ $timeline->details }}</p>
                             </div>
                             <div class="timeline-items {{ $index % 2 == 0 ? 'odd' : 'even' }}">
@@ -141,8 +145,26 @@
                         </svg>
                     </div>
                     <div class="first_txt">
-                        <p>Dream Of Every <span class="blue">Chochangay
-                                Samaj Community</span> Is To Gather Our Rights </p>
+
+                        @if ($message->title)
+                            @php
+                                $text = $message->title ?? '';
+                                $words = explode(' ', $text);
+                                if (count($words) > 3) {
+                                    $words[3] =
+                                        '
+<span style="color: rgba(6, 106, 200, 1);">' . $words[3];
+                                    $words[5] .= '</span>';
+                                }
+                                $styledText = implode(' ', $words);
+                            @endphp
+
+                            <p>{!! $styledText !!}</p>
+                        @else
+                            <p>Dream Of Every <span class="blue">Chochangay
+                                    Samaj Community</span> Is To Gather Our Rights </p>
+                        @endif
+
                     </div>
                     <div class="third_dream_txt">
                         @if (!@empty($message->message))

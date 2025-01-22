@@ -29,7 +29,7 @@
                 </div>
                 <div class="rght_txt">
                     <p>{{ $member->name ?? '' }}</p>
-                    <p>{{ $member->designation }}</p>
+                    <p>{{ $member->designation ?? '' }}</p>
                     <p>{!! $member->details !!}</p>
                 </div>
             </div>

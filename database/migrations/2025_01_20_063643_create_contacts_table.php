@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('email')->nullable();
-            $table->string('order_number')->nullable();
             $table->text('message')->nullable();
             $table->enum('status', ['Y', 'N', 'R'])->default('Y');
             $table->timestamps();

@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class DonorController extends Controller
 {
@@ -95,6 +96,7 @@ class DonorController extends Controller
                 $array[$i]["image"] = '<img src="' . $image . '" height="30px" width="30px" alt="image"/>';
                 $action = '';
                 if (!empty($post['type']) && $post['type'] != 'trashed') {
+                    $action .= ' <a href="javascript:;" class="view" title="View Data" data-id="' . $row->id . '"><i class="fa-solid fa-eye" style="color: #008f47;"></i></a> | ';
                     $action .= '<a href="javascript:;" class="edit" title="Edit Data" data-id="' . $row->id . '"><i class="fa-solid fa-pen-to-square text-primary"></i></a> |';
                 } else {
                     $action .= '<a href="javascript:;" class="restore" title="Restore Data" data-id="' . $row->id . '"><i class="fa-solid fa-undo text-success"></i></a> ';
@@ -190,5 +192,65 @@ class DonorController extends Controller
             $message = $e->getMessage();
         }
         return response()->json(['type' => $type, 'message' => $message]);
+    }
+
+    //view
+    public function view(Request $request)
+    {
+        try {
+            $post = $request->all();
+            $donorDetail = Donor::where('id', $post['id'])
+                ->where('status', 'Y')
+                ->first();
+
+            $data = [
+                'donorDetail' => $donorDetail,
+            ];
+
+            $data['type'] = 'success';
+            $data['message'] = 'Successfully fetched data of Donar.';
+        } catch (QueryException $e) {
+            $data['type'] = 'error';
+            $data['message'] = $this->queryMessage;
+        } catch (Exception $e) {
+            $data['type'] = 'error';
+            $data['message'] = $e->getMessage();
+        }
+        return view('backend.donor.view', $data);
+    }
+
+    // Image upload of Donar
+    public function uploadImage(Request $request)
+    {
+        try {
+            if ($request->hasFile('upload')) {
+                $folder = storage_path('app/public/donar/');
+
+                if (!Storage::exists($folder))
+                    Storage::makeDirectory($folder, 0775, true, true);
+
+                $file = $request->file('upload');
+                $newName = time() . '_' . rand(10, 9999999999999) . '_' . $file->getClientOriginalName();
+                $file->move($folder, $newName);
+
+                $url = asset('storage/program/' . $newName);
+
+                return response()->json([
+                    'uploaded' => 1,
+                    'fileName' => $newName,
+                    'url' => $url
+                ]);
+            } else {
+                return response()->json([
+                    'uploaded' => 0,
+                    'error' => ['message' => 'No file uploaded.']
+                ]);
+            }
+        } catch (Exception $e) {
+            return response()->json([
+                'uploaded' => 0,
+                'error' => ['message' => $e->getMessage()]
+            ], 500);
+        }
     }
 }

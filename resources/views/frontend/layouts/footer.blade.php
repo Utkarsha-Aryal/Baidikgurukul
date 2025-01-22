@@ -6,8 +6,12 @@
                 <div class="fcol1">
                     <div class="logo_wrapper">
                         <div class="nav_logo">
-                            <img src="{{ asset('frontpanel/assets/images/WhatsApp Image 2024-12-26 at 10.57.06 AM 1@2x.png') }}"
-                                alt="">
+                            @if (!empty($siteSetting->img_logo))
+                                <img src={{ asset('storage/setting') . '/' . $siteSetting->img_logo }}>
+                            @else
+                                <img src="{{ asset('frontpanel/assets/images/WhatsApp Image 2024-12-26 at 10.57.06 AM 1@2x.png') }}"
+                                    alt="">
+                            @endif
                         </div>
                         <div class="logo_txt">
                             <p>Chochangay <br>
@@ -55,11 +59,13 @@
                             <div class="bottom-fl"></div>
                         </div>
                         <ul>
-                            <li><a href=""><span class="greater">></span> Historical Place</a></li>
-                            <li><a href=""><span class="greater">></span> Introduction</a></li>
-                            <li><a href=""><span class="greater">></span> Program</a></li>
-                            <li><a href="faq"><span class="greater">></span> FAQ</a></li>
-                            <li><a href=""><span class="greater">></span> Gallery</a></li>
+
+                            <li><a href="{{ route('history') }}"><span class="greater">></span> Historical Place</a>
+                            </li>
+                            <li><a href="{{ route('about') }}"><span class="greater">></span> Introduction</a></li>
+                            <li><a href="{{ route('program') }}"><span class="greater">></span> Program</a></li>
+                            <li><a href="{{ route('faq') }}"><span class="greater">></span> FAQ</a></li>
+                            <li><a href="{{ route('gallery') }}"><span class="greater">></span> Gallery</a></li>
                         </ul>
                     </div>
                 </div>
@@ -145,7 +151,10 @@
                     <p>@copy 2025 Chochangay Samaj Nepal. All Rights Reserved.</p>
                 </div>
                 <div class="right_frow">
-                    <p>Designed and Developed by:  <a href="https://g.co/kgs/G1iBeJK" target="_blank"><span class="red">Code</span><span class="blue">Logic</span></a> Technologies.</p>
+
+                    <p>Designed and Developed by: <a href="https://g.co/kgs/G1iBeJK" target="_blank"><span
+                                class="red">Code</span><span class="blue">Logic</span></a> Technologies.</p>
+
                 </div>
 
             </div>

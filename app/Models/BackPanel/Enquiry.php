@@ -1,52 +1,28 @@
 <?php
 
-
 namespace App\Models\BackPanel;
 
-use App\Models\Common;
-use Carbon\Carbon;
-use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
+use Carbon\Carbon;
+use Exception;
 
-
-class Program extends Model
+class Enquiry extends Model
 {
     use HasFactory;
-
     public static function saveData($post)
     {
         try {
             $dataArray = [
-                'title' => $post['title'],
-                'slug' =>  Str::slug($post['title']) . '-' . time(),
-                'details' => $post['details'],
-                'order_number' => $post['order_number'],
+                'first_name' => $post['first_name'],
+                'last_name' => $post['last_name'],
+                'email' => $post['email'],
+                'message' => $post['message'],
+                'created_at' => Carbon::now(),
             ];
 
-            if (!empty($post['image'])) {
-                $fileName =  Common::uploadFile('program', $post['image']);
-                if (!$fileName) {
-                    return false;
-                }
-                $dataArray['image'] = $fileName;
-            }
-
-
-            if (!empty($post['id'])) {
-                $dataArray['updated_by'] = $post['created_by'];
-                $dataArray['updated_at'] = Carbon::now();
-
-                if (!Program::where('id', $post['id'])->update($dataArray)) {
-                    throw new Exception("Couldn't update Records", 1);
-                }
-            } else {
-                $dataArray['created_by'] = $post['created_by'];
-                $dataArray['created_at'] = Carbon::now();
-                if (!Program::insert($dataArray)) {
-                    throw new Exception("Couldn't Save Records", 1);
-                }
+            if (!Enquiry::insert($dataArray)) {
+                throw new Exception("Couldn't send data", 1);
             }
 
             return true;
@@ -55,7 +31,6 @@ class Program extends Model
         }
     }
 
-    // List
     public static function list($post)
     {
         try {
@@ -63,17 +38,16 @@ class Program extends Model
             foreach ($get['columns'] as $key => $value) {
                 $get['columns'][$key]['search']['value'] = trim(strtolower(htmlspecialchars($value['search']['value'], ENT_QUOTES)));
             }
+
             $cond = " status = 'Y'";
 
             if (!empty($post['type']) && $post['type'] === "trashed") {
                 $cond = " status = 'N'";
             }
 
-            if ($get['columns'][1]['search']['value'])
-                $cond .= " and lower(title) like '%" . $get['columns'][1]['search']['value'] . "%'";
 
-            if ($get['columns'][2]['search']['value'])
-                $cond .= " and lower(details) like '%" . $get['columns'][2]['search']['value'] . "%'";
+            if ($get['columns'][1]['search']['value'])
+                $cond .= " and lower(first_name) like '%" . $get['columns'][1]['search']['value'] . "%'";
 
             $limit = 15;
             $offset = 0;
@@ -82,7 +56,7 @@ class Program extends Model
                 $offset = $get["start"];
             }
 
-            $query = Program::selectRaw("(SELECT count(*) FROM programs WHERE{$cond}) AS totalrecs, title, id, details, order_number,image")
+            $query = Enquiry::selectRaw("(SELECT count(*) FROM enquiries WHERE{$cond}) AS totalrecs, id as id, first_name, last_name, email,message,created_at")
                 ->whereRaw($cond);
 
             if ($limit > -1) {
@@ -111,7 +85,7 @@ class Program extends Model
                 'status' => 'Y',
                 'updated_at' => Carbon::now(),
             ];
-            if (!Program::where(['id' => $post['id']])->update($updateArray)) {
+            if (!Enquiry::where(['id' => $post['id']])->update($updateArray)) {
                 throw new Exception("Couldn't Restore Data. Please try again", 1);
             }
             return true;

@@ -96,8 +96,7 @@ class GalleryImage extends Model
                 $limit = $get['length'];
                 $offset = $get["start"];
             }
-            $query = GalleryImage::selectRaw("(SELECT count(*) FROM gallery_images) AS totalrecs, id as id, image,image_link")
-                // ->where(['gallery_id' => $get['gallery_id'], 'status' => 'Y'])
+            $query = GalleryImage::selectRaw("(SELECT count(*) FROM gallery_images where{$cond}) AS totalrecs, id as id, image,image_link")
                 ->where(['gallery_id' => $get['gallery_id']])
                 ->whereRaw($cond);
             if ($limit > -1) {

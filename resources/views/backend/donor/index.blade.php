@@ -375,8 +375,8 @@
             $(document).off('click', '.restore');
             $(document).on('click', '.restore', function() {
                 Swal.fire({
-                    title: "Are you sure you want to restore Event?",
-                    text: "This will restore the Event.",
+                    title: "Are you sure you want to restore Donar?",
+                    text: "This will restore the Donar.",
                     icon: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#28a745",
@@ -404,6 +404,21 @@
                             }
                         });
                     }
+                });
+            });
+
+
+
+            $(document).off('click', '.view');
+            $(document).on('click', '.view', function() {
+                var id = $(this).data('id');
+                var url = '{{ route('admin.donor.view') }}';
+                var data = {
+                    id: id
+                };
+                $.post(url, data, function(response) {
+                    $('#modal .modal-content').html(response);
+                    $('#modal').modal('show');
                 });
             });
 

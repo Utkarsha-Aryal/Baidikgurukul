@@ -31,20 +31,31 @@ class MessageFromController extends Controller
                 'name' => 'required|min:3|max:50',
                 'message' => 'required|min:5|max:3000',
                 'designation' => 'required|min:3|max:255',
+                'title' => 'required|min:3|max:100',
                 'order' => 'required|max:255',
             ];
             if (empty($request->id)) {
                 $rules['image'] = 'nullable|mimes:jpg,jpeg,png|max:2048';
             }
-            // else {
-            //     $rules['image'] = 'nullable|mimes:jpg,jpeg,png|max:2048';
-            // }
-
             $message = [
-                'name.required' => 'Please enter name',
-                'designation.required' => 'Please enter designation',
-                'order.required' => 'Please enter order',
-                'message.required' => 'Please enter message',
+                'name.required' => 'Please enter the name.',
+                'name.min' => 'The name must be at least 3 characters.',
+                'name.max' => 'The name may not exceed 50 characters.',
+
+                'message.required' => 'Please enter the message.',
+                'message.min' => 'The message must be at least 5 characters.',
+                'message.max' => 'The message may not exceed 3000 characters.',
+
+                'designation.required' => 'Please enter the designation.',
+                'designation.min' => 'The designation must be at least 3 characters.',
+                'designation.max' => 'The designation may not exceed 255 characters.',
+
+                'title.required' => 'Please enter the title.',
+                'title.min' => 'The title must be at least 3 characters.',
+                'title.max' => 'The title may not exceed 100 characters.',
+
+                'order.required' => 'Please enter the order.',
+                'order.max' => 'The order may not exceed 255 characters.',
             ];
 
             $validate = Validator::make($request->all(), $rules, $message);
@@ -91,6 +102,7 @@ class MessageFromController extends Controller
             foreach ($data as $row) {
                 $array[$i]['sno'] = $i + 1;
                 $array[$i]['name'] = $row->name;
+                $array[$i]['title'] = Str::limit($row->title, 30, '...');
                 $array[$i]['message'] = Str::limit($row->message, 50, '...');
                 $array[$i]['designation'] = $row->designation;
                 $array[$i]['display_in_home'] = $row->display_in_home;
@@ -103,6 +115,8 @@ class MessageFromController extends Controller
                 }
                 $action = '';
                 if (!empty($post['type']) && $post['type'] != 'trashed') {
+                    $action .= ' <a href="javascript:;" class="view" title="View Data" data-id="' . $row->id . '"><i class="fa-solid fa-eye" style="color: #008f47;"></i></a> | ';
+
                     $action .= '<a href="javascript:;" class="edit" title="Edit Data" data-id="' . $row->id . '"><i class="fa-solid fa-pen-to-square text-primary"></i></a> |';
                 }
                 $action .= ' <a href="javascript:;" class="delete" title="Delete Data" data-id="' . $row->id . '"><i class="fa fa-trash text-danger"></i></a>';
@@ -177,5 +191,30 @@ class MessageFromController extends Controller
             $message = $e->getMessage();
         }
         return json_encode(['type' => $type, 'message' => $message]);
+    }
+
+    //review
+    public function view(Request $request)
+    {
+        try {
+            $post = $request->all();
+            $messageDetail = MessageFrom::where('id', $post['id'])
+                ->where('status', 'Y')
+                ->first();
+
+            $data = [
+                'messageDetail' => $messageDetail,
+            ];
+
+            $data['type'] = 'success';
+            $data['message'] = 'Successfully fetched data of Message.';
+        } catch (QueryException $e) {
+            $data['type'] = 'error';
+            $data['message'] = $this->queryMessage;
+        } catch (Exception $e) {
+            $data['type'] = 'error';
+            $data['message'] = $e->getMessage();
+        }
+        return view('backend.message-from.view', $data);
     }
 }

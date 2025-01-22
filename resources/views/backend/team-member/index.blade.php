@@ -100,15 +100,15 @@
                                             aria-describedby="datatable-basic_info">
                                             <thead>
                                                 <tr>
-                                                    <th>S.No</th>
+                                                    <th width="5%">S.No</th>
                                                     <th>Name</th>
-                                                    <th>Member Order</th>
                                                     <th>Designation</th>
+                                                    <th>Detail</th>
                                                     <th>Facebook</th>
                                                     <th>Instagram</th>
                                                     <th>Twitter</th>
                                                     <th>Photo</th>
-                                                    <th>Action</th>
+                                                    <th width="5%">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -252,12 +252,11 @@
                         "data": "name"
                     },
                     {
-                        "data": "order"
-                    },
-                    {
                         "data": "designation"
                     },
-
+                    {
+                        "data": "details"
+                    },
                     {
                         "data": "facebook_url",
                         "render": function(data, type, row) {
@@ -313,7 +312,7 @@
                 },
                 "initComplete": function() {
                     // Ensure text input fields in the header for specific columns with placeholders
-                    this.api().columns([1, 2, 3, 4]).every(function() {
+                    this.api().columns([1, 2]).every(function() {
                         var column = this;
                         var input = document.createElement("input");
                         var columnName = column.header().innerText.trim();
@@ -392,6 +391,57 @@
                     }
                 });
             });
+
+            //restore
+            $(document).off('click', '.restore');
+            $(document).on('click', '.restore', function() {
+                Swal.fire({
+                    title: "Are you sure you want to restore Team Member?",
+                    text: "This will restore the Team Member.",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#28a745",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, Restore it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        showLoader();
+                        var id = $(this).data('id');
+                        var data = {
+                            id: id,
+                            type: 'restore'
+                        };
+                        var url = '{{ route('admin.member.restore') }}';
+                        $.post(url, data, function(response) {
+                            if (response) {
+                                if (response.type === 'success') {
+                                    showNotification(response.message, 'success');
+                                    table.draw();
+                                    hideLoader();
+                                } else {
+                                    showNotification(response.message, 'error');
+                                    hideLoader();
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+
+            //view
+            $(document).off('click', '.view');
+            $(document).on('click', '.view', function() {
+                var id = $(this).data('id');
+                var url = '{{ route('admin.member.view') }}';
+                var data = {
+                    id: id
+                };
+                $.post(url, data, function(response) {
+                    $('#modal .modal-content').html(response);
+                    $('#modal').modal('show');
+                });
+            });
+
         });
     </script>
 @endsection

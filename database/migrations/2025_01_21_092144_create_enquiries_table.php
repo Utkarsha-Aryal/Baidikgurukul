@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('team_categories', function (Blueprint $table) {
+        Schema::create('enquiries', function (Blueprint $table) {
             $table->id();
-            $table->string('team_category')->nullable();
-            $table->string('slug')->nullable();
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
+            $table->string('email')->nullable();
+            $table->text('message')->nullable();
             $table->enum('status', ['Y', 'N', 'R'])->default('Y');
             $table->timestamps();
         });
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('team_categories');
+        Schema::dropIfExists('enquiries');
     }
 };

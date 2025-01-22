@@ -38,6 +38,14 @@
                 <input type="number" class="form-control" id="order" name="order"
                     placeholder="Enter message order..." value="{{ @$order }}">
             </div>
+
+            <div class="row mt-2">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                    <label for="title" class="form-label">Message Title <span class="required-field">*</span></label>
+                    <input type="text" class="form-control" id="title" name="title"
+                        placeholder="Enter message title..." value="{{ @$title ?? '' }}">
+                </div>
+            </div>
         </div>
         <div class="row mt-2">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
@@ -87,7 +95,7 @@
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-    <button type="button" class="btn btn-primary save"><i class="fa fa-add"></i>
+    <button type="button" class="btn btn-primary save"><i class="fa fa-save"></i>
         @if (!empty($id))
             Update
         @else

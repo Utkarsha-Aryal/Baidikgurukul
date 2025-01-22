@@ -57,7 +57,7 @@
                     border-left: 2px solid #066ac8;
                     box-shadow: 0 0 16px rgba(177, 215, 239, 0.2);
                     @include respond-to(tablet) {
-                        width: 100%;
+                        width: 90%;
                     }
                     .right_first_text {
                         position: relative;

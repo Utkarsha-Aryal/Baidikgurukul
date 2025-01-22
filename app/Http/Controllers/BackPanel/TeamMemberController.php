@@ -12,6 +12,7 @@ use Illuminate\Database\QueryException;
 use Exception;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 
 class TeamMemberController extends Controller
@@ -101,6 +102,7 @@ class TeamMemberController extends Controller
                 $array[$i]["facebook_url"]    = $row->facebook_url;
                 $array[$i]["instagram_url"]    = $row->instagram_url;
                 $array[$i]["twitter_url"]    = $row->twitter_url;
+                $array[$i]["details"]    = Str::limit($row->details, 15, '...');
 
                 if (!empty($row->photo)) {
                     $photo = '<img src="' . asset('/storage/community')  . '/' . $row->photo . '" height="30px" width="30px" alt="' . $row->category . ' image"/>';
@@ -111,7 +113,10 @@ class TeamMemberController extends Controller
 
                 $action = '';
                 if (!empty($post['type']) && $post['type'] != 'trashed') {
+                    $action .= ' <a href="javascript:;" class="view" title="View Data" data-id="' . $row->id . '"><i class="fa-solid fa-eye" style="color: #008f47;"></i></a> | ';
                     $action .= '<a href="javascript:;" class="edit-our-team" name="Edit Data" data-id="' . $row->id . '"><i class="fa fa-pencil-alt text-primary"></i></a> |';
+                } else {
+                    $action .= '<a href="javascript:;" class="restore" title="Restore Data" data-id="' . $row->id . '"><i class="fa-solid fa-undo text-success"></i></a> |';
                 }
                 $action .= '  <a href="javascript:;" class="delete-our-team" name="Delete Data" data-id="' . $row->id . '"><i class="fa fa-trash text-danger"></i></a>';
                 $array[$i]["action"]  = $action;
@@ -189,5 +194,55 @@ class TeamMemberController extends Controller
             $message = $e->getMessage();
         }
         return json_encode(['type' => $type, 'message' => $message]);
+    }
+
+    //restore
+    public function restore(Request $request)
+    {
+        try {
+            $post = $request->all();
+            $type = 'success';
+            $message = "Team Member restored successfully";
+            DB::beginTransaction();
+            $result = TeamMember::restoreData($post);
+            if (!$result) {
+                throw new Exception("Could not restore Team Member. Please try again.", 1);
+            }
+            DB::commit();
+        } catch (QueryException $e) {
+            DB::rollBack();
+            $type = 'error';
+            $message = $this->queryMessage;
+        } catch (Exception $e) {
+            DB::rollBack();
+            $type = 'error';
+            $message = $e->getMessage();
+        }
+        return response()->json(['type' => $type, 'message' => $message]);
+    }
+
+    //view
+    public function view(Request $request)
+    {
+        try {
+            $post = $request->all();
+            $memberDetail = TeamMember::where('id', $post['id'])
+                ->where('status', 'Y')
+                ->first();
+
+            $data = [
+                'memberDetail' => $memberDetail,
+            ];
+
+            $data['type'] = 'success';
+            $data['message'] = 'Successfully fetched data of History.';
+        } catch (QueryException $e) {
+            $data['type'] = 'error';
+            $data['message'] = $this->queryMessage;
+        } catch (Exception $e) {
+            $data['type'] = 'error';
+            $data['message'] = $e->getMessage();
+        }
+        return view('backend.team-member.view', $data);
     }
 }

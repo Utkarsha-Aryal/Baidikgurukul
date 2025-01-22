@@ -2,73 +2,34 @@
 
 namespace App\Http\Controllers\BackPanel;
 
+
 use App\Http\Controllers\Controller;
-use App\Models\BackPanel\TimeInterval;
+use App\Models\BackPanel\Enquiry;
+use App\Models\BackPanel\Event;
 use App\Models\Common;
-use Illuminate\Http\Request;
-use Illuminate\Database\QueryException;
 use Exception;
+use Illuminate\Database\QueryException;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
-class TimeIntervalController extends Controller
+class EnquiryController extends Controller
 {
+    // Get list
+
 
     public function index()
     {
-        return view('backend.timer-interval.index');
+        return view('backend.enquiry.index');
     }
 
-    //function to save 
-    public function save(Request $request)
-    {
-        try {
-
-            $rules = [
-                'start_date' => 'required',
-                'end_date' => 'required',
-            ];
-
-            $message = [
-                'start_date.required' => 'Starting date is required.',
-                'end_date.required' => 'Ending data is required.',
-            ];
-
-            $validation = Validator::make($request->all(), $rules, $message);
-
-            if ($validation->fails()) {
-                throw new Exception($validation->errors()->first(), 1);
-            }
-
-            $post = $request->all();
-            $type = 'success';
-            $message = 'Records saved successfully';
-
-            DB::beginTransaction();
-            $post['created_by'] = $this->userid;
-            if (!TimeInterval::saveData($post)) {
-                throw new Exception('Could not save record', 1);
-            }
-            DB::commit();
-        } catch (QueryException $e) {
-            DB::rollBack();
-            $type = 'error';
-            $message = $this->queryMessage;
-        } catch (Exception $e) {
-            DB::rollBack();
-            $type = 'error';
-            $message = $e->getMessage();
-        }
-        return json_encode(['type' => $type, 'message' => $message]);
-    }
-
-
-    //function to list 
     public function list(Request $request)
     {
         try {
             $post = $request->all();
-            $data = TimeInterval::list($post);
+            $data = Enquiry::list($post);
             $i = 0;
             $array = [];
             $filtereddata = ($data["totalfilteredrecs"] > 0 ? $data["totalfilteredrecs"] : $data["totalrecs"]);
@@ -78,17 +39,19 @@ class TimeIntervalController extends Controller
             unset($data["totalrecs"]);
             foreach ($data as $row) {
                 $array[$i]["sno"] = $i + 1;
-                $array[$i]["start_date"]    = $row->start_date;
-                $array[$i]["end_date"]    = $row->end_date;
-
+                $array[$i]["message"]    = Str::limit($row->message, 15, '...');
+                $array[$i]["first_name"]  =  $row->first_name;
+                $array[$i]["last_name"]  =  $row->last_name;
+                $array[$i]["email"]  =  $row->email;
+                $array[$i]["created_at"] = date("Y-m-d", strtotime($row->created_at));
                 $action = '';
                 if (!empty($post['type']) && $post['type'] != 'trashed') {
-                    $action .= '<a href="javascript:;" class="edit" name="Edit Data" data-id="' . $row->id . '" data-start_date="' . $row->start_date . '" data-end_date="' . $row->end_date . '"><i class="fa-solid fa-pen-to-square text-primary"></i></a> ';
+                    $action .= ' <a href="javascript:;" class="view" title="View Data" data-id="' . $row->id . '"><i class="fa-solid fa-eye" style="color: #008f47;"></i></a> | ';
                 } else {
                     $action .= '<a href="javascript:;" class="restore" title="Restore Data" data-id="' . $row->id . '"><i class="fa-solid fa-undo text-success"></i></a> ';
+                    $action .= '|';
                 }
-                $action .= '| <a href="javascript:;" class="delete" name="Delete Data" data-id="' . $row->id . '"><i class="fa fa-trash text-danger"></i></a>';
-
+                $action .= ' <a href="javascript:;" class="delete" title="Delete Data" data-id="' . $row->id . '"><i class="fa fa-trash text-danger"></i></a>';
                 $array[$i]["action"]  = $action;
                 $i++;
             }
@@ -96,10 +59,12 @@ class TimeIntervalController extends Controller
             if (!$filtereddata) $filtereddata = 0;
             if (!$totalrecs) $totalrecs = 0;
         } catch (QueryException $e) {
+            dd($e);
             $array = [];
             $totalrecs = 0;
             $filtereddata = 0;
         } catch (Exception $e) {
+            dd($e);
             $array = [];
             $totalrecs = 0;
             $filtereddata = 0;
@@ -107,19 +72,18 @@ class TimeIntervalController extends Controller
         return json_encode(array("recordsFiltered" => $filtereddata, "recordsTotal" => $totalrecs, "data" => $array));
     }
 
-
-    //function to delete 
+    // Delete
     public function delete(Request $request)
     {
         try {
             $type = 'success';
             $message = "Record deleted successfully";
-
+            $directory = storage_path('app/public/enquiry');
             $post = $request->all();
-            $class = new TimeInterval();
+            $class = new Enquiry();
 
             DB::beginTransaction();
-            if (!Common::deleteDataFileDoesnotExists($post, $class)) {
+            if (!Common::deleteSingleData($post, $class, $directory)) {
                 throw new Exception("Record does not deleted", 1);
             }
             DB::commit();
@@ -141,11 +105,11 @@ class TimeIntervalController extends Controller
         try {
             $post = $request->all();
             $type = 'success';
-            $message = "Time Interval restored successfully";
+            $message = "Query restored successfully";
             DB::beginTransaction();
-            $result = TimeInterval::restoreData($post);
+            $result = Enquiry::restoreData($post);
             if (!$result) {
-                throw new Exception("Could not restore Time Interval. Please try again.", 1);
+                throw new Exception("Could not restore Query. Please try again.", 1);
             }
             DB::commit();
         } catch (QueryException $e) {
@@ -158,5 +122,30 @@ class TimeIntervalController extends Controller
             $message = $e->getMessage();
         }
         return response()->json(['type' => $type, 'message' => $message]);
+    }
+
+    //view
+    public function view(Request $request)
+    {
+        try {
+            $post = $request->all();
+            $queryDetail = Enquiry::where('id', $post['id'])
+                ->where('status', 'Y')
+                ->first();
+
+            $data = [
+                'queryDetail' => $queryDetail,
+            ];
+
+            $data['type'] = 'success';
+            $data['message'] = 'Successfully fetched data of Event.';
+        } catch (QueryException $e) {
+            $data['type'] = 'error';
+            $data['message'] = $this->queryMessage;
+        } catch (Exception $e) {
+            $data['type'] = 'error';
+            $data['message'] = $e->getMessage();
+        }
+        return view('backend.enquiry.view', $data);
     }
 }

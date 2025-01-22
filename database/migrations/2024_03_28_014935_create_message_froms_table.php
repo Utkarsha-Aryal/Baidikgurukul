@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('message')->nullable();
             $table->string('slug')->nullable();
             $table->string('designation')->nullable();
+            $table->string('title')->nullable();
             $table->integer('order')->nullable();
             $table->string('display_in_home')->nullable();
             $table->string('image')->nullable();

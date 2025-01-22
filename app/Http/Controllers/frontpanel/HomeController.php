@@ -45,8 +45,15 @@ class HomeController extends Controller
                 ->take(3)
                 ->get();
 
+
+
+            $eventImage = Event::where('status', 'Y')
+                ->orderBy('id', 'desc')
+                ->first();
+
             $data = [
                 'sitesetting' => $sitesetting,
+                'eventImage' => $eventImage,
                 'about' => $about,
                 'programs' => $programs,
                 'events' => $events,
@@ -64,5 +71,4 @@ class HomeController extends Controller
         }
         return view('frontend.home.index', $data);
     }
-    
 }

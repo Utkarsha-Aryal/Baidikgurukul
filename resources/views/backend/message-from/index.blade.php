@@ -61,14 +61,15 @@
                                             aria-describedby="datatable-basic_info">
                                             <thead>
                                                 <tr>
-                                                    <th>S.No</th>
+                                                    <th width="5%">S.No</th>
                                                     <th>Name</th>
+                                                    <th>Title</th>
                                                     <th>Designation</th>
                                                     <th>Message Order</th>
                                                     <th>Display In Home</th>
                                                     <th>Message</th>
                                                     <th>Photo</th>
-                                                    <th>Action</th>
+                                                    <th width="5%">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -120,7 +121,9 @@
                     {
                         "data": "name"
                     },
-
+                    {
+                        "data": "title"
+                    },
                     {
                         "data": "designation"
                     },
@@ -159,7 +162,7 @@
                 },
                 "initComplete": function() {
                     // Ensure text input fields in the header for specific columns with placeholders
-                    this.api().columns([1, 2, 3]).every(function() {
+                    this.api().columns([1, 3]).every(function() {
                         var column = this;
                         var input = document.createElement("input");
                         var columnName = column.header().innerText.trim();
@@ -243,6 +246,21 @@
                     }
                 });
             });
+
+            $(document).off('click', '.view');
+            $(document).on('click', '.view', function() {
+                var id = $(this).data('id');
+                var url = '{{ route('admin.message.view') }}';
+                var data = {
+                    id: id
+                };
+                $.post(url, data, function(response) {
+                    $('#modal .modal-content').html(response);
+                    $('#modal').modal('show');
+                });
+            });
+
+
         });
     </script>
 @endsection

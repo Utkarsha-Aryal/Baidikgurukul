@@ -634,6 +634,7 @@
                 }
             }
         }
+
         .right_container {
             width: 49%;
             position: relative;
@@ -650,6 +651,7 @@
                 @include respond-to(mobile) {
                     width: 100%;
                     gap: 25px;
+
                 }
                 .first_txt {
                     padding-inline: 30px;

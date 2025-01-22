@@ -19,7 +19,7 @@ class GalleryVideo extends Model
 
     public function videoGallery()
     {
-        return $this->belongsTo(Gallery::class, 'gallery_id');
+        return $this->belongsTo(Gallery::class, 'gallery_id')->where('status', 'Y');
     }
     // save
     public static function saveData($post)
@@ -68,7 +68,7 @@ class GalleryVideo extends Model
                 $limit = $get['length'];
                 $offset = $get["start"];
             }
-            $query = GalleryVideo::selectRaw("(SELECT COUNT(*) FROM gallery_videos WHERE status = 'Y') AS totalrecs, id as gallery_video_id, video_url")->where(['gallery_id' => $get['gallery_id'], 'status' => 'Y']);
+            $query = GalleryVideo::selectRaw("(SELECT COUNT(*) FROM gallery_videos WHERE status = 'Y') AS totalrecs, id as gallery_video_id, video_url,video_image")->where(['gallery_id' => $get['gallery_id'], 'status' => 'Y']);
             if ($limit > -1) {
                 $query = $query->orderBy('id', 'DESC')->offset($offset)->limit($limit);
             } else {

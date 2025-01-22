@@ -3,18 +3,18 @@
 @section('content2')
     <section class="introduction_page">
         <div class="img_before">
-            <link rel="stylesheet" href="{{ asset('frontpanel/assets/images/Mask group.png') }}">
+            <img src="{{ asset('frontpanel/assets/images/Mask group.png') }}" alt="">
         </div>
         <div class="common_image_txt">
             <div class="common_bg_wrapper">
-                <link rel="stylesheet" href="{{ asset('frontpanel/assets/images/image1.jpeg') }}">
+                <img src="{{ asset('frontpanel/assets/images/image1.jpeg') }}" alt="hands">
             </div>
             <div class="main_txt">
                 <p>Our Gallery</p>
             </div>
         </div>
         <div class="img_after">
-            <link rel="stylesheet" href="{{ asset('frontpanel/assets/images/Mask group.png') }}">
+            <img src="{{ asset('frontpanel/assets/images/Mask group.png') }}" alt="">
         </div>
     </section>
     <div class="gallery-container-main">
@@ -33,8 +33,11 @@
                             <div class="gallery-r1">
                                 <a href="{{ route('ginner', $gallery->slug) }}">
                                     <div class="g1-img">
-                                        @if (!empty($videoImage) && Storage::exists('public/community/' . $videoImage))
-                                            <img src="{{ asset('storage/community/' . $videoImage) }}" alt="">
+                                        @if (
+                                            !empty($galleryVideoImages[$gallery->id]) &&
+                                                Storage::exists('public/community/' . $galleryVideoImages[$gallery->id]))
+                                            <img src="{{ asset('storage/community/' . $galleryVideoImages[$gallery->id]) }}"
+                                                alt="">
                                         @else
                                             <img src="{{ asset('frontpanel/assets/images/cultural.png') }}" alt="">
                                         @endif
@@ -106,10 +109,12 @@
                     @if (!@empty($galleries) && count($galleries) > 0)
                         @foreach ($galleries as $gallery)
                             <div class="gallery-r1"> <a href="{{ route('ginner', $gallery->slug) }}">
-
                                     <div class="g1-img">
-                                        @if (!empty($videoImage) && Storage::exists('public/community/' . $videoImage))
-                                            <img src="{{ asset('storage/community/' . $videoImage) }}" alt="">
+                                        @if (
+                                            !empty($galleryVideoImages[$gallery->id]) &&
+                                                Storage::exists('public/community/' . $galleryVideoImages[$gallery->id]))
+                                            <img src="{{ asset('storage/community/' . $galleryVideoImages[$gallery->id]) }}"
+                                                alt="">
                                         @else
                                             <img src="{{ asset('frontpanel/assets/images/cultural.png') }}" alt="">
                                         @endif

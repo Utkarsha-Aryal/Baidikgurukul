@@ -103,11 +103,9 @@
                                             aria-describedby="datatable-basic_info">
                                             <thead>
                                                 <tr>
-                                                    <th width="5%">S.No</th>
+                                                    <th width="3%">S.No</th>
                                                     <th width="15%">Title</th>
-                                                    <th width="10%">Category</th>
-                                                    {{-- <th width="10%">Date</th>
-                                                    <th width="15%">Event Address</th> --}}
+                                                    <th width="10%">Category</th>\
                                                     <th width="20%">Details</th>
                                                     <th width="15%">Posted By</th>
                                                     <th width="5%">Thumbnail Image</th>
@@ -377,6 +375,54 @@
                             }
                         });
                     }
+                });
+            });
+
+            $(document).off('click', '.restore');
+            $(document).on('click', '.restore', function() {
+                Swal.fire({
+                    title: "Are you sure you want to restore Post?",
+                    text: "This will restore the Post.",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#28a745",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, Restore it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        showLoader();
+                        var id = $(this).data('id');
+                        var data = {
+                            id: id,
+                            type: 'restore'
+                        };
+                        var url = '{{ route('admin.post.restore') }}';
+                        $.post(url, data, function(response) {
+                            if (response) {
+                                if (response.type === 'success') {
+                                    showNotification(response.message, 'success');
+                                    postTable.draw();
+                                    hideLoader();
+                                } else {
+                                    showNotification(response.message, 'error');
+                                    hideLoader();
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+
+            $(document).off('click', '.view');
+            $(document).on('click', '.view', function() {
+                var id = $(this).data('id');
+                var url = '{{ route('admin.post.view') }}';
+                var data = {
+                    id: id
+                };
+                $.post(url, data, function(response) {
+                    $('#postModal .modal-content').html(response);
+                    $('#postModal').modal('show');
                 });
             });
         });
