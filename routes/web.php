@@ -259,6 +259,7 @@ Route::group(['middleware' => 'admin'], function () {
             Route::post('/restore', [EventController::class, 'restore'])->name('admin.event.restore');
             Route::post('/view', [EventController::class, 'view'])->name('admin.event.view');
             Route::post('/upload-image', [EventController::class, 'uploadImage'])->name('admin.event.upload.image');
+            Route::post('/delete-upload-image', [EventController::class, 'deleteuploadImage'])->name('admin.event.delete.upload.image');
         });
         /*Event end*/
 

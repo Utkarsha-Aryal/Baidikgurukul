@@ -63,6 +63,7 @@
                                                 <tr>
                                                     <th width="5%">S.No</th>
                                                     <th>Name</th>
+                                                    <th>Title</th>
                                                     <th>Designation</th>
                                                     <th>Message Order</th>
                                                     <th>Display In Home</th>
@@ -120,7 +121,9 @@
                     {
                         "data": "name"
                     },
-
+                    {
+                        "data": "title"
+                    },
                     {
                         "data": "designation"
                     },
@@ -159,7 +162,7 @@
                 },
                 "initComplete": function() {
                     // Ensure text input fields in the header for specific columns with placeholders
-                    this.api().columns([1, 2]).every(function() {
+                    this.api().columns([1, 3]).every(function() {
                         var column = this;
                         var input = document.createElement("input");
                         var columnName = column.header().innerText.trim();

@@ -82,7 +82,7 @@
                 <p class="p-0 m-0">File size :<span class="text-muted"> (300x475) in pixels</span></p>
             </div>
         </div>
-        <div class="col-md-3 mt-2">
+        <div class="card-footer d-flex justify-content-end">
             <button class="btn btn-primary" id="saveImage"> <i class="fas fa-save"></i> Save</button>
         </div>
     </form>
@@ -345,7 +345,7 @@
                         id: id,
                         type: type,
                     };
-                    var url = '{{ route("admin.gallery.image.delete") }}';
+                    var url = '{{ route('admin.gallery.image.delete') }}';
                     $.post(url, data, function(response) {
                         var rep = JSON.parse(response);
                         if (rep) {
@@ -405,7 +405,7 @@
                 },
             ],
             "ajax": {
-                "url": '{{ route("admin.gallery.image.list") }}',
+                "url": '{{ route('admin.gallery.image.list') }}',
                 "type": "POST",
                 "data": function(d) {
                     var type = $('#trashed_file_image').is(':checked') == true ? 'trashed' :

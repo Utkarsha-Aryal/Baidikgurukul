@@ -23,75 +23,74 @@ class EventController extends Controller
     /* save */
     public function save(Request $request)
     {
-        try {
-            $rules = [
-                'title' => 'required|min:2|max:255',
-                'details' => 'required|min:5|max:5000',
-                'order_number' => 'required',
-                'event_date' => 'required',
-                'event_address' => 'required|min:1|max:20',
-                'event_time_end' => 'required',
-                'event_time_start' => 'required',
-                'event_venue' => 'required|min:1|max:40',
-            ];
+        // try {
+        $rules = [
+            'title' => 'required|min:2|max:255',
+            'details' => 'required|min:5',
+            'order_number' => 'required',
+            'event_date' => 'required',
+            'event_address' => 'required|min:1|max:20',
+            'event_time_end' => 'required',
+            'event_time_start' => 'required',
+            'event_venue' => 'required|min:1|max:40',
+        ];
 
-            if (empty($request->id)) {
-                $rules['image'] = 'required:mimes:jpg,jpeg,png:max:2048';
-            }
-
-            $message = [
-                'title.required' => 'Please enter a title.',
-                'title.min' => 'The title must be at least 2 characters long.',
-                'title.max' => 'The title may not be more than 255 characters.',
-
-                'details.required' => 'Please provide details.',
-                'details.min' => 'The details must be at least 5 characters long.',
-                'details.max' => 'The details may not exceed 5000 characters.',
-
-                'order_number.required' => 'Please provide an order number.',
-
-                'event_date.required' => 'Please specify the event date.',
-
-                'event_address.required' => 'Please provide an event address.',
-                'event_address.min' => 'The event address must be at least 1 character long.',
-                'event_address.max' => 'The event address may not exceed 20 characters.',
-
-                'event_time_end.required' => 'Please specify the event end time.',
-                'event_time_start.required' => 'Please specify the event start time.',
-
-                'event_venue.required' => 'Please provide the event venue.',
-                'event_venue.min' => 'The event venue must be at least 1 character long.',
-                'event_venue.max' => 'The event venue may not exceed 40 characters.',
-
-                'image.required' => 'Please upload an image.',
-                'image.mimes' => 'The image must be in jpg, jpeg, or png format.',
-                'image.max' => 'The image size may not exceed 2MB.',
-            ];
-
-            $validate = Validator::make($request->all(), $rules, $message);
-
-            if ($validate->fails()) {
-                throw new Exception($validate->errors()->first(), 1);
-            }
-            $post = $request->all();
-            $type = 'success';
-            $message = 'Records saved successfully';
-
-            DB::beginTransaction();
-            $post['created_by'] = $this->userid;
-            if (!Event::saveData($post)) {
-                throw new Exception('Could not save record', 1);
-            }
-            DB::commit();
-        } catch (QueryException $e) {
-            DB::rollBack();
-            $type = 'error';
-            $message = $this->queryMessage;
-        } catch (Exception $e) {
-            DB::rollBack();
-            $type = 'error';
-            $message = $e->getMessage();
+        if (empty($request->id)) {
+            $rules['image'] = 'required:mimes:jpg,jpeg,png:max:2048';
         }
+
+        $message = [
+            'title.required' => 'Please enter a title.',
+            'title.min' => 'The title must be at least 2 characters long.',
+            'title.max' => 'The title may not be more than 255 characters.',
+
+            'details.required' => 'Please provide details.',
+            'details.min' => 'The details must be at least 5 characters long.',
+
+            'order_number.required' => 'Please provide an order number.',
+
+            'event_date.required' => 'Please specify the event date.',
+
+            'event_address.required' => 'Please provide an event address.',
+            'event_address.min' => 'The event address must be at least 1 character long.',
+            'event_address.max' => 'The event address may not exceed 20 characters.',
+
+            'event_time_end.required' => 'Please specify the event end time.',
+            'event_time_start.required' => 'Please specify the event start time.',
+
+            'event_venue.required' => 'Please provide the event venue.',
+            'event_venue.min' => 'The event venue must be at least 1 character long.',
+            'event_venue.max' => 'The event venue may not exceed 40 characters.',
+
+            'image.required' => 'Please upload an image.',
+            'image.mimes' => 'The image must be in jpg, jpeg, or png format.',
+            'image.max' => 'The image size may not exceed 2MB.',
+        ];
+
+        $validate = Validator::make($request->all(), $rules, $message);
+
+        if ($validate->fails()) {
+            throw new Exception($validate->errors()->first(), 1);
+        }
+        $post = $request->all();
+        $type = 'success';
+        $message = 'Records saved successfully';
+
+        DB::beginTransaction();
+        $post['created_by'] = $this->userid;
+        if (!Event::saveData($post)) {
+            throw new Exception('Could not save record', 1);
+        }
+        DB::commit();
+        // } catch (QueryException $e) {
+        //     DB::rollBack();
+        //     $type = 'error';
+        //     $message = $this->queryMessage;
+        // } catch (Exception $e) {
+        //     DB::rollBack();
+        //     $type = 'error';
+        //     $message = $e->getMessage();
+        // }
         return json_encode(['type' => $type, 'message' => $message]);
     }
 
@@ -301,34 +300,60 @@ class EventController extends Controller
     public function uploadImage(Request $request)
     {
         try {
-            if ($request->hasFile('upload')) {
-                $folder = storage_path('app/public/event/');
+            $folder = storage_path('app/public/event/');
 
-                if (!Storage::exists($folder))
-                    Storage::makeDirectory($folder, 0775, true, true);
-
-                $file = $request->file('upload');
-                $newName = time() . '_' . rand(10, 9999999999999) . '_' . $file->getClientOriginalName();
-                $file->move($folder, $newName);
-
-                $url = asset('storage/program/' . $newName);
-
-                return response()->json([
-                    'uploaded' => 1,
-                    'fileName' => $newName,
-                    'url' => $url
-                ]);
-            } else {
-                return response()->json([
-                    'uploaded' => 0,
-                    'error' => ['message' => 'No file uploaded.']
-                ]);
+            if (!Storage::exists($folder)) {
+                Storage::makeDirectory($folder, 0775, true, true);
             }
+
+            $file = $request->file('file');
+
+            $newName = time() . '_' . rand(10, 9999999999999) . '_' . $file->getClientOriginalName();
+
+            $file->move($folder, $newName);
+
+            $url = asset('storage/event/' . $newName);
         } catch (Exception $e) {
             return response()->json([
                 'uploaded' => 0,
                 'error' => ['message' => $e->getMessage()]
             ], 500);
+        }
+
+        return response()->json([
+            'success' => true,
+            'imageUrl' => $url
+        ]);
+    }
+
+
+    //remove 
+    public function deleteuploadImage(Request $request)
+    {
+        try {
+            $request->validate([
+                'image_path' => 'required|string',
+            ]);
+
+            $fileName = basename($request->input('image_path'));
+            $filePath = public_path('storage/event/' . $fileName);
+
+
+            if (file_exists($filePath)) {
+                if (unlink($filePath)) {
+                    return response()->json(['success' => true, 'message' => 'File deleted successfully.']);
+                } else {
+                    return response()->json(['success' => false, 'message' => 'Failed to delete the file.']);
+                }
+            } else {
+                return response()->json(['success' => false, 'message' => 'File not found.']);
+            }
+        } catch (QueryException $e) {
+            $data['type'] = 'error';
+            $data['message'] = $this->queryMessage;
+        } catch (Exception $e) {
+            $data['type'] = 'error';
+            $data['message'] = $e->getMessage();
         }
     }
 }
