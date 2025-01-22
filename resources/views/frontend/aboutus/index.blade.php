@@ -1,6 +1,8 @@
-@extends('frontend.layouts.main')
+@extends('frontend.layout2.main2')
 @section('title', 'About Us')
-@section('content')
+
+@section('content2')
+
     <section class="introduction_page">
         <div class="img_before">
             <img src="{{ asset('frontpanel/assets/images/Mask group.png') }}" alt="">
@@ -114,9 +116,9 @@
                     @foreach ($timelines as $index => $timeline)
                         <div class="{{ $index % 2 == 0 ? 'timeline-item_odd' : 'timeline-item_even' }}">
                             <div class="timeline-item-content">
-                                <h3>{{ $timeline->year }}</h3>The Magar community aims to ensure its continued growth,
-                                resilience, and contribution to society, all while staying true to its roots and cultural
-                                identity.
+
+                                <h3>{{ $timeline->year }}</h3>
+
                                 <p>{{ $timeline->details }}</p>
                             </div>
                             <div class="timeline-items {{ $index % 2 == 0 ? 'odd' : 'even' }}">
@@ -143,6 +145,7 @@
                         </svg>
                     </div>
                     <div class="first_txt">
+
                         @if ($message->title)
                             @php
                                 $text = $message->title ?? '';
@@ -161,6 +164,7 @@
                             <p>Dream Of Every <span class="blue">Chochangay
                                     Samaj Community</span> Is To Gather Our Rights </p>
                         @endif
+
                     </div>
                     <div class="third_dream_txt">
                         @if (!@empty($message->message))

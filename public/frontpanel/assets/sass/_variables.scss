@@ -7,7 +7,7 @@ $white: rgba(252, 252, 252, 1);
 $grey: rgba(115, 115, 115, 1);
 
 body {
-    font-family: "Rubik", serif;
+    font-family: "Rubik", serif !important;
 }
 .container {
     width: 85%;
@@ -39,6 +39,7 @@ button {
     cursor: pointer;
     border: none;
     background: none;
+    padding: 0;
 }
 .img_after {
     @include respond-to(mobile) {

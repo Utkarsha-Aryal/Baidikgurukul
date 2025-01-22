@@ -1,4 +1,4 @@
-@extends('frontend.layouts.main')
+@extends('frontend.layout2.main2')
 @section('title', 'Our Population Entry Form')
 
 <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
@@ -12,7 +12,7 @@
 
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
-@section('content')
+@section('content2')
     <section class="introduction_page">
         <div class="img_before">
             <img src="{{ asset('frontpanel/assets/images/Mask group.png') }}" alt="">

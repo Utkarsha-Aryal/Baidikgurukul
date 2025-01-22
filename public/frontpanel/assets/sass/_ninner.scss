@@ -85,19 +85,18 @@
                     .nb_right_wrapper {
                         display: flex;
                         gap: 25px;
-                        margin-bottom: 15px;
-
+                    
                         .right_container_image {
                             margin-block: 10px;
-                            height: 75px;
-                            width: 75px;
-                            @include respond-to(mobile) {
-                                height: 40px;
-                                width: 40px;
-                            }
                             img {
                                 border-radius: 5px;
                                 object-fit: cover !important;
+                                height: 75px;
+                                width: 75px;
+                                @include respond-to(mobile) {
+                                    height: 40px;
+                                    width: 40px;
+                                }
                             }
                         }
                         .right_text {

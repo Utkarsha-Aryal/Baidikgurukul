@@ -20,6 +20,7 @@
 @import "_forms.scss";
 @import "_ginner.scss";
 @import "_birth.scss";
+@import "_header.scss";
 
 // header section ends here
 
@@ -31,7 +32,7 @@
         .email_contact_container {
             background-color: rgba(169, 2, 98, 1);
             width: 50%;
-            padding: 10.5px;
+            padding: 12.5px;
             .nav_top_left {
                 display: flex;
                 align-items: center;
@@ -84,7 +85,10 @@
             background-color: rgba(6, 106, 200, 1);
             width: 53%;
             position: relative;
-            padding: 10px;
+            padding: 12px;
+            display: flex;
+            justify-content: right;
+            padding-right: 105px;
             &::after {
                 content: "";
                 position: absolute;
@@ -122,6 +126,10 @@
         }
     }
     #sticky_nav_menu {
+        // background-color: white;
+        position: absolute;
+        z-index: 999999999;
+        width: 100%;
         &.sticky {
             position: fixed;
             top: 0;
@@ -130,243 +138,263 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             width: 100%;
             background: white;
-        }
-        .nav_menu_wrapper {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding-block: 8px;
-            .logo_wrapper {
-                display: flex;
-                align-items: center;
-                gap: 12px;
-                .nav_logo {
-                    img {
-                        height: 60px;
-                        width: 63px;
-                        @include respond-to(mobile) {
-                            height: 50px;
-                            width: 50px;
-                            border-radius: 50%;
-                        }
-                    }
-                }
-                .logo_txt {
-                    p {
-                        font-size: 20px;
-                        font-weight: 600;
-                        @include respond-to(mobile) {
-                            font-size: 14px !important;
-                        }
-                        @include respond-to(tablet) {
-                            font-size: 18px;
-                        }
+            .logo_txt p {
+                color: #000000 !important;
+            }
+            .navigation_list {
+                li {
+                    a {
+                        color: #000000 !important;
                     }
                 }
             }
-            .nav_list_hamburger_menu {
+            .nav_menu_wrapper {
+                padding-block: 10px !important;
+            }
+        }
+        .container {
+            .nav_menu_wrapper {
                 display: flex;
                 align-items: center;
-                position: relative;
-                @include respond-to(tablet) {
-                    flex-direction: row-reverse;
-                    align-items: center;
-                    gap: 20px;
-                    width: 100%;
-                }
-                .hamburger-menu {
-                    display: none;
-                    .bi {
-                        height: 50px;
-                        width: 35px;
-                    }
-                    @include respond-to(tablet) {
-                        display: block;
-                    }
-                }
-                .cross_sign {
-                    display: none; /* Hidden by default */
-                    cursor: pointer;
-                    width: 30px; /* Adjust size as necessary */
-                    height: 30px;
-                    position: absolute;
-                    top: 10px; /* Adjust positioning */
-                    right: 10px;
-                    z-index: 99999;
-                    .bi {
-                        height: 30px;
-                        width: 30px;
-                        @include respond-to(mobile) {
-                            height: 23px;
-                            width: 23px;
-                        }
-                    }
-                    &.active {
-                        display: block;
-                    }
-                }
-                .nav_list_menu {
+                justify-content: space-between;
+                padding-block: 15px;
+                .logo_wrapper {
                     display: flex;
                     align-items: center;
-                    gap: 20px;
-
-                    .navigation_list {
-                        display: flex;
+                    gap: 12px;
+                    .nav_logo {
+                        img {
+                            height: 60px;
+                            width: 63px;
+                            @include respond-to(mobile) {
+                                height: 50px;
+                                width: 50px;
+                                border-radius: 50%;
+                            }
+                        }
+                    }
+                    .logo_txt {
+                        p {
+                            font-size: 20px;
+                            font-weight: 600;
+                            color: $white;
+                            @include respond-to(mobile) {
+                                font-size: 14px !important;
+                            }
+                            @include respond-to(tablet) {
+                                font-size: 18px;
+                            }
+                        }
+                    }
+                }
+                .nav_list_hamburger_menu {
+                    display: flex;
+                    align-items: center;
+                    position: relative;
+                    @include respond-to(tablet) {
+                        flex-direction: row-reverse;
                         align-items: center;
                         gap: 20px;
+                        width: 100%;
+                    }
+                    .hamburger-menu {
+                        display: none;
+                        .bi {
+                            height: 50px;
+                            width: 35px;
+                        }
                         @include respond-to(tablet) {
-                            transform: translateX(-100%);
-                            position: absolute;
-                            top: -20px;
-                            left: 0;
-                            width: 100%;
-                            z-index: 9999;
-                            background-color: white;
-                            display: none;
+                            display: block;
+                        }
+                    }
+                    .cross_sign {
+                        display: none; /* Hidden by default */
+                        cursor: pointer;
+                        width: 30px; /* Adjust size as necessary */
+                        height: 30px;
+                        position: absolute;
+                        top: 10px; /* Adjust positioning */
+                        right: 10px;
+                        z-index: 99999;
+                        .bi {
+                            height: 30px;
+                            width: 30px;
+                            @include respond-to(mobile) {
+                                height: 23px;
+                                width: 23px;
+                            }
                         }
                         &.active {
                             display: block;
-                            flex-direction: column !important;
-                            transform: translateX(0);
-                            width: 100%;
                         }
-                        li {
-                            position: relative;
+                    }
+                    .nav_list_menu {
+                        display: flex;
+                        align-items: center;
+                        gap: 20px;
+
+                        .navigation_list {
+                            display: flex;
+                            align-items: center;
+                            gap: 20px;
                             @include respond-to(tablet) {
-                                margin-block: 15px;
-                            }
-                            a {
-                                font-size: 16px;
-                                font-weight: 600;
-                                position: relative;
-                                &:hover {
-                                    color: $blue;
-                                }
-
-                                &::after {
-                                    content: "";
-                                    position: absolute;
-                                    bottom: 0;
-                                    left: 0;
-                                    width: 0;
-                                    height: 2px;
-                                    background-color: $blue;
-                                    transition:
-                                        width 0.3s ease,
-                                        left 0.3s ease;
-                                    border-radius: 4px;
-                                    margin-block: -2px;
-                                }
-                                &:hover::after {
-                                    width: 50%;
-                                    right: 0;
-                                    margin-top: 10px;
-                                }
-                            }
-                            .dropdown {
-                                display: none; /* Hidden by default */
+                                transform: translateX(-100%);
                                 position: absolute;
-                                top: 100%; /* Position below the parent */
+                                top: -20px;
                                 left: 0;
-                                background-color: rgba(239, 247, 255, 1);
-                                border: 1px solid #ddd;
-                                box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-                                z-index: 100;
-                                width: 160px;
-                                padding: 10px 10px;
-                                border-top: 2px solid $blue;
-                                @include respond-to(mobile) {
-                                    padding: 0 10px;
-                                    width: 100px;
-                                    left: 79px !important;
-                                }
+                                width: 100%;
+                                z-index: 9999;
+                                display: none;
+                            }
+                            &.active {
+                                display: block;
+                                flex-direction: column !important;
+                                transform: translateX(0);
+                                width: 100%;
+                            }
+                            li {
+                                position: relative;
                                 @include respond-to(tablet) {
-                                    left: 80px;
+                                    margin-block: 15px;
                                 }
+                                a {
+                                    font-size: 16px;
+                                    font-weight: 600;
+                                    color: white;
+                                    position: relative;
+                                    &:hover {
+                                        color: $blue;
+                                    }
 
-                                li {
-                                    padding-block: 8px;
-                                    border-bottom: 1.5px dashed rgba(180, 218, 254, 1);
+                                    &::after {
+                                        content: "";
+                                        position: absolute;
+                                        bottom: 0;
+                                        left: 0;
+                                        width: 0;
+                                        height: 2px;
+                                        background-color: $blue;
+                                        transition:
+                                            width 0.3s ease,
+                                            left 0.3s ease;
+                                        border-radius: 4px;
+                                        margin-block: -2px;
+                                    }
+                                    &:hover::after {
+                                        width: 50%;
+                                        right: 0;
+                                        margin-top: 10px;
+                                    }
+                                   
+                                }
+                                .dropdown {
+                                    display: none; /* Hidden by default */
+                                    position: absolute;
+                                    top: 100%; /* Position below the parent */
+                                    left: 0;
+                                    background-color: rgba(239, 247, 255, 1);
+                                    border: 1px solid #ddd;
+                                    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+                                    z-index: 100;
+                                    width: 160px;
+                                    padding: 10px 10px;
+                                    border-top: 2px solid $blue;
                                     @include respond-to(mobile) {
-                                        padding: 0;
+                                        padding: 0 10px;
+                                        width: 100px;
+                                        left: 79px !important;
                                     }
-                                    &:nth-child(4) {
-                                        border-bottom: none;
+                                    @include respond-to(tablet) {
+                                        left: 80px;
                                     }
-                                    &:nth-child(2) {
-                                        a {
-                                            display: flex;
-                                            align-items: center;
-                                            justify-content: space-between;
-                                            .bi {
-                                                color: rgba(0, 0, 0, 1);
+
+                                    li {
+                                        padding-block: 8px;
+                                        border-bottom: 1.5px dashed rgba(180, 218, 254, 1);
+                                        @include respond-to(mobile) {
+                                            padding: 0;
+                                        }
+                                        &:nth-child(4) {
+                                            border-bottom: none;
+                                        }
+                                        &:nth-child(2) {
+                                            a {
+                                                display: flex;
+                                                align-items: center;
+                                                justify-content: space-between;
+                                                .bi {
+                                                    color: rgba(0, 0, 0, 1);
+                                                }
                                             }
                                         }
-                                    }
-                                    a {
-                                        color: rgba(115, 115, 115, 1);
-                                        font-size: 15px;
+                                        a {
+                                            color: rgba(115, 115, 115, 1);
+                                            font-size: 15px;
 
-                                        &::after {
-                                            display: none;
-                                        }
-                                        &:hover {
-                                            color: $blue;
-                                        }
-                                    }
-                                    .nested-dropdown {
-                                        display: none; /* Hidden by default */
-                                        position: absolute;
-                                        top: 0; /* Position below the parent */
-                                        left: 160px;
-                                        background-color: rgba(239, 247, 255, 1);
-                                        border: 1px solid #ddd;
-                                        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-                                        z-index: 100;
-                                        width: 160px;
-                                        padding: 10px 10px;
-                                        border-top: 2px solid $blue;
-                                        li {
-                                            &:nth-child(4) {
-                                                border-bottom: none;
+                                            &::after {
+                                                display: none;
                                             }
                                             &:hover {
                                                 color: $blue;
                                             }
                                         }
-                                        @include respond-to(tablet) {
-                                            left: 80px;
-                                            width: 100px;
+                                        .nested-dropdown {
+                                            display: none; /* Hidden by default */
+                                            position: absolute;
+                                            top: 0; /* Position below the parent */
+                                            left: 160px;
+                                            background-color: rgba(239, 247, 255, 1);
+                                            border: 1px solid #ddd;
+                                            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+                                            z-index: 100;
+                                            width: 160px;
+                                            padding: 10px 10px;
+                                            border-top: 2px solid $blue;
+                                            li {
+                                                &:nth-child(4) {
+                                                    border-bottom: none;
+                                                }
+                                                &:hover {
+                                                    color: $blue;
+                                                }
+                                            }
+                                            @include respond-to(tablet) {
+                                                left: 80px;
+                                                width: 100px;
+                                            }
+                                            @include respond-to(mobile) {
+                                                left: 80px;
+                                                width: 65px !important;
+                                            }
                                         }
-                                        @include respond-to(mobile) {
-                                            left: 80px;
-                                            width: 65px !important;
+                                        &:hover .nested-dropdown {
+                                            display: block;
                                         }
-                                    }
-                                    &:hover .nested-dropdown {
-                                        display: block;
                                     }
                                 }
-                            }
-                            &:hover .dropdown {
-                                display: block;
+                                &:hover .dropdown {
+                                    display: block;
+                                }
+                                &.active{
+                                    background-color: #000000;
+                                }
                             }
                         }
-                    }
-                    .donar_list {
-                        a {
-                            display: flex;
-                            align-items: center;
-                            gap: 8px;
-                            background-color: rgba(6, 106, 200, 1);
-                            padding: 10px 10px;
-                            .bi {
-                                color: white;
-                            }
-                            p {
-                                font-size: 12px;
-                                font-weight: 500;
-                                color: white;
+                        .donar_list {
+                            a {
+                                display: flex;
+                                align-items: center;
+                                gap: 8px;
+                                background-color: rgba(6, 106, 200, 1);
+                                padding: 10px 10px;
+                                .bi {
+                                    color: white;
+                                }
+                                p {
+                                    font-size: 12px;
+                                    font-weight: 500;
+                                    color: white;
+                                }
                             }
                         }
                     }
@@ -398,7 +426,7 @@
         }
 
         img {
-            height: 430px;
+            height: 600px;
             filter: grayscale(100%);
         }
     }
@@ -536,7 +564,7 @@
             gap: 20px;
         }
         .rules_wrapper_left {
-            width: 48%;
+            width: 49%;
             position: relative;
             @include respond-to(mobile) {
                 width: 100%;
@@ -561,7 +589,7 @@
                 position: absolute;
                 top: 25px;
                 bottom: 0;
-                margin-inline: 20px;
+                margin-inline: 30px;
                 .first_ritual_txt {
                     p {
                         font-size: 24px;
@@ -578,7 +606,7 @@
                     p {
                         font-size: 16px;
                         font-weight: 400;
-                        color: white;
+                        color: rgba(234, 234, 234, 1);
                         margin: 0;
                         @include respond-to(mobile) {
                             font-size: 12px;
@@ -594,6 +622,7 @@
                             font-size: 14px;
                             font-weight: 500;
                             color: white;
+                            font-family: "Rubik", serif;
                             @include respond-to(mobile) {
                                 font-size: 12px;
                             }
@@ -605,49 +634,73 @@
                 }
             }
         }
-        .rules_right_wrap {
-            width: 48%;
-            background-color: rgba(239, 247, 255, 1);
-            align-items: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            height: 180px;
-            gap: 25px;
-            box-shadow: 0 0 16px rgba($color: #cae9ed, $alpha: 0.5);
-            @include respond-to(mobile) {
-                width: 100%;
-               
-            }
-            .first_txt {
-                padding-inline: 20px;
-                p {
-                    font-size: 16px;
-                    font-weight: 400;
-                    @include respond-to(mobile) {
-                        font-size: 12px;
+
+        .right_container {
+            width: 49%;
+            position: relative;
+            .rules_right_wrap {
+                background-color: rgba(239, 247, 255, 1);
+                align-items: center;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                height: 180px;
+                z-index: 30;
+                position: relative;
+                box-shadow: 0 0 16px rgba($color: #cae9ed, $alpha: 0.5);
+                @include respond-to(mobile) {
+                    width: 100%;
+                    gap: 25px;
+
+                }
+                .first_txt {
+                    padding-inline: 30px;
+                    margin-bottom: 10px;
+                    p {
+                        font-size: 16px;
+                        font-weight: 400;
+                        color: rgba(0, 0, 0, 1);
+                        @include respond-to(mobile) {
+                            font-size: 12px;
+                        }
+                    }
+                }
+                .register_button {
+                    padding-inline: 30px;
+                    a {
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                        background-color: rgba(6, 106, 200, 1);
+                        padding: 10px 10px;
+                        .bi {
+                            color: white;
+                        }
+                        p {
+                            font-size: 14px;
+                            font-weight: 500;
+                            font-family: "Rubik", serif;
+                            color: white;
+                            @include respond-to(mobile) {
+                                font-size: 10px;
+                            }
+                        }
                     }
                 }
             }
-            .register_button {
-                padding-inline: 20px;
-                a {
-                    display: flex;
-                    align-items: center;
-                    gap: 8px;
-                    background-color: rgba(6, 106, 200, 1);
-                    padding: 10px 10px;
-                    .bi {
-                        color: white;
-                    }
-                    p {
-                        font-size: 12px;
-                        font-weight: 500;
-                        color: white;
-                        @include respond-to(mobile) {
-                            font-size: 10px;
-                        }
-                    }
+            &:after {
+                content: " ";
+                position: absolute;
+                background: rgba(6, 106, 200, 0.15);
+                right: -73px;
+                width: 380px;
+                height: 160px;
+                transform: rotateX(40deg);
+                filter: blur(60px);
+                bottom: -72px;
+                border-radius: 79%;
+                @include respond-to(mobile) {
+                    display: none;
                 }
             }
         }
@@ -662,6 +715,7 @@
         align-items: center;
         justify-content: space-between;
         height: 500px;
+        position: relative;
         @include respond-to(tablet) {
             height: 100%;
         }
@@ -676,7 +730,7 @@
                 height: 408px;
                 width: 475px;
                 border-radius: 50%;
-                box-shadow: inset 0 0 43.3px rgba(0, 106, 200, 0.56);
+                box-shadow: 0px 0px 43.3px 0px rgba(6, 106, 200, 0.56) inset;
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
@@ -688,7 +742,7 @@
                     top: 50%;
                     left: 50%;
                     transform: translate(-50%, -50%);
-                    box-shadow: inset 0 0 43.3px rgba(0, 106, 200, 0.72);
+                    box-shadow: 0px 0px 43.3px 0px rgba(6, 106, 200, 0.72) inset;
                 }
                 .dance-img {
                     position: absolute;
@@ -696,6 +750,36 @@
                     left: 50%;
                     transform: translate(-50%, -50%);
                     width: 285px;
+                }
+                &:after {
+                    content: " ";
+                    position: absolute;
+                    background: rgba(6, 106, 200, 0.15);
+                    right: 133px;
+                    width: 145px;
+                    height: 105px;
+                    transform: rotateX(40deg);
+                    filter: blur(15px);
+                    bottom: -63px;
+                    border-radius: 79%;
+                    @include respond-to(mobile) {
+                        display: none;
+                    }
+                }
+                &:before {
+                    content: " ";
+                    position: absolute;
+                    background: rgba(6, 106, 200, 0.15);
+                    right: 282px;
+                    width: 70px;
+                    height: 72px;
+                    transform: rotateX(40deg);
+                    filter: blur(15px);
+                    bottom: -73px;
+                    border-radius: 79%;
+                    @include respond-to(mobile) {
+                        display: none;
+                    }
                 }
             }
         }
@@ -708,7 +792,7 @@
             .first_dreams_txt {
                 p {
                     font-size: 16px;
-                    font-weight: 600;
+                    font-weight: 500;
                     color: rgba(0, 0, 0, 1);
                     position: relative;
                     &::after {
@@ -724,6 +808,7 @@
                 }
             }
             .second_txt {
+                margin-block: 15px;
                 p {
                     font-size: 36px;
                     font-weight: 600;
@@ -766,6 +851,21 @@
                 }
             }
         }
+        &:before {
+            content: " ";
+            position: absolute;
+            background: rgba(6, 106, 200, 0.15);
+            right: 250px;
+            width: 380px;
+            height: 171px;
+            transform: rotateX(40deg);
+            filter: blur(80px);
+            bottom: -100px;
+            border-radius: 79%;
+            @include respond-to(mobile) {
+                display: none;
+            }
+        }
     }
 }
 // fourth content
@@ -794,6 +894,7 @@
                 }
             }
             .first_txt {
+                margin-block: 15px;
                 p {
                     font-size: 36px;
                     font-weight: 600;
@@ -809,7 +910,7 @@
                 }
             }
             .third_dream_txt {
-                margin-block: 20px;
+                margin-block: 15px;
                 p {
                     font-size: 16px;
                     font-weight: 400;
@@ -843,6 +944,7 @@
             }
             .image_container {
                 position: relative;
+                width: 370px;
                 img {
                     border-top-left-radius: 300px;
                     border-top-right-radius: 270px;
@@ -904,17 +1006,18 @@
                     border-radius: 4px;
                     background-color: rgb(6, 106, 200);
                     top: 8px;
-                    left: 180px;
+                    left: 190px;
                 }
                 p {
                     font-size: 16px;
-                    font-weight: 600;
+                    font-weight: 500;
                     color: rgba(0, 0, 0, 1);
                     margin-block: 8px;
                     margin-inline: 0;
                 }
             }
             .second_program_txt {
+                margin-block: 15px;
                 p {
                     font-size: 36px;
                     font-weight: 600;
@@ -931,6 +1034,7 @@
                 }
             }
             .third_program_txt {
+                margin-block: 15px;
                 p {
                     font-size: 16px;
                     font-weight: 400;
@@ -1010,7 +1114,7 @@
                             margin-block: 10px;
                             p {
                                 font-size: 20px;
-                                font-weight: 600;
+                                font-weight: 500;
                                 color: rgba(0, 0, 0, 1);
                                 margin: 0;
                                 @include respond-to(mobile) {
@@ -1019,7 +1123,7 @@
                             }
                         }
                         .second_txt {
-                            margin-block: 10px;
+                            margin-bottom: 20px;
                             p {
                                 font-size: 14px;
                                 font-weight: 400;
@@ -1039,6 +1143,7 @@
                                     font-weight: 400;
                                     color: #066ac8;
                                     margin: 0;
+                                    font-family: "Rubik", serif !important;
                                 }
                                 .bi {
                                     color: #066ac8;
@@ -1068,7 +1173,7 @@
         // }
         .lf-image {
             position: absolute;
-            left: -90px;
+            left: -107px;
             height: 110px;
             width: 110px;
             top: 50px;
@@ -1130,7 +1235,7 @@
                     }
                 }
                 .third_event_text {
-                    margin-block: 15px;
+                    margin-block: 15px 30px;
                     p {
                         font-size: 16px;
                         font-weight: 400;
@@ -1213,6 +1318,7 @@
                                 display: flex;
                                 justify-content: space-between;
                                 gap: 10px;
+                                margin-block: 20px;
                                 @include respond-to(mobile) {
                                     flex-direction: column;
                                     align-items: center;
@@ -1336,6 +1442,7 @@
                     }
                 }
                 .see_all_btn {
+                    margin-top: 40px;
                     a {
                         display: flex;
                         align-items: center;
@@ -1418,6 +1525,7 @@
             justify-content: space-between;
             .second_program_txt {
                 width: 75%;
+                margin-block: 15px;
                 @include respond-to(mobile) {
                     width: 70%;
                 }
@@ -1501,7 +1609,7 @@
                 padding-inline: 5px;
                 p {
                     font-size: 20px;
-                    font-weight: 600;
+                    font-weight: 500;
                     color: rgba(0, 0, 0, 1);
                     margin: 0;
                     @include respond-to(mobile) {
@@ -1510,7 +1618,7 @@
                 }
             }
             .second_txt {
-                margin-block: 10px;
+                margin-block: 15px 20px;
                 padding-inline: 5px;
                 p {
                     font-size: 14px;
@@ -1518,6 +1626,7 @@
                     color: rgba(115, 115, 115, 1);
                     margin: 0;
                     text-align: justify;
+                    font-family: "Rubik", serif !important;
                 }
             }
             .read_more {
@@ -1532,6 +1641,7 @@
                         font-weight: 400;
                         color: #066ac8;
                         margin: 0;
+                        font-family: "Rubik", serif !important;
                     }
                     .bi {
                         color: #066ac8;
@@ -1668,7 +1778,7 @@
                         display: flex;
                         gap: 5px;
                         align-items: center;
-                        margin-block:15px;
+                        margin-block: 15px;
                         .ficon-border {
                             background-color: $maroon;
                             padding: 8px;
