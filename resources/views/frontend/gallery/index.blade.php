@@ -1,7 +1,7 @@
 @extends('frontend.layouts.main')
 @section('title', 'Our Gallery')
 @section('content')
-<section class="introduction_page">
+    <section class="introduction_page">
         <div class="img_before">
             <img src="{{ asset('frontpanel/assets/images/Mask group.png') }}" alt="">
         </div>
@@ -33,8 +33,11 @@
                             <div class="gallery-r1">
                                 <a href="{{ route('ginner', $gallery->slug) }}">
                                     <div class="g1-img">
-                                        @if (!empty($videoImage) && Storage::exists('public/community/' . $videoImage))
-                                            <img src="{{ asset('storage/community/' . $videoImage) }}" alt="">
+                                        @if (
+                                            !empty($galleryVideoImages[$gallery->id]) &&
+                                                Storage::exists('public/community/' . $galleryVideoImages[$gallery->id]))
+                                            <img src="{{ asset('storage/community/' . $galleryVideoImages[$gallery->id]) }}"
+                                                alt="">
                                         @else
                                             <img src="{{ asset('frontpanel/assets/images/cultural.png') }}" alt="">
                                         @endif
@@ -106,10 +109,12 @@
                     @if (!@empty($galleries) && count($galleries) > 0)
                         @foreach ($galleries as $gallery)
                             <div class="gallery-r1"> <a href="{{ route('ginner', $gallery->slug) }}">
-
                                     <div class="g1-img">
-                                        @if (!empty($videoImage) && Storage::exists('public/community/' . $videoImage))
-                                            <img src="{{ asset('storage/community/' . $videoImage) }}" alt="">
+                                        @if (
+                                            !empty($galleryVideoImages[$gallery->id]) &&
+                                                Storage::exists('public/community/' . $galleryVideoImages[$gallery->id]))
+                                            <img src="{{ asset('storage/community/' . $galleryVideoImages[$gallery->id]) }}"
+                                                alt="">
                                         @else
                                             <img src="{{ asset('frontpanel/assets/images/cultural.png') }}" alt="">
                                         @endif

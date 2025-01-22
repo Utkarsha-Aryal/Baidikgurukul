@@ -143,8 +143,24 @@
                         </svg>
                     </div>
                     <div class="first_txt">
-                        <p>Dream Of Every <span class="blue">Chochangay
-                                Samaj Community</span> Is To Gather Our Rights </p>
+                        @if ($message->title)
+                            @php
+                                $text = $message->title ?? '';
+                                $words = explode(' ', $text);
+                                if (count($words) > 3) {
+                                    $words[3] =
+                                        '
+<span style="color: rgba(6, 106, 200, 1);">' . $words[3];
+                                    $words[5] .= '</span>';
+                                }
+                                $styledText = implode(' ', $words);
+                            @endphp
+
+                            <p>{!! $styledText !!}</p>
+                        @else
+                            <p>Dream Of Every <span class="blue">Chochangay
+                                    Samaj Community</span> Is To Gather Our Rights </p>
+                        @endif
                     </div>
                     <div class="third_dream_txt">
                         @if (!@empty($message->message))

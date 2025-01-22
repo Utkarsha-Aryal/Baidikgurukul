@@ -21,7 +21,6 @@
         margin: 10px 10px 0 0;
     }
 
-
     .cropper-container {
         width: 100% !important;
     }
@@ -41,11 +40,6 @@
         top: 9rem !important
     }
 
-    /* #ndp-nepali-box {
-        top: 65px !important;
-        left: 10px !important;
-    } */
-
     input#nepali-datepicker {
         width: 100% !important;
         height: 50% !important;
@@ -54,13 +48,17 @@
         padding-left: 0.5rem !important;
     }
 </style>
+
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.js"></script>
+
 <div class="modal-header">
     <h1 class="modal-title fs-5" id="staticBackdropLabel">Event</h1>
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
+
 <div class="modal-body">
     <form action="{{ route('admin.event.save') }}" method="POST" id="eventForm" enctype="multipart/form-data">
-
         <div class="row">
             <input type="hidden" name="id" id="id" value="{{ $id ?? '' }}">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
@@ -71,53 +69,48 @@
         </div>
 
         <div class="row mt-2">
-
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
                 <label for="event_date" class="form-label">Event Date <span class="required-field">*</span></label>
-                {{-- <p> <input type="text" id="nepali-datepicker" name="event_date" placeholder="Select Date" value="{{ $event_date ?? '' }}"> </p> --}}
                 <input type="date" name="event_date" id="event_date" class="form-control"
                     value="{{ isset($event_date) ? \Carbon\Carbon::parse($event_date)->format('Y-m-d') : '' }}">
-
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
-                <label for="title" class="form-label">Event Address <span class="required-field">*</span></label>
+                <label for="event_address" class="form-label">Event Address <span
+                        class="required-field">*</span></label>
                 <input type="text" class="form-control" id="event_address" name="event_address"
                     placeholder="Enter event address..." value="{{ $address ?? '' }}">
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
-                <label for="title" class="form-label">Event Venue <span class="required-field">*</span></label>
+                <label for="event_venue" class="form-label">Event Venue <span class="required-field">*</span></label>
                 <input type="text" class="form-control" id="event_venue" name="event_venue"
                     placeholder="Enter event venue..." value="{{ $venue ?? '' }}">
             </div>
         </div>
 
         <div class="row mt-2">
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 ">
-                <label for="event_date" class="form-label">Event Starting Time <span
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
+                <label for="event_time_start" class="form-label">Event Starting Time <span
                         class="required-field">*</span></label>
                 <input type="time" class="form-control" id="event_time_start" name="event_time_start"
-                    placeholder="Enter starting time..." value="{{ $event_time_start ?? '' }}">
+                    value="{{ $event_time_start ?? '' }}">
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
-                <label for="title" class="form-label">Event Ending Time <span class="required-field">*</span></label>
+                <label for="event_time_end" class="form-label">Event Ending Time <span
+                        class="required-field">*</span></label>
                 <input type="time" class="form-control" id="event_time_end" name="event_time_end"
-                    placeholder="Enter ending time.." value="{{ $event_time_end ?? '' }}">
+                    value="{{ $event_time_end ?? '' }}">
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
-                <label for="title" class="form-label">Order <span class="required-field">*</span></label>
+                <label for="order_number" class="form-label">Order <span class="required-field">*</span></label>
                 <input type="number" class="form-control" id="order_number" name="order_number"
-                    placeholder="Enter order number..." value="{{ $order_number ?? '' }}">
+                    value="{{ $order_number ?? '' }}">
             </div>
         </div>
 
         <div class="row mt-2">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                 <label for="details" class="form-label">Event Details <span class="required-field">*</span></label>
-                <!-- Quill Editor Container -->
-                <!-- <div id="details" name="details">{!! $details ?? '' !!}</div>
-                <input type="hidden" name="details" id="quill-content"> -->
-                <textarea name="details" id="editor">{!! $details ?? '' !!}</textarea>
-                <input type="hidden" name="details" id="details">
+                <div id="summernote">{!! $details ?? '' !!}</div>
             </div>
         </div>
 
@@ -125,7 +118,7 @@
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                 <div class="row">
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                        <label for="image">Event Thumbnail Image <span class="required-field">*</span></label>
+                        <label for="image">Thumbnail Image <span class="required-field">*</span></label>
                         <div class="relative" id="edit-image">
                             <div class="profile-user">
                                 <label for="thumbnail_image"
@@ -150,270 +143,140 @@
                             <p class="p-0 m-0">File size :<span class="text-muted"> (300x475) in pixels</span></p>
                         </div>
                     </div>
-                    {{-- it is only for v2 --}}
-
-                    {{-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
-                        <div class="row">
-                            <label for="description" class="form-label">Event Feature Images
-                                <input class="form-control mt-2" type="file" name="feature_images[]"
-                                    id="feature_images" multiple>
-                        </div>
-                        <div class="row mt-2 ms-1">
-                            <p class="p-0 m-0">Multiple Images Can Be Uploaded </p>
-                            <p class="p-0 m-0">Accepted Format :<span class="text-muted"> jpg/jpeg/png</span></p>
-                        </div>
-
-                        <div class="row">
-                            @if (!empty($decodedFeatureImages))
-                                @foreach ($decodedFeatureImages as $featureImage)
-                                    <div id="feature_image">
-
-                                        <img src="{{ asset('/storage/event') . '/' . $featureImage }}"
-                                            class="_feature-image imageThumb" alt="Feature Image" />
-
-                                        <button type="button"
-                                            class="delete_feature_image btn btn-danger label-btn ms-2"
-                                            id="delete_feature_image"
-                                            data-feature_image="{{ $featureImage }}">Delete<i
-                                                class="bi bi-trash label-btn-icon"></i></button>
-                                    </div>
-                                @endforeach
-                            @endif
-                        </div>
-                    </div> --}}
-
                 </div>
             </div>
         </div>
     </form>
 </div>
+
 <div class="modal-footer">
     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-    <button type="button" class="btn btn-primary saveEvent"><i class="fa fa-save"></i>
-        @if (empty($id))
-            Save
-        @else
-            Update
-        @endif
-    </button>
+    <button type="button" class="btn btn-primary saveEvent"><i class="fa fa-save"></i> Save</button>
 </div>
 
 <script>
-    ClassicEditor
-        .create(document.querySelector('#editor'), {
-            ckfinder: {
-                uploadUrl: "{{ route('admin.event.upload.image', ['_token' => csrf_token()]) }}"
-            },
-            toolbar: {
-                items: [
-                    'undo', 'redo', '|', 'heading', '|', 'bold', 'italic', '|', 'blockQuote', '|',
-                    'bulletedList', 'numberedList', '|',
-                    'imageUpload', 'imageStyle:full', 'imageStyle:alignLeft', 'imageStyle:alignCenter',
-                    'imageStyle:alignRight'
-                ],
-                shouldNotGroupWhenFull: true
-            },
-            heading: {
-                options: [{
-                    model: 'paragraph',
-                    title: 'Paragraph',
-                    class: 'ck-heading_paragraph'
-                }]
-            }
-        })
-        .then(editor => {
-            // Save reference to the editor instance
-            window.editor = editor;
-        })
-        .catch(error => {
-            console.error(error);
-        });
-</script>
+    $('#thumbnail_image').on('change', function(event) {
+        const selectedFile = event.target.files[0];
+        if (selectedFile) {
+            $('._image').attr('src', URL.createObjectURL(selectedFile));
+        }
+    });
 
-<script>
     $(document).ready(function() {
+        $('#eventModal').on('shown.bs.modal', function() {
+            $('#summernote').summernote({
+                placeholder: 'Enter event details...',
+                tabsize: 2,
+                height: 150,
+                dialogsInBody: true,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'italic', 'underline', 'clear']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link', 'picture', 'video']],
+                    ['view', ['fullscreen', 'codeview', 'help']]
+                ],
+                callbacks: {
+                    onImageUpload: function(files) {
+                        var formData = new FormData();
+                        formData.append("file", files[0]);
 
+                        $.ajax({
+                            url: "event/upload-image",
+                            method: 'POST',
+                            data: formData,
+                            contentType: false,
+                            processData: false,
+                            success: function(response) {
+                                if (response.success) {
+                                    var imageUrl = response.imageUrl;
+                                    $('#summernote').summernote('insertImage',
+                                        imageUrl);
 
-        // $("#datetime").datepicker();
-
-        //uploaded image preview start
-        $(document).on("change", "#feature_images", function(event) {
-            var images = event.target.files;
-            var filesLength = images.length;
-            for (var i = 0; i < filesLength; i++) {
-                var f = images[i];
-                var fileReader = new FileReader();
-                fileReader.onload = (function(e) {
-                    var file = e.target;
-                    $("<span class=\"pip\">" +
-                        "<img class=\"imageThumb\" src=\"" + e.target.result +
-                        "\" title=\"" + file.name + "\"/>" +
-                        "</span>").insertAfter("#feature_images");
-                });
-                fileReader.readAsDataURL(f);
-            }
-        });
-
-        $(document).on('change', '#feature_images', function() {
-            $('.pip').hide();
-        });
-        // uploaded image preview end
-
-        $('#thumbnail_image').on('change', function(event) {
-            const selectedFile = event.target.files[0];
-
-            if (selectedFile) {
-                $('._image').attr('src', URL.createObjectURL(selectedFile));
-            }
-        });
-
-
-        $('#eventForm').validate({
-            rules: {
-                title: "required",
-                event_date: "required",
-                event_address: "required",
-                order_number: "required",
-                event_time_end: "required",
-                event_time_start: "required",
-                event_venue: "required",
-                details: "required",
-                image: {
-                    required: function() {
-                        var id = $('#id').val();
-                        return id === '';
-                    }
-                },
-            },
-            message: {
-                title: {
-                    required: "This field is required."
-                },
-
-                details: {
-                    required: "This field is required."
-                },
-                event_date: {
-                    required: "This field is required."
-                },
-                event_address: {
-                    required: "This field is required."
-                },
-                image: {
-                    required: "This field is required."
-                },
-                event_time_end: {
-                    required: "This field is required."
-                },
-                event_time_start: {
-                    required: "This field is required."
-                },
-                event_venue: {
-                    required: "This field is required."
-                },
-                order_number: {
-                    required: "This field is required."
-                },
-            },
-            highlight: function(element) {
-                $(element).addClass('border-danger')
-            },
-            unhighlight: function(element) {
-                $(element).removeClass('border-danger')
-            },
-        });
-
-        // Save news
-        $('.saveEvent').off('click');
-        $('.saveEvent').on('click', function() {
-            if ($('#eventForm').valid()) {
-                $('#details').val(window.editor.getData());
-                showLoader();
-                $('#eventForm').ajaxSubmit(function(response) {
-                    var result = JSON.parse(response);
-                    if (result) {
-                        if (result.type === 'success') {
-                            showNotification(result.message, 'success');
-                            hideLoader();
-                            eventTable.draw();
-                            $('#eventForm')[0].reset();
-                            $('#id').val('');
-                            $('#eventModal').modal('hide');
-                        } else {
-                            showNotification(result.message, 'error');
-                            hideLoader();
-                        }
-                    } else {
-                        hideLoader();
-                    }
-                });
-            }
-        });
-
-        // $('.delete_feature_image').on('click', function() {
-        //     var feature_image = $(this).data('feature_image');
-        //     var id = $('#id').val();
-        //     var url = '{{ route('admin.post.deletefeatureimage') }}';
-        //     $.ajax({
-        //         url: url,
-        //         type: 'POST',
-        //         data: {
-        //             feature_image: feature_image,
-        //             id: id,
-        //         },
-        //         success: function(response) {
-        //             // Handle success message or update UI
-        //             console.log(response);
-        //             // Reload or update UI to reflect changes
-        //         },
-        //         error: function(xhr, status, error) {
-        //             // Handle error
-        //             console.error(error);
-        //         }
-        //     });
-        // });
-        // Delete feature image
-        $('.delete_feature_image').off('click')
-        $('.delete_feature_image').on('click', function() {
-            var deleteButton = $(this); // Here, you define deleteButton
-            Swal.fire({
-                title: "Are you sure you want to delete this item",
-                text: "You won't be able to revert it!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DB1F48",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, Delete it!"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    showLoader();
-                    var feature_image = $(this).data('feature_image');
-                    var id = $('#id').val();
-
-                    var url = "{{ route('admin.event.deletefeatureimage') }}";
-
-                    var data = {
-                        feature_image: feature_image,
-                        id: id,
-                    };
-                    $.post(url, data, function(response) {
-                        var result = JSON.parse(response);
-                        if (result) {
-                            if (result.type === 'success') {
-                                showNotification(result.message, 'success');
-
-                                // Remove the deleted image from the DOM
-                                deleteButton.closest('#feature_image').remove();
-
-                                hideLoader();
-                            } else {
-                                showNotification(result.message, 'error');
-                                hideLoader();
+                                    $('<input>')
+                                        .attr({
+                                            type: 'hidden',
+                                            name: 'image_path',
+                                            value: imageUrl,
+                                        })
+                                        .appendTo('#eventForm');
+                                } else {
+                                    showNotification(response.message, 'error');
+                                }
+                            },
+                            error: function() {
+                                showNotification('Image upload failed',
+                                    'error');
                             }
-                        }
-                    });
+                        });
+                    },
+                    onMediaDelete: function(target) {
+                        var imageUrl = target.attr(
+                            'src');
+
+                        console.log(imageUrl);
+                        $.ajax({
+                            url: "event/delete-upload-image",
+                            method: 'POST',
+                            data: {
+                                _token: $('meta[name="csrf-token"]').attr(
+                                    'content'),
+                                image_path: imageUrl
+                            },
+                            success: function(response) {
+                                if (response.success) {
+                                    showNotification(
+                                        'Image deleted successfully',
+                                        'success');
+                                } else {
+                                    showNotification(response.message, 'error');
+                                }
+                            },
+                            error: function() {
+                                showNotification('Image deletion failed',
+                                    'error');
+                            }
+                        });
+                    }
                 }
             });
+
+        });
+
+        $('#eventModal').on('hidden.bs.modal', function() {
+            if ($('#summernote').hasClass('note-editor')) {
+                $('#summernote').summernote('destroy');
+            }
+        });
+
+        $('.saveEvent').on('click', function() {
+            if ($('#eventForm').valid()) {
+                const eventDetails = $('#summernote').summernote('code');
+                $('<input>')
+                    .attr({
+                        type: 'hidden',
+                        name: 'details',
+                        value: eventDetails,
+                    })
+                    .appendTo('#eventForm');
+
+                $('#eventForm').ajaxSubmit({
+                    success: function(response) {
+                        const result = JSON.parse(response);
+                        if (result.type === 'success') {
+                            showNotification(result.message, 'success');
+                            $('#eventModal').modal('hide');
+                            eventTable.draw();
+                        } else {
+                            showNotification(result.message, 'error');
+                        }
+                    },
+                    error: function() {
+                        showNotification('An error occurred.', 'error');
+                    }
+                });
+            }
         });
     });
 </script>

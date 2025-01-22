@@ -16,12 +16,18 @@ class EventController extends Controller
             $type = 'success';
             $message = 'Successfully fetched data';
             $data = [];
+
             $events = Event::where('status', 'Y')
                 ->orderBy('id', 'desc')
                 ->paginate(3);
 
+            $eventImage = Event::where('status', 'Y')
+                ->orderBy('id', 'desc')->first();
+
+
             $data = [
                 'events' => $events,
+                'eventImage' => $eventImage,
                 'type' => $type,
                 'message' => $message
             ];

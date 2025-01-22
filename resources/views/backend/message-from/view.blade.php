@@ -31,7 +31,11 @@
                             <td>{{ $messageDetail->name }}</td>
                         </tr>
                         <tr>
-                            <th scope="row">Message</th>
+                            <th scope="row">Message Title</th>
+                            <td>{{ $messageDetail->title }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Message Description</th>
                             <td>{!! $messageDetail->message !!}</td>
                         </tr>
                         <tr>

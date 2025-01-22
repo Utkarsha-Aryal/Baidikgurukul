@@ -54,7 +54,7 @@
                     </label>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="card-footer d-flex justify-content-end">
                 <button class="btn btn-primary" id="saveVideo"><i class="fas fa-save"></i> Save</button>
             </div>
         </div>
@@ -72,6 +72,7 @@
                                     <tr>
                                         <th>S.No</th>
                                         <th>Video</th>
+                                        <th>Video Image</th>
                                         <th>Action</th>
                                 </thead>
                                 <tbody>
@@ -121,10 +122,14 @@
                     videoTable.draw();
                     $('#videoForm')[0].reset();
                     $('#gallery_video_id').val('');
-                    $('.video-url').html('');
-                    $('.edit-image').html(
-                        '<img src="{{ asset('/frontpanel/no-image.jpg') }}" alt="Thumbnail Image"width="100px" class="_image" id="">'
+                    $('#image').val(''); // Clear the file input field
+
+                    // Reset the image preview to a default image
+                    $('#edit-image .img-rectangle').html(
+                        '<img src="{{ asset('/no-image.jpg') }}" alt="Default Image" id="img_introduction" class="ishan">'
                     );
+
+                    $('.video-url').html('');
                 }
             } else {
                 hideLoader();
@@ -202,6 +207,9 @@
                 },
                 {
                     "data": "video"
+                },
+                {
+                    "data": "video_image"
                 },
                 {
                     "data": "action"

@@ -44,6 +44,7 @@ class GalleryVideoController extends Controller
             if (empty($request->gallery_video_id)) {
                 $rules = [
                     'video' => 'required|max:250',
+                    'image' => 'required',
                 ];
             } else {
                 $rules = [
@@ -52,6 +53,7 @@ class GalleryVideoController extends Controller
             }
             $message = [
                 'video.required' => 'Please provide video link.',
+                'video_image.required' => 'Please provide video Image.',
             ];
             $validation = Validator::make($request->all(), $rules, $message);
             if ($validation->fails()) {
@@ -101,6 +103,9 @@ class GalleryVideoController extends Controller
                     frameborder='0'
                     allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
                     allowfullscreen></iframe>";
+                $imageUrl = "<img src='" . asset('/storage/community') . "/" . $row->video_image . "' height='70px' width='70px' alt='" . $row->image . "' />";
+
+                $array[$i]["video_image"]  = $row->video_image ? $imageUrl : '';
 
                 $action = '';
                 if (!empty($post['type']) && $post['type'] != 'trashed') {

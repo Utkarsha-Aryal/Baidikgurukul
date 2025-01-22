@@ -18,6 +18,7 @@ class MessageFrom extends Model
         try {
             $dataArray = [
                 'name' => $post['name'],
+                'title' => $post['title'],
                 'message' => $post['message'],
                 'slug' => Str::Slug($post['name']) . '-' . time(),
                 'designation' => $post['designation'],
@@ -68,7 +69,7 @@ class MessageFrom extends Model
             if ($get['columns'][1]['search']['value'])
                 $cond .= " and lower(name) like '%" . $get['columns'][1]['search']['value'] . "%'";
 
-            if ($get['columns'][2]['search']['value'])
+            if ($get['columns'][3]['search']['value'])
                 $cond .= " and lower(designation) like '%" . $get['columns'][2]['search']['value'] . "%'";
 
             $limit = 15;
@@ -78,7 +79,7 @@ class MessageFrom extends Model
                 $offset = $get["start"];
             }
 
-            $query = MessageFrom::selectRaw("count(*) OVER() AS totalrecs, name, id as id,message,designation,display_in_home,`order`, image")
+            $query = MessageFrom::selectRaw("count(*) OVER() AS totalrecs, name, id as id,message,designation,display_in_home,`order`, image,title")
                 ->whereRaw($cond);
 
             if ($limit > -1) {
