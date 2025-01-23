@@ -1,66 +1,7 @@
-<style>
-    .ck-content {
-        min-height: 300px !important;
-    }
 
-    input[type="file"] {
-        display: block;
-    }
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.js"></script>
 
-    .imageThumb {
-        max-height: 75px;
-        border: 2px solid;
-        margin-left: 10px;
-        margin-bottom: 3px;
-        padding: 1px;
-        cursor: pointer;
-    }
-
-    .pip {
-        display: inline-block;
-        margin: 10px 10px 0 0;
-    }
-
-
-    .cropper-container {
-        width: 100% !important;
-    }
-
-    .modal-header {
-        position: relative;
-    }
-
-    .modal-header .closeCrop {
-        position: absolute;
-        top: 13px;
-        right: 15px;
-    }
-
-    label#thumbnail_image-error {
-        position: absolute;
-        top: 9rem !important
-    }
-
-    .ck-content img {
-        max-width: 100%;
-        height: auto;
-        display: block;
-        margin: 0 auto;
-    }
-
-    /* #ndp-nepali-box {
-        top: 65px !important;
-        left: 10px !important;
-    } */
-
-    input#nepali-datepicker {
-        width: 100% !important;
-        height: 50% !important;
-        border-radius: 0.2rem !important;
-        border: 0.1px solid rgb(236, 231, 231);
-        padding-left: 0.5rem !important;
-    }
-</style>
 <div class="modal-header">
     <h1 class="modal-title fs-5" id="staticBackdropLabel">Program</h1>
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -85,8 +26,7 @@
         <div class="row mt-2">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                 <label for="details" class="form-label">Program Details <span class="required-field">*</span></label>
-                <textarea name="details" id="editor"> {{ @$details }} </textarea>
-                <input type="hidden" id="details" name="details">
+                <div id="summernote">{!! $details ?? '' !!}</div>
             </div>
         </div>
 
@@ -135,69 +75,6 @@
     </button>
 </div>
 <script>
-    ClassicEditor
-        .create(document.querySelector('#editor'), {
-            ckfinder: {
-                uploadUrl: "{{ route('upload.image', ['_token' => csrf_token()]) }}"
-            },
-            image: {
-                resizeOptions: [{
-                        name: 'resizeImage:original',
-                        value: null,
-                        icon: 'original'
-                    },
-                    {
-                        name: 'resizeImage:custom',
-                        value: 'custom',
-                        icon: 'custom'
-                    },
-                    {
-                        name: 'resizeImage:50',
-                        value: '50',
-                        icon: 'medium'
-                    },
-                    {
-                        name: 'resizeImage:75',
-                        value: '75',
-                        icon: 'large'
-                    }
-                ],
-                toolbar: [
-                    'imageStyle:full',
-                    'imageStyle:alignLeft',
-                    'imageStyle:alignCenter',
-                    'imageStyle:alignRight',
-                    'resizeImage:50',
-                    'resizeImage:75',
-                    'resizeImage:original',
-                    'resizeImage:custom',
-                ],
-            },
-            toolbar: {
-                items: [
-                    'undo', 'redo', '|', 'heading', '|', 'bold', 'italic', '|', 'blockQuote', '|',
-                    'imageUpload', 'imageStyle:full', 'imageStyle:alignLeft', 'imageStyle:alignCenter',
-                    'imageStyle:alignRight', 'resizeImage:50', 'resizeImage:75', 'resizeImage:original',
-                    'resizeImage:custom'
-                ],
-                shouldNotGroupWhenFull: true
-            },
-            heading: {
-                options: [{
-                    model: 'paragraph',
-                    title: 'Paragraph',
-                    class: 'ck-heading_paragraph'
-                }]
-            }
-        })
-        .then(editor => {
-            window.editor = editor;
-        })
-        .catch(error => {
-            console.error(error);
-        });
-</script>
-<script>
     $(document).ready(function() {
 
         $('#thumbnail_image').on('change', function(event) {
@@ -205,6 +82,92 @@
 
             if (selectedFile) {
                 $('._image').attr('src', URL.createObjectURL(selectedFile));
+            }
+        });
+
+        $('#modal').on('shown.bs.modal', function() {
+            $('#summernote').summernote({
+                placeholder: 'Enter program details...',
+                tabsize: 2,
+                height: 150,
+                dialogsInBody: true,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'italic', 'underline', 'clear']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link', 'picture', 'video']],
+                    ['view', ['fullscreen', 'codeview', 'help']]
+                ],
+                callbacks: {
+                    onImageUpload: function(files) {
+                        var formData = new FormData();
+                        formData.append("file", files[0]);
+
+                        $.ajax({
+                            url: "program/upload-image",
+                            method: 'POST',
+                            data: formData,
+                            contentType: false,
+                            processData: false,
+                            success: function(response) {
+                                if (response.success) {
+                                    var imageUrl = response.imageUrl;
+                                    $('#summernote').summernote('insertImage',
+                                        imageUrl);
+
+                                    $('<input>')
+                                        .attr({
+                                            type: 'hidden',
+                                            name: 'image_path',
+                                            value: imageUrl,
+                                        })
+                                        .appendTo('#form');
+                                } else {
+                                    showNotification(response.message, 'error');
+                                }
+                            },
+                            error: function() {
+                                showNotification('Image upload failed',
+                                    'error');
+                            }
+                        });
+                    },
+                    onMediaDelete: function(target) {
+                        var imageUrl = target.attr(
+                            'src');
+
+                        $.ajax({
+                            url: "program/delete/upload-image",
+                            method: 'POST',
+                            data: {
+                                _token: $('meta[name="csrf-token"]').attr(
+                                    'content'),
+                                image_path: imageUrl
+                            },
+                            success: function(response) {
+                                if (response.success) {
+                                    showNotification(
+                                        'Image deleted successfully',
+                                        'success');
+                                } else {
+                                    showNotification(response.message, 'error');
+                                }
+                            },
+                            error: function() {
+                                showNotification('Image deletion failed',
+                                    'error');
+                            }
+                        });
+                    }
+                }
+            });
+
+        });
+
+        $('#modal').on('hidden.bs.modal', function() {
+            if ($('#summernote').hasClass('note-editor')) {
+                $('#summernote').summernote('destroy');
             }
         });
 
@@ -245,7 +208,15 @@
         $('.saveData').off('click');
         $('.saveData').on('click', function() {
             if ($('#form').valid()) {
-                $('#details').val(window.editor.getData());
+                const programDetail = $('#summernote').summernote('code');
+                $('<input>')
+                    .attr({
+                        type: 'hidden',
+                        name: 'details',
+                        value: programDetail,
+                    })
+                    .appendTo('#form');
+
                 showLoader();
 
                 $('#form').ajaxSubmit(function(response) {
