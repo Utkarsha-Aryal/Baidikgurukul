@@ -9,11 +9,6 @@
     <div class="img_before">
         <img src="{{ asset('frontpanel/assets/images/Mask group.png') }}" alt="">
     </div>
-    <div class="common_image_txt">
-        <div class="common_bg_wrapper">
-            <img src="{{ asset('frontpanel/assets/images/image1.jpeg') }}" alt="">
-
-        </div>
         <div class="common_image_txt">
             <div class="common_bg_wrapper">
                 <img src="{{ asset('frontpanel/assets/images/image1.jpeg') }}" alt="">

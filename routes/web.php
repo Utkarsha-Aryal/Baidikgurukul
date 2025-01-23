@@ -64,7 +64,7 @@ Route::get('/clear-cache', function () {
 
 /* Backend-start */
 
-Route::get('/', [AuthController::class, 'index'])->name('admin.login');
+Route::get('/login', [AuthController::class, 'index'])->name('admin.login');
 Route::get('admin/login', [AuthController::class, 'index'])->name('admin.login');
 Route::get('admin/forgotpassword', [ForgotPasswordController::class, 'index'])->name('admin.forgotpassword');
 Route::post('admin/checkuser', [ForgotPasswordController::class, 'isRegisteredUser'])->name('admin.checkuser');
@@ -320,7 +320,7 @@ Route::group(['middleware' => 'admin'], function () {
 /* Backend-end */
 
 // Front End Start here  
-Route::get('/home', [FrontHomeController::class, 'index'])->name('home');
+Route::get('/', [FrontHomeController::class, 'index'])->name('home');
 
 Route::get('about', [IntroductionController::class, 'introduction'])->name('about');
 
