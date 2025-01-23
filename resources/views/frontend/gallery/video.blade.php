@@ -12,23 +12,23 @@
                 <img src="{{ asset('frontpanel/assets/images/image1.jpeg') }}" alt="hands">
             </div>
             <div class="main_txt">
-                <p>Our Gallery Inner Page</p>
+                <p>ग्यालेरी भिडियो पृष्ठ</p>
             </div>
         </div>
         <div class="img_after">
             <img src="{{ asset('frontpanel/assets/images/Mask group.png') }}" alt="">
         </div>
     </section>
-<div class="gallery-inner-container">
-    <div class="container">
-        <div class="gallery-inner-wrapper">
-            @foreach ($videos as $video)
-            <div class="g1-img">
-                <iframe src="{{ $video->video_url }}" frameborder="0" id="myIframe"></iframe>
+    <div class="gallery-inner-container">
+        <div class="container">
+            <div class="gallery-inner-wrapper">
+                @foreach ($videos as $video)
+                    <div class="g1-img">
+                        <iframe src="{{ $video->video_url }}" frameborder="0" id="myIframe"></iframe>
+                    </div>
+                @endforeach
             </div>
-            @endforeach
         </div>
     </div>
-</div>
 
 @endsection

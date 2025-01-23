@@ -43,7 +43,7 @@
                         </div>
                         <button class="explore_button">
                             <a href="{{ route('about') }}">
-                                <p>EXPLORE NOW</p>
+                                <p>अहिले अन्वेषण गर्नुहोस्</p>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
@@ -68,15 +68,15 @@
                     </div>
                     <div class="rituals_txt_wrapper">
                         <div class="first_ritual_txt">
-                            <p>Rules For Rituals Of Birth</p>
+                            <p>जन्म संस्कार को लागि नियम</p>
                         </div>
                         <div class="second_rituals_txt">
-                            <p>In the Magar community, birth rituals are steeped in cultural and spiritual significance,
-                                reflecting their deep connection to tradition and ancestral beliefs. </p>
+                            <p>मगर समुदायमा, जन्म अनुष्ठानहरू सांस्कृतिक र आध्यात्मिक महत्त्वमा फराकिलो हुन्छन्, तिनीहरूको
+                                परम्परा र पैतृक विश्वासहरूसँग गहिरो सम्बन्ध झल्काउँछ। </p>
                         </div>
                         <button class="read_more">
                             <a href="{{ route('rules') }}">
-                                <p>READ MORE</p>
+                                <p>थप पढ्नुहोस्</p>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-arrow-right" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
@@ -90,13 +90,14 @@
                 <div class="right_container">
                     <div class="rules_right_wrap">
                         <div class="first_txt">
-                            <p>The Chochangay Samaj Community is a vibrant and culturally rich ethnic group deeply rooted in
-                                their traditions and history.
+                            <p>
+                                चोचाङ्गे समाज समुदाय आफ्नो परम्परा र इतिहासमा गहिरो जरा गाडेको जीवन्त र सांस्कृतिक रूपमा धनी
+                                जातीय समूह हो।
                             </p>
                         </div>
                         <button class="register_button">
                             <a href="form">
-                                <p>REGISTER NOW</p>
+                                <p>अहिले दर्ता गर्नुहोस्</p>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
@@ -127,7 +128,7 @@
                 </div>
                 <div class="right_dreams_txt">
                     <div class="first_dreams_txt">
-                        <p>About Chochangay Samaj Nepal</p>
+                        <p>चाेचाङ्गी समाज नेपाल को बारेमा</p>
                     </div>
                     <div class="second_txt">
                         @php
@@ -148,7 +149,7 @@
                     @if (strlen($about->introduction) > 1000)
                         <button class="read_button">
                             <a href="{{ route('about') }}">
-                                <p>READ MORE</p>
+                                <p>थप पढ्नुहोस्</p>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
@@ -194,7 +195,7 @@
                             {!! Str::limit($message->message, 800, '...') !!}
                             <button class="read_button">
                                 <a href="{{ route('about') }}">
-                                    <p>READ MORE</p>
+                                    <p>थप पढ्नुहोस्</p>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                         fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd"
@@ -205,8 +206,8 @@
                         </div>
                     @else
                         <div class="first_txt">
-                            <p>Dream Of Every <span class="blue">Chochangay Samaj Community</span> Is To Gather Our
-                                Rights
+                            <p>हरेक <span class="blue">चोचाङ्गे समाज समुदाय</span> को सपना हाम्रो भेला हुने हो।
+                                अधिकार
                             </p>
                         </div>
                     @endif
@@ -239,14 +240,14 @@
             <div class="program_txt_pagination_wrap">
                 <div class="program_initiative_txt">
                     <div class="first_program_txt">
-                        <p>Programs & Initiatives</p>
+                        <p>कार्यक्रमहरू र पहलहरू</p>
                     </div>
                     <div class="second_program_txt">
-                        <p>Our Update <span class="blue">Programs & Initiatives</span></p>
+                        <p>हाम्रा अपडेट <span class="blue">कार्यक्रमहरू र पहलहरू</span></p>
                     </div>
                     <div class="third_program_txt">
-                        <p>The Chochangay Samaj organizes a variety of cultural and community-based programs aimed at
-                            fostering unity and celebrating their heritage.</p>
+                        <p>चाेचाङ्गी समाज यसका सबै सदस्यहरूको प्रगति र कल्याण सुनिश्चित गर्दै हाम्रो समुदायको समृद्ध
+                            सांस्कृतिक सम्पदाको संरक्षण र प्रवर्द्धन गर्न समर्पित छ।</p>
                     </div>
                 </div>
                 <div class="arrow_container">
@@ -268,23 +269,16 @@
             </div>
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div class="swiper_content_card_wrapper">
-                            <div class="swiper_content_card">
-                                @foreach ($programs as $program)
+                    @foreach ($programs as $program)
+                        <div class="swiper-slide">
+                            <div class="swiper_content_card_wrapper">
+                                <div class="swiper_content_card">
                                     <div class="card_image">
-                                        @if (!empty($program->image) && Storage::exists('public/program/' . $program->image))
-                                            <img src="{{ asset('storage/program/' . $program->image) }}" alt="">
-                                        @else
-                                            <img src="{{ asset('frontpanel/assets/images/Rectangle 170 (3).png') }}"
-                                                alt="">
-                                        @endif
+                                        <img src="{{ asset('frontpanel/assets/images/Rectangle 170 (3).png') }}"
+                                            alt="">
                                     </div>
                                     <div class="first_txt">
-                                        <p>{{ $program->title }} </p>
-                                    </div>
-                                    <div class="second_txt">
-                                        <p>{!! Str::limit($program->details, 100, '...') !!}</p>
+                                        <p>{{ Str::limit($program->title ?? '', 30, '...') }}</p>
                                     </div>
                                     <button class="read_more">
                                         <a href="{{ route('program.inner', $program->slug) }}">
@@ -296,10 +290,11 @@
                                             </svg>
                                         </a>
                                     </button>
-                                @endforeach
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endforeach
+
                 </div>
             </div>
         </div>
@@ -307,11 +302,25 @@
     <script>
         var swiper = new Swiper(".mySwiper", {
             slidesPerView: 3,
-            spaceBetween: 10, // Space between slide
+            spaceBetween: 20, // Space between slide
             navigation: {
                 nextEl: ".swiper-next",
                 prevEl: ".swiper-prev",
             },
+            breakpoints: {
+                // When the screen width is 992px or less (Tablet)
+                992: {
+                    slidesPerView: 3, // Show 2 slides per view (tablet)
+                },
+                // When the screen width is 768px or less (Mobile)
+                786: {
+                    slidesPerView: 2, // Show 1 slide per view (mobile)
+                },
+                0: {
+                    slidesPerView: 1,
+                    // Show 1 slide per view (mobile)
+                }
+            }
         });
     </script>
 
@@ -324,14 +333,15 @@
             <div class="event_wrapper">
                 <div class="left_event_text">
                     <div class="first_blue_text">
-                        <p>Upcoming Events</p>
+                        <p>आगामी घटनाक्रम
+                        </p>
                     </div>
                     <div class="second_event_text">
-                        <p>Join Our Upcoming <span class="blue_text">Events </span></p>
+                        <p>हाम्रो आगामी <span class="blue_text">कार्यक्रमहरूमा सामेल हुनुहोस् </span></p>
                     </div>
                     <div class="third_event_text">
-                        <P>The Magar community is one of the indigenous ethnic groups in Nepal, known for their rich
-                            cultural heritage, traditions, and festivals.</P>
+                        <P>मगर समुदाय नेपालका आदिवासी जनजातिहरू मध्ये एक हो, जो आफ्नो धनीका लागि परिचित छ
+                            सांस्कृतिक सम्पदा, परम्परा र चाडपर्वहरू।</P>
                     </div>
 
                     @foreach ($events as $event)
@@ -387,8 +397,9 @@
                                     </div>
                                     <div class="button">
 
-                                        <p>Join Now <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-arrow-up-right" viewBox="0 0 16 16">
+                                        <p>अहिले सम्मिलित हुनुहोस् <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                height="16" fill="currentColor" class="bi bi-arrow-up-right"
+                                                viewBox="0 0 16 16">
                                                 <path fill-rule="evenodd"
                                                     d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0z" />
                                             </svg></p>
@@ -401,7 +412,7 @@
                     @if (count($events) > 0)
                         <div class="see_all_btn">
                             <a href="{{ route('event') }}">
-                                <p>See All Events </p>
+                                <p>सबै घटनाहरू हेर्नुहोस् </p>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
@@ -431,16 +442,16 @@
         <div class="container">
             <div class="first_historical_txt">
                 <div class="first_program_txt">
-                    <p>Historical Places</p>
+                    <p>ऐतिहासिक स्थानहरू</p>
                 </div>
                 <div class="main_txt_wrap">
                     <div class="second_program_txt">
-                        <p>Our <span class="blue">Historical Places</span> Around The world </p>
+                        <p>विश्वभरका हाम्रा <span class="blue">ऐतिहासिक ठाउँहरू</span> </p>
                     </div>
                     @if (count($histories) > 0)
                         <div class="view_all_txt">
                             <a href="{{ route('history') }}">
-                                <p>VIEW ALL POST</p>
+                                <p>सबै हेर्नुहोस्</p>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
@@ -453,8 +464,8 @@
                     @endif
                 </div>
                 <div class="third_program_txt">
-                    <p>The Chochangay Samaj Community is intertwined with historical landmarks that hold cultural and
-                        spiritual value.</p>
+                    <p>चोचाङ्गे समाज समुदाय ऐतिहासिक स्थलचिन्हहरूसँग गाँसिएको छ जुन सांस्कृतिक र
+                        आध्यात्मिक मूल्य।</p>
                 </div>
             </div>
             <div class="historical_places_wrapper">
@@ -477,7 +488,8 @@
                         </div>
                         <button class="read_more">
                             <a href="{{ route('history.inners', $history->slug ?? '#') }}">
-                                <p>READ MORE</p>
+                                <p>
+                                    थप पढ्नुहोस्</p>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
@@ -492,28 +504,4 @@
         </div>
     </div>
 
-    <script>
-        var swiper = new Swiper(".mySwiper", {
-            slidesPerView: 3,
-            spaceBetween: 20, // Space between slide
-            navigation: {
-                nextEl: ".swiper-next",
-                prevEl: ".swiper-prev",
-            },
-            breakpoints: {
-                // When the screen width is 992px or less (Tablet)
-                992: {
-                    slidesPerView: 3, // Show 2 slides per view (tablet)
-                },
-                // When the screen width is 768px or less (Mobile)
-                786: {
-                    slidesPerView: 2, // Show 1 slide per view (mobile)
-                },
-                0: {
-                    slidesPerView: 1,
-                    // Show 1 slide per view (mobile)
-                }
-            }
-        });
-    </script>
 @endsection

@@ -301,7 +301,7 @@
                         value: eventDetails,
                     })
                     .appendTo('#eventForm');
-
+                showLoader();
                 $('#eventForm').ajaxSubmit({
                     success: function(response) {
                         const result = JSON.parse(response);

@@ -1,4 +1,9 @@
 @extends('frontend.layout2.main2')
+<style>
+    .g-inner-img {
+        height: 250px !Important;
+    }
+</style>
 @section('title', 'Our Gallery Inner')
 @section('content2')
     <section class="introduction_page">
@@ -10,7 +15,7 @@
                 <img src="{{ asset('frontpanel/assets/images/image1.jpeg') }}" alt="">
             </div>
             <div class="main_txt">
-                <p>Our Gallery Inner</p>
+                <p>हाम्रो ग्यालेरी छवि पृष्ठ</p>
             </div>
         </div>
         <div class="img_after">

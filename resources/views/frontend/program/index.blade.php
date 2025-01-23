@@ -10,7 +10,7 @@
                 <img src="{{ asset('frontpanel/assets/images/image1.jpeg') }}" alt="hands">
             </div>
             <div class="main_txt">
-                <p>Program</p>
+                <p>कार्यक्रम</p>
             </div>
         </div>
         <div class="img_after">
@@ -32,14 +32,15 @@
                                 @endif
                             </div>
                             <div class=" program-r1-title">
-                                <p>{{ $program->title ?? '' }} </p>
+                                <p>{!! Str::limit($program->title, 30, '...') !!}</p>
                             </div>
-                            <div class="program-r1-txt">
-                                <p>{!! Str::limit($program->details, 100, '...') !!}</p>
-                            </div>
+                            {{-- <div class="program-r1-txt">
+                                <p>{!! Str::limit($program->details, 40, '...') !!}</p>
+                            </div> --}}
                             <div class="readmore-none">
                                 <a href="{{ route('program.inner', $program->slug) }}">
-                                    <p>READ MORE</p>
+                                    <p>
+                                        थप पढ्नुहोस्</p>
                                 </a>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-arrow-right-short" viewBox="0 0 16 16">

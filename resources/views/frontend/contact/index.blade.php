@@ -1,8 +1,8 @@
-@extends('frontend.layouts.main')
+@extends('frontend.layout2.main2')
 
 
 @section('title', 'Contact')
-@section('content')
+@section('content2')
     <section class="introduction_page">
         <div class="img_before">
             <img src="{{ asset('frontpanel/assets/images/Mask group.png') }}" alt="">
@@ -25,22 +25,22 @@
             <div class="contact-content">
                 <div class="contact-content-lt">
                     <div class="contact-lt-header">
-                        <p>Have a question? Let’s get in touch with us.</p>
+                        <p>एउटा प्रश्न छ? हामीलाई सम्पर्क गरौं।</p>
                     </div>
                     <div class="contact-lt-txt">
-                        <p>Fill up the Form and our team will get back to you within 24 hrs</p>
+                        <p>फारम भर्नुहोस् र हाम्रो टोलीले २४ घन्टा भित्रमा तपाईंलाई फिर्ता गर्नेछ</p>
                     </div>
                     <form action=" {{ route('enquiry.save') }}" id="contactUsForm" method="POST">
                         <div class="contact-lt-form">
                             @csrf
-                            <input type="text" id="fname" name="first_name" placeholder="First Name">
-                            <input type="text" id="lname" name="last_name" placeholder="Last Name">
-                            <input type="email" id="mail" name="email" placeholder="Email Address">
-                            <input type="text" id="msg" name="message" placeholder="Type message">
+                            <input type="text" id="fname" name="first_name" placeholder="पहिलो नाम *">
+                            <input type="text" id="lname" name="last_name" placeholder="अन्तिम नाम *">
+                            <input type="email" id="mail" name="email" placeholder="इमेल *">
+                            <input type="text" id="msg" name="message" placeholder="सन्देश लेख्नुहोस् *">
                         </div>
                         <div class="submit-btn">
                             <button type="submit" class="submitData">
-                                <p>SUBMIT</p>
+                                <p>पेश गर्नुहोस्</p>
                             </button>
                         </div>
                     </form>
@@ -54,7 +54,7 @@
                                     <path
                                         d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
                                 </svg>
-                                <p>Location</p>
+                                <p>स्थान</p>
                             </div>
                             <div class="rt-desc">
                                 @if (!empty($sitesetting->address))
@@ -71,7 +71,7 @@
                                     <path
                                         d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1z" />
                                 </svg>
-                                <p>Contact Us</p>
+                                <p>हामीलाई सम्पर्क गर्नुहोस्</p>
                             </div>
                             <div class="rt-desc">
                                 @if (!empty($sitesetting->phone_number))

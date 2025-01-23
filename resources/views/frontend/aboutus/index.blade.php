@@ -12,7 +12,7 @@
                 <img src="{{ asset('frontpanel/assets/images/image1.jpeg') }}" alt="">
             </div>
             <div class="main_txt">
-                <p>Introduction</p>
+                <p>परिचय</p>
             </div>
         </div>
         <div class="img_after">
@@ -54,11 +54,11 @@
         <div class="container">
             <div class="ft_wrap">
                 <div class="lfr_row">
-                    <p>We are focused on our Mission, Vision & Goals</p>
+                    <p>हामी हाम्रो मिशन, भिजन र लक्ष्यहरूमा केन्द्रित छौं</p>
                 </div>
                 <div class="rght_row">
-                    <p>The Magar community aims to ensure its continued growth, resilience, and contribution to society, all
-                        while staying true to its roots and cultural identity.</p>
+                    <p>मगर समुदायले आफ्नो निरन्तर वृद्धि, लचिलोपन र समाजमा योगदान सुनिश्चित गर्ने लक्ष्य राखेको छ, सबै
+                        आफ्नो जरा र सांस्कृतिक पहिचानप्रति सच्चा रहँदा।</p>
                 </div>
             </div>
 
@@ -68,7 +68,7 @@
                         <img src="{{ asset('frontpanel/assets/images/Mask group.svg') }}" alt="">
                     </div>
                     <div class="mission_main">
-                        <p>Mission</p>
+                        <p>मिशन</p>
                     </div>
                     <div class="mission_txt">
                         <p>{{ $aboutus->mission ?? '' }}</p>
@@ -80,7 +80,7 @@
 
                     </div>
                     <div class="mission_main">
-                        <p>Vision</p>
+                        <p>दृष्टि</p>
                     </div>
                     <div class="mission_txt">
                         <p>{{ $aboutus->vision ?? '' }}</p>
@@ -92,7 +92,7 @@
 
                     </div>
                     <div class="mission_main">
-                        <p>Goals</p>
+                        <p>लक्ष्यहरू</p>
                     </div>
                     <div class="mission_txt">
                         <p>{{ $aboutus->goals ?? '' }}</p>
@@ -105,7 +105,7 @@
                 @if (count($timelines) > 0)
                     <div class="timeline-header">
                         <p>
-                            Our History
+                            हाम्रो इतिहास
                         </p>
                     </div>
                 @else
@@ -161,8 +161,8 @@
 
                             <p>{!! $styledText !!}</p>
                         @else
-                            <p>Dream Of Every <span class="blue">Chochangay
-                                    Samaj Community</span> Is To Gather Our Rights </p>
+                            <p>हरेक <span class="blue"> चाेचाङ्गी को सपना
+                                    समाज समुदाय </span> हाम्रो अधिकार जुटाउन हो </p>
                         @endif
 
                     </div>
@@ -197,12 +197,12 @@
             <img src="{{ asset('frontpanel/assets/images/ritual.png') }}" alt="">
         </div>
         <div class="rght_txt">
-            <p>Entry Your Birth & Death
-                Registration Form
-                Keep Updated</p>
+            <p>तपाईंको जन्म र मृत्यु प्रविष्टि गर्नुहोस्
+                दर्ता फारम
+                अपडेट राख्नुहोस्</p>
             <button class="entry_form">
                 <a href="#">
-                    <p>Entry Now</p>
+                    <p>अहिले प्रवेश गर्नुहोस्</p>
                 </a>
             </button>
         </div>

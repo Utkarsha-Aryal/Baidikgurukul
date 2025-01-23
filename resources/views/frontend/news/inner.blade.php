@@ -12,7 +12,7 @@
                 <img src="{{ asset('frontpanel/assets/images/image1.jpeg') }}" alt="hands">
             </div>
             <div class="main_txt">
-                <p>News & blogs Inner Page</p>
+                <p>समाचार र ब्लगहरू भित्री पृष्ठ</p>
             </div>
         </div>
         <div class="img_after">

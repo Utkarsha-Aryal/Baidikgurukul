@@ -10,7 +10,8 @@
                 <img src="{{ asset('frontpanel/assets/images/image1.jpeg') }}" alt="hands">
             </div>
             <div class="main_txt">
-                <p>Our Gallery</p>
+
+                <p>हाम्रो ग्यालेरी</p>
             </div>
         </div>
         <div class="img_after">
@@ -20,9 +21,9 @@
     <div class="gallery-container-main">
         <div class="container">
             <div class="tabs">
-                <button class="tab active" data-target="all">All</button>
-                <button class="tab" data-target="images">Images</button>
-                <button class="tab" data-target="videos">Videos</button>
+                <button class="tab active" data-target="all">सबै</button>
+                <button class="tab" data-target="images">छविहरू</button>
+                <button class="tab" data-target="videos">भिडियोहरू</button>
             </div>
         </div>
         <div class="container">

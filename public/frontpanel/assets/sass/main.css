@@ -1527,7 +1527,7 @@ button {
 }
 
 .program-container-main {
-  margin-top: 50px;
+  margin-block: 20px 90px;
 }
 .program-container-main .program-content {
   display: grid;
@@ -1644,7 +1644,7 @@ button {
 }
 .gallery-container-main .content .gallery-content-main {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
 @media (max-width: 992px) {
@@ -2694,6 +2694,27 @@ button {
   .team_tab_section .container_wrapper .content #content-0 .first_content_wrapper .blue_bg_image .img_absolute_txt p {
     font-size: 22px !important;
   }
+}
+.team_tab_section .container_wrapper .content #content-0 .first_content_wrapper .blue_bg_image .youtube_icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99;
+}
+.team_tab_section .container_wrapper .content #content-0 .first_content_wrapper .blue_bg_image .youtube_icon .bi {
+  height: 80px;
+  width: 80px;
+  color: white;
+}
+.team_tab_section .container_wrapper .content #content-0 .first_content_wrapper .blue_bg_image .img_absolute {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+.team_tab_section .container_wrapper .content #content-0 .first_content_wrapper .blue_bg_image .img_absolute img {
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .team_tab_section .container_wrapper .content #content-1 {
   width: 100% !important;
@@ -4123,7 +4144,7 @@ button {
 }
 
 .program-inner-container {
-  margin-top: 90px;
+  margin-block: 20px 90px;
 }
 .program-inner-container .program-inner-wrapper {
   display: flex;
@@ -4141,6 +4162,9 @@ button {
   .program-inner-container .program-inner-wrapper .program-inner-lt {
     width: 100%;
   }
+}
+.program-inner-container .program-inner-wrapper .program-inner-lt .program-inner-title {
+  margin-bottom: 20px;
 }
 .program-inner-container .program-inner-wrapper .program-inner-lt .program-inner-title p {
   font-size: 36px;
@@ -6391,6 +6415,7 @@ body .footer-container::after {
 .rituals_dreams .dreams_wrappper .right_dreams_txt {
   width: 48%;
   height: 100%;
+  padding-top: 50px;
 }
 @media (max-width: 992px) {
   .rituals_dreams .dreams_wrappper .right_dreams_txt {
@@ -6877,9 +6902,9 @@ body .footer-container::after {
   justify-content: space-around;
   align-items: center;
   box-sizing: border-box;
-  padding: 10px;
+  padding: 10px 25px;
   gap: 20px;
-  box-shadow: 0 0 16px rgba(139, 202, 241, 0.4);
+  background-color: rgb(239, 247, 255);
   transition: all 0.3s ease-in-out;
 }
 @media (max-width: 768px) {
@@ -6887,6 +6912,7 @@ body .footer-container::after {
     display: grid;
     justify-items: center;
     gap: 0;
+    padding: 10px;
   }
 }
 .Event_page .container .event_wrapper .left_event_text .event_notice_container .event_notice_info_cards .date_info {
@@ -6899,8 +6925,9 @@ body .footer-container::after {
 }
 .Event_page .container .event_wrapper .left_event_text .event_notice_container .event_notice_info_cards .date_info .date1 p {
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 600;
   margin: 0;
+  color: rgb(34, 47, 72);
 }
 @media (max-width: 768px) {
   .Event_page .container .event_wrapper .left_event_text .event_notice_container .event_notice_info_cards .date_info .date1 p {
@@ -6909,12 +6936,13 @@ body .footer-container::after {
   }
 }
 .Event_page .container .event_wrapper .left_event_text .event_notice_container .event_notice_info_cards .date_info .date2 {
-  margin-block: 20px;
+  margin-block: 15px;
 }
 .Event_page .container .event_wrapper .left_event_text .event_notice_container .event_notice_info_cards .date_info .date2 p {
   font-size: 14px;
-  width: 400;
+  font-weight: 400;
   margin: 0;
+  color: rgb(34, 47, 72);
 }
 @media (max-width: 768px) {
   .Event_page .container .event_wrapper .left_event_text .event_notice_container .event_notice_info_cards .date_info .date2 p {
@@ -6925,7 +6953,7 @@ body .footer-container::after {
 .Event_page .container .event_wrapper .left_event_text .event_notice_container .event_notice_info_cards .event_info {
   border-left: 2px dashed rgb(180, 218, 254);
   border-right: 2px dashed rgb(180, 218, 254);
-  padding-inline: 20px;
+  padding-inline: 30px;
   width: 60%;
 }
 @media (max-width: 768px) {
@@ -6957,12 +6985,11 @@ body .footer-container::after {
 }
 .Event_page .container .event_wrapper .left_event_text .event_notice_container .event_notice_info_cards .event_info .time_date_container .event_time {
   display: flex;
-  gap: 10px;
+  gap: 5px;
 }
 .Event_page .container .event_wrapper .left_event_text .event_notice_container .event_notice_info_cards .event_info .time_date_container .event_time .event_img {
   height: 14px;
   width: 14px;
-  align-self: center;
 }
 @media (max-width: 768px) {
   .Event_page .container .event_wrapper .left_event_text .event_notice_container .event_notice_info_cards .event_info .time_date_container .event_time .event_img {
@@ -6985,8 +7012,7 @@ body .footer-container::after {
 }
 .Event_page .container .event_wrapper .left_event_text .event_notice_container .event_notice_info_cards .event_info .event_location {
   display: flex;
-  gap: 10px;
-  align-items: center;
+  gap: 5px;
 }
 .Event_page .container .event_wrapper .left_event_text .event_notice_container .event_notice_info_cards .event_info .event_location .event_img .bi {
   color: #066ac8;
@@ -6998,7 +7024,7 @@ body .footer-container::after {
   color: #737373;
 }
 .Event_page .container .event_wrapper .left_event_text .event_notice_container .event_notice_info_cards .main_text {
-  margin-block: 20px;
+  margin-block: 10px;
 }
 @media (max-width: 768px) {
   .Event_page .container .event_wrapper .left_event_text .event_notice_container .event_notice_info_cards .main_text {
@@ -7009,6 +7035,7 @@ body .footer-container::after {
   font-size: 22px;
   font-weight: 500;
   margin: 0;
+  color: rgb(34, 47, 72);
 }
 @media (max-width: 992px) {
   .Event_page .container .event_wrapper .left_event_text .event_notice_container .event_notice_info_cards .main_text p {
@@ -7032,6 +7059,8 @@ body .footer-container::after {
   margin: 0;
   color: rgb(6, 106, 200);
   display: flex;
+  gap: 5px;
+  white-space: nowrap;
 }
 @media (max-width: 768px) {
   .Event_page .container .event_wrapper .left_event_text .event_notice_container .event_notice_info_cards .button p {
@@ -7058,6 +7087,15 @@ body .footer-container::after {
 }
 .Event_page .container .event_wrapper .left_event_text .event_notice_container .event_notice_info_cards:hover .event_location .bi {
   color: white !important;
+}
+.Event_page .container .event_wrapper .left_event_text .event_notice_container .event_notice_info_cards:hover .date_info .date1 p {
+  color: white;
+}
+.Event_page .container .event_wrapper .left_event_text .event_notice_container .event_notice_info_cards:hover .date_info .date2 p {
+  color: white;
+}
+.Event_page .container .event_wrapper .left_event_text .event_notice_container .event_notice_info_cards:hover .main_text p {
+  color: white;
 }
 .Event_page .container .event_wrapper .left_event_text .event_notice_container .event_notice_info_cards:hover .button {
   border: 1px solid white;
@@ -7094,7 +7132,7 @@ body .footer-container::after {
 }
 .Event_page .container .event_wrapper .right_event_img {
   width: 366px;
-  height: 530px;
+  margin-top: 15px;
   position: relative;
 }
 .Event_page .container .event_wrapper .right_event_img::after {

@@ -22,7 +22,7 @@
                 <img src="{{ asset('frontpanel/assets/images/image1.jpeg') }}" alt="">
             </div>
             <div class="main_txt">
-                <p>Our Population Entry Form</p>
+                <p>हाम्रो जनसंख्या प्रविष्टि फारम</p>
             </div>
         </div>
         <div class="img_after">
@@ -37,10 +37,10 @@
                     <form id="form" class="personal-details">
                         <ul id="progressbar">
                             <li class="active" id="step1">
-                                <strong>Personal Details</strong>
+                                <strong>व्यक्तिगत विवरणहरू</strong>
                             </li>
-                            <li id="step2"><strong>Contact & Address</strong></li>
-                            <li id="step3"><strong>Academic & Occupation</strong></li>
+                            <li id="step2"><strong> सम्पर्क र ठेगाना</strong></li>
+                            <li id="step3"><strong>शैक्षिक र पेशा</strong></li>
                         </ul>
                         <div class="progress">
                             <div class="progress-bar"></div>
@@ -56,41 +56,41 @@
                                             <path
                                                 d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8m0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5" />
                                         </svg>
-                                        <p>Personal Details</p>
+                                        <p>व्यक्तिगत विवरणहरू</p>
                                     </div>
                                     <div class="form_wrapper">
                                         <div class="form_left">
                                             <label for="name">
-                                                <input type="text" placeholder="First Name" name="name">
+                                                <input type="text" placeholder="पहिलो नाम" * name="name">
                                             </label>
                                             <label for="Gname">
-                                                <input type="text" placeholder="Grand Father Name" name="Gname">
+                                                <input type="text" placeholder="हजुरबुबाको नाम *" name="Gname">
                                             </label>
                                             <label for="Fname">
-                                                <input type="text" placeholder="Father Name" name="Fname">
+                                                <input type="text" placeholder="बुबाको नाम *" name="Fname">
                                             </label>
                                             <label for="email">
-                                                <input type="email" placeholder="Email" name="email">
+                                                <input type="email" placeholder="इमेल *" name="email">
                                             </label>
                                         </div>
                                         <div class="form_right">
                                             <label for="dob">
-                                                <input type="number" placeholder="DOB" name="dob">
+                                                <input type="number" placeholder="जन्म मिति *" name="dob">
                                             </label>
                                             <label for="Gdob">
-                                                <input type="number" placeholder="Grand Father DOB" name="Gdob">
+                                                <input type="number" placeholder="हजुरबुबाको जन्म मिति *" name="Gdob">
                                             </label>
                                             <label for="Fdob">
-                                                <input type="number" placeholder="Father DOB" name="Fdob">
+                                                <input type="number" placeholder="बुबाको जन्म मिति" name="Fdob">
                                             </label>
                                             <label for="contact">
-                                                <input type="number" placeholder="Contact" name="contact">
+                                                <input type="number" placeholder="सम्पर्क नम्बर *" name="contact">
                                             </label>
                                         </div>
                                     </div>
                                 </div>
                                 <button class="submit_btn">
-                                    <p>SUBMIT</p>
+                                    <p>पेश गर्नुहोस्</p>
                                 </button>
                             </div>
                         </fieldset>
@@ -105,33 +105,36 @@
                                             <path
                                                 d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8m0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5" />
                                         </svg>
-                                        <p>Contact & Address</p>
+                                        <p>सम्पर्क र ठेगाना</p>
                                     </div>
                                     <div class="permanent_ad_txt">
-                                        <p>Permanent Address</p>
+                                        <p>स्थायी ठेगाना</p>
 
                                     </div>
                                     <div class="form_wrapper_wrap">
                                         <div class="form_left_wrap">
                                             <label for="Province">
-                                                <input type="text" placeholder="Province" name="Province">
+                                                <input type="text" placeholder="प्रान्त *" name="Province">
                                             </label>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="form_icon bi bi-chevron-down" viewBox="0 0 16 16">
+                                                fill="currentColor" class="form_icon bi bi-chevron-down"
+                                                viewBox="0 0 16 16">
                                                 <path fill-rule="evenodd"
                                                     d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
                                             </svg>
                                         </div>
                                         <div class="form_right_wrap">
                                             <label for="Municipality">
-                                                <input type="number" placeholder="Municipality" name="Municipality">
+                                                <input type="number" placeholder="नगरपालिका *" name="Municipality">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="form_icon bi bi-chevron-down" viewBox="0 0 16 16">
+                                                    fill="currentColor" class="form_icon bi bi-chevron-down"
+                                                    viewBox="0 0 16 16">
                                                     <path fill-rule="evenodd"
                                                         d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
                                                 </svg>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="form_icon bi bi-chevron-down" viewBox="0 0 16 16">
+                                                    fill="currentColor" class="form_icon bi bi-chevron-down"
+                                                    viewBox="0 0 16 16">
                                                     <path fill-rule="evenodd"
                                                         d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
                                                 </svg>
@@ -142,9 +145,10 @@
                                     <div class="ward_tole_wrapper">
                                         <div class="form_ward_wrap">
                                             <label for="Ward">
-                                                <input type="text" placeholder="Ward" name="Ward">
+                                                <input type="text" placeholder="वार्ड *" name="Ward">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="form_icon bi bi-chevron-down" viewBox="0 0 16 16">
+                                                    fill="currentColor" class="form_icon bi bi-chevron-down"
+                                                    viewBox="0 0 16 16">
                                                     <path fill-rule="evenodd"
                                                         d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
                                                 </svg>
@@ -152,9 +156,10 @@
                                         </div>
                                         <div class="form_tole_wrap">
                                             <label for="Tole">
-                                                <input type="text" placeholder="Tole" name="Tole">
+                                                <input type="text" placeholder="टोल *" name="Tole">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="form_icon bi bi-chevron-down" viewBox="0 0 16 16">
+                                                    fill="currentColor" class="form_icon bi bi-chevron-down"
+                                                    viewBox="0 0 16 16">
                                                     <path fill-rule="evenodd"
                                                         d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
                                                 </svg>
@@ -162,14 +167,15 @@
                                         </div>
                                     </div>
                                     <div class="temp_ad_txt">
-                                        <p>Temporary Address</p>
+                                        <p>अस्थायी ठेगाना</p>
                                     </div>
                                     <div class="form_wrapper_wrap">
                                         <div class="form_left_wrap">
                                             <label for="Country">
-                                                <input type="text" placeholder="Country" name="Country">
+                                                <input type="text" placeholder="देश *" name="Country">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="form_icon bi bi-chevron-down" viewBox="0 0 16 16">
+                                                    fill="currentColor" class="form_icon bi bi-chevron-down"
+                                                    viewBox="0 0 16 16">
                                                     <path fill-rule="evenodd"
                                                         d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
                                                 </svg>
@@ -177,9 +183,10 @@
                                         </div>
                                         <div class="form_right_wrap">
                                             <label for="City">
-                                                <input type="text" placeholder="City" name="City">
+                                                <input type="text" placeholder="सहर *" name="City">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="form_icon bi bi-chevron-down" viewBox="0 0 16 16">
+                                                    fill="currentColor" class="form_icon bi bi-chevron-down"
+                                                    viewBox="0 0 16 16">
                                                     <path fill-rule="evenodd"
                                                         d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
                                                 </svg>
@@ -189,9 +196,10 @@
                                     <div class="ward_tole_wrapper">
                                         <div class="form_ward_wrap">
                                             <label for="Tole/Area">
-                                                <input type="text" placeholder="Tole/Area" name="Tole/Area">
+                                                <input type="text" placeholder="टोल/क्षेत्र *" name="Tole/Area">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="form_icon bi bi-chevron-down" viewBox="0 0 16 16">
+                                                    fill="currentColor" class="form_icon bi bi-chevron-down"
+                                                    viewBox="0 0 16 16">
                                                     <path fill-rule="evenodd"
                                                         d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
                                                 </svg>
@@ -199,9 +207,10 @@
                                         </div>
                                         <div class="form_tole_wrap">
                                             <label for="Postal Code">
-                                                <input type="number" placeholder="Postal Code" name="Postal Code">
+                                                <input type="number" placeholder="हुलाक कोड *" name="Postal Code">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="form_icon bi bi-chevron-down" viewBox="0 0 16 16">
+                                                    fill="currentColor" class="form_icon bi bi-chevron-down"
+                                                    viewBox="0 0 16 16">
                                                     <path fill-rule="evenodd"
                                                         d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
                                                 </svg>
@@ -210,7 +219,7 @@
                                     </div>
                                 </div>
                                 <button class="submit_btn">
-                                    <p>SUBMIT</p>
+                                    <p>पेश गर्नुहोस्</p>
                                 </button>
                             </div>
                         </fieldset>
@@ -225,47 +234,48 @@
                                             <path
                                                 d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8m0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5" />
                                         </svg>
-                                        <p>Academic & Occupation</p>
+                                        <p>शैक्षिक र पेशा</p>
                                     </div>
                                     <div class="permanent_ad_txt">
-                                        <p>Academic</p>
+                                        <p>शैक्षिक</p>
 
                                     </div>
                                     <div class="form_wrapper_wrap">
                                         <div class="form_left_wrap">
                                             <label for="Qualification">
-                                                <input type="text" placeholder="Qualification" name="Qualification">
+                                                <input type="text" placeholder="योग्यता *" name="Qualification">
                                             </label>
 
                                         </div>
                                         <div class="form_right_wrap">
                                             <label for="Institution">
-                                                <input type="text" placeholder="Institution" name="Institution">
+                                                <input type="text" placeholder="संस्था *" name="Institution">
                                             </label>
                                         </div>
                                     </div>
                                     <div class="ward_tole_wrapper">
                                         <div class="form_ward_wrap">
                                             <label for="Country">
-                                                <input type="text" placeholder="Country" name="Country">
+                                                <input type="text" placeholder="देश *" name="Country">
                                             </label>
                                         </div>
                                     </div>
                                     <div class="temp_ad_txt">
-                                        <p>Occupation</p>
+                                        <p>पेशा</p>
                                     </div>
                                     <div class="form_wrapper_wrap">
                                         <div class="form_left_wrap">
                                             <label for="Post">
-                                                <input type="text" placeholder="Post" name="Post">
+                                                <input type="text" placeholder="पोस्ट *" name="Post">
                                             </label>
                                         </div>
                                         <div class="form_right_wrap">
                                             <label for="Company/Institution">
-                                                <input type="text" placeholder="Company/Institution"
+                                                <input type="text" placeholder="कम्पनी/संस्था *"
                                                     name="Company/Institution">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="form_icon bi bi-chevron-down" viewBox="0 0 16 16">
+                                                    fill="currentColor" class="form_icon bi bi-chevron-down"
+                                                    viewBox="0 0 16 16">
                                                     <path fill-rule="evenodd"
                                                         d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
                                                 </svg>
@@ -275,9 +285,10 @@
                                     <div class="ward_tole_wrapper">
                                         <div class="form_ward_wrap">
                                             <label for="Country">
-                                                <input type="text" placeholder="Country" name="Country">
+                                                <input type="text" placeholder="देश *" name="Country">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="form_icon bi bi-chevron-down" viewBox="0 0 16 16">
+                                                    fill="currentColor" class="form_icon bi bi-chevron-down"
+                                                    viewBox="0 0 16 16">
                                                     <path fill-rule="evenodd"
                                                         d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
                                                 </svg>
@@ -286,14 +297,14 @@
                                     </div>
                                 </div>
                                 <button class="submit_btn">
-                                    <p>SUBMIT</p>
+                                    <p>पेश गर्नुहोस्</p>
                                 </button>
                             </div>
                         </fieldset>
                         <fieldset>
                             <div class="finish">
                                 <h2 class="text text-center">
-                                    <strong>FINISHED</strong>
+                                    <strong>समाप्त</strong>
                                 </h2>
                             </div>
                         </fieldset>

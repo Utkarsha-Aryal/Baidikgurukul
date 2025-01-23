@@ -16,14 +16,12 @@
                         </div>
                         <div class="logo_txt">
                             <a href="{{ route('home') }}">
-                                <p>Chochangay <br>
-                                    Samaj Nepal</p>
+                                <p>चाेचाङ्गी समाज<br>नेपाल</p>
                             </a>
                         </div>
                     </div>
                     <div class="fcol1_txt">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, beatae magni quaerat dicta
-                            laborum veritatis.</p>
+                        <p>चाेचाङ्गी समाज भावी पुस्ताका लागि वातावरण संरक्षणमा विश्वास गर्छ ।</p>
                     </div>
                     <div class="flogo-icon">
                         @if (!empty($siteSetting->link_twitter))
@@ -98,12 +96,14 @@
                             <div class="bottom-fl"></div>
                         </div>
                         <ul>
-                            <li><a href="{{ route('history') }}"><span class="greater">></span> Historical Place</a>
+                            <li><a href="{{ route('history') }}"><span class="greater">></span> ऐतिहासिक स्थान</a>
                             </li>
-                            <li><a href="{{ route('about') }}"><span class="greater">></span> Introduction</a></li>
-                            <li><a href="{{ route('program') }}"><span class="greater">></span> Program</a></li>
-                            <li><a href="{{ route('faq') }}"><span class="greater">></span> FAQ</a></li>
-                            <li><a href="{{ route('gallery') }}"><span class="greater">></span> Gallery</a></li>
+                            <li><a href="{{ route('about') }}"><span class="greater">></span> परिचय</a></li>
+                            <li><a href="{{ route('program') }}"><span class="greater">></span> कार्यक्रम</a></li>
+                            <li><a href="{{ route('faq') }}"><span class="greater">></span> बारम्बार सोधिने
+                                    प्रश्नहरू</a></li>
+                            <li><a href="{{ route('gallery') }}"><span class="greater">></span> प्रदर्शनी/ग्यालरी</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -169,7 +169,7 @@
                             <div class="bottom-fl"></div>
                         </div>
                         <div class="letter-txt">
-                            <p>Lorem ipsum dolor sit amet conse. Amet fames orci tellus.</p>
+                            <p>हामीसँग सम्पर्कमा रहनुहोस्</p>
                         </div>
                         <div class="e-form">
                             <input type="email" id="fmail" placeholder="Your E-Mail">

@@ -856,6 +856,7 @@
         .right_dreams_txt {
             width: 48%;
             height: 100%;
+            padding-top: 50px;
             @include respond-to(tablet) {
                 width: 100%;
             }
@@ -1328,14 +1329,15 @@
                         justify-content: space-around;
                         align-items: center;
                         box-sizing: border-box;
-                        padding: 10px;
+                        padding: 10px 25px;
                         gap: 20px;
-                        box-shadow: 0 0 16px rgba(139, 202, 241, 0.4);
+                        background-color: rgba(239, 247, 255, 1);
                         transition: all 0.3s ease-in-out;
                         @include respond-to(mobile) {
                             display: grid;
                             justify-items: center;
                             gap: 0;
+                            padding: 10px;
                         }
                         .date_info {
                             width: 15%;
@@ -1345,8 +1347,9 @@
                             .date1 {
                                 p {
                                     font-size: 20px;
-                                    font-weight: 500;
+                                    font-weight: 600;
                                     margin: 0;
+                                    color: rgba(34, 47, 72, 1);
                                     @include respond-to(mobile) {
                                         font-size: 16px;
                                         text-align: center;
@@ -1354,11 +1357,12 @@
                                 }
                             }
                             .date2 {
-                                margin-block: 20px;
+                                margin-block: 15px;
                                 p {
                                     font-size: 14px;
-                                    width: 400;
+                                    font-weight: 400;
                                     margin: 0;
+                                    color: rgba(34, 47, 72, 1);
                                     @include respond-to(mobile) {
                                         font-size: 10px;
                                         text-align: center;
@@ -1369,7 +1373,7 @@
                         .event_info {
                             border-left: 2px dashed rgba(180, 218, 254, 1);
                             border-right: 2px dashed rgba(180, 218, 254, 1);
-                            padding-inline: 20px;
+                            padding-inline: 30px;
                             width: 60%;
                             @include respond-to(mobile) {
                                 width: 100%;
@@ -1394,11 +1398,10 @@
 
                                 .event_time {
                                     display: flex;
-                                    gap: 10px;
+                                    gap: 5px;
                                     .event_img {
                                         height: 14px;
                                         width: 14px;
-                                        align-self: center;
                                         @include respond-to(mobile) {
                                             height: 19px;
                                             width: 18px;
@@ -1423,8 +1426,7 @@
                             }
                             .event_location {
                                 display: flex;
-                                gap: 10px;
-                                align-items: center;
+                                gap: 5px;
                                 .event_img {
                                     .bi {
                                         color: #066ac8;
@@ -1439,7 +1441,7 @@
                             }
                         }
                         .main_text {
-                            margin-block: 20px;
+                            margin-block: 10px;
                             @include respond-to(mobile) {
                                 margin-top: 10px !important;
                             }
@@ -1447,6 +1449,7 @@
                                 font-size: 22px;
                                 font-weight: 500;
                                 margin: 0;
+                                color: rgba(34, 47, 72, 1);
                                 @include respond-to(tablet) {
                                     font-size: 20px !important;
                                 }
@@ -1467,6 +1470,8 @@
                                 margin: 0;
                                 color: $blue;
                                 display: flex;
+                                gap: 5px;
+                                white-space: nowrap;
                                 @include respond-to(mobile) {
                                     font-size: 12px;
                                     white-space: nowrap;
@@ -1497,6 +1502,24 @@
                                     color: white !important;
                                 }
                             }
+                            .date_info {
+                                .date1 {
+                                    p {
+                                        color: white;
+                                    }
+                                }
+                                .date2 {
+                                    p {
+                                        color: white;
+                                    }
+                                }
+                            }
+                            .main_text {
+                                p {
+                                    color: white;
+                                }
+                            }
+
                             .button {
                                 border: 1px solid white;
                                 p {
@@ -1535,7 +1558,7 @@
 
             .right_event_img {
                 width: 366px;
-                height: 530px;
+                margin-top: 15px;
                 position: relative;
                 &::after {
                     content: " ";
