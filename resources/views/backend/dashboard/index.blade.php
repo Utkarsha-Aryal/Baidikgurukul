@@ -220,8 +220,8 @@
                     <p>10</p>
                 </div>
                 <ul class="dash_list">
-                    <li>Male: 10</li>
-                    <li>Female: 0</li>
+                    {{-- <li>Male: 10</li>
+                    <li>Female: 0</li> --}}
 
                 </ul>
             </div>

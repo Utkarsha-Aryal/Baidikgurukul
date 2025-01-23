@@ -277,34 +277,60 @@ class RitualController extends Controller
     public function uploadImage(Request $request)
     {
         try {
-            if ($request->hasFile('upload')) {
-                $folder = storage_path('app/public/ritual/');
+            $folder = storage_path('app/public/ritual/');
 
-                if (!Storage::exists($folder))
-                    Storage::makeDirectory($folder, 0775, true, true);
-
-                $file = $request->file('upload');
-                $newName = time() . '_' . rand(10, 9999999999999) . '_' . $file->getClientOriginalName();
-                $file->move($folder, $newName);
-
-                $url = asset('storage/ritual/' . $newName); // Public URL for the uploaded image
-
-                return response()->json([
-                    'uploaded' => 1,
-                    'fileName' => $newName,
-                    'url' => $url
-                ]);
-            } else {
-                return response()->json([
-                    'uploaded' => 0,
-                    'error' => ['message' => 'No file uploaded.']
-                ]);
+            if (!Storage::exists($folder)) {
+                Storage::makeDirectory($folder, 0775, true, true);
             }
+
+            $file = $request->file('file');
+
+            $newName = time() . '_' . rand(10, 9999999999999) . '_' . $file->getClientOriginalName();
+
+            $file->move($folder, $newName);
+
+            $url = asset('storage/ritual/' . $newName);
         } catch (Exception $e) {
             return response()->json([
                 'uploaded' => 0,
                 'error' => ['message' => $e->getMessage()]
             ], 500);
+        }
+
+        return response()->json([
+            'success' => true,
+            'imageUrl' => $url
+        ]);
+    }  
+
+
+   //remove 
+    public function deleteuploadImage(Request $request)
+    {
+        try {
+            $request->validate([
+                'image_path' => 'required|string',
+            ]);
+
+            $fileName = basename($request->input('image_path'));
+            $filePath = public_path('storage/ritual/' . $fileName);
+
+
+            if (file_exists($filePath)) {
+                if (unlink($filePath)) {
+                    return response()->json(['success' => true, 'message' => 'File deleted successfully.']);
+                } else {
+                    return response()->json(['success' => false, 'message' => 'Failed to delete the file.']);
+                }
+            } else {
+                return response()->json(['success' => false, 'message' => 'File not found.']);
+            }
+        } catch (QueryException $e) {
+            $data['type'] = 'error';
+            $data['message'] = $this->queryMessage;
+        } catch (Exception $e) {
+            $data['type'] = 'error';
+            $data['message'] = $e->getMessage();
         }
     }
 }

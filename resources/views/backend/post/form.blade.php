@@ -54,6 +54,8 @@
         padding-left: 0.5rem !important;
     }
 </style>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.js"></script>
 <div class="modal-header">
     <h1 class="modal-title fs-5" id="staticBackdropLabel">Post</h1>
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -104,11 +106,7 @@
         <div class="row mt-2">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                 <label for="details" class="form-label">Details <span class="required-field">*</span></label>
-                <!-- Quill Editor Container -->
-                <!-- <div id="details" name="details">{!! @$details !!}</div>
-                <input type="hidden" name="details" id="quill-content"> -->
-                <textarea name="details" id="editor">{!! @$details !!}</textarea>
-                <input type="hidden" name="details" id="details">
+                <div id="summernote">{!! $details ?? '' !!}</div>
             </div>
         </div>
         <div class="row mt-2">
@@ -140,37 +138,6 @@
                             <p class="p-0 m-0">File size :<span class="text-muted"> (300x475) in pixels</span></p>
                         </div>
                     </div>
-                    {{-- it is only for v2 --}}
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
-                        <div class="row">
-                            <label for="description" class="form-label"> Feature Images
-                                <input class="form-control mt-2" type="file" name="feature_images[]"
-                                    id="feature_images" multiple>
-                        </div>
-                        <div class="row mt-2 ms-1">
-                            <p class="p-0 m-0">Multiple Images Can Be Uploaded </p>
-                            <p class="p-0 m-0">Accepted Format :<span class="text-muted"> jpg/jpeg/png</span></p>
-                        </div>
-
-                        <div class="row">
-                            @if (!empty($decodedFeatureImages))
-                                @foreach ($decodedFeatureImages as $featureImage)
-                                    <div id="feature_image">
-
-                                        <img src="{{ asset('/storage/post') . '/' . $featureImage }}"
-                                            class="_feature-image imageThumb" alt="Feature Image" />
-
-                                        <button type="button"
-                                            class="delete_feature_image btn btn-danger label-btn ms-2"
-                                            id="delete_feature_image"
-                                            data-feature_image="{{ $featureImage }}">Delete<i
-                                                class="bi bi-trash label-btn-icon"></i></button>
-                                    </div>
-                                @endforeach
-                            @endif
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>
@@ -187,72 +154,101 @@
     </button>
 </div>
 
-<script>
-    ClassicEditor
-        .create(document.querySelector('#editor'), {
-            ckfinder: {
-                uploadUrl: "{{ route('admin.post.upload.image', ['_token' => csrf_token()]) }}"
-            },
-            toolbar: {
-                items: [
-                    'undo', 'redo', '|', 'heading', '|', 'bold', 'italic', '|', 'blockQuote', '|',
-                    'bulletedList', 'numberedList', '|', // Add list options here
-                    'imageUpload', 'imageStyle:full', 'imageStyle:alignLeft', 'imageStyle:alignCenter',
-                    'imageStyle:alignRight'
-                ],
-                shouldNotGroupWhenFull: true
-            },
-            heading: {
-                options: [{
-                    model: 'paragraph',
-                    title: 'Paragraph',
-                    class: 'ck-heading_paragraph'
-                }]
-            }
-        })
-        .then(editor => {
-            // Save reference to the editor instance
-            window.editor = editor;
-        })
-        .catch(error => {
-            console.error(error);
-        });
-</script>
 
 <script>
     $(document).ready(function() {
-        showDatePicker();
 
-        // $("#datetime").datepicker();
-
-        //uploaded image preview start
-        $(document).on("change", "#feature_images", function(event) {
-            var images = event.target.files;
-            var filesLength = images.length;
-            for (var i = 0; i < filesLength; i++) {
-                var f = images[i];
-                var fileReader = new FileReader();
-                fileReader.onload = (function(e) {
-                    var file = e.target;
-                    $("<span class=\"pip\">" +
-                        "<img class=\"imageThumb\" src=\"" + e.target.result +
-                        "\" title=\"" + file.name + "\"/>" +
-                        "</span>").insertAfter("#feature_images");
-                });
-                fileReader.readAsDataURL(f);
-            }
-        });
-
-        $(document).on('change', '#feature_images', function() {
-            $('.pip').hide();
-        });
-        // uploaded image preview end
-
+        //thumbnail image
         $('#thumbnail_image').on('change', function(event) {
             const selectedFile = event.target.files[0];
 
             if (selectedFile) {
                 $('._image').attr('src', URL.createObjectURL(selectedFile));
+            }
+        });
+
+        $('#postModal').on('shown.bs.modal', function() {
+            $('#summernote').summernote({
+                placeholder: 'Enter post details...',
+                tabsize: 2,
+                height: 150,
+                dialogsInBody: true,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'italic', 'underline', 'clear']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link', 'picture', 'video']],
+                    ['view', ['fullscreen', 'codeview', 'help']]
+                ],
+                callbacks: {
+                    onImageUpload: function(files) {
+                        var formData = new FormData();
+                        formData.append("file", files[0]);
+
+                        $.ajax({
+                            url: "post/upload-image",
+                            method: 'POST',
+                            data: formData,
+                            contentType: false,
+                            processData: false,
+                            success: function(response) {
+                                if (response.success) {
+                                    var imageUrl = response.imageUrl;
+                                    $('#summernote').summernote('insertImage',
+                                        imageUrl);
+
+                                    $('<input>')
+                                        .attr({
+                                            type: 'hidden',
+                                            name: 'image_path',
+                                            value: imageUrl,
+                                        })
+                                        .appendTo('#form');
+                                } else {
+                                    showNotification(response.message, 'error');
+                                }
+                            },
+                            error: function() {
+                                showNotification('Image upload failed',
+                                    'error');
+                            }
+                        });
+                    },
+                    onMediaDelete: function(target) {
+                        var imageUrl = target.attr(
+                            'src');
+                        $.ajax({
+                            url: "post/delete-upload-image",
+                            method: 'POST',
+                            data: {
+                                _token: $('meta[name="csrf-token"]').attr(
+                                    'content'),
+                                image_path: imageUrl
+                            },
+                            success: function(response) {
+                                if (response.success) {
+                                    showNotification(
+                                        'Image deleted successfully',
+                                        'success');
+                                } else {
+                                    showNotification(response.message, 'error');
+                                }
+                            },
+                            error: function() {
+                                showNotification('Image deletion failed',
+                                    'error');
+                            }
+                        });
+                    }
+                }
+            });
+
+        });
+
+        $('#postModal').on('hidden.bs.modal', function() {
+            if ($('#summernote').hasClass('note-editor')) {
+                $('#summernote').summernote('destroy');
             }
         });
 
@@ -301,28 +297,19 @@
         });
 
 
-        $('#category').on('change', function() {
-            var selectedCategory = $(this).val();
-            if (selectedCategory === 'event') {
-                $('#show_event_date').show();
-                $('#show_event_address').show();
-            } else if (selectedCategory === 'notice') {
-                $('#show_event_date').show();
-            } else {
-                $('#show_event_date').hide();
-                $('#show_event_address').hide();
-
-                $('#nepali-datepicker').val('');
-                $('#event_address').val('');
-            }
-        });
-
 
         // Save news
         $('.saveNews').off('click');
         $('.saveNews').on('click', function() {
             if ($('#postForm').valid()) {
-                $('#details').val(window.editor.getData());
+                const postDetail = $('#summernote').summernote('code');
+                $('<input>')
+                    .attr({
+                        type: 'hidden',
+                        name: 'details',
+                        value: postDetail,
+                    })
+                    .appendTo('#postForm');
                 showLoader();
 
                 $('#postForm').ajaxSubmit(function(response) {
@@ -345,34 +332,11 @@
                 });
             }
         });
-        $('#category').trigger('change');
 
-        // $('.delete_feature_image').on('click', function() {
-        //     var feature_image = $(this).data('feature_image');
-        //     var id = $('#id').val();
-        //     var url = '{{ route('admin.post.deletefeatureimage') }}';
-        //     $.ajax({
-        //         url: url,
-        //         type: 'POST',
-        //         data: {
-        //             feature_image: feature_image,
-        //             id: id,
-        //         },
-        //         success: function(response) {
-        //             // Handle success message or update UI
-        //             console.log(response);
-        //             // Reload or update UI to reflect changes
-        //         },
-        //         error: function(xhr, status, error) {
-        //             // Handle error
-        //             console.error(error);
-        //         }
-        //     });
-        // });
         // Delete feature image
         $('.delete_feature_image').off('click')
         $('.delete_feature_image').on('click', function() {
-            var deleteButton = $(this); // Here, you define deleteButton
+            var deleteButton = $(this);
             Swal.fire({
                 title: "Are you sure you want to delete this item",
                 text: "You won't be able to revert it!",

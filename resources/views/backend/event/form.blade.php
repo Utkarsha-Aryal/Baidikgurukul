@@ -250,6 +250,47 @@
             }
         });
 
+        //validation
+        $('#eventForm').validate({
+            rules: {
+                title: "required",
+                order_number: "required",
+                event_address: "required",
+                event_date: "required",
+                event_venue: "required",
+                event_time_end: "required",
+                event_time_start: "required",
+                details: "required",
+                image: {
+                    required: function() {
+                        var id = $('#id').val();
+                        return id === '';
+                    }
+                },
+            },
+            message: {
+                title: {
+                    required: "This field is required."
+                },
+
+                details: {
+                    required: "This field is required."
+                },
+                short_quote: {
+                    required: "This field is required."
+                },
+                order_number: {
+                    required: "This field is required."
+                },
+            },
+            highlight: function(element) {
+                $(element).addClass('border-danger')
+            },
+            unhighlight: function(element) {
+                $(element).removeClass('border-danger')
+            },
+        });
+
         $('.saveEvent').on('click', function() {
             if ($('#eventForm').valid()) {
                 const eventDetails = $('#summernote').summernote('code');

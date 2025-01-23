@@ -31,7 +31,7 @@ use App\Http\Controllers\frontpanel\FaqController as FrontFAQController;
 use App\Http\Controllers\frontpanel\FormController;
 use App\Http\Controllers\frontpanel\GalleryController as FrontGalleryController;
 use App\Http\Controllers\frontpanel\HistoryController as FrontHistoryController;
-use App\Http\Controllers\FrontPanel\HomeController as FrontHomeController;
+use App\Http\Controllers\frontpanel\HomeController as FrontHomeController;
 use App\Http\Controllers\frontpanel\IntroductionController;
 use App\Http\Controllers\frontpanel\NewsController;
 use App\Http\Controllers\frontpanel\ProgramController as FrontProgramController;
@@ -137,6 +137,7 @@ Route::group(['middleware' => 'admin'], function () {
             Route::post('/restore', [PostController::class, 'restore'])->name('admin.post.restore');
             Route::post('/deletefeatureimage', [PostController::class, 'deleteFeatureImage'])->name('admin.post.deletefeatureimage');
             Route::post('/upload-image', [PostController::class, 'uploadImage'])->name('admin.post.upload.image');
+            Route::post('/delete-upload-image', [PostController::class, 'deleteuploadImage'])->name('admin.post.delete.upload.image');
         });
         /*post=> News/Notice/Article/Events-end*/
 
@@ -226,6 +227,7 @@ Route::group(['middleware' => 'admin'], function () {
         Route::group(['prefix' => 'program'], function () {
             Route::get('/', [ProgramController::class, 'index'])->name('admin.program');
             Route::post('/upload-image', [ProgramController::class, 'uploadImage'])->name('upload.image');
+            Route::post('delete/upload-image', [ProgramController::class, 'deleteuploadImage'])->name('admin.delete.upload.image');
             Route::post('/save', [ProgramController::class, 'save'])->name('admin.program.save');
             Route::any('/form', [ProgramController::class, 'form'])->name('admin.program.form');
             Route::post('/list', [ProgramController::class, 'list'])->name('admin.program.list');
@@ -274,6 +276,7 @@ Route::group(['middleware' => 'admin'], function () {
             Route::post('/restore', [HistoryController::class, 'restore'])->name('admin.history.restore');
             Route::post('/view', [HistoryController::class, 'view'])->name('admin.history.view');
             Route::post('/upload-image', [HistoryController::class, 'uploadImage'])->name('admin.history.upload.image');
+            Route::post('delete/upload-image', [HistoryController::class, 'deleteuploadImage'])->name('admin.delete.upload.image');
         });
         //history end here
 
@@ -299,6 +302,7 @@ Route::group(['middleware' => 'admin'], function () {
             Route::post('/restore', [RitualController::class, 'restore'])->name('admin.ritual.restore');
             Route::post('/view', [RitualController::class, 'view'])->name('admin.ritual.view');
             Route::post('/upload-image', [RitualController::class, 'uploadImage'])->name('admin.ritual.upload.image');
+            Route::post('delete/upload-image', [RitualController::class, 'deleteuploadImage'])->name('admin.ritual.upload.image');
         });
         //ritual end here
 
