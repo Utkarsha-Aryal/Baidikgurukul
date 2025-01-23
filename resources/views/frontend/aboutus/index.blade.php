@@ -146,7 +146,7 @@
                     </div>
                     <div class="first_txt">
 
-                        @if ($message->title)
+                        @if (!@empty($message->title))
                             @php
                                 $text = $message->title ?? '';
                                 $words = explode(' ', $text);

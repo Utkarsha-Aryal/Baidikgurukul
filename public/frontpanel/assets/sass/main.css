@@ -4876,13 +4876,13 @@ body .header_container_wrapper .nav_header_wrapper_container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: rgb(6, 106, 200);
   height: 45px;
 }
 body .header_container_wrapper .nav_header_wrapper_container .email_contact_wrapper_container {
   width: 50%;
   height: 100%;
   display: flex;
+  background-color: rgb(169, 2, 98);
 }
 body .header_container_wrapper .nav_header_wrapper_container .email_contact_wrapper_container .nav_top_left_header {
   display: flex;
@@ -4910,7 +4910,7 @@ body .header_container_wrapper .nav_header_wrapper_container .email_contact_wrap
   height: 16px;
 }
 body .header_container_wrapper .nav_header_wrapper_container .email_contact_wrapper_container .nav_top_left_header .email_wrapper_container .email_txt_container p {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
   color: white;
   margin: 0;
@@ -4925,7 +4925,7 @@ body .header_container_wrapper .nav_header_wrapper_container .email_contact_wrap
   height: 16px;
 }
 body .header_container_wrapper .nav_header_wrapper_container .email_contact_wrapper_container .nav_top_left_header .contact_wrapper_container .contact_txt_container p {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
   color: white;
 }
@@ -4936,6 +4936,7 @@ body .header_container_wrapper .nav_header_wrapper_container .social_icon_conten
   padding-right: 105px;
   display: flex;
   justify-content: right;
+  background-color: rgb(6, 106, 200);
 }
 body .header_container_wrapper .nav_header_wrapper_container .social_icon_content::after {
   content: "";
@@ -4945,8 +4946,8 @@ body .header_container_wrapper .nav_header_wrapper_container .social_icon_conten
   right: 100%;
   width: 20px;
   background-color: rgb(6, 106, 200);
-  -webkit-clip-path: polygon(120% 100%, 100% 1%, 0 100%);
-          clip-path: polygon(120% 100%, 100% 1%, 0 100%);
+  -webkit-clip-path: polygon(100% 100%, 100% 1%, 0 100%);
+          clip-path: polygon(100% 100%, 100% 1%, 0 100%);
   transform: skewX(0deg);
   z-index: 1;
 }
@@ -4961,7 +4962,7 @@ body .header_container_wrapper .nav_header_wrapper_container .social_icon_conten
   }
 }
 body .header_container_wrapper .nav_header_wrapper_container .social_icon_content .nav_top_right_wrapper .social_txt_container p {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
   color: white;
 }
@@ -4981,7 +4982,7 @@ body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-block: 4px;
+  padding-block: 8px;
 }
 body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .logo_wrapper_wrap {
   display: flex;
@@ -4989,8 +4990,8 @@ body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .log
   gap: 12px;
 }
 body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .logo_wrapper_wrap .nav_logo img {
-  height: 57px;
-  width: 55px;
+  height: 63px;
+  width: 60px;
 }
 @media (max-width: 768px) {
   body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .logo_wrapper_wrap .nav_logo img {
@@ -5103,14 +5104,14 @@ body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .nav
   }
 }
 body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .nav_list_hamburger_menu .nav_list_menu .navigation_list li.active {
-  background-color: red;
+  background-color: rgb(6, 106, 200);
 }
 body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .nav_list_hamburger_menu .nav_list_menu .navigation_list li a {
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 500;
   position: relative;
 }
-body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .nav_list_hamburger_menu .nav_list_menu .navigation_list li a:hover {
+body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .nav_list_hamburger_menu .nav_list_menu .navigation_list li a.active {
   color: rgb(6, 106, 200);
 }
 body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .nav_list_hamburger_menu .nav_list_menu .navigation_list li a::after {
@@ -5125,7 +5126,7 @@ body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .nav
   border-radius: 4px;
   margin-block: -2px;
 }
-body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .nav_list_hamburger_menu .nav_list_menu .navigation_list li a:hover::after {
+body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .nav_list_hamburger_menu .nav_list_menu .navigation_list li a.active::after {
   width: 50%;
   right: 0;
   margin-top: 10px;

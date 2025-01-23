@@ -20,14 +20,15 @@
 
     <div class="container">
         <div class="donation_list_container">
-            <table>
-                <tr>
-                    <th>S.N</th>
-                    <th>Donar Name</th>
-                    <th>Amount/Item</th>
-                    <th>Donation Title</th>
-                </tr>
-                @if (!empty($doners))
+            @if (!empty($doners) && count($doners) > 0)
+                <table>
+                    <tr>
+                        <th>S.N</th>
+                        <th>Donar Name</th>
+                        <th>Amount/Item</th>
+                        <th>Donation Title</th>
+                    </tr>
+
                     @foreach ($doners as $index => $doner)
                         <tr>
                             <td>{{ $index + 1 }}</td>
@@ -47,9 +48,10 @@
                             <td>{{ $doner->title }}</td>
                         </tr>
                     @endforeach
-                @endif
-
-            </table>
+                </table>
+            @else
+                <p>No data found</p>
+            @endif
         </div>
     </div>
 @endsection

@@ -148,6 +148,7 @@ class MessageFromController extends Controller
                 $data['id'] = $result->id;
                 $data['name'] = $result->name;
                 $data['message'] = $result->message;
+                $data['title'] = $result->title;
                 $data['designation'] = $result->designation;
                 $data['display_in_home'] = $result->display_in_home;
                 $data['order'] = $result->order;
