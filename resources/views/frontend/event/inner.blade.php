@@ -26,13 +26,6 @@
                         {{ $event->title ?? '' }}
                     </P>
                 </div>
-                <div class="left_container_image">
-                    @if (!empty($event->image) && Storage::exists('public/event/' . $event->image))
-                        <img src="{{ asset('storage/event/' . $event->image) }}" alt="">
-                    @else
-                        <img src="{{ asset('frontpanel/assets/images/Rectangle 170 (3).png') }}" alt="">
-                    @endif
-                </div>
                 <div class="left_container_content">
                     <p>{!! $event->details ?? '' !!}
                     </p>

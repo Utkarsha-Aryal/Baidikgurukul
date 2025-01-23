@@ -61,7 +61,7 @@ class Timeline extends Model
                 $offset = $get["start"];
             }
 
-            $query = Timeline::selectRaw("count(*) OVER() AS totalrecs, year, id as id, details")
+            $query = Timeline::selectRaw("(SELECT count(*) FROM timelines WHERE{$cond}) AS totalrecs, year, id as id, details")
                 ->whereRaw($cond);
 
             if ($limit > -1) {

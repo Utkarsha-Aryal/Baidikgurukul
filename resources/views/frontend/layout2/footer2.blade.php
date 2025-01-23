@@ -98,11 +98,12 @@
                             <div class="bottom-fl"></div>
                         </div>
                         <ul>
-                            <li><a href=""><span class="greater">></span> Historical Place</a></li>
-                            <li><a href=""><span class="greater">></span> Introduction</a></li>
-                            <li><a href=""><span class="greater">></span> Program</a></li>
-                            <li><a href="faq"><span class="greater">></span> FAQ</a></li>
-                            <li><a href=""><span class="greater">></span> Gallery</a></li>
+                            <li><a href="{{ route('history') }}"><span class="greater">></span> Historical Place</a>
+                            </li>
+                            <li><a href="{{ route('about') }}"><span class="greater">></span> Introduction</a></li>
+                            <li><a href="{{ route('program') }}"><span class="greater">></span> Program</a></li>
+                            <li><a href="{{ route('faq') }}"><span class="greater">></span> FAQ</a></li>
+                            <li><a href="{{ route('gallery') }}"><span class="greater">></span> Gallery</a></li>
                         </ul>
                     </div>
                 </div>

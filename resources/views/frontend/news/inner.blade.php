@@ -30,13 +30,6 @@
                         </P>
                     @endif
                 </div>
-                <div class="left_container_image">
-                    @if (!empty($post->image) && Storage::exists('public/post/' . $post->image))
-                        <img src="{{ asset('storage/post/' . $post->image) }}" alt="">
-                    @else
-                        <img src="frontend\images\Rectangle 143 (2).png">
-                    @endif
-                </div>
                 <div class="left_container_content">
                     @if (!@empty($post->details))
                         <P>
