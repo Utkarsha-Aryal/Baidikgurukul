@@ -213,6 +213,7 @@
     hamburgerMenu.addEventListener('click', function(event) {
         navMenu.classList.add('active');
         crossSign.style.display = 'block';
+        document.body.classList.add('menu-open'); // Apply background dimming
         event.stopPropagation();
     });
 
@@ -220,15 +221,16 @@
     crossSign.addEventListener('click', function(event) {
         navMenu.classList.remove('active');
         crossSign.style.display = 'none';
+        document.body.classList.remove('menu-open'); // Remove background dimming
         event.stopPropagation();
     });
 
     // Close menu when clicking outside
     document.addEventListener('click', function(event) {
-        if (!navMenu.contains(event.target) && !hamburgerMenu.contains(event.target) && !crossSign.contains(
-                event.target)) {
+        if (!navMenu.contains(event.target) && !hamburgerMenu.contains(event.target) && !crossSign.contains(event.target)) {
             navMenu.classList.remove('active');
             crossSign.style.display = 'none';
+            document.body.classList.remove('menu-open'); // Remove background dimming
         }
     });
 </script>
