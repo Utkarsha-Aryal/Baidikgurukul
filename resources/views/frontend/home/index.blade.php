@@ -266,13 +266,12 @@
                     </div>
                 </div>
             </div>
-
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
-                    @foreach ($programs as $program)
-                        <div class="swiper-slide">
-                            <div class="swiper_content_card_wrapper">
-                                <div class="swiper_content_card">
+                    <div class="swiper-slide">
+                        <div class="swiper_content_card_wrapper">
+                            <div class="swiper_content_card">
+                                @foreach ($programs as $program)
                                     <div class="card_image">
                                         @if (!empty($program->image) && Storage::exists('public/program/' . $program->image))
                                             <img src="{{ asset('storage/program/' . $program->image) }}" alt="">
@@ -289,7 +288,6 @@
                                     </div>
                                     <button class="read_more">
                                         <a href="{{ route('program.inner', $program->slug) }}">
-
                                             <p>READ MORE</p>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                 fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
@@ -298,13 +296,12 @@
                                             </svg>
                                         </a>
                                     </button>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
-                    @endforeach
+                    </div>
                 </div>
             </div>
-
         </div>
     </section>
     <script>

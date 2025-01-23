@@ -79,7 +79,7 @@ class MessageFrom extends Model
                 $offset = $get["start"];
             }
 
-            $query = MessageFrom::selectRaw("count(*) OVER() AS totalrecs, name, id as id,message,designation,display_in_home,`order`, image,title")
+            $query = MessageFrom::selectRaw("(SELECT count(*) FROM message_froms WHERE{$cond})  AS totalrecs, name, id as id,message,designation,display_in_home,`order`, image,title")
                 ->whereRaw($cond);
 
             if ($limit > -1) {

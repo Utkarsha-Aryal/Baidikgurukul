@@ -140,21 +140,44 @@
                         <ul class="navigation_list">
                             <li><a href="{{ route('home') }}"
                                     class="{{ request()->routeIs('home') ? 'active' : '' }}">Home</a></li>
-                            <li><a href="#" class="{{ request()->is('about*') ? 'active' : '' }}">About Us
-                                    <ul class="dropdown">
-                                        <li><a href="{{ route('about') }}"
-                                                class="{{ request()->routeIs('about') ? 'active' : '' }}">Introduction</a>
-                                        </li>
-                                        <li><a href="#"
-                                                class="{{ request()->is('ourteam*') ? 'active' : '' }}">Our Team</a>
-                                        </li>
-                                        <li><a href="{{ route('history') }}"
-                                                class="{{ request()->routeIs('history') ? 'active' : '' }}">Our
-                                                Historical Place</a></li>
-                                        <li><a href="rules"
-                                                class="{{ request()->is('rules') ? 'active' : '' }}">Our Rules for
-                                                Rituals</a></li>
-                                    </ul>
+                            <li>
+                                <a href="#" class="{{ request()->is('about*') ? 'active' : '' }}">About Us</a>
+                                <ul class="dropdown">
+                                    <li><a href="{{ route('about') }}"
+                                            class="{{ request()->routeIs('about') ? 'active' : '' }}">Introduction</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="{{ request()->is('ourteam*') ? 'active' : '' }}">Our
+                                            Team
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd"
+                                                    d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708" />
+                                            </svg>
+                                        </a>
+                                        @if (count($teamcategory) > 0)
+                                            <ul class="nested-dropdown">
+                                                @if (!@empty($teamcategory))
+                                                    @foreach ($teamcategory as $category)
+                                                        <li>
+                                                            <a href="{{ route('ourteam', $category->slug) }}"
+                                                                class="{{ request()->is('ourteam/' . $category->slug) ? 'active' : '' }}">
+                                                                {{ $category->team_category }}
+                                                            </a>
+                                                        </li>
+                                                    @endforeach
+                                                @else
+                                                    <p>No Member Available</p>
+                                                @endif
+                                            </ul>
+                                        @endif
+                                    </li>
+                                    <li><a href="{{ route('history') }}"
+                                            class="{{ request()->routeIs('history') ? 'active' : '' }}">Our Historical
+                                            Place</a></li>
+                                    <li><a href="rules" class="{{ request()->is('rules') ? 'active' : '' }}">Our
+                                            Rules for Rituals</a></li>
+                                </ul>
                             </li>
                             <li><a href="{{ route('program') }}"
                                     class="{{ request()->routeIs('program') ? 'active' : '' }}">Program</a></li>
