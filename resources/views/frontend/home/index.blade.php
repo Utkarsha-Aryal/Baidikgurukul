@@ -1,6 +1,6 @@
-@extends('frontend.layouts.main')
+@extends('frontend.layout2.main2')
 @section('title', 'Home')
-@section('content')
+@section('content2')
 <section class="first_content">
     <div class="bg_image">
         <img src="{{ asset('frontpanel/assets/images/image1.jpeg') }}" alt="">
