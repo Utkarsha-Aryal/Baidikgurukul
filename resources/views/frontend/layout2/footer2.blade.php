@@ -169,7 +169,7 @@
                             <div class="bottom-fl"></div>
                         </div>
                         <div class="letter-txt">
-                            <p>हामीसँग सम्पर्कमा रहनुहोस्</p>
+                            <p>हामीसँग सम्पर्कमा रहनुहोस</p>
                         </div>
                         <div class="e-form">
                             <input type="email" id="fmail" placeholder="Your E-Mail">
@@ -186,7 +186,7 @@
             </div>
             <div class="last_footer_wrapper">
                 <div class="ltf_frow">
-                    <p>@copy 2025 Chochangay Samaj Nepal. All Rights Reserved.</p>
+                    <p>@copy 2025 चाेचाङ्गी समाज नेपाल. सर्वाधिकार सुरक्षित.</p>
                 </div>
                 <div class="right_frow">
                     <p>Designed and Developed by: <a href="https://g.co/kgs/G1iBeJK" target="_blank"><span

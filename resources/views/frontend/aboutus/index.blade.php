@@ -197,12 +197,12 @@
             <img src="{{ asset('frontpanel/assets/images/ritual.png') }}" alt="">
         </div>
         <div class="rght_txt">
-            <p>तपाईंको जन्म र मृत्यु प्रविष्टि गर्नुहोस्
+            <p>तपाईंको जन्म र मृत्यु प्रविष्टि गर्नुहोस
                 दर्ता फारम
-                अपडेट राख्नुहोस्</p>
+                अपडेट राख्नुहोस</p>
             <button class="entry_form">
                 <a href="#">
-                    <p>अहिले प्रवेश गर्नुहोस्</p>
+                    <p>अहिले प्रवेश गर्नुहोस</p>
                 </a>
             </button>
         </div>

@@ -43,7 +43,7 @@
                         </div>
                         <button class="explore_button">
                             <a href="{{ route('about') }}">
-                                <p>अहिले अन्वेषण गर्नुहोस्</p>
+                                <p>परिचय</p>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
@@ -76,7 +76,7 @@
                         </div>
                         <button class="read_more">
                             <a href="{{ route('rules') }}">
-                                <p>थप पढ्नुहोस्</p>
+                                <p>थप पढ्नुहोस</p>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-arrow-right" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
@@ -97,7 +97,7 @@
                         </div>
                         <button class="register_button">
                             <a href="form">
-                                <p>अहिले दर्ता गर्नुहोस्</p>
+                                <p>फारम भर्नुहोस</p>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
@@ -149,7 +149,7 @@
                     @if (strlen($about->introduction) > 1000)
                         <button class="read_button">
                             <a href="{{ route('about') }}">
-                                <p>थप पढ्नुहोस्</p>
+                                <p>थप पढ्नुहोस</p>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
@@ -195,7 +195,7 @@
                             {!! Str::limit($message->message, 800, '...') !!}
                             <button class="read_button">
                                 <a href="{{ route('about') }}">
-                                    <p>थप पढ्नुहोस्</p>
+                                    <p>थप पढ्नुहोस</p>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                         fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd"
@@ -274,15 +274,19 @@
                             <div class="swiper_content_card_wrapper">
                                 <div class="swiper_content_card">
                                     <div class="card_image">
-                                        <img src="{{ asset('frontpanel/assets/images/Rectangle 170 (3).png') }}"
-                                            alt="">
+                                        @if (!empty($program->image))
+                                            <img src={{ asset('storage/program') . '/' . $program->image }}>
+                                        @else
+                                            <img src="{{ asset('frontpanel/assets/images/Rectangle 170 (3).png') }}"
+                                                alt="">
+                                        @endif
                                     </div>
                                     <div class="first_txt">
                                         <p>{{ Str::limit($program->title ?? '', 30, '...') }}</p>
                                     </div>
                                     <button class="read_more">
                                         <a href="{{ route('program.inner', $program->slug) }}">
-                                            <p>READ MORE</p>
+                                            <p>थप पढ्नुहोस</p>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                 fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
                                                 <path fill-rule="evenodd"
@@ -333,11 +337,11 @@
             <div class="event_wrapper">
                 <div class="left_event_text">
                     <div class="first_blue_text">
-                        <p>आगामी घटनाक्रम
+                        <p>आगामी कार्यक्रम
                         </p>
                     </div>
                     <div class="second_event_text">
-                        <p>हाम्रो आगामी <span class="blue_text">कार्यक्रमहरूमा सामेल हुनुहोस् </span></p>
+                        <p>हाम्रो आगामी <span class="blue_text">कार्यक्रमहरूमा सामेल हुनुहोस </span></p>
                     </div>
                     <div class="third_event_text">
                         <P>मगर समुदाय नेपालका आदिवासी जनजातिहरू मध्ये एक हो, जो आफ्नो धनीका लागि परिचित छ
@@ -397,7 +401,7 @@
                                     </div>
                                     <div class="button">
 
-                                        <p>अहिले सम्मिलित हुनुहोस् <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                        <p>अहिले सम्मिलित कार्यक्रम<svg xmlns="http://www.w3.org/2000/svg" width="16"
                                                 height="16" fill="currentColor" class="bi bi-arrow-up-right"
                                                 viewBox="0 0 16 16">
                                                 <path fill-rule="evenodd"
@@ -412,7 +416,7 @@
                     @if (count($events) > 0)
                         <div class="see_all_btn">
                             <a href="{{ route('event') }}">
-                                <p>सबै घटनाहरू हेर्नुहोस् </p>
+                                <p>सबै घटनाहरू हेर्नुहोस </p>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
@@ -451,7 +455,7 @@
                     @if (count($histories) > 0)
                         <div class="view_all_txt">
                             <a href="{{ route('history') }}">
-                                <p>सबै हेर्नुहोस्</p>
+                                <p>सबै हेर्नुहोस</p>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
@@ -489,7 +493,7 @@
                         <button class="read_more">
                             <a href="{{ route('history.inners', $history->slug ?? '#') }}">
                                 <p>
-                                    थप पढ्नुहोस्</p>
+                                    थप पढ्नुहोस</p>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
