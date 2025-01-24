@@ -16,10 +16,10 @@ body {
 body {
     margin: 0;
 }
-p{
+p {
     margin: 0;
 }
-ul{
+ul {
     margin: 0;
 }
 img {
@@ -67,8 +67,13 @@ button {
         height: 150px !important;
     }
 }
-.team_tab_section{
-    @include respond-to(tablet){
-       margin-block: 30px !important;
+.team_tab_section {
+    @include respond-to(tablet) {
+        margin-block: 30px !important;
+    }
+}
+.bi {
+    &:hover {
+        color: $blue;
     }
 }
