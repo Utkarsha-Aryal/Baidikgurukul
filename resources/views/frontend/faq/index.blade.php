@@ -10,7 +10,7 @@
                 <img src="{{ asset('frontpanel/assets/images/image1.jpeg') }}" alt="">
             </div>
             <div class="main_txt">
-                <p>FAQ</p>
+                <p>बारम्बार सोधिने प्रश्नहरू</p>
             </div>
         </div>
         <div class="img_after">

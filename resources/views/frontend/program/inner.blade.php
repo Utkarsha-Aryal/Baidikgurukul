@@ -10,7 +10,7 @@
                 <img src="{{ asset('frontpanel/assets/images/image1.jpeg') }}" alt="">
             </div>
             <div class="main_txt">
-                <p>Program Inner Page</p>
+                <p>कार्यक्रम विवरण पृष्ठ</p>
             </div>
         </div>
         <div class="img_after">

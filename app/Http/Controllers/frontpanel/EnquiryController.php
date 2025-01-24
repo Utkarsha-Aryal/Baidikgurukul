@@ -43,7 +43,7 @@ class EnquiryController extends Controller
 
             $post = $request->all();
             $type = 'success';
-            $message = 'Your query has been send successfully.';
+            $message = 'तपाईको प्रश्न सफलतापूर्वक पठाइएको छ।';
 
             DB::beginTransaction();
             $result = BackPanelEnquiry::saveData($post);

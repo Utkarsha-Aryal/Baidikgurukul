@@ -117,8 +117,7 @@
                         @endif
                     </div>
                     <div class="logo_txt">
-                        <p>Chochangay <br>
-                            Samaj Nepal</p>
+                        <p>चाेचाङ्गी समाज<br>नेपाल</p>
                     </div>
                 </div>
                 <div class="nav_list_hamburger_menu">
@@ -139,16 +138,17 @@
                     <div class="nav_list_menu">
                         <ul class="navigation_list">
                             <li><a href="{{ route('home') }}"
-                                    class="{{ request()->routeIs('home') ? 'active' : '' }}">Home</a></li>
+                                    class="{{ request()->routeIs('home') ? 'active' : '' }}">गृहपृष्ठ</a></li>
                             <li>
-                                <a href="#" class="{{ request()->is('about*') ? 'active' : '' }}">About Us</a>
+                                <a href="#" class="{{ request()->is('about*') ? 'active' : '' }}">हाम्रो
+                                    बारेमा</a>
                                 <ul class="dropdown">
                                     <li><a href="{{ route('about') }}"
-                                            class="{{ request()->routeIs('about') ? 'active' : '' }}">Introduction</a>
+                                            class="{{ request()->routeIs('about') ? 'active' : '' }}">परिचय</a>
                                     </li>
                                     <li>
-                                        <a href="#" class="{{ request()->is('ourteam*') ? 'active' : '' }}">Our
-                                            Team
+                                        <a href="#"
+                                            class="{{ request()->is('ourteam*') ? 'active' : '' }}">हाम्रो टोली
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                 fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
                                                 <path fill-rule="evenodd"
@@ -173,20 +173,20 @@
                                         @endif
                                     </li>
                                     <li><a href="{{ route('history') }}"
-                                            class="{{ request()->routeIs('history') ? 'active' : '' }}">Our Historical
-                                            Place</a></li>
-                                    <li><a href="rules" class="{{ request()->is('rules') ? 'active' : '' }}">Our
-                                            Rules for Rituals</a></li>
+                                            class="{{ request()->routeIs('history') ? 'active' : '' }}">हाम्रो
+                                            ऐतिहासिक स्थान</a></li>
+                                    <li><a href="rules" class="{{ request()->is('rules') ? 'active' : '' }}">हाम्रो
+                                            संस्कारका नियमहरू</a></li>
                                 </ul>
                             </li>
                             <li><a href="{{ route('program') }}"
-                                    class="{{ request()->routeIs('program') ? 'active' : '' }}">Program</a></li>
+                                    class="{{ request()->routeIs('program') ? 'active' : '' }}">कार्यक्रमहरू</a></li>
                             <li><a href="{{ route('gallery') }}"
-                                    class="{{ request()->routeIs('gallery') ? 'active' : '' }}">Gallery</a></li>
+                                    class="{{ request()->routeIs('gallery') ? 'active' : '' }}">ग्यालरी</a></li>
                             <li><a href="{{ route('news') }}"
-                                    class="{{ request()->routeIs('news') ? 'active' : '' }}">News & Blogs</a></li>
+                                    class="{{ request()->routeIs('news') ? 'active' : '' }}">समाचार र ब्लगहरू</a></li>
                             <li><a href="{{ route('contact') }}"
-                                    class="{{ request()->routeIs('contact') ? 'active' : '' }}">Contact</a></li>
+                                    class="{{ request()->routeIs('contact') ? 'active' : '' }}">सम्पर्क</a></li>
                         </ul>
 
                         <button class="donar_list">
@@ -196,7 +196,7 @@
                                     <path fill-rule="evenodd"
                                         d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2" />
                                 </svg>
-                                <p>DONAR LIST</p>
+                                <p>दाताहरूको सूची</p>
                             </a>
                         </button>
                     </div>
