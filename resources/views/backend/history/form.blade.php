@@ -78,15 +78,12 @@
 
 <script>
     $(document).ready(function() {
-
         $('#thumbnail_image').on('change', function(event) {
             const selectedFile = event.target.files[0];
-
             if (selectedFile) {
                 $('._image').attr('src', URL.createObjectURL(selectedFile));
             }
         });
-
 
         $('#historyModal').on('shown.bs.modal', function() {
             $('#summernote').summernote({
@@ -106,7 +103,7 @@
                     onImageUpload: function(files) {
                         var formData = new FormData();
                         formData.append("file", files[0]);
-
+                        showLoader();
                         $.ajax({
                             url: "history/upload-image",
                             method: 'POST',
@@ -118,7 +115,6 @@
                                     var imageUrl = response.imageUrl;
                                     $('#summernote').summernote('insertImage',
                                         imageUrl);
-
                                     $('<input>')
                                         .attr({
                                             type: 'hidden',
@@ -126,20 +122,27 @@
                                             value: imageUrl,
                                         })
                                         .appendTo('#form');
+                                    showNotification(
+                                        'Image uploaded successfully',
+                                        'success');
                                 } else {
                                     showNotification(response.message, 'error');
+                                    hideLoader();
                                 }
                             },
                             error: function() {
                                 showNotification('Image upload failed',
                                     'error');
+                                hideLoader();
+                            },
+                            complete: function() {
+                                hideLoader();
                             }
                         });
                     },
                     onMediaDelete: function(target) {
-                        var imageUrl = target.attr(
-                            'src');
-
+                        var imageUrl = target.attr('src');
+                        showLoader();
                         $.ajax({
                             url: "history/delete/upload-image",
                             method: 'POST',
@@ -150,22 +153,27 @@
                             },
                             success: function(response) {
                                 if (response.success) {
+                                    hideLoader();
                                     showNotification(
                                         'Image deleted successfully',
                                         'success');
                                 } else {
+                                    hideLoader();
                                     showNotification(response.message, 'error');
                                 }
                             },
                             error: function() {
+                                hideLoader();
                                 showNotification('Image deletion failed',
                                     'error');
+                            },
+                            complete: function() {
+                                hideLoader();
                             }
                         });
                     }
                 }
             });
-
         });
 
         $('#historyModal').on('hidden.bs.modal', function() {
@@ -174,7 +182,6 @@
             }
         });
 
-        //validation
         $('#historyForm').validate({
             rules: {
                 title: "required",
@@ -188,11 +195,10 @@
                     }
                 },
             },
-            message: {
+            messages: {
                 title: {
                     required: "This field is required."
                 },
-
                 details: {
                     required: "This field is required."
                 },
@@ -204,14 +210,13 @@
                 },
             },
             highlight: function(element) {
-                $(element).addClass('border-danger')
+                $(element).addClass('border-danger');
             },
             unhighlight: function(element) {
-                $(element).removeClass('border-danger')
+                $(element).removeClass('border-danger');
             },
         });
 
-        // Save news
         $('.saveHistory').off('click');
         $('.saveHistory').on('click', function() {
             if ($('#historyForm').valid()) {
@@ -224,26 +229,30 @@
                     })
                     .appendTo('#historyForm');
                 showLoader();
-
                 $('#historyForm').ajaxSubmit(function(response) {
                     var result = JSON.parse(response);
                     if (result) {
                         if (result.type === 'success') {
                             showNotification(result.message, 'success');
-                            hideLoader();
                             historyTable.draw();
                             $('#historyForm')[0].reset();
                             $('#id').val('');
                             $('#historyModal').modal('hide');
                         } else {
                             showNotification(result.message, 'error');
-                            hideLoader();
                         }
-                    } else {
-                        hideLoader();
                     }
+                    hideLoader();
                 });
             }
         });
     });
+
+    function showLoader() {
+        $('#loader').show();
+    }
+
+    function hideLoader() {
+        $('#loader').hide();
+    }
 </script>

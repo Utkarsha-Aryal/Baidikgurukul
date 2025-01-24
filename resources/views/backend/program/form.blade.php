@@ -1,4 +1,3 @@
-
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.js"></script>
 
@@ -103,7 +102,7 @@
                     onImageUpload: function(files) {
                         var formData = new FormData();
                         formData.append("file", files[0]);
-
+                        showLoader();
                         $.ajax({
                             url: "program/upload-image",
                             method: 'POST',
@@ -123,6 +122,9 @@
                                             value: imageUrl,
                                         })
                                         .appendTo('#form');
+                                    showNotification(
+                                        'Image uploaded successfully',
+                                        'success');
                                 } else {
                                     showNotification(response.message, 'error');
                                 }
@@ -130,13 +132,17 @@
                             error: function() {
                                 showNotification('Image upload failed',
                                     'error');
+                            },
+                            complete: function() {
+                                hideLoader();
                             }
+
                         });
                     },
                     onMediaDelete: function(target) {
                         var imageUrl = target.attr(
                             'src');
-
+                        showLoader();
                         $.ajax({
                             url: "program/delete/upload-image",
                             method: 'POST',
@@ -151,12 +157,17 @@
                                         'Image deleted successfully',
                                         'success');
                                 } else {
-                                    showNotification(response.message, 'error');
+                                    showNotification(response.message,
+                                        'error');
                                 }
                             },
                             error: function() {
-                                showNotification('Image deletion failed',
+                                showNotification(
+                                    'Image deletion failed',
                                     'error');
+                            },
+                            complete: function() {
+                                hideLoader();
                             }
                         });
                     }

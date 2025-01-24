@@ -1,4 +1,3 @@
-
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.js"></script>
 <div class="modal-header">
@@ -55,7 +54,7 @@
 
 <script>
     $(document).ready(function() {
-
+        // Thumbnail image preview
         $('#thumbnail_image').on('change', function(event) {
             const selectedFile = event.target.files[0];
 
@@ -64,7 +63,7 @@
             }
         });
 
-
+        // Initialize Summernote in modal
         $('#ritualModal').on('shown.bs.modal', function() {
             $('#summernote').summernote({
                 placeholder: 'Enter ritual details...',
@@ -77,13 +76,13 @@
                     ['para', ['ul', 'ol', 'paragraph']],
                     ['table', ['table']],
                     ['insert', ['link', 'picture', 'video']],
-                    ['view', ['fullscreen', 'codeview', 'help']]
+                    ['view', ['fullscreen', 'codeview', 'help']],
                 ],
                 callbacks: {
                     onImageUpload: function(files) {
                         var formData = new FormData();
                         formData.append("file", files[0]);
-
+                        showLoader();
                         $.ajax({
                             url: "ritual/upload-image",
                             method: 'POST',
@@ -103,27 +102,35 @@
                                             value: imageUrl,
                                         })
                                         .appendTo('#form');
+                                    showNotification(
+                                        'Image uploaded successfully',
+                                        'success');
                                 } else {
                                     showNotification(response.message, 'error');
+                                    hideLoader();
+
                                 }
                             },
                             error: function() {
                                 showNotification('Image upload failed',
                                     'error');
+                                hideLoader();
+                            },
+                            complete: function() {
+                                hideLoader();
                             }
                         });
                     },
                     onMediaDelete: function(target) {
-                        var imageUrl = target.attr(
-                            'src');
-
+                        var imageUrl = target.attr('src');
+                        showLoader();
                         $.ajax({
                             url: "ritual/delete/upload-image",
                             method: 'POST',
                             data: {
                                 _token: $('meta[name="csrf-token"]').attr(
                                     'content'),
-                                image_path: imageUrl
+                                image_path: imageUrl,
                             },
                             success: function(response) {
                                 if (response.success) {
@@ -132,25 +139,31 @@
                                         'success');
                                 } else {
                                     showNotification(response.message, 'error');
+                                    hideLoader();
                                 }
                             },
                             error: function() {
                                 showNotification('Image deletion failed',
                                     'error');
+                                hideLoader();
+                            },
+                            complete: function() {
+                                hideLoader();
                             }
                         });
-                    }
-                }
+                    },
+                },
             });
-
         });
 
+        // Destroy Summernote on modal close
         $('#ritualModal').on('hidden.bs.modal', function() {
             if ($('#summernote').hasClass('note-editor')) {
                 $('#summernote').summernote('destroy');
             }
         });
 
+        // Form validation
         $('#ritualForm').validate({
             rules: {
                 title: "required",
@@ -160,28 +173,27 @@
             },
             message: {
                 title: {
-                    required: "This field is required."
+                    required: "This field is required.",
                 },
-
                 details: {
-                    required: "This field is required."
+                    required: "This field is required.",
                 },
                 video_link: {
-                    required: "This field is required."
+                    required: "This field is required.",
                 },
                 order_number: {
-                    required: "This field is required."
+                    required: "This field is required.",
                 },
             },
             highlight: function(element) {
-                $(element).addClass('border-danger')
+                $(element).addClass('border-danger');
             },
             unhighlight: function(element) {
-                $(element).removeClass('border-danger')
+                $(element).removeClass('border-danger');
             },
         });
 
-        // Save news
+        // Save ritual
         $('.saveRitual').off('click');
         $('.saveRitual').on('click', function() {
             if ($('#ritualForm').valid()) {
@@ -194,6 +206,7 @@
                     })
                     .appendTo('#ritualForm');
                 showLoader();
+
                 $('#ritualForm').ajaxSubmit(function(response) {
                     var result = JSON.parse(response);
                     if (result) {
@@ -214,7 +227,5 @@
                 });
             }
         });
-
-
     });
 </script>

@@ -23,7 +23,7 @@ class EventController extends Controller
     /* save */
     public function save(Request $request)
     {
-        // try {
+        try {
         $rules = [
             'title' => 'required|min:2|max:255',
             'details' => 'required|min:5',
@@ -82,15 +82,15 @@ class EventController extends Controller
             throw new Exception('Could not save record', 1);
         }
         DB::commit();
-        // } catch (QueryException $e) {
-        //     DB::rollBack();
-        //     $type = 'error';
-        //     $message = $this->queryMessage;
-        // } catch (Exception $e) {
-        //     DB::rollBack();
-        //     $type = 'error';
-        //     $message = $e->getMessage();
-        // }
+        } catch (QueryException $e) {
+            DB::rollBack();
+            $type = 'error';
+            $message = $this->queryMessage;
+        } catch (Exception $e) {
+            DB::rollBack();
+            $type = 'error';
+            $message = $e->getMessage();
+        }
         return json_encode(['type' => $type, 'message' => $message]);
     }
 
