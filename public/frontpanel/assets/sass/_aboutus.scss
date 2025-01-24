@@ -215,7 +215,15 @@
     }
 }
 .mission_vision_container {
-    margin-top: 90px;
+    margin-top: 45px;
+    .time_line_txt{
+        margin-bottom: 30px;
+        p{
+            font-size: 16px;
+            font-weight: 500;
+            color: rgba(115, 115, 115, 1);
+        }
+    }
     .ft_wrap {
         display: flex;
         justify-content: space-between;

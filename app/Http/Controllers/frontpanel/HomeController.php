@@ -45,7 +45,7 @@ class HomeController extends Controller
                 ->take(3)
                 ->get();
 
-            $message = MessageFrom::selectRaw('title,image,designation,message,slug')
+            $message = MessageFrom::selectRaw('name,image,designation,message,slug')
                 ->where('status', 'Y')
                 ->where('display_in_home', 'Y')
                 ->first();
