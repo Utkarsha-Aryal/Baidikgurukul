@@ -17,7 +17,8 @@ class EventController extends Controller
             $message = 'Successfully fetched data';
             $data = [];
 
-            $events = Event::where('status', 'Y')
+            $events = Event::selectRaw('title, details, image, slug, address, venue, event_date, event_time_start, event_time_end, feature_image')
+            ->where('status', 'Y')
                 ->orderBy('id', 'desc')
                 ->paginate(3);
 

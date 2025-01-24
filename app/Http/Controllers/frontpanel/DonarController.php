@@ -16,8 +16,8 @@ class DonarController extends Controller
             $type = 'success';
             $message = 'Successfully fetched data';
 
-
-            $doners = Donor::where('status', 'Y')
+            $doners = Donor::selectRaw('name, amount, title,details,image,slug')
+            ->where('status', 'Y')
                 ->orderBy('id', 'desc')
                 ->get();
 
