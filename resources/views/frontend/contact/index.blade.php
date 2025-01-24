@@ -1,8 +1,13 @@
-@extends('frontend.layout2.main2')
-
+@extends('frontend.layouts.main')
+<style>
+    .error-message {
+        color: red;
+        font-size: 14px;
+    }
+</style>
 
 @section('title', 'Contact')
-@section('content2')
+@section('content')
     <section class="introduction_page">
         <div class="img_before">
             <img src="{{ asset('frontpanel/assets/images/Mask group.png') }}" alt="">
@@ -33,10 +38,10 @@
                     <form action=" {{ route('enquiry.save') }}" id="contactUsForm" method="POST">
                         <div class="contact-lt-form">
                             @csrf
-                            <input type="text" id="fname" name="first_name" placeholder="पहिलो नाम *">
-                            <input type="text" id="lname" name="last_name" placeholder="अन्तिम नाम *">
+                            <input type="text" id="fname" name="first_name" placeholder="नाम *">
+                            <input type="text" id="lname" name="last_name" placeholder="थर *">
                             <input type="email" id="mail" name="email" placeholder="इमेल *">
-                            <input type="text" id="msg" name="message" placeholder="सन्देश लेख्नुहोस् *">
+                            <input type="text" id="msg" name="message" placeholder="सन्देश लेख्नुहोस *">
                         </div>
                         <div class="submit-btn">
                             <button type="submit" class="submitData">
@@ -119,20 +124,20 @@
                 },
                 messages: {
                     first_name: {
-                        required: 'Please enter your first name.',
-                        minlength: 'First name must be at least 2 characters long.'
+                        required: 'कृपया आफ्नो नाम प्रविष्ट गर्नुहोस।',
+                        minlength: 'नाम कम्तिमा २ वर्ण लामो हुनुपर्छ।'
                     },
                     last_name: {
-                        required: 'Please enter your last name.',
-                        minlength: 'Last name must be at least 2 characters long.'
+                        required: 'कृपया आफ्नो थरको नाम प्रविष्ट गर्नुहोस।',
+                        minlength: 'थर कम्तिमा २ वर्णको हुनुपर्छ।'
                     },
                     email: {
-                        required: 'Please enter your email address.',
-                        email: 'Please enter a valid email address.'
+                        required: 'कृपया आफ्नो इमेल प्रविष्ट गर्नुहोस।',
+                        email: 'कृपया मान्य इमेल प्रविष्ट गर्नुहोस।'
                     },
                     message: {
-                        required: 'Please enter a message.',
-                        minlength: 'Message must be at least 10 characters long.'
+                        required: 'कृपया सन्देश प्रविष्ट गर्नुहोस।',
+                        minlength: 'सन्देश कम्तिमा १० वर्ण लामो हुनुपर्छ।'
                     }
                 },
                 errorElement: 'label',
@@ -141,27 +146,25 @@
                     error.insertAfter(element);
                 }
             });
-            
-            $('.submitData').off('click');
-            $('.submitData').on('click', function(e) {
-                e.preventDefault(); // Prevent the default form submission
 
-                // Check if the form is valid
+            $('.submitData').on('click', function(e) {
+                e.preventDefault();
+
                 if ($('#contactUsForm').valid()) {
-                    showLoader(); // Show loader during form submission
+                    showLoader();
 
                     $('#contactUsForm').ajaxSubmit({
                         success: function(response) {
                             if (response && response.type === 'success') {
                                 showNotification(response.message, 'success');
-                                $('#contactUsForm')[0].reset(); // Reset the form
+                                $('#contactUsForm')[0].reset();
                             } else {
                                 showNotification(response.message, 'error');
                             }
-                            hideLoader(); // Hide loader
+                            hideLoader();
                         },
                         error: function(xhr) {
-                            hideLoader(); // Hide loader on error
+                            hideLoader();
                             const response = xhr.responseJSON;
                             showNotification(response && response.message ? response.message :
                                 'An error occurred', 'error');

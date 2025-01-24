@@ -19,33 +19,36 @@ class HomeController extends Controller
     {
         try {
             $type = 'success';
-            $message = 'Successfully fetched data';
 
+            $message = 'Successfully fetched data';
 
             $sitesetting = SiteSetting::find(1);
 
             $about = AboutUs::find(1);
 
-            $programs = Program::where('status', 'Y')
+            $programs = Program::selectRaw('title,image,slug')
+                ->where('status', 'Y')
                 ->orderBy('id', 'desc')
                 ->get();
 
-            $message = MessageFrom::where('status', 'Y')
+
+            $events = Event::selectRaw('title, details,image,slug,event_date,address,event_time_start,event_time_end,venue')
+                ->where('status', 'Y')
+                ->orderBy('id', 'desc')
+                ->take(3)
+                ->get();
+
+
+            $histories = History::selectRaw('title, details,image,slug')
+                ->where('status', 'Y')
+                ->orderBy('id', 'desc')
+                ->take(3)
+                ->get();
+
+            $message = MessageFrom::selectRaw('title,image,designation,message,slug')
+                ->where('status', 'Y')
                 ->where('display_in_home', 'Y')
                 ->first();
-
-            $events = Event::where('status', 'Y')
-                ->orderBy('id', 'desc')
-                ->take(3)
-                ->get();
-
-
-            $histories = History::where('status', 'Y')
-                ->orderBy('id', 'desc')
-                ->take(3)
-                ->get();
-
-
 
             $eventImage = Event::where('status', 'Y')
                 ->orderBy('id', 'desc')

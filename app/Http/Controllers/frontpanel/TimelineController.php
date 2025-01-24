@@ -1,28 +1,31 @@
 <?php
 
+
 namespace App\Http\Controllers\frontpanel;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\BackPanel\AboutUs;
-use App\Models\BackPanel\MessageFrom;
 use App\Models\BackPanel\Timeline;
 use Exception;
 use Illuminate\Database\QueryException;
 
-class IntroductionController extends Controller
+class TimelineController extends Controller
 {
-    public function introduction()
+    public function index(Request $request)
     {
         try {
             $type = 'success';
             $message = 'Successfully fetched data';
 
-            $aboutus = AboutUs::find(1);
+            $timelines = Timeline::selectRaw('details,year')
+                ->where('status', 'Y')
+                ->orderBy('id', 'desc')
+                ->get();
 
+            $data = [];
 
             $data = [
-                'aboutus' => $aboutus,
+                'timelines' => $timelines,
                 'type' => $type,
                 'message' => $message
             ];
@@ -33,12 +36,6 @@ class IntroductionController extends Controller
             $data['type'] = 'error';
             $data['message'] = $e->getMessage();
         }
-        return view('frontend.aboutus.index', $data);
-    }
-
-    public function new()
-    {
-        // Returns the 'home' view
-        return view('frontend.aboutus.new');
+        return view('frontend.timeline.index', $data);
     }
 }
