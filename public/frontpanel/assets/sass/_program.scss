@@ -119,13 +119,22 @@
                 align-items: center;
                 gap: 5px;
                 p {
-                    color: $blue;
-                    font-size: 12px;
+                    color: #000000;
+                    font-size: 14px;
+                    font-weight: 500;
+                    &:hover{
+                        color: $blue;
+                    }
                 }
                 .bi {
-                    color: $blue;
                     height: 14px;
                     width: 14px;
+                    &:hover{
+                        color: $blue;
+                    }
+                }
+                &:hover{
+                    color: $blue;
                 }
             }
         }

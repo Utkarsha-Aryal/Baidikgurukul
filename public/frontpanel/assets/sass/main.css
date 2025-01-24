@@ -263,7 +263,7 @@ button {
 .rituals_dreams .dreams_wrappper_wrap .right_dreams_txt .first_dreams_txt p::after {
   content: "";
   position: absolute;
-  height: 3px;
+  height: 2px;
   width: 50px;
   border-radius: 4px;
   background-color: rgb(6, 106, 200);
@@ -829,10 +829,13 @@ button {
   display: flex;
   align-items: center;
   gap: 10px;
+  padding-inline: 10px;
   cursor: pointer;
 }
 .team_tab_section .container_wrapper .tabs .tab .bi {
   color: rgb(6, 106, 200);
+  height: 20px;
+  width: 17px;
 }
 .team_tab_section .container_wrapper .tabs .tab p {
   font-size: 16px;
@@ -935,6 +938,7 @@ button {
   margin-block: 10px !important;
   margin-inline: 20px;
   margin-block: 0;
+  text-align: center;
 }
 @media (max-width: 768px) {
   .team_tab_section .container_wrapper .content #content1 .container_content_wrapper .image_container_wrap .img_default_bg h3 {
@@ -947,6 +951,7 @@ button {
   font-weight: 400;
   margin-inline: 20px;
   margin-block: 0;
+  text-align: center;
 }
 @media (max-width: 768px) {
   .team_tab_section .container_wrapper .content #content1 .container_content_wrapper .image_container_wrap .img_default_bg p {
@@ -1599,13 +1604,22 @@ button {
   gap: 5px;
 }
 .program-container-main .program-content .program-r1 .readmore-none p {
+  color: #000000;
+  font-size: 14px;
+  font-weight: 500;
+}
+.program-container-main .program-content .program-r1 .readmore-none p:hover {
   color: rgb(6, 106, 200);
-  font-size: 12px;
 }
 .program-container-main .program-content .program-r1 .readmore-none .bi {
-  color: rgb(6, 106, 200);
   height: 14px;
   width: 14px;
+}
+.program-container-main .program-content .program-r1 .readmore-none .bi:hover {
+  color: rgb(6, 106, 200);
+}
+.program-container-main .program-content .program-r1 .readmore-none:hover {
+  color: rgb(6, 106, 200);
 }
 
 .gallery-container-main {
@@ -2164,6 +2178,7 @@ button {
   padding: 20px 20px;
   transition: all 0.3s ease-in-out;
   height: 40%;
+  padding-inline: 10px;
   width: 30% !important;
 }
 .team_tab_section .container_wrapper .tabs .first_txt {
@@ -2182,6 +2197,8 @@ button {
 }
 .team_tab_section .container_wrapper .tabs .tab .bi {
   color: rgb(6, 106, 200);
+  height: 20px;
+  width: 17px;
 }
 .team_tab_section .container_wrapper .tabs .tab p {
   font-size: 16px;
@@ -2483,7 +2500,6 @@ button {
   }
 }
 .team_tab_section .container_wrapper .tabs {
-  background-color: rgb(239, 247, 255);
   box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
   padding: 20px 20px;
   transition: all 0.3s ease-in-out;
@@ -2512,10 +2528,13 @@ button {
   align-items: center;
   gap: 10px;
   margin-block: 15px;
+  padding-inline: 10px;
   cursor: pointer;
 }
 .team_tab_section .container_wrapper .tabs .tab .bi {
   color: rgb(6, 106, 200);
+  height: 20px;
+  width: 17px;
 }
 .team_tab_section .container_wrapper .tabs .tab p {
   font-size: 16px;
@@ -3434,7 +3453,7 @@ button {
 }
 @media (max-width: 768px) {
   .swiper_pagination_wrapper .Event_page .container .event_wrapper .left_event_text .event_notice_container .event_notice_info_cards .date_info {
-    width: 100%;
+    width: 100% !important;
   }
 }
 .swiper_pagination_wrapper .Event_page .container .event_wrapper .left_event_text .event_notice_container .event_notice_info_cards .date_info .date1 p {
@@ -4705,8 +4724,20 @@ fieldset {
 }
 .modal .modal-content {
   position: relative;
-  width: 800px;
-  height: 500px;
+  width: 60%;
+  height: 400px;
+}
+@media (max-width: 992px) {
+  .modal .modal-content {
+    width: 80%;
+    height: 500px;
+  }
+}
+@media (max-width: 768px) {
+  .modal .modal-content {
+    width: 90% !important;
+    height: 600px;
+  }
 }
 .modal .modal-content img {
   width: 100%;
@@ -4721,6 +4752,12 @@ fieldset {
   font-size: 40px;
   color: #939090;
   cursor: pointer;
+}
+@media (max-width: 992px) {
+  .modal .modal-content .close {
+    font-size: 60px !important;
+    top: -75px;
+  }
 }
 .modal .modal-content .close:hover {
   color: rgba(147, 144, 144, 0.6078431373);
@@ -5289,9 +5326,6 @@ body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .nav
   body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .nav_list_hamburger_menu .nav_list_menu .navigation_list li .dropdown li {
     padding: 0;
   }
-}
-body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .nav_list_hamburger_menu .nav_list_menu .navigation_list li .dropdown li:nth-child(4) {
-  border-bottom: none;
 }
 body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .nav_list_hamburger_menu .nav_list_menu .navigation_list li .dropdown li:nth-child(2) a {
   display: flex;
@@ -6466,6 +6500,7 @@ body .footer-container::after {
   filter: blur(15px);
   bottom: -73px;
   border-radius: 79%;
+  z-index: -1 !important;
 }
 @media (max-width: 768px) {
   .rituals_dreams .dreams_wrappper .about-lt .radius-o:before {
@@ -6480,6 +6515,7 @@ body .footer-container::after {
 @media (max-width: 992px) {
   .rituals_dreams .dreams_wrappper .right_dreams_txt {
     width: 100%;
+    padding-top: 0;
   }
 }
 .rituals_dreams .dreams_wrappper .right_dreams_txt .first_dreams_txt p {
@@ -6491,11 +6527,11 @@ body .footer-container::after {
 .rituals_dreams .dreams_wrappper .right_dreams_txt .first_dreams_txt p::after {
   content: "";
   position: absolute;
-  height: 3px;
+  height: 2px;
   width: 50px;
   border-radius: 4px;
   background-color: rgb(6, 106, 200);
-  top: 8px;
+  top: 10px;
   left: 200px;
 }
 .rituals_dreams .dreams_wrappper .right_dreams_txt .second_txt {
@@ -6545,6 +6581,12 @@ body .footer-container::after {
   margin: 0;
   font-family: monda;
 }
+.rituals_dreams .dreams_wrappper .right_dreams_txt .read_button a p:hover {
+  color: rgb(6, 106, 200);
+}
+.rituals_dreams .dreams_wrappper .right_dreams_txt .read_button a:hover {
+  color: rgb(6, 106, 200);
+}
 .rituals_dreams .dreams_wrappper:before {
   content: " ";
   position: absolute;
@@ -6556,6 +6598,7 @@ body .footer-container::after {
   filter: blur(80px);
   bottom: -100px;
   border-radius: 79%;
+  z-index: -1;
 }
 @media (max-width: 768px) {
   .rituals_dreams .dreams_wrappper:before {
@@ -6621,6 +6664,9 @@ body .footer-container::after {
     font-size: 14px;
   }
 }
+.rights_for_dreams .rights_wrapper .left_rights_txt .read_button {
+  margin-block: 20px;
+}
 .rights_for_dreams .rights_wrapper .left_rights_txt .read_button a {
   display: flex;
   gap: 8px;
@@ -6630,7 +6676,14 @@ body .footer-container::after {
   font-size: 14px;
   font-weight: 500;
   margin: 0;
+  color: #000000;
   font-family: monda;
+}
+.rights_for_dreams .rights_wrapper .left_rights_txt .read_button a p:hover {
+  color: rgb(6, 106, 200);
+}
+.rights_for_dreams .rights_wrapper .left_rights_txt .read_button a:hover {
+  color: rgb(6, 106, 200);
 }
 .rights_for_dreams .rights_wrapper .right_rights_image {
   width: 35%;
@@ -6704,12 +6757,12 @@ body .footer-container::after {
 .program_swiper .program_txt_pagination_wrap .program_initiative_txt .first_program_txt::after {
   content: "";
   position: absolute;
-  height: 3px;
+  height: 2px;
   width: 50px;
   border-radius: 4px;
   background-color: rgb(6, 106, 200);
-  top: 8px;
-  left: 190px;
+  top: 10px;
+  left: 160px;
 }
 .program_swiper .program_txt_pagination_wrap .program_initiative_txt .first_program_txt p {
   font-size: 16px;
@@ -6852,11 +6905,20 @@ body .footer-container::after {
   margin: 0;
   font-family: "Rubik", serif !important;
 }
+.program_swiper .mySwiper .swiper-wrapper .swiper-slide .swiper_content_card_wrapper .swiper_content_card .read_more a p:hover {
+  color: rgb(6, 106, 200);
+}
 .program_swiper .mySwiper .swiper-wrapper .swiper-slide .swiper_content_card_wrapper .swiper_content_card .read_more a .bi {
   color: #000000;
 }
 .program_swiper .mySwiper .swiper-wrapper .swiper-slide .swiper_content_card_wrapper .swiper_content_card .read_more a .bi:hover {
   color: rgb(6, 106, 200);
+}
+.program_swiper .mySwiper .swiper-wrapper .swiper-slide .swiper_content_card_wrapper .swiper_content_card .read_more a:hover {
+  color: rgb(6, 106, 200) !important;
+}
+.program_swiper .mySwiper .swiper-wrapper .swiper-slide .swiper_content_card_wrapper .swiper_content_card .read_more:hover {
+  color: rgb(6, 106, 200) !important;
 }
 
 .Event_page {
@@ -6907,11 +6969,11 @@ body .footer-container::after {
   position: absolute;
   content: " ";
   background-color: rgb(6, 106, 200);
-  height: 3px !important;
+  height: 2px !important;
   width: 6% !important;
   border-radius: 4px;
-  top: 8px;
-  left: 156px;
+  top: 10px;
+  left: 120px;
 }
 .Event_page .container .event_wrapper .left_event_text .first_blue_text p {
   font-size: 16px;
@@ -7190,11 +7252,17 @@ body .footer-container::after {
     white-space: nowrap;
   }
 }
+.Event_page .container .event_wrapper .left_event_text .see_all_btn a p:hover {
+  color: rgb(6, 106, 200);
+}
 .Event_page .container .event_wrapper .left_event_text .see_all_btn a .bi {
   height: 18px;
   width: 18px;
 }
 .Event_page .container .event_wrapper .left_event_text .see_all_btn a .bi:hover {
+  color: rgb(6, 106, 200);
+}
+.Event_page .container .event_wrapper .left_event_text .see_all_btn a:hover {
   color: rgb(6, 106, 200);
 }
 .Event_page .container .event_wrapper .right_event_img {
@@ -7245,7 +7313,7 @@ body .footer-container::after {
 .historical_places_container .first_historical_txt .first_program_txt::after {
   content: "";
   position: absolute;
-  height: 3px;
+  height: 2px;
   width: 50px;
   border-radius: 4px;
   background-color: rgb(6, 106, 200);
@@ -7320,6 +7388,12 @@ body .footer-container::after {
   .historical_places_container .first_historical_txt .main_txt_wrap .view_all_txt a p {
     font-size: 12px;
   }
+}
+.historical_places_container .first_historical_txt .main_txt_wrap .view_all_txt a p:hover {
+  color: rgb(6, 106, 200);
+}
+.historical_places_container .first_historical_txt .main_txt_wrap .view_all_txt a:hover {
+  color: rgb(6, 106, 200);
 }
 .historical_places_container .first_historical_txt .third_program_txt p {
   font-size: 16px;
@@ -7408,10 +7482,16 @@ body .footer-container::after {
   margin: 0;
   font-family: "Rubik", serif !important;
 }
+.historical_places_container .historical_places_wrapper .historical_content_card .read_more a p:hover {
+  color: rgb(6, 106, 200);
+}
 .historical_places_container .historical_places_wrapper .historical_content_card .read_more a .bi {
   color: rgb(0, 0, 0);
 }
 .historical_places_container .historical_places_wrapper .historical_content_card .read_more a .bi:hover {
+  color: rgb(6, 106, 200);
+}
+.historical_places_container .historical_places_wrapper .historical_content_card .read_more a:hover {
   color: rgb(6, 106, 200);
 }
 

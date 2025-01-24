@@ -1,5 +1,5 @@
 @extends('frontend.layout2.main2')
-@section('title', 'Our Gallery')
+@section('title', 'हाम्रो ग्यालेरी छवि पृष्ठ')
 @section('content2')
     <section class="introduction_page">
         <div class="img_before">
@@ -11,7 +11,7 @@
             </div>
             <div class="main_txt">
 
-                <p>हाम्रो ग्यालेरी</p>
+                <p>हाम्रो ग्यालेरी छवि पृष्ठ</p>
             </div>
         </div>
         <div class="img_after">
@@ -22,8 +22,8 @@
         <div class="container">
             <div class="tabs">
                 <button class="tab active" data-target="all">सबै</button>
-                <button class="tab" data-target="images">छविहरू</button>
-                <button class="tab" data-target="videos">भिडियोहरू</button>
+                <button class="tab" data-target="images">फोटो</button>
+                <button class="tab" data-target="videos">भिडियो</button>
             </div>
         </div>
         <div class="container">

@@ -43,8 +43,16 @@
     z-index: 999999;
     .modal-content {
         position: relative;
-        width: 800px;
-        height: 500px;
+        width: 60%;
+        height: 400px;
+        @include respond-to(tablet) {
+            width: 80%;
+            height: 500px;
+        }
+        @include respond-to(mobile) {
+            width: 90% !important;
+            height: 600px;
+        }
         img {
             width: 100%;
             height: 100%;
@@ -57,24 +65,13 @@
             font-size: 40px;
             color: #939090;
             cursor: pointer;
+            @include respond-to(tablet) {
+                font-size: 60px !important;
+                top: -75px;
+            }
         }
         .close:hover {
             color: #9390909b;
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
