@@ -24,6 +24,7 @@ class TeamCategory extends Model
         try {
             $dataArray = [
                 'team_category' => $post['team_category'],
+                'order_number' => $post['order_number'],
                 'slug' =>  Str::slug($post['team_category']) . '-' . time(),
             ];
 
@@ -68,7 +69,7 @@ class TeamCategory extends Model
                 $offset = $get["start"];
             }
 
-            $query = TeamCategory::with('teamMember')->selectRaw("(SELECT count(*) FROM team_categories WHERE {$cond} ) AS totalrecs, team_category, id as id")
+            $query = TeamCategory::with('teamMember')->selectRaw("(SELECT count(*) FROM team_categories WHERE {$cond} ) AS totalrecs, team_category,order_number, id as id")
                 ->whereRaw($cond);
 
             if ($limit > -1) {

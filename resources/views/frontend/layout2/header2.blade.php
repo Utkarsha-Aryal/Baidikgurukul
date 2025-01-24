@@ -179,6 +179,14 @@
                                             ऐतिहासिक स्थान</a></li>
                                     <li><a href="rules" class="{{ request()->is('rules') ? 'active' : '' }}">हाम्रो
                                             संस्कारका नियमहरू</a></li>
+                                    <li><a href="{{ route('message') }}"
+                                            class="{{ request()->routeIs('message') ? 'active' : '' }}">
+                                            अध्यक्ष सन्देश</a>
+                                    </li>
+                                    <li><a href="{{ route('timeline') }}"
+                                            class="{{ request()->routeIs('timeline') ? 'active' : '' }}">वार्षिक
+                                            प्रगति समरि</a>
+                                    </li>
                                 </ul>
                             </li>
                             <li><a href="{{ route('program') }}"

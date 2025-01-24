@@ -30,8 +30,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with('userProfile', Auth::user());
             $view->with('siteSetting', SiteSetting::find(1));
             $view->with('aboutus', AboutUs::find(1));
-            $view->with('teamcategory', TeamCategory::where('status', "Y")->get());
-            $view->with('services', Service::where('status', "Y")->orderBy('order', 'asc')->take(4)->get());
+            $view->with('teamcategory', TeamCategory::where('status', "Y")->orderBy('order_number', 'asc')->get());
         });
 
         // Use Bootstrap for Pagination

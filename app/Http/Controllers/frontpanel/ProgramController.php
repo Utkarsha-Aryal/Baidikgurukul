@@ -16,7 +16,8 @@ class ProgramController extends Controller
         try {
             $type = 'success';
             $message = 'Successfully fetched data';
-            $programs = Program::where('status', 'Y')
+            $programs = Program::selectRaw('title,image,slug')
+                ->where('status', 'Y')
                 ->orderBy('id', 'desc')
                 ->get();
 
@@ -41,8 +42,13 @@ class ProgramController extends Controller
             $type = 'success';
             $message = 'Successfully fetched data';
             $data = [];
-            $program = Program::where('slug', $slug)->first();
-            $programs = Program::where('status', 'Y')
+
+            $program = Program::selectRaw('title, details')
+                ->where('slug', $slug)
+                ->first();
+
+            $programs = Program::selectRaw('title,slug')
+                ->where('status', 'Y')
                 ->orderBy('id', 'desc')
                 ->get();
 

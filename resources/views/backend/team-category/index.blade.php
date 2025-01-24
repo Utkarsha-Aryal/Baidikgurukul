@@ -43,6 +43,13 @@
                                 <input type="text" class="form-control" id="team_category"
                                     placeholder="Enter team category" name="team_category">
                             </div>
+
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                <label for="order_number" class="form-label">Order <span
+                                        class="required-field">*</span></label>
+                                <input type="number" class="form-control" id="order_number" placeholder="Enter team order"
+                                    name="order_number">
+                            </div>
                         </div>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
@@ -79,8 +86,9 @@
                                             <thead>
                                                 <tr>
                                                     <th width="5%">S.No</th>
-                                                    <th width="80%">Team Category</th>
-                                                    <th width="10%">Action</th>
+                                                    <th width="75%">Team Category</th>
+                                                    <th width="5%">Order</th>
+                                                    <th width="5%">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -131,7 +139,9 @@
                     {
                         "data": "team_category"
                     },
-
+                    {
+                        "data": "order_number"
+                    },
                     {
                         "data": "action"
                     },
@@ -166,10 +176,14 @@
 
             $('#team_category_form').validate({
                 rules: {
-                    team_category: "required"
+                    team_category: "required",
+                    order_number: "required"
                 },
                 message: {
                     team_category: {
+                        required: "This field is required."
+                    },
+                    order_number: {
                         required: "This field is required."
                     },
                 },
@@ -214,6 +228,7 @@
                 $('#id').val($(this).data('id'));
                 $('.saveData').html('<i class="fa fa-save"></i> Update');
                 $('#team_category').val($(this).data('team_category'));
+                $('#order_number').val($(this).data('order_number'));
             });
 
 

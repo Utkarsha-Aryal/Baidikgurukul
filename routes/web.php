@@ -38,6 +38,8 @@ use App\Http\Controllers\frontpanel\ProgramController as FrontProgramController;
 use App\Http\Controllers\frontpanel\RulesController;
 use App\Http\Controllers\frontpanel\TeamController;
 use App\Http\Controllers\frontpanel\EnquiryController;
+use App\Http\Controllers\frontpanel\MessageFromController as FrontMessageFromController;
+use App\Http\Controllers\frontpanel\TimelineController as FrontTimelineController;
 use App\Http\Controllers\ContactController as frontContact;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -343,12 +345,14 @@ Route::get('news/innerpage/{slug}', [NewsController::class, 'innerpage'])->name(
 Route::get('historyinner', [FrontHistoryController::class, 'history'])->name('history');
 Route::get('historyinner/{slug}', [FrontHistoryController::class, 'inner'])->name('history.inner');
 Route::get('historyinners/{slug}', [FrontHistoryController::class, 'inners'])->name('history.inners');
+Route::post('/history/gettabcontent/{slug}', [FrontHistoryController::class, 'getTabContent'])->name('history.gettabcontent');
 
 
 // Route::get('history', [RulesController::class, 'history'])->name('history');
 Route::get('rules', [RulesController::class, 'rules'])->name('rules');
-
 Route::get('birth', [RulesController::class, 'birth'])->name('birth');
+Route::post('/rules/gettabcontent/{slug}', [RulesController::class, 'getTabContent'])->name('rules.gettabcontent');
+
 
 Route::get('faq', [FrontFAQController::class, 'faq'])->name('faq');
 
@@ -363,5 +367,10 @@ Route::get('form', [FormController::class, 'form'])->name('form');
 
 
 Route::post('senddata', [EnquiryController::class, 'save'])->name('enquiry.save');
+
+Route::get('message', [FrontMessageFromController::class, 'index'])->name('message');
+
+Route::get('timeline', [FrontTimelineController::class, 'index'])->name('timeline');
+
 
 // Front End Start here 
