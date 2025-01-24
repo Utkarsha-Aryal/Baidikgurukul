@@ -829,6 +829,7 @@
                     filter: blur(15px);
                     bottom: -73px;
                     border-radius: 79%;
+                    z-index: -1 !important;
                     @include respond-to(mobile) {
                         display: none;
                     }
@@ -841,6 +842,7 @@
             padding-top: 50px;
             @include respond-to(tablet) {
                 width: 100%;
+                padding-top: 0;
             }
             .first_dreams_txt {
                 p {
@@ -851,11 +853,11 @@
                     &::after {
                         content: "";
                         position: absolute;
-                        height: 3px;
+                        height: 2px;
                         width: 50px;
                         border-radius: 4px;
                         background-color: rgb(6, 106, 200);
-                        top: 8px;
+                        top: 10px;
                         left: 200px;
                     }
                 }
@@ -900,6 +902,12 @@
                         font-weight: 500;
                         margin: 0;
                         font-family: monda;
+                        &:hover {
+                            color: $blue;
+                        }
+                    }
+                    &:hover {
+                        color: $blue;
                     }
                 }
             }
@@ -915,6 +923,7 @@
             filter: blur(80px);
             bottom: -100px;
             border-radius: 79%;
+            z-index: -1;
             @include respond-to(mobile) {
                 display: none;
             }
@@ -976,6 +985,7 @@
             }
 
             .read_button {
+                margin-block: 20px;
                 a {
                     display: flex;
                     gap: 8px;
@@ -984,7 +994,14 @@
                         font-size: 14px;
                         font-weight: 500;
                         margin: 0;
+                        color: #000000;
                         font-family: monda;
+                        &:hover {
+                            color: $blue;
+                        }
+                    }
+                    &:hover {
+                        color: $blue;
                     }
                 }
             }
@@ -1054,12 +1071,12 @@
                 &::after {
                     content: "";
                     position: absolute;
-                    height: 3px;
+                    height: 2px;
                     width: 50px;
                     border-radius: 4px;
                     background-color: rgb(6, 106, 200);
-                    top: 8px;
-                    left: 190px;
+                    top: 10px;
+                    left: 160px;
                 }
                 p {
                     font-size: 16px;
@@ -1197,6 +1214,9 @@
                                     color: #000000;
                                     margin: 0;
                                     font-family: "Rubik", serif !important;
+                                    &:hover {
+                                        color: $blue;
+                                    }
                                 }
                                 .bi {
                                     color: #000000;
@@ -1204,6 +1224,12 @@
                                         color: $blue;
                                     }
                                 }
+                                &:hover {
+                                    color: $blue !important;
+                                }
+                            }
+                            &:hover {
+                                color: $blue !important;
                             }
                         }
                     }
@@ -1259,11 +1285,11 @@
                         position: absolute;
                         content: " ";
                         background-color: rgb(6, 106, 200);
-                        height: 3px !important;
+                        height: 2px !important;
                         width: 6% !important;
                         border-radius: 4px;
-                        top: 8px;
-                        left: 156px;
+                        top: 10px;
+                        left: 120px;
                     }
                     p {
                         font-size: 16px;
@@ -1535,6 +1561,9 @@
                                 font-size: 12px;
                                 white-space: nowrap;
                             }
+                            &:hover {
+                                color: $blue;
+                            }
                         }
                         .bi {
                             height: 18px;
@@ -1542,6 +1571,9 @@
                             &:hover {
                                 color: $blue;
                             }
+                        }
+                        &:hover {
+                            color: $blue;
                         }
                     }
                 }
@@ -1589,7 +1621,7 @@
             &::after {
                 content: "";
                 position: absolute;
-                height: 3px;
+                height: 2px;
                 width: 50px;
                 border-radius: 4px;
                 background-color: rgb(6, 106, 200);
@@ -1650,6 +1682,12 @@
                         @include respond-to(mobile) {
                             font-size: 12px;
                         }
+                        &:hover {
+                            color: $blue;
+                        }
+                    }
+                    &:hover {
+                        color: $blue;
                     }
                 }
             }
@@ -1717,22 +1755,30 @@
             .read_more {
                 padding-top: 0;
                 padding-inline: 5px;
+
                 a {
                     display: flex;
                     align-items: center;
                     gap: 8px;
+
                     p {
                         font-size: 14px;
                         font-weight: 500;
                         color: rgba(0, 0, 0, 1);
                         margin: 0;
                         font-family: "Rubik", serif !important;
+                        &:hover {
+                            color: $blue;
+                        }
                     }
                     .bi {
                         color: rgba(0, 0, 0, 1);
                         &:hover {
                             color: $blue;
                         }
+                    }
+                    &:hover {
+                        color: $blue;
                     }
                 }
             }

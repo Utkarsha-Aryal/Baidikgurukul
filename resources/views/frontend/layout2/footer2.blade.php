@@ -28,7 +28,7 @@
                 <div class="fcol2">
                     <div class="link">
                         <div class="link-title">
-                            <p>द्रुत लिङ्कहरू</p>
+                            <p>महत्त्वपूर्ण लिङ्कहरू</p>
                             <div class="bottom-fl"></div>
                         </div>
                         <ul>
@@ -46,7 +46,7 @@
                 <div class="fcol3">
                     <div class="touch-link">
                         <div class="touch-title">
-                            <p>सम्पर्कमा रहनुहोस्</p>
+                            <p>सम्पर्कमा रहनुहोस</p>
                             <div class="bottom-fl"></div>
                         </div>
                         <ul>

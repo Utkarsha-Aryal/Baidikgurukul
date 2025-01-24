@@ -1,5 +1,5 @@
 @extends('frontend.layout2.main2')
-@section('title', 'Our Rules For Our Rituals')
+@section('title', 'हाम्रा अनुष्ठानका लागि हाम्रा नियमहरू')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -13,7 +13,7 @@
                 <img src="{{ asset('frontpanel/assets/images/image1.jpeg') }}" alt="">
             </div>
             <div class="main_txt">
-                <p>Our Rules For Our Rituals</p>
+                <p>हाम्रा अनुष्ठानका लागि हाम्रा नियमहरू</p>
             </div>
         </div>
         <div class="img_after">
@@ -26,7 +26,7 @@
                 <!-- Tab Navigation (Left Side) -->
                 <div class="tabs">
                     <div class="first_txt">
-                        <p>Our Rules for Rituals</p>
+                        <p>अनुष्ठान को लागी हाम्रो नियम</p>
                     </div>
                     @if (!empty($ritules) && count($ritules) > 0)
                         @foreach ($ritules as $index => $ritul)

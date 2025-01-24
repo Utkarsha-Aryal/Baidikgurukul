@@ -24,8 +24,8 @@
         <div class="container">
             <div class="tabs">
                 <button class="tab active" data-target="all">सबै</button>
-                <button class="tab" data-target="images">छविहरू</button>
-                <button class="tab" data-target="videos">भिडियोहरू</button>
+                <button class="tab" data-target="images">फोटो</button>
+                <button class="tab" data-target="videos">भिडियो</button>
             </div>
         </div>
         <div class="container">
