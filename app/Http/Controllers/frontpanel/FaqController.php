@@ -16,8 +16,8 @@ class FaqController extends Controller
             $type = 'success';
             $message = 'Successfully fetched data';
 
-
-            $faqs = FAQ::where('status', 'Y')
+            $faqs = FAQ::selectRaw('question, answer')
+            ->where('status', 'Y')
                 ->orderBy('id', 'desc')
                 ->get();
 
