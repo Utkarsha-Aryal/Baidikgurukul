@@ -319,7 +319,15 @@ button {
 }
 
 .mission_vision_container {
-  margin-top: 90px;
+  margin-top: 45px;
+}
+.mission_vision_container .time_line_txt {
+  margin-bottom: 30px;
+}
+.mission_vision_container .time_line_txt p {
+  font-size: 16px;
+  font-weight: 500;
+  color: rgb(115, 115, 115);
 }
 .mission_vision_container .ft_wrap {
   display: flex;
@@ -4762,6 +4770,40 @@ fieldset {
 .modal .modal-content .close:hover {
   color: rgba(147, 144, 144, 0.6078431373);
 }
+.modal .modal-content .nav-btn {
+  position: absolute;
+  top: 50%;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  background: none;
+  border: none;
+  transform: translateY(-50%);
+}
+.modal .modal-content .prev {
+  left: -100px;
+  font-size: 56px;
+}
+@media (max-width: 992px) {
+  .modal .modal-content .prev {
+    display: none;
+  }
+}
+.modal .modal-content .prev:hover {
+  color: #939090;
+}
+.modal .modal-content .next {
+  right: -100px;
+  font-size: 56px;
+}
+@media (max-width: 992px) {
+  .modal .modal-content .next {
+    display: none;
+  }
+}
+.modal .modal-content .next:hover {
+  color: #939090;
+}
 
 .ritual-container {
   margin: 90px 0;
@@ -6651,7 +6693,7 @@ body .footer-container::after {
   }
 }
 .rights_for_dreams .rights_wrapper .left_rights_txt .third_dream_txt {
-  margin-block: 15px;
+  margin-block: 20px;
 }
 .rights_for_dreams .rights_wrapper .left_rights_txt .third_dream_txt p {
   font-size: 16px;

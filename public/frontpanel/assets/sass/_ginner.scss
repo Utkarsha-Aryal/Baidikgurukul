@@ -73,5 +73,35 @@
         .close:hover {
             color: #9390909b;
         }
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+            background: none;
+            border: none;
+            transform: translateY(-50%);
+        }
+        .prev {
+            left: -100px;
+            font-size: 56px;
+            @include respond-to(tablet) {
+                display: none;
+            }
+        }
+        .prev:hover {
+            color: #939090;
+        }
+        .next {
+            right: -100px;
+            font-size: 56px;
+            @include respond-to(tablet) {
+                display: none;
+            }
+        }
+        .next:hover {
+            color: #939090;
+        }
     }
 }
