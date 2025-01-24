@@ -249,6 +249,7 @@ Route::group(['middleware' => 'admin'], function () {
             Route::post('/restore', [DonorController::class, 'restore'])->name('admin.donor.restore');
             Route::post('/view', [DonorController::class, 'view'])->name('admin.donor.view');
             Route::post('/upload-image', [DonorController::class, 'uploadImage'])->name('admin.donar.upload.image');
+            Route::post('delete-upload-image', [DonorController::class, 'deleteuploadImage'])->name('admin.donar.delete.upload.image');
         });
         //Our donor end here
 
@@ -338,6 +339,8 @@ Route::get('program/innerpage/{slug}', [FrontProgramController::class, 'inner'])
 Route::get('gallery', [FrontGalleryController::class, 'gallery'])->name('gallery');
 Route::get('videinner/{slug}', [FrontGalleryController::class, 'ginner'])->name('ginner');
 Route::get('imageinner/{slug}', [FrontGalleryController::class, 'imageInner'])->name('image.inner');
+Route::post('/gallery/image/gettabcontent/{tab}', [FrontGalleryController::class, 'getTabContent'])->name('gallery.image.gettabcontent');
+// Route::post('/gallery/video/gettabcontent/{}', [FrontGalleryController::class, 'getTabContentVideo'])->name('gallery.video.gettabcontent');
 
 Route::get('news', [NewsController::class, 'news'])->name('news');
 Route::get('news/innerpage/{slug}', [NewsController::class, 'innerpage'])->name('news.inner.page');

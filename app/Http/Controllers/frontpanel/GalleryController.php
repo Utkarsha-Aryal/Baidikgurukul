@@ -99,8 +99,11 @@ class GalleryController extends Controller
     {
         try {
             $type = 'success';
+
             $message = 'Successfully fetched data';
+
             $data = [];
+
             $galleries = Gallery::with('images', 'videos')
                 ->where('slug', $slug)
                 ->where('status', 'Y')
@@ -127,5 +130,70 @@ class GalleryController extends Controller
             $data['message'] = $e->getMessage();
         }
         return view('frontend.gallery.image', $data);
+    }
+
+    public function getTabContent($tab)
+    {
+        try {
+            $type = 'success';
+            $message = 'Successfully fetched data';
+
+            $galleries = Gallery::with('images', 'videos')
+                ->where('status', 'Y')
+                ->orderBy('id', 'desc')
+                ->get();
+
+            $images = GalleryImage::with('imageGallery')
+                ->where('status', 'Y')
+                ->orderBy('id', 'desc')
+                ->get();
+
+            $videos = GalleryVideo::with('videoGallery')
+                ->where('status', 'Y')
+                ->orderBy('id', 'desc')
+                ->get();
+
+            $galleryVideoImages = [];
+
+            foreach ($galleries as $gallery) {
+                if ($gallery->videos->isNotEmpty()) {
+                    $latestVideo = $gallery->videos->sortByDesc('created_at')->first();
+                    $galleryVideoImages[$gallery->id] = $latestVideo->video_image;
+                }
+            }
+
+            $data = [
+                'images' => $images,
+                'galleries' => $galleries,
+                'galleryVideoImages' => $galleryVideoImages,
+                'videos' => $videos,
+                'type' => $type,
+                'message' => $message
+            ];
+
+            if ($tab === 'all') {
+                $html = view('frontend.gallery.tab-content-all', compact('galleries', 'galleryVideoImages'))->render();
+            } elseif ($tab === 'images') {
+                $html = view('frontend.gallery.tab-content', compact('galleries'))->render();
+            } else {
+                $html = view('frontend.gallery.tab-content-video', compact('galleries', 'galleryVideoImages'))->render();
+            }
+
+            $data = [
+                'type' => $type,
+                'message' => $message,
+                'html' => $html
+            ];
+        } catch (QueryException $e) {
+            $data['type'] = 'error';
+            $data['message'] = 'Error with the database query.';
+            $data['html'] = '<p>An error occurred while fetching the data.</p>';
+        } catch (Exception $e) {
+            $data['type'] = 'error';
+            $data['message'] = 'An unexpected error occurred.';
+            $data['html'] = '<p>An error occurred while processing your request.</p>';
+        }
+
+        return response()->json($data);
     }
 }

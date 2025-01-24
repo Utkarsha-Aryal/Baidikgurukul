@@ -11,7 +11,7 @@
                 <img src="{{ asset('frontpanel/assets/images/image1.jpeg') }}" alt="">
             </div>
             <div class="main_txt">
-                <p>अध्यक्ष सन्देश</p>
+                <p>अध्यक्षको सन्देश</p>
             </div>
         </div>
         <div class="img_after">

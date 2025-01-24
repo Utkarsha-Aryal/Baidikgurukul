@@ -21,7 +21,7 @@ class MessageFromController extends Controller
                 ->where('status', 'Y')
                 ->where('display_in_home', 'Y')
                 ->first();
-                
+
             $data = [];
             $data = [
                 'type' => $type,

@@ -66,7 +66,7 @@ class DonorController extends Controller
             $type = 'error';
             $message = $e->getMessage();
         }
-        return response()->json(['type' => $type, 'message' => $message]);
+        return json_encode(['type' => $type, 'message' => $message]);
     }
 
     // Get list
@@ -219,38 +219,64 @@ class DonorController extends Controller
         return view('backend.donor.view', $data);
     }
 
-    // Image upload of Donar
+    // Image upload of Eevnt
     public function uploadImage(Request $request)
     {
         try {
-            if ($request->hasFile('upload')) {
-                $folder = storage_path('app/public/donar/');
+            $folder = storage_path('app/public/donor/');
 
-                if (!Storage::exists($folder))
-                    Storage::makeDirectory($folder, 0775, true, true);
-
-                $file = $request->file('upload');
-                $newName = time() . '_' . rand(10, 9999999999999) . '_' . $file->getClientOriginalName();
-                $file->move($folder, $newName);
-
-                $url = asset('storage/program/' . $newName);
-
-                return response()->json([
-                    'uploaded' => 1,
-                    'fileName' => $newName,
-                    'url' => $url
-                ]);
-            } else {
-                return response()->json([
-                    'uploaded' => 0,
-                    'error' => ['message' => 'No file uploaded.']
-                ]);
+            if (!Storage::exists($folder)) {
+                Storage::makeDirectory($folder, 0775, true, true);
             }
+
+            $file = $request->file('file');
+
+            $newName = time() . '_' . rand(10, 9999999999999) . '_' . $file->getClientOriginalName();
+
+            $file->move($folder, $newName);
+
+            $url = asset('storage/donor/' . $newName);
         } catch (Exception $e) {
             return response()->json([
                 'uploaded' => 0,
                 'error' => ['message' => $e->getMessage()]
             ], 500);
+        }
+
+        return response()->json([
+            'success' => true,
+            'imageUrl' => $url
+        ]);
+    }
+
+
+    //remove 
+    public function deleteuploadImage(Request $request)
+    {
+        try {
+            $request->validate([
+                'image_path' => 'required|string',
+            ]);
+
+            $fileName = basename($request->input('image_path'));
+            $filePath = public_path('storage/donor/' . $fileName);
+
+
+            if (file_exists($filePath)) {
+                if (unlink($filePath)) {
+                    return response()->json(['success' => true, 'message' => 'File deleted successfully.']);
+                } else {
+                    return response()->json(['success' => false, 'message' => 'Failed to delete the file.']);
+                }
+            } else {
+                return response()->json(['success' => false, 'message' => 'File not found.']);
+            }
+        } catch (QueryException $e) {
+            $data['type'] = 'error';
+            $data['message'] = $this->queryMessage;
+        } catch (Exception $e) {
+            $data['type'] = 'error';
+            $data['message'] = $e->getMessage();
         }
     }
 }

@@ -182,6 +182,7 @@
                         var formData = new FormData();
                         formData.append("file", files[0]);
 
+                        showLoader();
                         $.ajax({
                             url: "event/upload-image",
                             method: 'POST',
@@ -201,21 +202,28 @@
                                             value: imageUrl,
                                         })
                                         .appendTo('#eventForm');
+                                    showNotification(
+                                        'Image uploaded successfully',
+                                        'success');
                                 } else {
                                     showNotification(response.message, 'error');
+                                    hideLoader();
                                 }
                             },
                             error: function() {
                                 showNotification('Image upload failed',
                                     'error');
+                                hideLoader();
+                            },
+                            complete: function() {
+                                hideLoader();
                             }
                         });
                     },
                     onMediaDelete: function(target) {
-                        var imageUrl = target.attr(
-                            'src');
+                        var imageUrl = target.attr('src');
 
-                        console.log(imageUrl);
+                        showLoader();
                         $.ajax({
                             url: "event/delete-upload-image",
                             method: 'POST',
@@ -226,22 +234,27 @@
                             },
                             success: function(response) {
                                 if (response.success) {
+                                    hideLoader();
                                     showNotification(
                                         'Image deleted successfully',
                                         'success');
                                 } else {
+                                    showLoader();
                                     showNotification(response.message, 'error');
                                 }
                             },
                             error: function() {
+                                hideLoader();
                                 showNotification('Image deletion failed',
                                     'error');
+                            },
+                            complete: function() {
+                                hideLoader();
                             }
                         });
                     }
                 }
             });
-
         });
 
         $('#eventModal').on('hidden.bs.modal', function() {
@@ -250,7 +263,7 @@
             }
         });
 
-        //validation
+        // Form validation
         $('#eventForm').validate({
             rules: {
                 title: "required",
@@ -268,11 +281,10 @@
                     }
                 },
             },
-            message: {
+            messages: {
                 title: {
                     required: "This field is required."
                 },
-
                 details: {
                     required: "This field is required."
                 },
@@ -284,10 +296,10 @@
                 },
             },
             highlight: function(element) {
-                $(element).addClass('border-danger')
+                $(element).addClass('border-danger');
             },
             unhighlight: function(element) {
-                $(element).removeClass('border-danger')
+                $(element).removeClass('border-danger');
             },
         });
 
@@ -301,7 +313,8 @@
                         value: eventDetails,
                     })
                     .appendTo('#eventForm');
-                showLoader();
+
+                showLoader(); // Ensure this function is properly defined
                 $('#eventForm').ajaxSubmit({
                     success: function(response) {
                         const result = JSON.parse(response);
@@ -315,6 +328,9 @@
                     },
                     error: function() {
                         showNotification('An error occurred.', 'error');
+                    },
+                    complete: function() {
+                        hideLoader(); // Always hide the loader after form submission
                     }
                 });
             }

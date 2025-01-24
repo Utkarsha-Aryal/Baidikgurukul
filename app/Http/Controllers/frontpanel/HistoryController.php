@@ -84,7 +84,7 @@ class HistoryController extends Controller
                     $slug
                 )->first();
 
-            $histories = History::selectRaw('title,slug')
+            $histories = History::selectRaw('title, details,image,slug')
                 ->where('status', 'Y')
                 ->orderBy('slug', 'asc')
                 ->get();

@@ -157,11 +157,9 @@
 
 <script>
     $(document).ready(function() {
-
-        //thumbnail image
+        // Thumbnail image
         $('#thumbnail_image').on('change', function(event) {
             const selectedFile = event.target.files[0];
-
             if (selectedFile) {
                 $('._image').attr('src', URL.createObjectURL(selectedFile));
             }
@@ -179,13 +177,13 @@
                     ['para', ['ul', 'ol', 'paragraph']],
                     ['table', ['table']],
                     ['insert', ['link', 'picture', 'video']],
-                    ['view', ['fullscreen', 'codeview', 'help']]
+                    ['view', ['fullscreen', 'codeview', 'help']],
                 ],
                 callbacks: {
                     onImageUpload: function(files) {
                         var formData = new FormData();
                         formData.append("file", files[0]);
-
+                        showLoader();
                         $.ajax({
                             url: "post/upload-image",
                             method: 'POST',
@@ -205,45 +203,58 @@
                                             value: imageUrl,
                                         })
                                         .appendTo('#form');
+                                    showNotification(
+                                        'Image uploaded successfully',
+                                        'success');
                                 } else {
                                     showNotification(response.message, 'error');
+                                    hideLoader();
                                 }
                             },
                             error: function() {
                                 showNotification('Image upload failed',
                                     'error');
+                                hideLoader();
+                            },
+                            complete: function() {
+                                hideLoader();
                             }
                         });
                     },
                     onMediaDelete: function(target) {
-                        var imageUrl = target.attr(
-                            'src');
+                        var imageUrl = target.attr('src');
+                        showLoader();
                         $.ajax({
                             url: "post/delete-upload-image",
                             method: 'POST',
                             data: {
                                 _token: $('meta[name="csrf-token"]').attr(
                                     'content'),
-                                image_path: imageUrl
+                                image_path: imageUrl,
                             },
                             success: function(response) {
                                 if (response.success) {
+                                    showLoader();
                                     showNotification(
                                         'Image deleted successfully',
                                         'success');
                                 } else {
+                                    hideLoader();
                                     showNotification(response.message, 'error');
                                 }
                             },
                             error: function() {
+                                hideLoader();
                                 showNotification('Image deletion failed',
                                     'error');
+                            },
+                            complete: function() {
+                                hideLoader();
                             }
                         });
-                    }
-                }
+                    },
+                },
             });
-
         });
 
         $('#postModal').on('hidden.bs.modal', function() {
@@ -251,7 +262,6 @@
                 $('#summernote').summernote('destroy');
             }
         });
-
 
         $('#postForm').validate({
             rules: {
@@ -264,41 +274,38 @@
                     required: function() {
                         var id = $('#id').val();
                         return id === '';
-                    }
+                    },
                 },
             },
             message: {
                 category: {
-                    required: "This field is required."
+                    required: "This field is required.",
                 },
                 title: {
-                    required: "This field is required."
+                    required: "This field is required.",
                 },
-
                 details: {
-                    required: "This field is required."
+                    required: "This field is required.",
                 },
                 event_date: {
-                    required: "This field is required."
+                    required: "This field is required.",
                 },
                 event_address: {
-                    required: "This field is required."
+                    required: "This field is required.",
                 },
                 image: {
-                    required: "This field is required."
+                    required: "This field is required.",
                 },
             },
             highlight: function(element) {
-                $(element).addClass('border-danger')
+                $(element).addClass('border-danger');
             },
             unhighlight: function(element) {
-                $(element).removeClass('border-danger')
+                $(element).removeClass('border-danger');
             },
         });
 
-
-
-        // Save news
+        // Save post
         $('.saveNews').off('click');
         $('.saveNews').on('click', function() {
             if ($('#postForm').valid()) {
@@ -334,7 +341,7 @@
         });
 
         // Delete feature image
-        $('.delete_feature_image').off('click')
+        $('.delete_feature_image').off('click');
         $('.delete_feature_image').on('click', function() {
             var deleteButton = $(this);
             Swal.fire({
@@ -344,7 +351,7 @@
                 showCancelButton: true,
                 confirmButtonColor: "#DB1F48",
                 cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, Delete it!"
+                confirmButtonText: "Yes, Delete it!",
             }).then((result) => {
                 if (result.isConfirmed) {
                     showLoader();
