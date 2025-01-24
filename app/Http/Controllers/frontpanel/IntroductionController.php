@@ -25,7 +25,7 @@ class IntroductionController extends Controller
                 ->first();
 
             $timelines = Timeline::where('status', 'Y')
-                ->orderBy('id', 'asc')
+                ->orderBy('id', 'desc')
                 ->get();
 
             $data = [

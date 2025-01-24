@@ -192,7 +192,7 @@
             </div>
         </div>
     </section>
-    <div class="img_registration_wrap">
+    {{-- <div class="img_registration_wrap">
         <div class="lft_img">
             <img src="{{ asset('frontpanel/assets/images/ritual.png') }}" alt="">
         </div>
@@ -206,7 +206,7 @@
                 </a>
             </button>
         </div>
-    </div>
+    </div> --}}
 
 
 @endsection

@@ -141,7 +141,8 @@
                     error.insertAfter(element);
                 }
             });
-
+            
+            $('.submitData').off('click');
             $('.submitData').on('click', function(e) {
                 e.preventDefault(); // Prevent the default form submission
 

@@ -32,10 +32,12 @@ class TeamCategoryController extends Controller
 
             $rules = [
                 'team_category' => 'required|min:3|max:255',
+                'order_number' => 'required',
             ];
 
             $message = [
                 'team_category.required' => 'Please enter team category.',
+                'order_number.required' => 'Please enter team order.',
             ];
 
             $validation = Validator::make($request->all(), $rules, $message);
@@ -83,10 +85,11 @@ class TeamCategoryController extends Controller
             foreach ($data as $row) {
                 $array[$i]["sno"] = $i + 1;
                 $array[$i]["team_category"]    = $row->team_category;
+                $array[$i]["order_number"]    = $row->order_number;
 
                 $action = '';
                 if (!empty($post['type']) && $post['type'] != 'trashed') {
-                    $action .= '<a href="javascript:;" class=" edit_team_category" name="Edit Data" data-id="' . $row->id . '" data-team_category="' . $row->team_category . '"><i class="fa-solid fa-pen-to-square text-primary"></i></a> ';
+                    $action .= '<a href="javascript:;" class=" edit_team_category" name="Edit Data" data-id="' . $row->id . '" data-team_category="' . $row->team_category . '" data-order_number="' . $row->order_number . '"><i class="fa-solid fa-pen-to-square text-primary"></i></a> ';
                 } else {
                     $action .= '<a href="javascript:;" class="restore" title="Restore Data" data-id="' . $row->id . '"><i class="fa-solid fa-undo text-success"></i></a> ';
                 }
