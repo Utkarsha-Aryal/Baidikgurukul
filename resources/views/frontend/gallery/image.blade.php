@@ -4,6 +4,7 @@
     /* Styling for gallery images */
     .g-inner-img {
         width: calc(33.333% - 20px);
+
     }
 
     .g-inner-img img {
@@ -61,6 +62,7 @@
         width: 100%;
         height: auto;
         border-radius: 10px;
+        height: 360px;
     }
 
     .nav-btn {
@@ -119,7 +121,7 @@
             <img src="{{ asset('frontpanel/assets/images/image1.jpeg') }}" alt="">
         </div>
         <div class="main_txt">
-            <p>हाम्रो ग्यालेरी छवि पृष्ठ</p>
+            <p> ग्यालेरी</p>
         </div>
     </div>
     <div class="img_after">
@@ -153,7 +155,7 @@
     </div>
 </div>
 
-{{-- <script>
+ <script>
     const modal = document.getElementById('modal');
     const modalImage = document.getElementById('modal-image');
     const closeBtn = document.querySelector('.close');
@@ -242,5 +244,5 @@
             }
         }
     });
-</script> --}}
+</script>
 @endsection

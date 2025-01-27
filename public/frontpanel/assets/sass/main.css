@@ -4692,7 +4692,7 @@ fieldset {
 }
 @media (max-width: 768px) {
   .gallery-inner-container .gallery-inner-wrapper {
-    grid-template-columns: 1fr 1fr !important;
+    grid-template-columns: 1fr !important;
     gap: 15px !important;
   }
 }
@@ -4803,6 +4803,17 @@ fieldset {
 }
 .modal .modal-content .next:hover {
   color: #939090;
+}
+
+iframe {
+  height: 300px !important;
+  width: 500px;
+}
+@media (max-width: 768px) {
+  iframe {
+    height: 200px !important;
+    width: 100%;
+  }
 }
 
 .ritual-container {

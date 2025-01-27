@@ -1,5 +1,9 @@
 @extends('frontend.layout2.main2')
 @section('title', 'Our Team')
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
 @section('content2')
     <section class="introduction_page">
         <div class="img_before">
@@ -10,7 +14,7 @@
                 <img src="{{ asset('frontpanel/assets/images/image1.jpeg') }}" alt="hands">
             </div>
             <div class="main_txt">
-                <p>Our Team</p>
+                <p>हाम्रो टोली</p>
             </div>
         </div>
         <div class="img_after">
@@ -25,7 +29,7 @@
                 <div class="tabs">
                     @if (!empty($uniqueYearIntervals))
                         @foreach ($uniqueYearIntervals as $index => $yearInterval)
-                            <div class="tab {{ $index == 0 ? 'active' : '' }}" id="tab{{ $index + 1 }}">
+                            <div class="tab {{ $index == 0 ? 'active' : '' }}" id="tab{{ $index + 1 }}" data-year-interval="{{ $yearInterval }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
@@ -41,82 +45,57 @@
 
                 <!-- Content Area (Right Side) -->
                 <div class="content">
-                    @if (!empty($members))
-                        @foreach ($uniqueYearIntervals as $index => $yearInterval)
-                            <div id="content{{ $index + 1 }}" class="content-item"
-                                style="display: {{ $index == 0 ? 'block' : 'none' }}">
-                                <div class="container_content_wrapper">
-                                    @foreach ($members->where('timeInterval.year_interval', $yearInterval) as $member)
-                                        <div class="image_container_wrap">
-                                            <div class="img_hover_bg">
-                                                <h3>{{ $member->name ?? '' }}</h3>
-                                                <p>{{ $member->designation ?? '' }}</p>
-                                            </div>
-                                            <div class="img_default_bg">
-                                                <h3>{{ $member->name ?? '' }}</h3>
-                                                <p>{{ $member->designation ?? '' }}</p>
-                                            </div>
-                                            <div class="img_wrap">
-                                                <a href="{{ route('teaminner', $member->slug) }}">
-                                                    @if (!empty($member->photo) && Storage::exists('public/community/' . $member->photo))
-                                                        <img src="{{ asset('storage/community/' . $member->photo) }}"
-                                                            alt="">
-                                                    @else
-                                                        <img src="{{ asset('frontpanel/assets/images/curved.jpeg') }}"
-                                                            alt="">
-                                                    @endif
-                                                </a>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                        @endforeach
-                    @else
-                        <p>No Member Found</p>
-                    @endif
+                  
                 </div>
             </div>
         </div>
     </section>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Set the default tab content on page load
-            showContent(1);
-            setActiveTab(1); // Set the default active tab
+        $(document).ready(function() {
+            var slug = @json($slug);
+            
+            function loadTabContent(tab) {
+                $('.tab').removeClass('active');
+                tab.addClass('active');
+    
+                let yearInterval = tab.data('year-interval');
+                let url = "{{ url('/team/gettabcontent') }}";
+    
+                $('.content').html('<p>Loading...</p>');
+    
+                var data = {
+                    yearInterval: yearInterval,
+                    slug: slug,
+                };
+    
+                $.post({
+                    url: url,
+                    method: 'POST',
+                    data: data,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(response) {
+                        if (response.html) {
+                            $('.content').html(response.html);
+                        } else {
+                            $('.content').html('<p>No content found.</p>');
+                        }
+                    },
+                    error: function() {
+                        $('.content').html('<p>An error occurred while loading data. Please try again later.</p>');
+                    }
+                });
+            }
+    
+            $('.tab').on('click', function(e) {
+                e.preventDefault();
+                loadTabContent($(this));
+            });
+    
+            // Trigger click on the first tab to load its content on page load
+            $('.tab').first().trigger('click');
         });
-
-        // Handle tab click events
-        const tabs = document.querySelectorAll(".tab");
-        tabs.forEach(function(tab, index) {
-            tab.addEventListener("click", function(event) {
-                event.preventDefault();
-                showContent(index + 1); // Show the clicked content
-                setActiveTab(index + 1); // Set the active tab
-            });
-        });
-
-        function showContent(tabIndex) {
-            // Hide all content items
-            let contents = document.querySelectorAll(".content-item");
-            contents.forEach(function(content) {
-                content.style.display = "none";
-            });
-
-            // Show the selected content
-            document.getElementById("content" + tabIndex).style.display = "block";
-        }
-
-        function setActiveTab(tabIndex) {
-            // Remove active class from all tabs
-            let tabs = document.querySelectorAll(".tab");
-            tabs.forEach(function(tab) {
-                tab.classList.remove("active");
-            });
-
-            // Add active class to the clicked tab
-            document.getElementById("tab" + tabIndex).classList.add("active");
-        }
     </script>
 @endsection

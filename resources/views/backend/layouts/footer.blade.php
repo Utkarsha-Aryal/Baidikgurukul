@@ -23,8 +23,8 @@
          </div>
          <div class="rght_content">
              <span class="text-muted">
-                 Designed and Developed by: <a href="javascript:void(0);">
-                     <span class="red">Code</span><span class="blue">Logic</span> <span class="text-muted"> Technologies</span>
+                Powered By <a href="javascript:void(0);">
+                     <span class="red">Cl</span><span class="blue">Tech</span> <span class="text-muted"></span>
                  </a>
              </span>
          </div>

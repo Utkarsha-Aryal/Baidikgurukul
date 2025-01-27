@@ -368,7 +368,7 @@
         <div class="container">
             <ul class="end_ft_list">
                 <li>&copy;copyright <?php echo date('Y'); ?>. {{ config('app.name') }}</li>
-                <li>Designed and Developed by <a href="https://cltech.com.np/" target="_blank" class="visit_link">CL Tech</a></li>
+                <li>Powered By <a href="https://cltech.com.np/" target="_blank" class="visit_link">CL Tech</a></li>
             </ul>
         </div>
     </section>
