@@ -21,7 +21,6 @@
     @endforeach
 
     @if (!$hasVideos)
-        <p>No video</p>
     @endif
 @else
     <p>No video</p>
