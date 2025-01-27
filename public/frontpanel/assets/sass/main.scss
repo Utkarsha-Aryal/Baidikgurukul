@@ -902,9 +902,13 @@
                         font-weight: 500;
                         margin: 0;
                         font-family: monda;
+                        color:rgb(0, 0, 255);
                         &:hover {
                             color: $blue;
                         }
+                    }
+                    svg{
+                        color:rgb(0, 0, 255);
                     }
                     &:hover {
                         color: $blue;
@@ -985,7 +989,7 @@
             }
 
             .read_button {
-                margin-block: 20px;
+                // margin-block: 20px;
                 a {
                     display: flex;
                     gap: 8px;
@@ -994,11 +998,14 @@
                         font-size: 14px;
                         font-weight: 500;
                         margin: 0;
-                        color: #000000;
+                        color:rgb(0, 0, 255);
                         font-family: monda;
                         &:hover {
                             color: $blue;
                         }
+                    }
+                    svg{
+                        color:rgb(0, 0, 255);
                     }
                     &:hover {
                         color: $blue;
@@ -1211,15 +1218,16 @@
                                 p {
                                     font-size: 14px;
                                     font-weight: 500;
-                                    color: #000000;
+                                    color:rgb(0, 0, 255);
                                     margin: 0;
                                     font-family: "Rubik", serif !important;
                                     &:hover {
                                         color: $blue;
                                     }
                                 }
+                           
                                 .bi {
-                                    color: #000000;
+                                    color:rgb(0, 0, 255);
                                     &:hover {
                                         color: $blue;
                                     }
@@ -1676,6 +1684,7 @@
                         font-size: 16px;
                         font-weight: 500;
                         margin: 0;
+                        color:rgb(0, 0, 255);
                         @include respond-to(tablet) {
                             font-size: 14px;
                         }
@@ -1685,6 +1694,9 @@
                         &:hover {
                             color: $blue;
                         }
+                    }
+                    svg{
+                        color:rgb(0, 0, 255);
                     }
                     &:hover {
                         color: $blue;
@@ -1764,7 +1776,7 @@
                     p {
                         font-size: 14px;
                         font-weight: 500;
-                        color: rgba(0, 0, 0, 1);
+                        color:rgb(0, 0, 255);
                         margin: 0;
                         font-family: "Rubik", serif !important;
                         &:hover {
@@ -1772,7 +1784,7 @@
                         }
                     }
                     .bi {
-                        color: rgba(0, 0, 0, 1);
+                        color:rgb(0, 0, 255);
                         &:hover {
                             color: $blue;
                         }
