@@ -1,5 +1,5 @@
 @extends('frontend.layout2.main2')
-@section('title', 'Our Events Inner Page')
+@section('title', 'आगामी कार्यक्रमहरू')
 @section('content2')
     <section class="introduction_page">
         <div class="img_before">
@@ -10,7 +10,7 @@
                 <img src="{{ asset('frontpanel/assets/images/image1.jpeg') }}" alt="">
             </div>
             <div class="main_txt">
-                <p>Our Events Inner</p>
+                <p>आगामी कार्यक्रमहरू</p>
             </div>
         </div>
         <div class="img_after">
@@ -35,7 +35,7 @@
                 <div class="nb_right_container">
                     <div class="right_first_text">
                         <p>
-                            Events Information
+                            कार्यक्रम जानकारी
                         </p>
                     </div>
                     <div class="nb_right_wrapper">

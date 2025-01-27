@@ -1,5 +1,5 @@
 @extends('frontend.layout2.main2')
-@section('title', 'Our Historical Places')
+@section('title', 'हाम्रा ऐतिहासिक ठाउँहरू')
 @section('content2')
     <section class="introduction_page">
         <div class="img_before">
@@ -10,7 +10,7 @@
                 <img src="{{ asset('frontpanel/assets/images/image1.jpeg') }}" alt="">
             </div>
             <div class="main_txt">
-                <p>Our Historical Places</p>
+                <p>हाम्रा ऐतिहासिक ठाउँहरू</p>
             </div>
         </div>
         <div class="img_after">
@@ -23,7 +23,7 @@
                 <!-- Tab Navigation (Left Side) -->
                 <div class="tabs">
                     <div class="first_txt">
-                        <p>Our Historical Places</p>
+                        <p>हाम्रा ऐतिहासिक ठाउँहरू</p>
                     </div>
                     @if (!empty($histories) && count($histories) > 0)
                         @foreach ($histories as $index => $history)

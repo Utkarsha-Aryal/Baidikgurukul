@@ -1,6 +1,10 @@
 @extends('frontend.layout2.main2')
 @section('title', 'About Us')
-
+<style>
+    .custom_heading12 p::after{
+    left: 135px !important;
+    }
+    </style>
 @section('content2')
 
     <section class="introduction_page">
@@ -35,8 +39,8 @@
                     </div>
                 </div>
                 <div class="right_dreams_txt">
-                    <div class="first_dreams_txt">
-                        <p>About Chochangay Samaj Nepal</p>
+                    <div class="first_dreams_txt custom_heading12">
+                        <p>चाेचाङ्गी समाज नेपाल</p>
                     </div>
                     <div class="second_txt">
                         <p>{{ $aboutus->aboutus_title }}</p>
