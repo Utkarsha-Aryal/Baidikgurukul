@@ -1,5 +1,5 @@
 @extends('frontend.layout2.main2')
-@section('title', 'Our Team Inner')
+@section('title', 'हाम्रो टोली')
 @section('content2')
     <section class="introduction_page">
         <div class="img_before">
@@ -10,7 +10,7 @@
                 <img src="{{ asset('frontpanel/assets/images/image1.jpeg') }}" alt="">
             </div>
             <div class="main_txt">
-                <p>Our Team Inner</p>
+                <p>हाम्रो टोली</p>
             </div>
         </div>
         <div class="img_after">

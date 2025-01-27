@@ -185,8 +185,8 @@
                 <p>@copy 2025 चाेचाङ्गी समाज नेपाल. सर्वाधिकार सुरक्षित.</p>
             </div>
             <div class="right_frow">
-                <p>Designed and Developed by: <a href="https://g.co/kgs/G1iBeJK" target="_blank"><span
-                            class="blue">CL</span> <span class="red">Tech</span></a></p>
+                <p>Powered By <a href="https://cltech.com.np/" target="_blank"><span
+                    class="blue">CL</span><span class="red">Tech</span></a></p>
             </div>
 
         </div>

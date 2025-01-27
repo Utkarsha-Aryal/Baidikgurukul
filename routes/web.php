@@ -332,6 +332,7 @@ Route::get('new', [IntroductionController::class, 'new'])->name('new');
 Route::get('team/{slug}', [TeamController::class, 'ourteam'])->name('ourteam');
 Route::get('teaminner/{slug}', [TeamController::class, 'teaminner'])->name('teaminner');
 Route::get('year/{slug}', [TeamController::class, 'teamyear'])->name('teamyear');
+Route::post('/team/gettabcontent', [TeamController::class, 'getTabContent'])->name('team.gettabcontent');
 
 Route::get('program', [FrontProgramController::class, 'program'])->name('program');
 Route::get('program/innerpage/{slug}', [FrontProgramController::class, 'inner'])->name('program.inner');

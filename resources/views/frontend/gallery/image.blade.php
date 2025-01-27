@@ -121,7 +121,7 @@
             <img src="{{ asset('frontpanel/assets/images/image1.jpeg') }}" alt="">
         </div>
         <div class="main_txt">
-            <p>हाम्रो ग्यालेरी छवि पृष्ठ</p>
+            <p> ग्यालेरी</p>
         </div>
     </div>
     <div class="img_after">
