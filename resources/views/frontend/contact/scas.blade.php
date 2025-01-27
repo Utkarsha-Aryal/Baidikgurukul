@@ -1,7 +1,7 @@
 @extends('frontend.layout2.main2')
 
 
-@section('title', 'Contact')
+@section('title', 'सम्पर्क')
 @section('content2')
     <section class="introduction_page">
         <div class="img_before">
@@ -12,7 +12,7 @@
                 <img src="{{ asset('frontpanel/assets/images/image1.jpeg') }}" alt="">
             </div>
             <div class="main_txt">
-                <p>Contact</p>
+                <p>सम्पर्क गर्नुहोस</p>
             </div>
         </div>
         <div class="img_after">
