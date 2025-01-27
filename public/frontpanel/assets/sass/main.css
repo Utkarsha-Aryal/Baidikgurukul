@@ -6594,9 +6594,13 @@ body .footer-container::after {
   font-weight: 500;
   margin: 0;
   font-family: monda;
+  color: rgb(0, 0, 255);
 }
 .rituals_dreams .dreams_wrappper .right_dreams_txt .read_button a p:hover {
   color: rgb(6, 106, 200);
+}
+.rituals_dreams .dreams_wrappper .right_dreams_txt .read_button a svg {
+  color: rgb(0, 0, 255);
 }
 .rituals_dreams .dreams_wrappper .right_dreams_txt .read_button a:hover {
   color: rgb(6, 106, 200);
@@ -6678,9 +6682,6 @@ body .footer-container::after {
     font-size: 14px;
   }
 }
-.rights_for_dreams .rights_wrapper .left_rights_txt .read_button {
-  margin-block: 20px;
-}
 .rights_for_dreams .rights_wrapper .left_rights_txt .read_button a {
   display: flex;
   gap: 8px;
@@ -6690,11 +6691,14 @@ body .footer-container::after {
   font-size: 14px;
   font-weight: 500;
   margin: 0;
-  color: #000000;
+  color: rgb(0, 0, 255);
   font-family: monda;
 }
 .rights_for_dreams .rights_wrapper .left_rights_txt .read_button a p:hover {
   color: rgb(6, 106, 200);
+}
+.rights_for_dreams .rights_wrapper .left_rights_txt .read_button a svg {
+  color: rgb(0, 0, 255);
 }
 .rights_for_dreams .rights_wrapper .left_rights_txt .read_button a:hover {
   color: rgb(6, 106, 200);
@@ -6915,7 +6919,7 @@ body .footer-container::after {
 .program_swiper .mySwiper .swiper-wrapper .swiper-slide .swiper_content_card_wrapper .swiper_content_card .read_more a p {
   font-size: 14px;
   font-weight: 500;
-  color: #000000;
+  color: rgb(0, 0, 255);
   margin: 0;
   font-family: "Rubik", serif !important;
 }
@@ -6923,7 +6927,7 @@ body .footer-container::after {
   color: rgb(6, 106, 200);
 }
 .program_swiper .mySwiper .swiper-wrapper .swiper-slide .swiper_content_card_wrapper .swiper_content_card .read_more a .bi {
-  color: #000000;
+  color: rgb(0, 0, 255);
 }
 .program_swiper .mySwiper .swiper-wrapper .swiper-slide .swiper_content_card_wrapper .swiper_content_card .read_more a .bi:hover {
   color: rgb(6, 106, 200);
@@ -7392,6 +7396,7 @@ body .footer-container::after {
   font-size: 16px;
   font-weight: 500;
   margin: 0;
+  color: rgb(0, 0, 255);
 }
 @media (max-width: 992px) {
   .historical_places_container .first_historical_txt .main_txt_wrap .view_all_txt a p {
@@ -7405,6 +7410,9 @@ body .footer-container::after {
 }
 .historical_places_container .first_historical_txt .main_txt_wrap .view_all_txt a p:hover {
   color: rgb(6, 106, 200);
+}
+.historical_places_container .first_historical_txt .main_txt_wrap .view_all_txt a svg {
+  color: rgb(0, 0, 255);
 }
 .historical_places_container .first_historical_txt .main_txt_wrap .view_all_txt a:hover {
   color: rgb(6, 106, 200);
@@ -7492,7 +7500,7 @@ body .footer-container::after {
 .historical_places_container .historical_places_wrapper .historical_content_card .read_more a p {
   font-size: 14px;
   font-weight: 500;
-  color: rgb(0, 0, 0);
+  color: rgb(0, 0, 255);
   margin: 0;
   font-family: "Rubik", serif !important;
 }
@@ -7500,7 +7508,7 @@ body .footer-container::after {
   color: rgb(6, 106, 200);
 }
 .historical_places_container .historical_places_wrapper .historical_content_card .read_more a .bi {
-  color: rgb(0, 0, 0);
+  color: rgb(0, 0, 255);
 }
 .historical_places_container .historical_places_wrapper .historical_content_card .read_more a .bi:hover {
   color: rgb(6, 106, 200);
