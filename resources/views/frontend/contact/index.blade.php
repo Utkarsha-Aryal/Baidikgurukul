@@ -30,10 +30,10 @@
             <div class="contact-content">
                 <div class="contact-content-lt">
                     <div class="contact-lt-header">
-                        <p>एउटा प्रश्न छ? हामीलाई सम्पर्क गरौं।</p>
+                        <p>सम्पर्क गर्नुहोस</p>
                     </div>
                     <div class="contact-lt-txt">
-                        <p>फारम भर्नुहोस् र हाम्रो टोलीले २४ घन्टा भित्रमा तपाईंलाई फिर्ता गर्नेछ</p>
+                        <p>फारम भर्नुहोस</p>
                     </div>
                     <form action=" {{ route('enquiry.save') }}" id="contactUsForm" method="POST">
                         <div class="contact-lt-form">
@@ -42,7 +42,16 @@
                             <input type="text" id="lname" name="last_name" placeholder="थर *">
                             <input type="email" id="mail" name="email" placeholder="इमेल *">
                             <input type="text" id="msg" name="message" placeholder="सन्देश लेख्नुहोस *">
+
+                            <div class="form-group">
+                                {!! NoCaptcha::display() !!}
+                                @error('g-recaptcha-response')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+
                         </div>
+                        {!! NoCaptcha::renderJs() !!}
                         <div class="submit-btn">
                             <button type="submit" class="submitData">
                                 <p>पेश गर्नुहोस</p>
@@ -98,7 +107,15 @@
         </div>
     </div>
 
-
+    <script>
+        grecaptcha.ready(function() {
+            grecaptcha.execute('{{ config('captcha.sitekey') }}', {
+                action: 'submit'
+            }).then(function(token) {
+                document.getElementById('g-recaptcha-response').value = token;
+            });
+        });
+    </script>
 
     <script>
         $(document).ready(function() {
@@ -158,6 +175,7 @@
                             if (response && response.type === 'success') {
                                 showNotification(response.message, 'success');
                                 $('#contactUsForm')[0].reset();
+                                grecaptcha.reset();
                             } else {
                                 showNotification(response.message, 'error');
                             }
@@ -168,6 +186,8 @@
                             const response = xhr.responseJSON;
                             showNotification(response && response.message ? response.message :
                                 'An error occurred', 'error');
+                            grecaptcha.reset();
+
                         }
                     });
                 }
