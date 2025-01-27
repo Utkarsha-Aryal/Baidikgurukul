@@ -5,7 +5,6 @@
     .g-inner-img {
         width: calc(33.333% - 20px);
         /* 3 columns */
-        margin: 10px;
     }
 
     .g-inner-img img {
@@ -63,6 +62,7 @@
         width: 100%;
         height: auto;
         border-radius: 10px;
+        height: 360px;
     }
 
     .nav-btn {
