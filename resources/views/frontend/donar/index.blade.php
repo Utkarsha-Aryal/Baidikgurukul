@@ -1,5 +1,5 @@
 @extends('frontend.layout2.main2')
-@section('title', 'Our Donar List')
+@section('title', 'दाताहरूको सूची')
 @section('content2')
     <section class="introduction_page">
         <div class="img_before">
@@ -10,7 +10,7 @@
                 <img src="{{ asset('frontpanel/assets/images/image1.jpeg') }}" alt="">
             </div>
             <div class="main_txt">
-                <p>Our Donar List</p>
+                <p>दाताहरूको सूची</p>
             </div>
         </div>
         <div class="img_after">

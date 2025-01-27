@@ -1,6 +1,18 @@
 @extends('frontend.layout2.main2')
 @section('title', 'Home')
 @section('content2')
+<style>
+   .program_swiper .program_txt_pagination_wrap .program_initiative_txt .first_program_txt::after {
+    content: "";
+    position: absolute;
+    height: 2px;
+    width: 50px;
+    border-radius: 4px;
+    background-color: rgb(6, 106, 200);
+    top: 10px;
+    left: 90px;
+}
+    </style>
 <section class="first_content">
     <div class="bg_image">
         <img src="{{ asset('frontpanel/assets/images/image1.jpeg') }}" alt="">
@@ -240,11 +252,11 @@
     <div class="container">
         <div class="program_txt_pagination_wrap">
             <div class="program_initiative_txt">
-                <div class="first_program_txt">
-                    <p>कार्यक्रमहरू र पहलहरू</p>
+                <div class="first_program_txt custom_heading12">
+                    <p>कार्यक्रमहरू </p>
                 </div>
                 <div class="second_program_txt">
-                    <p>हाम्रा अपडेट <span class="blue">कार्यक्रमहरू र पहलहरू</span></p>
+                    <p>हाम्रा अपडेट <span class="blue">कार्यक्रमहरू</span></p>
                 </div>
                 <div class="third_program_txt">
                     <p>चाेचाङ्गी समाज यसका सबै सदस्यहरूको प्रगति र कल्याण सुनिश्चित गर्दै हाम्रो समुदायको समृद्ध
@@ -418,7 +430,7 @@
                 @if (count($events) > 0)
                 <div class="see_all_btn">
                     <a href="{{ route('event') }}">
-                        <p>सबै घटनाहरू हेर्नुहोस </p>
+                        <p>सबै कार्यक्रमहरू हेर्नुहोस </p>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                             fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
