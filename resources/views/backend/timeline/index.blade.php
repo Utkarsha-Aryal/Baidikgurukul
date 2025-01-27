@@ -51,6 +51,12 @@
                                         class="required-field">*</span></label>
                                 <textarea class="form-control" id="details" name="details" rows="5" placeholder="Enter details..."></textarea>
                             </div>
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                <label for="order_number" class="form-label">Order <span
+                                        class="required-field">*</span></label>
+                                <input type="number" class="form-control" id="order_number" placeholder="Enter order..."
+                                    name="order_number">
+                            </div>
                         </div>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
@@ -89,6 +95,7 @@
                                                     <th>S.No</th>
                                                     <th>Year</th>
                                                     <th>Details</th>
+                                                    <th>Order</th>
                                                     <th>Action</th>
                                             </thead>
                                             <tbody>
@@ -142,6 +149,9 @@
                     {
                         "data": "details"
                     },
+                    {
+                        "data": "order_number"
+                    },
 
                     {
                         "data": "action"
@@ -192,6 +202,7 @@
 
                     year: "required",
                     details: "required",
+                    order_number: "required",
                 },
                 message: {
                     year: {
@@ -199,6 +210,9 @@
                     },
 
                     details: {
+                        required: "This field is required."
+                    },
+                    order_number: {
                         required: "This field is required."
                     },
                 },
@@ -244,6 +258,7 @@
                 $('.saveData').html('<i class="fa fa-save"></i> Update');
                 $('#datepicker').val($(this).data('year'));
                 $('#details').val($(this).data('details'));
+                $('#order_number').val($(this).data('order_number'));
             });
 
 

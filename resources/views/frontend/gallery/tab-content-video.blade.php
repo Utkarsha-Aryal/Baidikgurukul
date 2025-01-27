@@ -14,7 +14,7 @@
                     <p>{{ $gallery->name ?? '' }}</p>
                 </div>
                 <div class="gallery-g1-txt">
-                    <p>{{ count($gallery->videos) }} Videos</p>
+                    <p>{{ count($gallery->videos) }} Videos </p>
                 </div>
             </div>
         @endif
@@ -23,5 +23,5 @@
     @if (!$hasVideos)
     @endif
 @else
-    <p>No video</p>
+    <p>No video available</p>
 @endif

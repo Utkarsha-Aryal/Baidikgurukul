@@ -26,11 +26,17 @@ class TimelineController extends Controller
             $rules = [
                 'year' => 'required|min:4|max:4',
                 'details' => 'required|min:5|max:5000',
+                'order_number' => 'required|numeric|min:1',
+
             ];
 
             $message = [
                 'year.required' => 'Please enter year',
                 'details.required' => 'Please write details',
+
+                'order_number.required' => 'The order number field is required.',
+                'order_number.number' => 'The order number field must be number.',
+                'order_number.min' => 'The order number field must be minimun 1.',
             ];
 
             $validate = Validator::make($request->all(), $rules, $message);
@@ -77,12 +83,13 @@ class TimelineController extends Controller
             foreach ($data as $row) {
                 $array[$i]["sno"] = $i + 1;
                 $array[$i]["year"]    = $row->year;
+                $array[$i]["order_number"]    = $row->order_number;
                 $array[$i]["details"]  =  Str::limit($row->details, 70, '...');
 
 
                 $action = '';
                 if (!empty($post['type']) && $post['type'] != 'trashed') {
-                    $action .= '<a href="javascript:;" class=" edittimeline" name="Edit Data" data-id="' . $row->id . '" data-year="' . $row->year . '" data-details="' . $row->details . '"><i class="fa-solid fa-pen-to-square text-primary"></i></a>';
+                    $action .= '<a href="javascript:;" class=" edittimeline" name="Edit Data" data-id="' . $row->id . '" data-order_number="' . $row->order_number . '" data-year="' . $row->year . '" data-details="' . $row->details . '"><i class="fa-solid fa-pen-to-square text-primary"></i></a>';
                 } else {
                     $action .= '<a href="javascript:;" class="restore" title="Restore Data" data-id="' . $row->id . '"><i class="fa-solid fa-undo text-success"></i></a> ';
                 }
@@ -181,6 +188,4 @@ class TimelineController extends Controller
         }
         return response()->json(['type' => $type, 'message' => $message]);
     }
-
-    
 }

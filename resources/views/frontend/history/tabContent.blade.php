@@ -4,7 +4,7 @@
             <div class="first_txt">
                 <p>{{ $history->title }}</p>
             </div>
-            <div class="second_txt">
+            <div class="second_txt shadow-image">
                 <p>{!! $history->details !!}</p>
             </div>
         </div>

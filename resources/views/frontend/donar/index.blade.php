@@ -44,7 +44,7 @@
                                     <p>{{ $doner->name ?? '' }}</p>
                                 </div>
                             </td>
-                            <td>Rs. {{ $doner->amount }}</td>
+                            <td>{{ $doner->amount }}</td>
                             <td>{{ $doner->title }}</td>
                         </tr>
                     @endforeach

@@ -19,7 +19,7 @@ class TimelineController extends Controller
 
             $timelines = Timeline::selectRaw('details,year')
                 ->where('status', 'Y')
-                ->orderBy('id', 'desc')
+                ->orderBy('order_number', 'asc')
                 ->get();
 
             $data = [];
