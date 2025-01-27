@@ -1,10 +1,5 @@
 @extends('frontend.layout2.main2')
 @section('title', 'हाम्रो बारेमा')
-<style>
-    .custom_heading12 p::after{
-    left: 135px !important;
-    }
-    </style>
 @section('content2')
 
     <section class="introduction_page">
