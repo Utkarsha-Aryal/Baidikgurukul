@@ -1,6 +1,7 @@
 @extends('frontend.layout2.main2')
 @section('title', 'Our Gallery Inner')
 
+
 @section('content2')
     <section class="introduction_page">
 

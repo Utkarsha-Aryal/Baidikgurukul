@@ -7,7 +7,7 @@
         gap: 20px;
         align-self: auto;
         @include respond-to(mobile) {
-            grid-template-columns: 1fr 1fr !important;
+            grid-template-columns: 1fr !important;
             gap: 15px !important;
         }
         .g-inner-img {
@@ -24,6 +24,7 @@
                     height: 160px !important;
                 }
             }
+           
         }
         img:hover {
             transform: scale(1.05);
@@ -104,4 +105,13 @@
             color: #939090;
         }
     }
+}
+iframe{
+    height: 300px !important;
+    width: 500px;
+    @include respond-to(mobile){
+        height: 200px !important;
+        width: 100%;
+    }
+    
 }
