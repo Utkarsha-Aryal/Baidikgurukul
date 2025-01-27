@@ -142,7 +142,7 @@
                             <li><a href="{{ route('home') }}"
                                     class="{{ request()->routeIs('home') ? 'active' : '' }}">होमपेज</a></li>
                             <li>
-                                <a href="#" class="{{ request()->is('about*') ? 'active' : '' }}">हाम्रो
+                                <a href="#" class="{{ request()->routeIs('home') ? 'active' : '' }}">हाम्रो
                                     बारेमा</a>
                                 <ul class="dropdown">
                                     <li><a href="{{ route('about') }}"
