@@ -171,9 +171,8 @@
                 </div>
                 <div class="right_frow">
 
-                    <p>Designed and Developed by: <a href="https://g.co/kgs/G1iBeJK" target="_blank"><span
-                                class="red">Code</span><span class="blue">Logic</span></a> Technologies.</p>
-
+                    <p>Powered By <a href="https://cltech.com.np/" target="_blank"><span
+                        class="blue">CL</span> <span class="red">Tech</span></a></p>
                 </div>
 
             </div>
