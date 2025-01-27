@@ -62,13 +62,19 @@ class GalleryVideo extends Model
             foreach ($get['columns'] as $key => $value) {
                 $get['columns'][$key]['search']['value'] = trim(strtolower(htmlspecialchars($value['search']['value'], ENT_QUOTES)));
             }
+            $cond = " status = 'Y'";
+
+            if (!empty($post['type']) && $post['type'] === "trashed") {
+                $cond = " status = 'N'";
+            }
             $limit = 15;
             $offset = 0;
             if (!empty($get["length"]) && $get["length"]) {
                 $limit = $get['length'];
                 $offset = $get["start"];
             }
-            $query = GalleryVideo::selectRaw("(SELECT COUNT(*) FROM gallery_videos WHERE status = 'Y') AS totalrecs, id as gallery_video_id, video_url,video_image")->where(['gallery_id' => $get['gallery_id'], 'status' => 'Y']);
+            $query = GalleryVideo::selectRaw("(SELECT COUNT(*) FROM gallery_videos WHERE {$cond}) AS totalrecs, id as gallery_video_id, video_url,video_image")->where(['gallery_id' => $get['gallery_id']])
+                ->whereRaw($cond);
             if ($limit > -1) {
                 $query = $query->orderBy('id', 'DESC')->offset($offset)->limit($limit);
             } else {
@@ -83,6 +89,24 @@ class GalleryVideo extends Model
                 $ndata = array();
             }
             return $ndata;
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
+
+    //restore
+    public static function restoreData($post)
+    {
+        try {
+            $updateArray = [
+                'status' => 'Y',
+                'updated_at' => Carbon::now(),
+            ];
+            if (!GalleryVideo::where(['id' => $post['id']])->update($updateArray)) {
+                throw new Exception("Couldn't Restore Data. Please try again", 1);
+            }
+            return true;
         } catch (Exception $e) {
             throw $e;
         }

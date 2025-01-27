@@ -108,7 +108,7 @@
                                         <th>S.No</th>
                                         <th>Image</th>
                                         <th>External Link</th>
-                                        <th>Action</th>
+                                        <th width="5%">Action</th>
                                 </thead>
                                 <tbody>
                                 </tbody>
@@ -325,7 +325,7 @@
         // view trashed items-end
 
 
-        // Delete event
+        // Delete image
         $(document).on('click', '.deleteImage', function(e) {
             e.preventDefault();
             Swal.fire({
@@ -353,6 +353,42 @@
                             if (rep.type === 'success') {
                                 $('#imageModel').modal('show');
                                 imageTable.draw();
+                            }
+                        }
+                    });
+                }
+            });
+        });
+
+        //restore image
+        $(document).off('click', '.restoreImage');
+        $(document).on('click', '.restoreImage', function() {
+            Swal.fire({
+                title: "Are you sure you want to restore Gallery Image?",
+                text: "This will restore the Gallery Image.",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#28a745",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, Restore it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    showLoader();
+                    var id = $(this).data('id');
+                    var data = {
+                        id: id,
+                        type: 'restore'
+                    };
+                    var url = '{{ route('admin.gallery.image.restore') }}';
+                    $.post(url, data, function(response) {
+                        if (response) {
+                            if (response.type === 'success') {
+                                showNotification(response.message, 'success');
+                                imageTable.draw();
+                                hideLoader();
+                            } else {
+                                showNotification(response.message, 'error');
+                                hideLoader();
                             }
                         }
                     });
@@ -415,5 +451,6 @@
                 }
             }
         });
+
     });
 </script>

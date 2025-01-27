@@ -1,4 +1,5 @@
 @if (!@empty($galleries) && count($galleries) > 0)
+    @php $hasVideos = false; @endphp
     @foreach ($galleries as $gallery)
         <div class="gallery-r1"> <a href="{{ route('image.inner', $gallery->slug) }}">
 
@@ -18,6 +19,9 @@
             </div>
         </div>
     @endforeach
+    @if (!$hasVideos)
+        <p>No video</p>
+    @endif
 @else
-    <p>No image available</p>
+    <p>No Image Avaialble</p>
 @endif

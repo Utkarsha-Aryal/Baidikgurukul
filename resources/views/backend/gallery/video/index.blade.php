@@ -3,6 +3,11 @@
         display: flex;
         justify-content: flex-end;
     }
+
+    input#trashed_file_image,
+    #external_link {
+        border: 1px solid rgb(0, 99, 198) !important
+    }
 </style>
 <div class="modal-header">
     <h1 class="modal-title fs-5" id="staticBackdropLabel">Videos - {{ @$title }}</h1>
@@ -11,7 +16,7 @@
 <div class="modal-body">
     <form id="videoForm" method="POST" action="{{ route('admin.gallery.video.save') }}" enctype="multipart/form-data">
         <div class="row d-flex align-items-end">
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <input type="hidden" name="gallery_id" id="gallery_id" value="{{ @$id }}">
                 <input type="hidden" name="gallery_video_id" id="edit_id" value="">
                 <label for="video" class="form-label">Video URL <span class="required-field">*</span></label>
@@ -59,6 +64,14 @@
             </div>
         </div>
     </form>
+    <div class="row ms-0">
+        <div class="form-check col-xl-12 col-lg-12 col-md-12 col-sm-12 trash">
+            <input class="form-check-input" type="checkbox" value="Y" id="trashed_file_image" name="trashed_file">
+            <label class="form-check-label" for="trashed_file_image">
+                View Trashed
+            </label>
+        </div>
+    </div>
     <div class="row mt-4">
         <div class="table-responsive">
             <div id="datatable-basic_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
@@ -101,6 +114,12 @@
         $('.video-url').html(videoUrl);
     })
 
+
+    $('#trashed_file_image').off('change');
+    $('#trashed_file_image').on('change', function(e) {
+        videoTable.draw();
+    });
+
     $('#image').on('change', function(event) {
         var selectedFile = event.target.files[0];
 
@@ -122,9 +141,7 @@
                     videoTable.draw();
                     $('#videoForm')[0].reset();
                     $('#gallery_video_id').val('');
-                    $('#image').val(''); // Clear the file input field
-
-                    // Reset the image preview to a default image
+                    $('#image').val('');
                     $('#edit-image .img-rectangle').html(
                         '<img src="{{ asset('/no-image.jpg') }}" alt="Default Image" id="img_introduction" class="ishan">'
                     );
@@ -137,7 +154,7 @@
         });
     });
 
-    // Delete event video
+    // Delete gallery  video
     $(document).on('click', '.deleteVideo', function(e) {
         e.preventDefault();
         Swal.fire({
@@ -151,25 +168,76 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 var id = $(this).data('id');
+                var type = $('#trashed_file_image').is(':checked') == true ? 'trashed' :
+                    'nottrashed';
                 var data = {
                     id: id,
+                    type: type,
                 };
                 var url = '{{ route('admin.gallery.video.delete') }}';
                 $.post(url, data, function(response) {
                     var rep = JSON.parse(response);
                     if (rep) {
-                        showNotification(rep.message, rep.type)
-
+                        showNotification(rep.message, rep.type);
                         if (rep.type === 'success') {
                             $('#imageModel').modal('show');
                             videoTable.draw();
-                            $('#videoForm')[0].reset();
-                            $('#gallery_video_id').val('');
                         }
                     }
                 });
             }
         });
+    });
+
+
+    //restore video
+    $(document).off('click', '.restoreVideo');
+    $(document).on('click', '.restoreVideo', function() {
+        Swal.fire({
+            title: "Are you sure you want to restore Gallery Video?",
+            text: "This will restore the Gallery Video.",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#28a745",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Restore it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                showLoader();
+                var id = $(this).data('id');
+                var data = {
+                    id: id,
+                    type: 'restore'
+                };
+                var url = '{{ route('admin.gallery.video.restore') }}';
+                $.post(url, data, function(response) {
+                    if (response) {
+                        if (response.type === 'success') {
+                            showNotification(response.message, 'success');
+                            videoTable.draw();
+                            hideLoader();
+                        } else {
+                            showNotification(response.message, 'error');
+                            hideLoader();
+                        }
+                    }
+                });
+            }
+        });
+    });
+
+    // Edit video
+    $(document).on('click', '.editVideo', function(e) {
+        e.preventDefault();
+        var id = $(this).data('id')
+        $('#id').val(id);
+        $('#video').val($(this).data('video_url'));
+        var imageUrl = $(this).data('video_image');
+        $('.ishan').attr('src', `{{ asset('/storage/community') }}/${imageUrl}`);
+        $('#id').val(id);
+        if ((id)) {
+            $('.saveData').html('<i class="fa fa-save"></i> Update album');
+        }
     });
 </script>
 
@@ -218,10 +286,14 @@
             "ajax": {
                 "url": '{{ route('admin.gallery.video.list') }}',
                 "type": "POST",
-                "data": {
-                    gallery_id: gallery_id
+                "data": function(d) {
+                    var type = $('#trashed_file_image').is(':checked') == true ? 'trashed' :
+                        'nottrashed';
+                    d.gallery_id = gallery_id;
+                    d.type = type;
                 }
             }
         });
+
     });
 </script>

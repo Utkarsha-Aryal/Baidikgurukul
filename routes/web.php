@@ -185,6 +185,7 @@ Route::group(['middleware' => 'admin'], function () {
                 Route::post('/save', [GalleryImageController::class, 'save'])->name('admin.gallery.image.save');
                 Route::post('/list', [GalleryImageController::class, 'list'])->name('admin.gallery.image.list');
                 Route::post('/delete', [GalleryImageController::class, 'delete'])->name('admin.gallery.image.delete');
+                Route::post('/restore', [GalleryImageController::class, 'restore'])->name('admin.gallery.image.restore');
             });
 
             Route::group(['prefix' => 'video'], function () {
@@ -192,6 +193,7 @@ Route::group(['middleware' => 'admin'], function () {
                 Route::post('/save', [GalleryVideoController::class, 'save'])->name('admin.gallery.video.save');
                 Route::post('/list', [GalleryVideoController::class, 'list'])->name('admin.gallery.video.list');
                 Route::post('/delete', [GalleryVideoController::class, 'delete'])->name('admin.gallery.video.delete');
+                Route::post('/restore', [GalleryVideoController::class, 'restore'])->name('admin.gallery.video.restore');
             });
         });
         /* Gallery-end */
