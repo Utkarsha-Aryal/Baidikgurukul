@@ -5,7 +5,6 @@
         font-size: 14px;
     }
 </style>
-
 @section('title', 'सम्पर्क')
 @section('content2')
     <section class="introduction_page">
@@ -24,7 +23,6 @@
             <img src="{{ asset('frontpanel/assets/images/Mask group.png') }}" alt="">
         </div>
     </section>
-
     <div class="contact-container-main">
         <div class="container">
             <div class="contact-content">
@@ -42,14 +40,12 @@
                             <input type="text" id="lname" name="last_name" placeholder="थर *">
                             <input type="email" id="mail" name="email" placeholder="इमेल *">
                             <input type="text" id="msg" name="message" placeholder="सन्देश लेख्नुहोस *">
-
                             <div class="form-group">
                                 {!! NoCaptcha::display() !!}
                                 @error('g-recaptcha-response')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
-
                         </div>
                         {!! NoCaptcha::renderJs() !!}
                         <div class="submit-btn">
@@ -106,7 +102,6 @@
             </div>
         </div>
     </div>
-
     <script>
         grecaptcha.ready(function() {
             grecaptcha.execute('{{ config('captcha.sitekey') }}', {
@@ -116,10 +111,8 @@
             });
         });
     </script>
-
     <script>
         $(document).ready(function() {
-
             $('#contactUsForm').validate({
                 rules: {
                     first_name: {
@@ -163,13 +156,10 @@
                     error.insertAfter(element);
                 }
             });
-
             $('.submitData').on('click', function(e) {
                 e.preventDefault();
-
                 if ($('#contactUsForm').valid()) {
                     showLoader();
-
                     $('#contactUsForm').ajaxSubmit({
                         success: function(response) {
                             if (response && response.type === 'success') {
@@ -187,13 +177,10 @@
                             showNotification(response && response.message ? response.message :
                                 'An error occurred', 'error');
                             grecaptcha.reset();
-
                         }
                     });
                 }
             });
-
-
         });
     </script>
 @endsection
