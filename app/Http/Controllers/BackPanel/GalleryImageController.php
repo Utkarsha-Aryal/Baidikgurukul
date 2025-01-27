@@ -108,8 +108,13 @@ class GalleryImageController extends Controller
                 $array[$i]["image"]  = $row->image ? $imageUrl : '';
 
                 $action = '';
-                // $action .= '<a href="javascript:;" class="editImage" title="Edit Data" data-id="' . $row->id . '" data-image="' .  $row->image . '" data-image_link="' . $row->image_link . '"><i class="fa fa-pencil-alt text-primary"></i></a>';
-                $action .= '  <a href="javascript:;" class="deleteImage" title="Delete Data" data-id="' . $row->id . '"><i class="fa fa-trash text-danger"></i></a>';
+
+                if (!empty($post['type']) && $post['type'] != 'trashed') {
+                    $action = '';
+                } else {
+                    $action .= '<a href="javascript:;" class="restoreImage" title="Restore Data" data-id="' . $row->id . '"><i class="fa-solid fa-undo text-success"></i></a> | ';
+                }
+                $action .= '<a href="javascript:;" class="deleteImage" title="Delete Data" data-id="' . $row->id . '"><i class="fa-solid fa-trash" style="color: #f70808;"></i></a>';
                 $array[$i]["action"]  = $action;
                 $i++;
             }
@@ -154,5 +159,30 @@ class GalleryImageController extends Controller
             $message = $e->getMessage();
         }
         return json_encode(['type' => $type, 'message' => $message]);
+    }
+
+    //restore
+    public function restore(Request $request)
+    {
+        try {
+            $post = $request->all();
+            $type = 'success';
+            $message = "Gallery Image restored successfully";
+            DB::beginTransaction();
+            $result = GalleryImage::restoreData($post);
+            if (!$result) {
+                throw new Exception("Could not restore Gallery Image. Please try again.", 1);
+            }
+            DB::commit();
+        } catch (QueryException $e) {
+            DB::rollBack();
+            $type = 'error';
+            $message = $this->queryMessage;
+        } catch (Exception $e) {
+            DB::rollBack();
+            $type = 'error';
+            $message = $e->getMessage();
+        }
+        return response()->json(['type' => $type, 'message' => $message]);
     }
 }

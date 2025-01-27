@@ -43,16 +43,18 @@ class GalleryVideoController extends Controller
             $rules = [];
             if (empty($request->gallery_video_id)) {
                 $rules = [
-                    'video' => 'required|max:250',
+                    'video' => 'required|url|max:250',
+
                     'image' => 'required',
                 ];
             } else {
                 $rules = [
-                    'video' => 'nullable|max:250',
+                    'video' => 'required|url|max:250',
                 ];
             }
             $message = [
                 'video.required' => 'Please provide video link.',
+                'video.url' => 'The video field must contain a valid URL.',
                 'video_image.required' => 'Please provide video Image.',
             ];
             $validation = Validator::make($request->all(), $rules, $message);
@@ -109,7 +111,13 @@ class GalleryVideoController extends Controller
 
                 $action = '';
                 if (!empty($post['type']) && $post['type'] != 'trashed') {
-                    $action .= '<a href="javascript:;" class="editVideo" title="Edit Data" data-id="' . $row->gallery_video_id . '" data-video="' . $row->video_url . '" data-videoUrl="' . $vUrl . '"><i class="fa fa-pencil-alt text-primary"></i></a> |';
+                    $action .= '<a href="javascript:;" class="editVideo" title="Edit Data" 
+                    data-id="' . $row->gallery_video_id . '" 
+                    data-video_image="' . $row->video_image . '" 
+                    data-video_url="' . $row->video_url . '" 
+                    ><i class="fa-solid fa-pencil" style="color: #1757c4;"></i></a> | ';
+                } else {
+                    $action .= '<a href="javascript:;" class="restoreVideo" title="Restore Data" data-id="' . $row->gallery_video_id . '"><i class="fa-solid fa-undo text-success"></i></a> | ';
                 }
                 $action .= ' <a href="javascript:;" class="deleteVideo" title="Delete Data" data-id="' . $row->gallery_video_id . '"><i class="fa fa-trash text-danger"></i></a>';
                 $array[$i]["action"]  = $action;
@@ -137,12 +145,13 @@ class GalleryVideoController extends Controller
         try {
             $type = 'success';
             $message = "Record deleted successfully";
+            $directory = storage_path('app/public/community');
 
             $post = $request->all();
             $class = new GalleryVideo();
 
             DB::beginTransaction();
-            if (!Common::deleteData($post, $class)) {
+            if (!Common::deleteSingleData($post, $class, $directory)) {
                 throw new Exception("Record does not deleted", 1);
             }
             DB::commit();
@@ -156,5 +165,30 @@ class GalleryVideoController extends Controller
             $message = $e->getMessage();
         }
         return json_encode(['type' => $type, 'message' => $message]);
+    }
+
+    //restore
+    public function restore(Request $request)
+    {
+        try {
+            $post = $request->all();
+            $type = 'success';
+            $message = "Video image restored successfully";
+            DB::beginTransaction();
+            $result = GalleryVideo::restoreData($post);
+            if (!$result) {
+                throw new Exception("Could not restore Gallery Video. Please try again.", 1);
+            }
+            DB::commit();
+        } catch (QueryException $e) {
+            DB::rollBack();
+            $type = 'error';
+            $message = $this->queryMessage;
+        } catch (Exception $e) {
+            DB::rollBack();
+            $type = 'error';
+            $message = $e->getMessage();
+        }
+        return response()->json(['type' => $type, 'message' => $message]);
     }
 }

@@ -293,6 +293,8 @@
                     });
                 }
             });
+
+            
             // Edit Gallery
             $(document).on('click', '.editGallery', function(e) {
                 e.preventDefault();
