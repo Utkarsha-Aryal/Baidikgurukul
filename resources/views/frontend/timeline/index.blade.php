@@ -1,5 +1,5 @@
 @extends('frontend.layout2.main2')
-@section('title', 'About Us')
+@section('title', 'प्रगति समरि')
 
 @section('content2')
 <section class="introduction_page">

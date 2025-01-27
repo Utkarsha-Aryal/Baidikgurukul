@@ -140,7 +140,7 @@
                     <div class="nav_list_menu">
                         <ul class="navigation_list">
                             <li><a href="{{ route('home') }}"
-                                    class="{{ request()->routeIs('home') ? 'active' : '' }}">गृहपृष्ठ</a></li>
+                                    class="{{ request()->routeIs('home') ? 'active' : '' }}">होमपेज</a></li>
                             <li>
                                 <a href="#" class="{{ request()->is('about*') ? 'active' : '' }}">हाम्रो
                                     बारेमा</a>

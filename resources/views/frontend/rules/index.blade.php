@@ -1,5 +1,5 @@
 @extends('frontend.layout2.main2')
-@section('title', 'हाम्रा अनुष्ठानका लागि हाम्रा नियमहरू')
+@section('title', 'नियमहरू')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 

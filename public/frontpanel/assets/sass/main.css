@@ -26,8 +26,7 @@ ul {
 img {
   height: 100%;
   width: 100%;
-  -o-object-fit: cover !important;
-     object-fit: cover !important;
+  object-fit: cover !important;
 }
 
 li {
@@ -96,8 +95,7 @@ button {
   z-index: 9;
 }
 .introduction_page .img_before img {
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .introduction_page .img_after {
   position: absolute;
@@ -110,8 +108,7 @@ button {
   transform: rotate(180deg);
 }
 .introduction_page .img_after img {
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .introduction_page .common_image_txt {
   position: relative;
@@ -122,8 +119,7 @@ button {
 }
 .introduction_page .common_image_txt .common_bg_wrapper img {
   filter: grayscale(100%);
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .introduction_page .common_image_txt .common_bg_wrapper::after {
   content: "";
@@ -648,8 +644,7 @@ button {
   height: 420px;
 }
 .rights_for_dreams .rights_wrapper .right_rights_image .image_container_wrapper img {
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .rights_for_dreams .rights_wrapper .right_rights_image .image_container_wrapper .image_designation_container {
   position: absolute;
@@ -767,8 +762,7 @@ button {
   z-index: 9;
 }
 .introduction_page .img_before img {
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .introduction_page .img_after {
   position: absolute;
@@ -781,8 +775,7 @@ button {
   transform: rotate(180deg);
 }
 .introduction_page .img_after img {
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .introduction_page .common_image_txt {
   position: relative;
@@ -793,8 +786,7 @@ button {
 }
 .introduction_page .common_image_txt .common_bg_wrapper img {
   filter: grayscale(100%);
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .introduction_page .common_image_txt .common_bg_wrapper::after {
   content: "";
@@ -969,8 +961,7 @@ button {
 .team_tab_section .container_wrapper .content #content1 .container_content_wrapper .image_container_wrap .img_wrap {
   height: 260px;
   width: 240px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   position: relative;
   margin-top: 80px;
 }
@@ -1116,8 +1107,7 @@ button {
 .team_tab_section .container_wrapper .content #content2 .container_content_wrapper .image_container_wrap .img_wrap {
   height: 260px;
   width: 240px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   position: relative;
   margin-top: 80px;
 }
@@ -1268,8 +1258,7 @@ button {
 .team_tab_section .container_wrapper .content #content3 .container_content_wrapper .image_container_wrap .img_wrap {
   height: 260px;
   width: 240px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   position: relative;
   margin-top: 80px;
 }
@@ -1420,8 +1409,7 @@ button {
 .team_tab_section .container_wrapper .content #content4 .container_content_wrapper .image_container_wrap .img_wrap {
   height: 260px;
   width: 240px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   position: relative;
   margin-top: 80px;
 }
@@ -1492,8 +1480,7 @@ button {
   z-index: 9;
 }
 .introduction_page .img_before img {
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .introduction_page .img_after {
   position: absolute;
@@ -1506,8 +1493,7 @@ button {
   transform: rotate(180deg);
 }
 .introduction_page .img_after img {
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .introduction_page .common_image_txt {
   position: relative;
@@ -1518,8 +1504,7 @@ button {
 }
 .introduction_page .common_image_txt .common_bg_wrapper img {
   filter: grayscale(100%);
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .introduction_page .common_image_txt .common_bg_wrapper::after {
   content: "";
@@ -1564,8 +1549,7 @@ button {
 .program-container-main .program-content .program-r1 .r1-img img {
   height: 180px;
   width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 @media (max-width: 992px) {
   .program-container-main .program-content .program-r1 .r1-img img {
@@ -1723,15 +1707,13 @@ button {
 .gallery-container-main .content .gallery-content-main .gallery-r1 .g1-img iframe {
   height: 100%;
   width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   border: none;
 }
 .gallery-container-main .content .gallery-content-main .gallery-r1 .g1-img img {
   height: 100%;
   width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .gallery-container-main .content.active {
   display: block;
@@ -1762,8 +1744,7 @@ button {
 .blogs-container-main .blogs-content-main .blogs-r1 .blogs-img img {
   width: 100%;
   height: 200px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 @media (max-width: 992px) {
   .blogs-container-main .blogs-content-main .blogs-r1 .blogs-img img {
@@ -1894,9 +1875,6 @@ button {
   .contact-container-main .contact-content .contact-content-lt .contact-lt-form select {
     font-size: 14px;
   }
-}
-.contact-container-main .contact-content .contact-content-lt .contact-lt-form ::-moz-placeholder {
-  color: #9c9c9c;
 }
 .contact-container-main .contact-content .contact-content-lt .contact-lt-form ::placeholder {
   color: #9c9c9c;
@@ -2055,8 +2033,7 @@ button {
   z-index: 9;
 }
 .introduction_page .img_before img {
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .introduction_page .img_after {
   position: absolute;
@@ -2069,8 +2046,7 @@ button {
   transform: rotate(180deg);
 }
 .introduction_page .img_after img {
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .introduction_page .common_image_txt {
   position: relative;
@@ -2081,8 +2057,7 @@ button {
 }
 .introduction_page .common_image_txt .common_bg_wrapper img {
   filter: grayscale(100%);
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .introduction_page .common_image_txt .common_bg_wrapper::after {
   content: "";
@@ -2129,8 +2104,7 @@ button {
   }
 }
 .team_detail_flx .left_rght_txt_img .left_img img {
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .team_detail_flx .left_rght_txt_img .rght_txt {
   width: 55%;
@@ -2744,8 +2718,7 @@ button {
   width: 100%;
 }
 .team_tab_section .container_wrapper .content #content-0 .first_content_wrapper .blue_bg_image .img_absolute img {
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .team_tab_section .container_wrapper .content #content-1 {
   width: 100% !important;
@@ -3332,7 +3305,6 @@ button {
   }
 }
 .faq2_section .left_faq_container .faq_accordion .answer.active {
-  max-height: -moz-fit-content;
   max-height: fit-content;
   padding-right: 65px;
   padding-bottom: 20px;
@@ -3837,9 +3809,6 @@ button {
     font-size: 14px;
   }
 }
-.contact-container-main .contact-content .contact-content-lt .contact-lt-form ::-moz-placeholder {
-  color: #9c9c9c;
-}
 .contact-container-main .contact-content .contact-content-lt .contact-lt-form ::placeholder {
   color: #9c9c9c;
 }
@@ -4091,8 +4060,7 @@ button {
 }
 .container .nb_details_container .nb_right_content_container .nb_right_wrapper .nb_right_container .nb_right_wrapper .right_container_image img {
   border-radius: 5px;
-  -o-object-fit: cover !important;
-     object-fit: cover !important;
+  object-fit: cover !important;
   height: 75px;
   width: 75px;
 }
@@ -4220,8 +4188,7 @@ button {
 .program-inner-container .program-inner-wrapper .program-inner-lt .program-main-img img {
   width: 100%;
   height: 380px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .program-inner-container .program-inner-wrapper .program-inner-rt {
   width: 30%;
@@ -4701,8 +4668,7 @@ fieldset {
   transition: transform 0.2s;
   height: 230px;
   width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 @media (max-width: 992px) {
   .gallery-inner-container .gallery-inner-wrapper .g-inner-img img {
@@ -4750,8 +4716,7 @@ fieldset {
 .modal .modal-content img {
   width: 100%;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .modal .modal-content .close {
   position: absolute;
@@ -4994,8 +4959,7 @@ ul {
 img {
   height: 100%;
   width: 100%;
-  -o-object-fit: cover !important;
-     object-fit: cover !important;
+  object-fit: cover !important;
 }
 
 li {
@@ -5149,8 +5113,7 @@ body .header_container_wrapper .nav_header_wrapper_container .social_icon_conten
   right: 100%;
   width: 20px;
   background-color: rgb(6, 106, 200);
-  -webkit-clip-path: polygon(100% 100%, 100% 1%, 0 100%);
-          clip-path: polygon(100% 100%, 100% 1%, 0 100%);
+  clip-path: polygon(100% 100%, 100% 1%, 0 100%);
   transform: skewX(0deg);
   z-index: 1;
 }
@@ -5796,8 +5759,7 @@ body .footer-container::after {
   right: 100%;
   width: 20px;
   background-color: rgb(6, 106, 200);
-  -webkit-clip-path: polygon(120% 100%, 100% 1%, 0 100%);
-          clip-path: polygon(120% 100%, 100% 1%, 0 100%);
+  clip-path: polygon(120% 100%, 100% 1%, 0 100%);
   transform: skewX(0deg);
   z-index: 1;
 }
@@ -6339,8 +6301,7 @@ body .footer-container::after {
   pointer-events: none;
 }
 .rules_rituals .rules_dream_wrapper .rules_wrapper_left .bg_image_gradient img {
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .rules_rituals .rules_dream_wrapper .rules_wrapper_left .rituals_txt_wrapper {
   position: absolute;

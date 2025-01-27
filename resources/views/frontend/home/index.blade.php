@@ -1,5 +1,5 @@
 @extends('frontend.layout2.main2')
-@section('title', 'Home')
+@section('title', 'होमपेज')
 @section('content2')
 <style>
    .program_swiper .program_txt_pagination_wrap .program_initiative_txt .first_program_txt::after {

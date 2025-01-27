@@ -182,7 +182,7 @@
         </div>
         <div class="last_footer_wrapper">
             <div class="ltf_frow">
-                <p>© 2025 चाेचाङ्गी समाज नेपाल. सर्वाधिकार सुरक्षित.</p>
+                <p>© 2025 चाेचाङ्गी समाज नेपाल सर्वाधिकार सुरक्षित</p>
             </div>
             <div class="right_frow">
                 <p>Powered By <a href="https://cltech.com.np/" target="_blank"><span
