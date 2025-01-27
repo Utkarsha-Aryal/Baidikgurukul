@@ -1,15 +1,8 @@
 @extends('frontend.layout2.main2')
 @section('title', 'हाम्रा ऐतिहासिक ठाउँहरू')
-
-<!-- Include jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<style>
-    .shadow-image img {
-        box-shadow: 0 0 0 3px rgba(7, 7, 7, 0.1) !important;
-        border-radius: 10px !important;
-    }
-</style>
+<link rel="stylesheet" href="{{ asset('frontpanel/assets/summernote-custom-image/image.css') }}">
 @section('content2')
     <section class="introduction_page">
         <div class="img_before">
