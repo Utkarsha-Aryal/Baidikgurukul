@@ -2,8 +2,6 @@
 @section('title', 'हाम्रा ऐतिहासिक ठाउँहरू')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<link rel="stylesheet" href="{{ asset('frontpanel/assets/summernote-custom-image/image.css') }}">
-
 @section('content2') <section class="introduction_page">
         <div class="img_before"><img src="{{ asset('frontpanel/assets/images/Mask group.png') }}" alt=""></div>
         <div class="common_image_txt">
