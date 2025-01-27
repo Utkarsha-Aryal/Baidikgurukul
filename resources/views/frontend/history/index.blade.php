@@ -1,5 +1,5 @@
 @extends('frontend.layout2.main2')
-@section('title', 'Our Historical Places')
+@section('title', 'हाम्रा ऐतिहासिक ठाउँहरू')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -13,7 +13,7 @@
                 <img src="{{ asset('frontpanel/assets/images/image1.jpeg') }}" alt="">
             </div>
             <div class="main_txt">
-                <p>Our Historical Places</p>
+                <p>हाम्रा ऐतिहासिक ठाउँहरू</p>
             </div>
         </div>
         <div class="img_after">
@@ -26,7 +26,7 @@
 
                 <div class="tabs">
                     <div class="first_txt">
-                        <p>Our Historical Places</p>
+                        <p>हाम्रा ऐतिहासिक ठाउँहरू</p>
                     </div>
                     @if (!empty($histories) && count($histories) > 0)
                         @foreach ($histories as $index => $historys)

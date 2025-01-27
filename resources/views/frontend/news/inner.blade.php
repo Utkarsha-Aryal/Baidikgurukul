@@ -43,7 +43,7 @@
                     <div class="nb_right_container">
                         <div class="right_first_text">
                             <p>
-                                Recent News
+                                भर्खरको समाचार
                             </p>
                         </div>
                         @if (!@empty($posts))
@@ -74,7 +74,7 @@
                         @endif
                     </div>
                 </div>
-                <div class="follow_us_container">
+                {{-- <div class="follow_us_container">
                     <div class="follow_us_txt">
                         <p>Follow US</p>
                     </div>
@@ -101,7 +101,7 @@
                             </svg>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

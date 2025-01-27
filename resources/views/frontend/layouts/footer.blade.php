@@ -167,7 +167,7 @@
             </div>
             <div class="last_footer_wrapper">
                 <div class="ltf_frow">
-                    <p>@copy 2025 Chochangay Samaj Nepal. All Rights Reserved.</p>
+                    <p>© 2025 Chochangay Samaj Nepal. All Rights Reserved.</p>
                 </div>
                 <div class="right_frow">
 
