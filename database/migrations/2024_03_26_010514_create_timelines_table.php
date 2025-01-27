@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('timelines', function (Blueprint $table) {
             $table->id();
             $table->integer('year')->nullable();
+            $table->string('order_number')->nullable();
             $table->text('details')->nullable();
             $table->enum('status', ['Y', 'N'])->default('Y');
             $table->timestamps();

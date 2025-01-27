@@ -143,14 +143,18 @@ class GalleryController extends Controller
             $class = new Gallery();
 
             DB::beginTransaction();
-            if (!Common::deleteRelationData($post, $class, $directory)) {
+            if (!Common::deleteSingleData($post, $class, $directory)) {
                 throw new Exception("Record does not deleted", 1);
             }
             DB::commit();
         } catch (QueryException $e) {
-            DB::rollBack();
-            $type = 'error';
-            $message = $this->queryMessage;
+            if ($e->getCode() == 23000) {
+                $type = 'error';
+                $message = "This gallery cannot be deleted because it has related data images, videos.";
+            } else {
+                $type = 'error';
+                $message = "Database error occurred. Please try again later.";
+            }
         } catch (Exception $e) {
             DB::rollBack();
             $type = 'error';

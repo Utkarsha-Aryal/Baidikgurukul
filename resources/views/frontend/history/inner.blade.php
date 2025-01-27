@@ -1,4 +1,4 @@
-@extends('frontend.layout2.main2')
+{{-- @extends('frontend.layout2.main2')
 @section('title', 'हाम्रा ऐतिहासिक ठाउँहरू')
 @section('content2')
     <section class="introduction_page">
@@ -90,4 +90,4 @@
             });
         });
     </script>
-@endsection
+@endsection --}}

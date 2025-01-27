@@ -12,9 +12,7 @@
                     <p>{{ $gallery->name ?? '' }}</p>
                 </div>
                 <div class="gallery-g1-txt">
-                    {{-- Display video count --}}
-                    <p>{{ count($gallery->videos) }} Videos in Category:
-                        {{ $gallery->category->name ?? 'Uncategorized' }}</p>
+                    <p>{{ count($gallery->videos) }} Videos</p>
                 </div>
             </div>
         @endif

@@ -27,7 +27,7 @@ class FAQController extends Controller
             $rules = [
                 'question' => 'required|min:2|max:255',
                 'answer' => 'required|min:2|max:255',
-                'order_number' => 'required',
+                'order_number' => 'required|numeric|min:1',
             ];
 
             $message = [
@@ -40,6 +40,8 @@ class FAQController extends Controller
                 'answer.max' => 'The answer may not exceed 255 characters.',
 
                 'order_number.required' => 'The order number field is required.',
+                'order_number.number' => 'The order number field must be number.',
+                'order_number.min' => 'The order number field must be minimun 1.',
             ];
 
 

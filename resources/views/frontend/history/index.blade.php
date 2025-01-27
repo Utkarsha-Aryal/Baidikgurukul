@@ -2,7 +2,12 @@
 @section('title', 'हाम्रा ऐतिहासिक ठाउँहरू')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <meta name="csrf-token" content="{{ csrf_token() }}">
-
+<style>
+    .shadow-image img {
+        box-shadow: 0 0 0 3px rgba(7, 7, 7, 0.1) !important;
+        border-radius: 10px !important;
+    }
+</style>
 @section('content2')
     <section class="introduction_page">
         <div class="img_before">
@@ -51,7 +56,7 @@
                                 <div class="first_txt">
                                     <p>{{ $history->title }}</p>
                                 </div>
-                                <div class="second_txt">
+                                <div class="second_txt shadow-image">
                                     <p>{!! $history->details !!}</p>
                                 </div>
                             </div>

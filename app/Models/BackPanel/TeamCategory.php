@@ -50,6 +50,15 @@ class TeamCategory extends Model
     {
         try {
             $get = $post;
+
+            $sorting = !empty($get['order'][0]['dir']) ? $get['order'][0]['dir'] : 'asc';
+
+            $orderby = " order_number " . $sorting . "";
+
+            if (!empty($get['order'][0]['column']) && $get['order'][0]['column'] == 6) {
+                $orderby = " order_number " . $sorting . "";
+            }
+
             foreach ($get['columns'] as $key => $value) {
                 $get['columns'][$key]['search']['value'] = trim(strtolower(htmlspecialchars($value['search']['value'], ENT_QUOTES)));
             }
@@ -73,9 +82,9 @@ class TeamCategory extends Model
                 ->whereRaw($cond);
 
             if ($limit > -1) {
-                $result = $query->orderBy('id', 'desc')->offset($offset)->limit($limit)->get();
+                $result = $query->orderByRaw($orderby)->offset($offset)->limit($limit)->get();
             } else {
-                $result = $query->orderBy('id', 'desc')->get();
+                $result = $query->orderByRaw($orderby)->get();
             }
             if ($result) {
                 $ndata = $result;

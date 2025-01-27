@@ -25,7 +25,7 @@ class HistoryController extends Controller
                 ->where('status', 'Y')
                 ->orderBy('id', 'desc')
                 ->first();
-                
+
             $data = [
                 'histories' => $histories,
                 'history' => $history,
