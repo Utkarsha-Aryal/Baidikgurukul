@@ -17,7 +17,7 @@ class MessageFromController extends Controller
 
             $message = 'Successfully fetched data';
 
-            $message = MessageFrom::selectRaw('title,image,designation,message,slug')
+            $message = MessageFrom::selectRaw('title,image,designation,message,slug,name')
                 ->where('status', 'Y')
                 ->where('display_in_home', 'Y')
                 ->first();
