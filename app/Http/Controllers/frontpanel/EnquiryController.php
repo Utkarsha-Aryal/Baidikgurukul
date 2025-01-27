@@ -20,20 +20,23 @@ class EnquiryController extends Controller
                 'first_name' => 'required|min:2|max:50',
                 'last_name' => 'required|min:2|max:50',
                 'email' => 'required',
-                'message' => 'required|min:5|max:255'
+                'message' => 'required|min:5|max:255',
+                'g-recaptcha-response' => 'required|captcha',
             ];
 
             $message = [
-                'first_name.required' => 'First name is required.',
-                'first_name.min' => 'First name must be at least 2 characters long.',
-                'first_name.max' => 'First name cannot exceed 50 characters.',
-                'last_name.required' => 'Last name is required.',
-                'last_name.min' => 'Last name must be at least 2 characters long.',
-                'last_name.max' => 'Last name cannot exceed 50 characters.',
-                'email.required' => 'Email address is required.',
-                'message.required' => 'Message is required.',
-                'message.min' => 'Message must be at least 5 characters long.',
-                'message.max' => 'Message cannot exceed 255 characters.'
+                'first_name.required' => 'कृपया आफ्नो नाम प्रविष्ट गर्नुहोस्।',
+                'first_name.min' => 'नाम कम्तिमा २ अक्षर लामो हुनुपर्छ।',
+                'first_name.max' => 'नाम ५० अक्षरभन्दा लामो हुन सक्दैन।',
+                'last_name.required' => 'कृपया आफ्नो थर प्रविष्ट गर्नुहोस्।',
+                'last_name.min' => 'थर कम्तिमा २ अक्षर लामो हुनुपर्छ।',
+                'last_name.max' => 'थर ५० अक्षरभन्दा लामो हुन सक्दैन।',
+                'email.required' => 'कृपया आफ्नो इमेल प्रविष्ट गर्नुहोस्।',
+                'message.required' => 'कृपया आफ्नो सन्देश प्रविष्ट गर्नुहोस्।',
+                'message.min' => 'सन्देश कम्तिमा ५ अक्षर लामो हुनुपर्छ।',
+                'message.max' => 'सन्देश २५५ अक्षरभन्दा लामो हुन सक्दैन।',
+                'g-recaptcha-response.required' => 'कृपया प्रमाणित गर्नुहोस् कि तपाई रोबोट होइन।',
+                'g-recaptcha-response.captcha' => 'क्याप्चा प्रमाणित असफल भयो। कृपया पुन: प्रयास गर्नुहोस्।',
             ];
 
             $validation = Validator::make($request->all(), $rules, $message);

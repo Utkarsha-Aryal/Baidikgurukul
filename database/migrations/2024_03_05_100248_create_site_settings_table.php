@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('link_facebook')->nullable();
             $table->string('link_instagram')->nullable();
             $table->string('link_twitter')->nullable();
-            $table->string('link_map')->nullable();
+            $table->text('link_map')->nullable();
             $table->string('homepage_title')->nullable();
             $table->text('hmaepage_description')->nullable();
             $table->string('img_banner_homepage')->nullable();

@@ -4,7 +4,7 @@
     /* Styling for gallery images */
     .g-inner-img {
         width: calc(33.333% - 20px);
-        /* 3 columns */
+
     }
 
     .g-inner-img img {
@@ -155,7 +155,7 @@
     </div>
 </div>
 
-<script>
+ <script>
     const modal = document.getElementById('modal');
     const modalImage = document.getElementById('modal-image');
     const closeBtn = document.querySelector('.close');
