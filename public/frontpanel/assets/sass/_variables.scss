@@ -74,13 +74,20 @@ button {
 }
 .bi {
     &:hover {
-        color: $blue;
+        color: rgba(180, 218, 254, 1);
     }
 }
 
 p {
     img {
         height: auto !important;
+        border: 5px solid #dfd9d9;
+        @include respond-to(tablet) {
+            width: 100% !important;
+        }
+        @include respond-to(tablet) {
+            width: 100% !important;
+        }
     }
 }
 ol {

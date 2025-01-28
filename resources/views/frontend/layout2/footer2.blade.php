@@ -46,7 +46,7 @@
                 <div class="fcol3">
                     <div class="touch-link">
                         <div class="touch-title">
-                            <p>सम्पर्कमा रहनुहोस</p>
+                            <p>सम्पर्क</p>
                             <div class="bottom-fl"></div>
                         </div>
                         <ul>
@@ -105,12 +105,12 @@
                 <div class="fcol4">
                     <div class="letter-link">
                         <div class="letter-title">
-                            <p>हाम्रो सामाजिक मिडिया</p>
+                            <p>सामाजिक संजाल </p>
                             <div class="bottom-fl"></div>
                         </div>
-                        <div class="letter-txt">
-                            <p>हामीसँग सम्पर्कमा रहनुहोस</p>
-                        </div>
+                        <!-- <div class="letter-txt">
+                            <p> सम्पर्कमा रहनुहोस</p>
+                        </div> -->
                         <div class="flogo-icon">
                             @if (!empty($siteSetting->link_twitter))
                             <div class="ficon-border">

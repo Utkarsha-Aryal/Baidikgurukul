@@ -123,7 +123,7 @@
         </div>
     </div>
 </section>
-<section class="rituals_dreams">
+<section class="rituals_dreams_container">
     <div class="container">
         <div class="dreams_wrappper">
             <div class="about-lt">
@@ -341,7 +341,6 @@
 </script>
 
 <div class="Event_page">
-
     <div class="container">
         <div class="lf-image">
             <img src="{{ asset('frontpanel\assets\images\Untitled-1 1 (1).png') }}" alt="">
@@ -369,9 +368,8 @@
                                     <p>{{ $event->event_date->format('d') }}</p>
                                 </div>
                                 <div class="date2">
-                                    <p>{{ $event->event_date->format('F, Y') }}</p>
+                                    <p>{{ $formattedDates[$event->id]['monthNepali'] . ', ' . $event->event_date->format('Y') }}
                                 </div>
-
                             </div>
                             <div class="event_info">
                                 <div class="time_date_container">
@@ -501,7 +499,7 @@
                     <p>{{ $history->title ?? 'Untitled' }}</p>
                 </div>
                 <div class="second_txt">
-                    <p>{!! Str::limit(strip_tags($history->details ?? 'No details available'), 100, '...') !!}</p>
+                    <p>{!! Str::limit(strip_tags($history->details ?? 'No details available'), 70, '...') !!}</p>
                 </div>
                 <button class="button">
                     <a href="{{ route('history.inners', $history->slug ?? '#') }}">

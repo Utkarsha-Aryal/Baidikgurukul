@@ -41,9 +41,9 @@
 
         <div class="social_icon_content">
             <div class="nav_top_right_wrapper">
-                <div class="social_txt_container">
+                <!-- <div class="social_txt_container">
                     <p>हामीसँग जोडीनुहोस</p>
-                </div>
+                </div> -->
                 <div class="social_icon_container">
                     @if (!empty($siteSetting->link_facebook))
                     <a href="{{ $siteSetting->link_facebook }}" target="_blank"> <svg
