@@ -39,7 +39,7 @@
                             </a>
                         @endforeach
                     @else
-                        <p>No Data Found</p>
+                        <li>No Data Found</li>
                     @endif
                 </div>
                 <!-- Content Area (Right Side) -->

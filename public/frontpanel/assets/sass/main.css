@@ -26,7 +26,8 @@ ul {
 img {
   height: 100%;
   width: 100%;
-  object-fit: cover !important;
+  -o-object-fit: cover !important;
+     object-fit: cover !important;
 }
 
 li {
@@ -81,6 +82,16 @@ button {
   color: rgb(6, 106, 200);
 }
 
+p img {
+  height: auto !important;
+}
+
+ol {
+  margin-block-start: 0;
+  margin-block-end: 0;
+  padding: 0;
+}
+
 .introduction_page {
   padding-bottom: 20px;
   position: relative;
@@ -95,7 +106,8 @@ button {
   z-index: 9;
 }
 .introduction_page .img_before img {
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .introduction_page .img_after {
   position: absolute;
@@ -108,7 +120,8 @@ button {
   transform: rotate(180deg);
 }
 .introduction_page .img_after img {
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .introduction_page .common_image_txt {
   position: relative;
@@ -119,7 +132,8 @@ button {
 }
 .introduction_page .common_image_txt .common_bg_wrapper img {
   filter: grayscale(100%);
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .introduction_page .common_image_txt .common_bg_wrapper::after {
   content: "";
@@ -644,7 +658,8 @@ button {
   height: 420px;
 }
 .rights_for_dreams .rights_wrapper .right_rights_image .image_container_wrapper img {
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .rights_for_dreams .rights_wrapper .right_rights_image .image_container_wrapper .image_designation_container {
   position: absolute;
@@ -762,7 +777,8 @@ button {
   z-index: 9;
 }
 .introduction_page .img_before img {
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .introduction_page .img_after {
   position: absolute;
@@ -775,7 +791,8 @@ button {
   transform: rotate(180deg);
 }
 .introduction_page .img_after img {
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .introduction_page .common_image_txt {
   position: relative;
@@ -786,7 +803,8 @@ button {
 }
 .introduction_page .common_image_txt .common_bg_wrapper img {
   filter: grayscale(100%);
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .introduction_page .common_image_txt .common_bg_wrapper::after {
   content: "";
@@ -837,10 +855,11 @@ button {
   height: 20px;
   width: 17px;
 }
-.team_tab_section .container_wrapper .tabs .tab p {
+.team_tab_section .container_wrapper .tabs .tab li {
   font-size: 16px;
   font-weight: 500;
   color: rgb(115, 115, 115);
+  list-style-type: none;
 }
 .team_tab_section .container_wrapper .tabs .tab.active {
   background-color: rgb(6, 106, 200);
@@ -851,7 +870,7 @@ button {
 .team_tab_section .container_wrapper .tabs .tab.active .bi {
   color: rgb(252, 252, 252);
 }
-.team_tab_section .container_wrapper .tabs .tab.active p {
+.team_tab_section .container_wrapper .tabs .tab.active li {
   color: rgb(252, 252, 252);
 }
 .team_tab_section .container_wrapper .content #content1 {
@@ -961,7 +980,8 @@ button {
 .team_tab_section .container_wrapper .content #content1 .container_content_wrapper .image_container_wrap .img_wrap {
   height: 260px;
   width: 240px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   position: relative;
   margin-top: 80px;
 }
@@ -1107,7 +1127,8 @@ button {
 .team_tab_section .container_wrapper .content #content2 .container_content_wrapper .image_container_wrap .img_wrap {
   height: 260px;
   width: 240px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   position: relative;
   margin-top: 80px;
 }
@@ -1258,7 +1279,8 @@ button {
 .team_tab_section .container_wrapper .content #content3 .container_content_wrapper .image_container_wrap .img_wrap {
   height: 260px;
   width: 240px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   position: relative;
   margin-top: 80px;
 }
@@ -1409,7 +1431,8 @@ button {
 .team_tab_section .container_wrapper .content #content4 .container_content_wrapper .image_container_wrap .img_wrap {
   height: 260px;
   width: 240px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   position: relative;
   margin-top: 80px;
 }
@@ -1480,7 +1503,8 @@ button {
   z-index: 9;
 }
 .introduction_page .img_before img {
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .introduction_page .img_after {
   position: absolute;
@@ -1493,7 +1517,8 @@ button {
   transform: rotate(180deg);
 }
 .introduction_page .img_after img {
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .introduction_page .common_image_txt {
   position: relative;
@@ -1504,7 +1529,8 @@ button {
 }
 .introduction_page .common_image_txt .common_bg_wrapper img {
   filter: grayscale(100%);
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .introduction_page .common_image_txt .common_bg_wrapper::after {
   content: "";
@@ -1549,7 +1575,8 @@ button {
 .program-container-main .program-content .program-r1 .r1-img img {
   height: 180px;
   width: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 @media (max-width: 992px) {
   .program-container-main .program-content .program-r1 .r1-img img {
@@ -1708,13 +1735,15 @@ button {
 .gallery-container-main .content .gallery-content-main .gallery-r1 .g1-img iframe {
   height: 100%;
   width: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   border: none;
 }
 .gallery-container-main .content .gallery-content-main .gallery-r1 .g1-img img {
   height: 100%;
   width: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .gallery-container-main .content.active {
   display: block;
@@ -1745,7 +1774,8 @@ button {
 .blogs-container-main .blogs-content-main .blogs-r1 .blogs-img img {
   width: 100%;
   height: 200px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 @media (max-width: 992px) {
   .blogs-container-main .blogs-content-main .blogs-r1 .blogs-img img {
@@ -1876,6 +1906,9 @@ button {
   .contact-container-main .contact-content .contact-content-lt .contact-lt-form select {
     font-size: 14px;
   }
+}
+.contact-container-main .contact-content .contact-content-lt .contact-lt-form ::-moz-placeholder {
+  color: #9c9c9c;
 }
 .contact-container-main .contact-content .contact-content-lt .contact-lt-form ::placeholder {
   color: #9c9c9c;
@@ -2034,7 +2067,8 @@ button {
   z-index: 9;
 }
 .introduction_page .img_before img {
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .introduction_page .img_after {
   position: absolute;
@@ -2047,7 +2081,8 @@ button {
   transform: rotate(180deg);
 }
 .introduction_page .img_after img {
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .introduction_page .common_image_txt {
   position: relative;
@@ -2058,7 +2093,8 @@ button {
 }
 .introduction_page .common_image_txt .common_bg_wrapper img {
   filter: grayscale(100%);
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .introduction_page .common_image_txt .common_bg_wrapper::after {
   content: "";
@@ -2105,10 +2141,12 @@ button {
   }
 }
 .team_detail_flx .left_rght_txt_img .left_img img {
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .team_detail_flx .left_rght_txt_img .rght_txt {
   width: 55%;
+  line-height: 30px;
 }
 @media (max-width: 768px) {
   .team_detail_flx .left_rght_txt_img .rght_txt {
@@ -2183,10 +2221,11 @@ button {
   height: 20px;
   width: 17px;
 }
-.team_tab_section .container_wrapper .tabs .tab p {
+.team_tab_section .container_wrapper .tabs .tab li {
   font-size: 16px;
   font-weight: 500;
   color: rgb(115, 115, 115);
+  list-style-type: none;
 }
 .team_tab_section .container_wrapper .tabs .tab.active {
   background-color: rgb(6, 106, 200);
@@ -2197,7 +2236,7 @@ button {
 .team_tab_section .container_wrapper .tabs .tab.active .bi {
   color: rgb(252, 252, 252);
 }
-.team_tab_section .container_wrapper .tabs .tab.active p {
+.team_tab_section .container_wrapper .tabs .tab.active li {
   color: rgb(252, 252, 252);
 }
 .team_tab_section .container_wrapper .content {
@@ -2267,6 +2306,7 @@ button {
 }
 .team_tab_section .container_wrapper .content #content1 .first_content_wrapper .second_txt {
   margin-block: 20px;
+  line-height: 30px;
 }
 .team_tab_section .container_wrapper .content #content1 .first_content_wrapper .second_txt p {
   font-size: 18px;
@@ -2519,10 +2559,11 @@ button {
   height: 20px;
   width: 17px;
 }
-.team_tab_section .container_wrapper .tabs .tab p {
+.team_tab_section .container_wrapper .tabs .tab li {
   font-size: 16px;
   font-weight: 500;
   color: rgb(115, 115, 115);
+  list-style-type: none;
 }
 .team_tab_section .container_wrapper .tabs .tab.active {
   background-color: rgb(6, 106, 200);
@@ -2533,7 +2574,7 @@ button {
 .team_tab_section .container_wrapper .tabs .tab.active .bi {
   color: rgb(252, 252, 252);
 }
-.team_tab_section .container_wrapper .tabs .tab.active p {
+.team_tab_section .container_wrapper .tabs .tab.active li {
   color: rgb(252, 252, 252);
 }
 .team_tab_section .container_wrapper .content {
@@ -2565,6 +2606,7 @@ button {
 }
 .team_tab_section .container_wrapper .content #content-0 .first_content_wrapper .second_txt {
   margin-block: 20px;
+  line-height: 30px;
 }
 .team_tab_section .container_wrapper .content #content-0 .first_content_wrapper .second_txt p {
   font-size: 18px;
@@ -2719,7 +2761,8 @@ button {
   width: 100%;
 }
 .team_tab_section .container_wrapper .content #content-0 .first_content_wrapper .blue_bg_image .img_absolute img {
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .team_tab_section .container_wrapper .content #content-1 {
   width: 100% !important;
@@ -3306,6 +3349,7 @@ button {
   }
 }
 .faq2_section .left_faq_container .faq_accordion .answer.active {
+  max-height: -moz-fit-content;
   max-height: fit-content;
   padding-right: 65px;
   padding-bottom: 20px;
@@ -3810,6 +3854,9 @@ button {
     font-size: 14px;
   }
 }
+.contact-container-main .contact-content .contact-content-lt .contact-lt-form ::-moz-placeholder {
+  color: #9c9c9c;
+}
 .contact-container-main .contact-content .contact-content-lt .contact-lt-form ::placeholder {
   color: #9c9c9c;
 }
@@ -4003,6 +4050,7 @@ button {
   font-size: 16px;
   font-weight: 400;
   color: #737373;
+  line-height: 30px;
 }
 @media (max-width: 768px) {
   .container .nb_details_container .nb_left_container .left_container_content p {
@@ -4061,7 +4109,8 @@ button {
 }
 .container .nb_details_container .nb_right_content_container .nb_right_wrapper .nb_right_container .nb_right_wrapper .right_container_image img {
   border-radius: 5px;
-  object-fit: cover !important;
+  -o-object-fit: cover !important;
+     object-fit: cover !important;
   height: 75px;
   width: 75px;
 }
@@ -4189,7 +4238,8 @@ button {
 .program-inner-container .program-inner-wrapper .program-inner-lt .program-main-img img {
   width: 100%;
   height: 380px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .program-inner-container .program-inner-wrapper .program-inner-rt {
   width: 30%;
@@ -4669,7 +4719,8 @@ fieldset {
   transition: transform 0.2s;
   height: 230px;
   width: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 @media (max-width: 992px) {
   .gallery-inner-container .gallery-inner-wrapper .g-inner-img img {
@@ -4717,7 +4768,8 @@ fieldset {
 .modal .modal-content img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .modal .modal-content .close {
   position: absolute;
@@ -4960,7 +5012,8 @@ ul {
 img {
   height: 100%;
   width: 100%;
-  object-fit: cover !important;
+  -o-object-fit: cover !important;
+     object-fit: cover !important;
 }
 
 li {
@@ -5013,6 +5066,16 @@ button {
 
 .bi:hover {
   color: rgb(6, 106, 200);
+}
+
+p img {
+  height: auto !important;
+}
+
+ol {
+  margin-block-start: 0;
+  margin-block-end: 0;
+  padding: 0;
 }
 
 body {
@@ -5114,7 +5177,8 @@ body .header_container_wrapper .nav_header_wrapper_container .social_icon_conten
   right: 100%;
   width: 20px;
   background-color: rgb(6, 106, 200);
-  clip-path: polygon(100% 100%, 100% 1%, 0 100%);
+  -webkit-clip-path: polygon(100% 100%, 100% 1%, 0 100%);
+          clip-path: polygon(100% 100%, 100% 1%, 0 100%);
   transform: skewX(0deg);
   z-index: 1;
 }
@@ -5177,17 +5241,17 @@ body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .log
     border-radius: 50%;
   }
 }
-body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .logo_wrapper_wrap .logo_txt p {
+body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .logo_wrapper_wrap .logo_txt .logo_title {
   font-size: 16px;
   font-weight: 600;
 }
 @media (max-width: 768px) {
-  body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .logo_wrapper_wrap .logo_txt p {
+  body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .logo_wrapper_wrap .logo_txt .logo_title {
     font-size: 14px !important;
   }
 }
 @media (max-width: 992px) {
-  body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .logo_wrapper_wrap .logo_txt p {
+  body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .logo_wrapper_wrap .logo_txt .logo_title {
     font-size: 18px;
   }
 }
@@ -5467,18 +5531,18 @@ body .footer-container .footer-content .fcol1 .logo_wrapper .nav_logo img {
     border-radius: 50%;
   }
 }
-body .footer-container .footer-content .fcol1 .logo_wrapper .logo_txt p {
+body .footer-container .footer-content .fcol1 .logo_wrapper .logo_txt .logo_title {
   font-size: 20px;
   font-weight: 600;
   color: rgb(252, 252, 252);
 }
 @media (max-width: 768px) {
-  body .footer-container .footer-content .fcol1 .logo_wrapper .logo_txt p {
+  body .footer-container .footer-content .fcol1 .logo_wrapper .logo_txt .logo_title {
     font-size: 16px !important;
   }
 }
 @media (max-width: 992px) {
-  body .footer-container .footer-content .fcol1 .logo_wrapper .logo_txt p {
+  body .footer-container .footer-content .fcol1 .logo_wrapper .logo_txt .logo_title {
     font-size: 18px;
   }
 }
@@ -5760,7 +5824,8 @@ body .footer-container::after {
   right: 100%;
   width: 20px;
   background-color: rgb(6, 106, 200);
-  clip-path: polygon(120% 100%, 100% 1%, 0 100%);
+  -webkit-clip-path: polygon(120% 100%, 100% 1%, 0 100%);
+          clip-path: polygon(120% 100%, 100% 1%, 0 100%);
   transform: skewX(0deg);
   z-index: 1;
 }
@@ -6192,7 +6257,7 @@ body .footer-container::after {
 .first_content .overlay_content_after .overlay_image_txt_wrapper .overlay_txt .first_txt .bi {
   color: rgb(6, 106, 200);
 }
-.first_content .overlay_content_after .overlay_image_txt_wrapper .overlay_txt .first_txt p {
+.first_content .overlay_content_after .overlay_image_txt_wrapper .overlay_txt .first_txt .welcome {
   font-size: 16px;
   font-weight: 400;
   color: rgb(6, 106, 200);
@@ -6201,33 +6266,33 @@ body .footer-container::after {
 .first_content .overlay_content_after .overlay_image_txt_wrapper .overlay_txt .second_txt {
   margin-bottom: 20px;
 }
-.first_content .overlay_content_after .overlay_image_txt_wrapper .overlay_txt .second_txt p {
+.first_content .overlay_content_after .overlay_image_txt_wrapper .overlay_txt .second_txt h2 {
   font-size: 48px;
   font-weight: 600;
   color: white;
   margin: 0;
 }
 @media (max-width: 768px) {
-  .first_content .overlay_content_after .overlay_image_txt_wrapper .overlay_txt .second_txt p {
+  .first_content .overlay_content_after .overlay_image_txt_wrapper .overlay_txt .second_txt h2 {
     font-size: 22px !important;
   }
 }
 @media (max-width: 992px) {
-  .first_content .overlay_content_after .overlay_image_txt_wrapper .overlay_txt .second_txt p {
+  .first_content .overlay_content_after .overlay_image_txt_wrapper .overlay_txt .second_txt h2 {
     font-size: 32px;
   }
 }
-.first_content .overlay_content_after .overlay_image_txt_wrapper .overlay_txt .explore_button a {
+.first_content .overlay_content_after .overlay_image_txt_wrapper .overlay_txt .button a {
   display: flex;
   align-items: center;
   gap: 8px;
   background-color: rgb(6, 106, 200);
   padding: 10px 10px;
 }
-.first_content .overlay_content_after .overlay_image_txt_wrapper .overlay_txt .explore_button a .bi {
+.first_content .overlay_content_after .overlay_image_txt_wrapper .overlay_txt .button a .bi {
   color: white;
 }
-.first_content .overlay_content_after .overlay_image_txt_wrapper .overlay_txt .explore_button a p {
+.first_content .overlay_content_after .overlay_image_txt_wrapper .overlay_txt .button a .welcome_txt {
   font-size: 12px;
   font-weight: 500;
   color: white;
@@ -6302,7 +6367,8 @@ body .footer-container::after {
   pointer-events: none;
 }
 .rules_rituals .rules_dream_wrapper .rules_wrapper_left .bg_image_gradient img {
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .rules_rituals .rules_dream_wrapper .rules_wrapper_left .rituals_txt_wrapper {
   position: absolute;
@@ -6335,23 +6401,23 @@ body .footer-container::after {
     font-size: 12px;
   }
 }
-.rules_rituals .rules_dream_wrapper .rules_wrapper_left .rituals_txt_wrapper .read_more a {
+.rules_rituals .rules_dream_wrapper .rules_wrapper_left .rituals_txt_wrapper .button a {
   display: flex;
   gap: 8px;
   align-items: center;
 }
-.rules_rituals .rules_dream_wrapper .rules_wrapper_left .rituals_txt_wrapper .read_more a p {
+.rules_rituals .rules_dream_wrapper .rules_wrapper_left .rituals_txt_wrapper .button a p {
   font-size: 14px;
   font-weight: 500;
   color: white;
   font-family: "Rubik", serif;
 }
 @media (max-width: 768px) {
-  .rules_rituals .rules_dream_wrapper .rules_wrapper_left .rituals_txt_wrapper .read_more a p {
+  .rules_rituals .rules_dream_wrapper .rules_wrapper_left .rituals_txt_wrapper .button a p {
     font-size: 12px;
   }
 }
-.rules_rituals .rules_dream_wrapper .rules_wrapper_left .rituals_txt_wrapper .read_more a .bi {
+.rules_rituals .rules_dream_wrapper .rules_wrapper_left .rituals_txt_wrapper .button a .bi {
   color: white;
 }
 .rules_rituals .rules_dream_wrapper .right_container {
@@ -6394,27 +6460,27 @@ body .footer-container::after {
     font-size: 12px;
   }
 }
-.rules_rituals .rules_dream_wrapper .right_container .rules_right_wrap .register_button {
+.rules_rituals .rules_dream_wrapper .right_container .rules_right_wrap .button {
   padding-inline: 30px;
 }
-.rules_rituals .rules_dream_wrapper .right_container .rules_right_wrap .register_button a {
+.rules_rituals .rules_dream_wrapper .right_container .rules_right_wrap .button a {
   display: flex;
   align-items: center;
   gap: 8px;
   background-color: rgb(6, 106, 200);
   padding: 10px 10px;
 }
-.rules_rituals .rules_dream_wrapper .right_container .rules_right_wrap .register_button a .bi {
+.rules_rituals .rules_dream_wrapper .right_container .rules_right_wrap .button a .bi {
   color: white;
 }
-.rules_rituals .rules_dream_wrapper .right_container .rules_right_wrap .register_button a p {
+.rules_rituals .rules_dream_wrapper .right_container .rules_right_wrap .button a p {
   font-size: 14px;
   font-weight: 500;
   font-family: "Rubik", serif;
   color: white;
 }
 @media (max-width: 768px) {
-  .rules_rituals .rules_dream_wrapper .right_container .rules_right_wrap .register_button a p {
+  .rules_rituals .rules_dream_wrapper .right_container .rules_right_wrap .button a p {
     font-size: 10px;
   }
 }
@@ -6443,7 +6509,6 @@ body .footer-container::after {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 500px;
   position: relative;
 }
 @media (max-width: 992px) {
@@ -6453,7 +6518,7 @@ body .footer-container::after {
 }
 .rituals_dreams .dreams_wrappper .about-lt {
   width: 50%;
-  height: 100%;
+  height: 500px;
 }
 @media (max-width: 992px) {
   .rituals_dreams .dreams_wrappper .about-lt {
@@ -6550,7 +6615,7 @@ body .footer-container::after {
   left: 200px;
 }
 .rituals_dreams .dreams_wrappper .right_dreams_txt .second_txt {
-  margin-block: 15px;
+  margin-block: 15px !important;
 }
 .rituals_dreams .dreams_wrappper .right_dreams_txt .second_txt p {
   font-size: 36px;
@@ -6579,31 +6644,32 @@ body .footer-container::after {
   font-weight: 400;
   text-align: justify;
   color: rgb(115, 115, 115);
+  line-height: 30px;
 }
 @media (max-width: 768px) {
   .rituals_dreams .dreams_wrappper .right_dreams_txt .third_dream_txt p {
     font-size: 14px;
   }
 }
-.rituals_dreams .dreams_wrappper .right_dreams_txt .read_button a {
+.rituals_dreams .dreams_wrappper .right_dreams_txt .button a {
   display: flex;
   gap: 8px;
   align-items: center;
 }
-.rituals_dreams .dreams_wrappper .right_dreams_txt .read_button a p {
+.rituals_dreams .dreams_wrappper .right_dreams_txt .button a p {
   font-size: 14px;
   font-weight: 500;
   margin: 0;
   font-family: monda;
-  color: rgb(0, 0, 255);
 }
-.rituals_dreams .dreams_wrappper .right_dreams_txt .read_button a p:hover {
+.rituals_dreams .dreams_wrappper .right_dreams_txt .button a p:hover {
   color: rgb(6, 106, 200);
 }
-.rituals_dreams .dreams_wrappper .right_dreams_txt .read_button a svg {
-  color: rgb(0, 0, 255);
+.rituals_dreams .dreams_wrappper .right_dreams_txt .button a svg {
+  height: 16px;
+  width: 16px;
 }
-.rituals_dreams .dreams_wrappper .right_dreams_txt .read_button a:hover {
+.rituals_dreams .dreams_wrappper .right_dreams_txt .button a:hover {
   color: rgb(6, 106, 200);
 }
 .rituals_dreams .dreams_wrappper:before {
@@ -6671,6 +6737,7 @@ body .footer-container::after {
 }
 .rights_for_dreams .rights_wrapper .left_rights_txt .third_dream_txt {
   margin-block: 20px;
+  line-height: 30px;
 }
 .rights_for_dreams .rights_wrapper .left_rights_txt .third_dream_txt p {
   font-size: 16px;
@@ -6683,25 +6750,25 @@ body .footer-container::after {
     font-size: 14px;
   }
 }
-.rights_for_dreams .rights_wrapper .left_rights_txt .read_button a {
+.rights_for_dreams .rights_wrapper .left_rights_txt .button a {
   display: flex;
   gap: 8px;
   align-items: center;
 }
-.rights_for_dreams .rights_wrapper .left_rights_txt .read_button a p {
+.rights_for_dreams .rights_wrapper .left_rights_txt .button a p {
   font-size: 14px;
   font-weight: 500;
   margin: 0;
-  color: rgb(0, 0, 255);
   font-family: monda;
 }
-.rights_for_dreams .rights_wrapper .left_rights_txt .read_button a p:hover {
+.rights_for_dreams .rights_wrapper .left_rights_txt .button a p:hover {
   color: rgb(6, 106, 200);
 }
-.rights_for_dreams .rights_wrapper .left_rights_txt .read_button a svg {
-  color: rgb(0, 0, 255);
+.rights_for_dreams .rights_wrapper .left_rights_txt .button a svg {
+  height: 16px;
+  width: 16px;
 }
-.rights_for_dreams .rights_wrapper .left_rights_txt .read_button a:hover {
+.rights_for_dreams .rights_wrapper .left_rights_txt .button a:hover {
   color: rgb(6, 106, 200);
 }
 .rights_for_dreams .rights_wrapper .right_rights_image {
@@ -6909,34 +6976,27 @@ body .footer-container::after {
   margin: 0;
   text-align: justify;
 }
-.program_swiper .mySwiper .swiper-wrapper .swiper-slide .swiper_content_card_wrapper .swiper_content_card .read_more {
+.program_swiper .mySwiper .swiper-wrapper .swiper-slide .swiper_content_card_wrapper .swiper_content_card .button {
   padding: 0;
 }
-.program_swiper .mySwiper .swiper-wrapper .swiper-slide .swiper_content_card_wrapper .swiper_content_card .read_more a {
+.program_swiper .mySwiper .swiper-wrapper .swiper-slide .swiper_content_card_wrapper .swiper_content_card .button a {
   display: flex;
   align-items: center;
   gap: 8px;
 }
-.program_swiper .mySwiper .swiper-wrapper .swiper-slide .swiper_content_card_wrapper .swiper_content_card .read_more a p {
+.program_swiper .mySwiper .swiper-wrapper .swiper-slide .swiper_content_card_wrapper .swiper_content_card .button a p {
   font-size: 14px;
   font-weight: 500;
-  color: rgb(0, 0, 255);
   margin: 0;
   font-family: "Rubik", serif !important;
 }
-.program_swiper .mySwiper .swiper-wrapper .swiper-slide .swiper_content_card_wrapper .swiper_content_card .read_more a p:hover {
+.program_swiper .mySwiper .swiper-wrapper .swiper-slide .swiper_content_card_wrapper .swiper_content_card .button a p:hover {
   color: rgb(6, 106, 200);
 }
-.program_swiper .mySwiper .swiper-wrapper .swiper-slide .swiper_content_card_wrapper .swiper_content_card .read_more a .bi {
-  color: rgb(0, 0, 255);
-}
-.program_swiper .mySwiper .swiper-wrapper .swiper-slide .swiper_content_card_wrapper .swiper_content_card .read_more a .bi:hover {
+.program_swiper .mySwiper .swiper-wrapper .swiper-slide .swiper_content_card_wrapper .swiper_content_card .button a .bi:hover {
   color: rgb(6, 106, 200);
 }
-.program_swiper .mySwiper .swiper-wrapper .swiper-slide .swiper_content_card_wrapper .swiper_content_card .read_more a:hover {
-  color: rgb(6, 106, 200) !important;
-}
-.program_swiper .mySwiper .swiper-wrapper .swiper-slide .swiper_content_card_wrapper .swiper_content_card .read_more:hover {
+.program_swiper .mySwiper .swiper-wrapper .swiper-slide .swiper_content_card_wrapper .swiper_content_card .button a:hover {
   color: rgb(6, 106, 200) !important;
 }
 
@@ -6997,7 +7057,6 @@ body .footer-container::after {
 .Event_page .container .event_wrapper .left_event_text .first_blue_text p {
   font-size: 16px;
   font-weight: 600;
-  color: rgb(6, 106, 200);
   margin: 0;
 }
 .Event_page .container .event_wrapper .left_event_text .second_event_text {
@@ -7251,37 +7310,37 @@ body .footer-container::after {
 .Event_page .container .event_wrapper .left_event_text .event_notice_container .event_notice_info_cards:hover .button .bi {
   color: white;
 }
-.Event_page .container .event_wrapper .left_event_text .see_all_btn {
+.Event_page .container .event_wrapper .left_event_text .button {
   margin-top: 40px;
 }
-.Event_page .container .event_wrapper .left_event_text .see_all_btn a {
+.Event_page .container .event_wrapper .left_event_text .button a {
   display: flex;
   align-items: center;
   gap: 10px;
   margin-block: 10px;
 }
-.Event_page .container .event_wrapper .left_event_text .see_all_btn a p {
+.Event_page .container .event_wrapper .left_event_text .button a p {
   font-size: 18px;
   font-weight: 500;
   margin: 0;
 }
 @media (max-width: 768px) {
-  .Event_page .container .event_wrapper .left_event_text .see_all_btn a p {
+  .Event_page .container .event_wrapper .left_event_text .button a p {
     font-size: 12px;
     white-space: nowrap;
   }
 }
-.Event_page .container .event_wrapper .left_event_text .see_all_btn a p:hover {
+.Event_page .container .event_wrapper .left_event_text .button a p:hover {
   color: rgb(6, 106, 200);
 }
-.Event_page .container .event_wrapper .left_event_text .see_all_btn a .bi {
+.Event_page .container .event_wrapper .left_event_text .button a .bi {
   height: 18px;
   width: 18px;
 }
-.Event_page .container .event_wrapper .left_event_text .see_all_btn a .bi:hover {
+.Event_page .container .event_wrapper .left_event_text .button a .bi:hover {
   color: rgb(6, 106, 200);
 }
-.Event_page .container .event_wrapper .left_event_text .see_all_btn a:hover {
+.Event_page .container .event_wrapper .left_event_text .button a:hover {
   color: rgb(6, 106, 200);
 }
 .Event_page .container .event_wrapper .right_event_img {
@@ -7397,7 +7456,6 @@ body .footer-container::after {
   font-size: 16px;
   font-weight: 500;
   margin: 0;
-  color: rgb(0, 0, 255);
 }
 @media (max-width: 992px) {
   .historical_places_container .first_historical_txt .main_txt_wrap .view_all_txt a p {
@@ -7412,8 +7470,8 @@ body .footer-container::after {
 .historical_places_container .first_historical_txt .main_txt_wrap .view_all_txt a p:hover {
   color: rgb(6, 106, 200);
 }
-.historical_places_container .first_historical_txt .main_txt_wrap .view_all_txt a svg {
-  color: rgb(0, 0, 255);
+.historical_places_container .first_historical_txt .main_txt_wrap .view_all_txt a svg:hover {
+  color: rgb(6, 106, 200);
 }
 .historical_places_container .first_historical_txt .main_txt_wrap .view_all_txt a:hover {
   color: rgb(6, 106, 200);
@@ -7480,6 +7538,7 @@ body .footer-container::after {
 .historical_places_container .historical_places_wrapper .historical_content_card .second_txt {
   margin-block: 15px 20px;
   padding-inline: 5px;
+  line-height: 30px;
 }
 .historical_places_container .historical_places_wrapper .historical_content_card .second_txt p {
   font-size: 14px;
@@ -7489,32 +7548,28 @@ body .footer-container::after {
   text-align: justify;
   font-family: "Rubik", serif !important;
 }
-.historical_places_container .historical_places_wrapper .historical_content_card .read_more {
+.historical_places_container .historical_places_wrapper .historical_content_card .button {
   padding-top: 0;
   padding-inline: 5px;
 }
-.historical_places_container .historical_places_wrapper .historical_content_card .read_more a {
+.historical_places_container .historical_places_wrapper .historical_content_card .button a {
   display: flex;
   align-items: center;
   gap: 8px;
 }
-.historical_places_container .historical_places_wrapper .historical_content_card .read_more a p {
+.historical_places_container .historical_places_wrapper .historical_content_card .button a p {
   font-size: 14px;
   font-weight: 500;
-  color: rgb(0, 0, 255);
   margin: 0;
   font-family: "Rubik", serif !important;
 }
-.historical_places_container .historical_places_wrapper .historical_content_card .read_more a p:hover {
+.historical_places_container .historical_places_wrapper .historical_content_card .button a p:hover {
   color: rgb(6, 106, 200);
 }
-.historical_places_container .historical_places_wrapper .historical_content_card .read_more a .bi {
-  color: rgb(0, 0, 255);
-}
-.historical_places_container .historical_places_wrapper .historical_content_card .read_more a .bi:hover {
+.historical_places_container .historical_places_wrapper .historical_content_card .button a .bi:hover {
   color: rgb(6, 106, 200);
 }
-.historical_places_container .historical_places_wrapper .historical_content_card .read_more a:hover {
+.historical_places_container .historical_places_wrapper .historical_content_card .button a:hover {
   color: rgb(6, 106, 200);
 }
 
@@ -7568,18 +7623,18 @@ body .footer-container::after {
     border-radius: 50%;
   }
 }
-.footer-container .footer-content .fcol1 .logo_wrapper .logo_txt p {
+.footer-container .footer-content .fcol1 .logo_wrapper .logo_txt .logo_title {
   font-size: 20px;
   font-weight: 600;
   color: rgb(252, 252, 252);
 }
 @media (max-width: 768px) {
-  .footer-container .footer-content .fcol1 .logo_wrapper .logo_txt p {
+  .footer-container .footer-content .fcol1 .logo_wrapper .logo_txt .logo_title {
     font-size: 16px !important;
   }
 }
 @media (max-width: 992px) {
-  .footer-container .footer-content .fcol1 .logo_wrapper .logo_txt p {
+  .footer-container .footer-content .fcol1 .logo_wrapper .logo_txt .logo_title {
     font-size: 18px;
   }
 }

@@ -39,10 +39,11 @@
                     height: 20px;
                     width: 17px;
                 }
-                p {
+                li {
                     font-size: 16px;
                     font-weight: 500;
                     color: $grey;
+                    list-style-type: none;
                 }
                 &.active {
                     background-color: $blue;
@@ -52,7 +53,7 @@
                     .bi {
                         color: $white;
                     }
-                    p {
+                    li {
                         color: $white;
                     }
                 }
@@ -82,6 +83,7 @@
                     }
                     .second_txt {
                         margin-block: 20px;
+                        line-height: 30px;
                         p {
                             font-size: 18px;
                             font-weight: 400;
