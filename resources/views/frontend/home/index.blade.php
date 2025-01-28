@@ -1,7 +1,7 @@
 @extends('frontend.layout2.main2')
 @section('title', 'होमपेज')
 @section('content2')
-    <style>
+    {{-- <style>
         .program_swiper .program_txt_pagination_wrap .program_initiative_txt .first_program_txt::after {
             content: "";
             position: absolute;
@@ -12,7 +12,7 @@
             top: 10px;
             left: 90px;
         }
-    </style>
+    </style> --}}
     <section class="first_content">
         <div class="bg_image">
             <img src="{{ asset('frontpanel/assets/images/image1.jpeg') }}" alt="">
