@@ -1,6 +1,5 @@
 @extends('frontend.layout2.main2')
 @section('title', 'हाम्रा हालका परियोजनाहरू')
-<link rel="stylesheet" href="{{ asset('frontpanel/assets/summernote-custom-image/image.css') }}">
 @section('content2')
     <section class="introduction_page">
         <div class="img_before">
