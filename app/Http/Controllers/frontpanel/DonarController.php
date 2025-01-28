@@ -18,8 +18,8 @@ class DonarController extends Controller
 
             $doners = Donor::selectRaw('name, amount, title,details,image,slug')
                 ->where('status', 'Y')
-                ->orderBy('order_number', 'asc')
-                ->get();
+                ->orderBy('id', 'asc')
+                ->paginate(20);
 
             $data = [
                 'doners' => $doners,

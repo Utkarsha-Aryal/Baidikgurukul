@@ -526,6 +526,7 @@
                     display: flex;
                     gap: 8px;
                     margin-bottom: 10px;
+                  
                     .bi {
                         color: $blue;
                     }
@@ -708,6 +709,7 @@
                 .first_txt {
                     padding-inline: 30px;
                     margin-bottom: 10px;
+                    line-height: 30px;
                     p {
                         font-size: 16px;
                         font-weight: 400;
@@ -760,7 +762,7 @@
 }
 
 // third content
-.rituals_dreams {
+.rituals_dreams_container {
     padding-block: 20px;
     .dreams_wrappper {
         display: flex;
@@ -1085,7 +1087,7 @@
                     border-radius: 4px;
                     background-color: rgb(6, 106, 200);
                     top: 10px;
-                    left: 160px;
+                    left: 90px;
                 }
                 p {
                     font-size: 16px;

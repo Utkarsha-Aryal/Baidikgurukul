@@ -18,17 +18,21 @@ class EventController extends Controller
             $data = [];
 
             $events = Event::selectRaw('title, details, image, slug, address, venue, event_date, event_time_start, event_time_end, feature_image')
-            ->where('status', 'Y')
-                ->orderBy('id', 'desc')
+                ->where('status', 'Y')
+                ->orderBy('id', 'asc')
                 ->paginate(3);
+
+            foreach ($events as $event) {
+                $formattedDates[$event->id] = dayandmonth($event->event_date);
+            }
 
             $eventImage = Event::where('status', 'Y')
                 ->orderBy('id', 'desc')->first();
 
-
             $data = [
                 'events' => $events,
                 'eventImage' => $eventImage,
+                'formattedDates' => $formattedDates,
                 'type' => $type,
                 'message' => $message
             ];
@@ -51,10 +55,13 @@ class EventController extends Controller
             $data = [];
             $event = Event::where('slug', $slug)->first();
 
+            $formattedDates[$event->id] = dayandmonth($event->event_date);
+
             $data = [
                 'event' => $event,
                 'type' => $type,
-                'message' => $message
+                'message' => $message,
+                'formattedDates' => $formattedDates,
             ];
         } catch (QueryException $e) {
             $data['type'] = 'error';

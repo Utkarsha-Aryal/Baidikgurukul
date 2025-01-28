@@ -37,6 +37,9 @@ class HomeController extends Controller
                 ->orderBy('id', 'desc')
                 ->take(3)
                 ->get();
+                foreach ($events as $event) {
+                    $formattedDates[$event->id] = dayandmonth($event->event_date);
+                }
 
 
             $histories = History::selectRaw('title, details,image,slug')
@@ -61,6 +64,7 @@ class HomeController extends Controller
                 'programs' => $programs,
                 'events' => $events,
                 'histories' => $histories,
+                'formattedDates' => $formattedDates,
                 'events' => $events,
                 'type' => $type,
                 'message' => $message

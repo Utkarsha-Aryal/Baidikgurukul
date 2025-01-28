@@ -79,11 +79,22 @@ button {
 }
 
 .bi:hover {
-  color: rgb(6, 106, 200);
+  color: rgb(180, 218, 254);
 }
 
 p img {
   height: auto !important;
+  border: 5px solid #dfd9d9;
+}
+@media (max-width: 992px) {
+  p img {
+    width: 100% !important;
+  }
+}
+@media (max-width: 992px) {
+  p img {
+    width: 100% !important;
+  }
 }
 
 ol {
@@ -829,7 +840,7 @@ ol {
 }
 
 .team_tab_section {
-  margin-block: 100px;
+  margin-block: 40px;
 }
 .team_tab_section .container_wrapper {
   display: flex;
@@ -1617,28 +1628,26 @@ ol {
   font-size: 14px;
   color: #737373;
 }
-.program-container-main .program-content .program-r1 .readmore-none {
+.program-container-main .program-content .program-r1 .readmore-none a {
   display: flex;
   align-items: center;
   gap: 5px;
 }
-.program-container-main .program-content .program-r1 .readmore-none p {
-  color: rgb(0, 0, 255);
+.program-container-main .program-content .program-r1 .readmore-none a p {
   font-size: 14px;
   font-weight: 500;
 }
-.program-container-main .program-content .program-r1 .readmore-none p:hover {
+.program-container-main .program-content .program-r1 .readmore-none a p:hover {
   color: rgb(6, 106, 200);
 }
-.program-container-main .program-content .program-r1 .readmore-none .bi {
+.program-container-main .program-content .program-r1 .readmore-none a .bi {
   height: 14px;
   width: 14px;
-  color: rgb(0, 0, 255);
 }
-.program-container-main .program-content .program-r1 .readmore-none .bi:hover {
+.program-container-main .program-content .program-r1 .readmore-none a .bi:hover {
   color: rgb(6, 106, 200);
 }
-.program-container-main .program-content .program-r1 .readmore-none:hover {
+.program-container-main .program-content .program-r1 .readmore-none a:hover {
   color: rgb(6, 106, 200);
 }
 
@@ -2186,7 +2195,7 @@ ol {
 }
 
 .team_tab_section {
-  margin-block: 100px;
+  margin-block: 40px;
 }
 .team_tab_section .container_wrapper {
   display: flex;
@@ -2510,7 +2519,7 @@ ol {
 }
 
 .team_tab_section {
-  margin-block: 100px;
+  margin-block: 40px;
 }
 .team_tab_section .container_wrapper {
   display: flex;
@@ -5065,11 +5074,22 @@ button {
 }
 
 .bi:hover {
-  color: rgb(6, 106, 200);
+  color: rgb(180, 218, 254);
 }
 
 p img {
   height: auto !important;
+  border: 5px solid #dfd9d9;
+}
+@media (max-width: 992px) {
+  p img {
+    width: 100% !important;
+  }
+}
+@media (max-width: 992px) {
+  p img {
+    width: 100% !important;
+  }
 }
 
 ol {
@@ -6449,6 +6469,7 @@ body .footer-container::after {
 .rules_rituals .rules_dream_wrapper .right_container .rules_right_wrap .first_txt {
   padding-inline: 30px;
   margin-bottom: 10px;
+  line-height: 30px;
 }
 .rules_rituals .rules_dream_wrapper .right_container .rules_right_wrap .first_txt p {
   font-size: 16px;
@@ -6502,30 +6523,30 @@ body .footer-container::after {
   }
 }
 
-.rituals_dreams {
+.rituals_dreams_container {
   padding-block: 20px;
 }
-.rituals_dreams .dreams_wrappper {
+.rituals_dreams_container .dreams_wrappper {
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: relative;
 }
 @media (max-width: 992px) {
-  .rituals_dreams .dreams_wrappper {
+  .rituals_dreams_container .dreams_wrappper {
     height: 100%;
   }
 }
-.rituals_dreams .dreams_wrappper .about-lt {
+.rituals_dreams_container .dreams_wrappper .about-lt {
   width: 50%;
   height: 500px;
 }
 @media (max-width: 992px) {
-  .rituals_dreams .dreams_wrappper .about-lt {
+  .rituals_dreams_container .dreams_wrappper .about-lt {
     display: none;
   }
 }
-.rituals_dreams .dreams_wrappper .about-lt .radius-o {
+.rituals_dreams_container .dreams_wrappper .about-lt .radius-o {
   position: relative;
   height: 408px;
   width: 475px;
@@ -6535,7 +6556,7 @@ body .footer-container::after {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.rituals_dreams .dreams_wrappper .about-lt .radius-o .inner-o {
+.rituals_dreams_container .dreams_wrappper .about-lt .radius-o .inner-o {
   height: 306px;
   width: 333px;
   border-radius: 50%;
@@ -6545,14 +6566,14 @@ body .footer-container::after {
   transform: translate(-50%, -50%);
   box-shadow: 0px 0px 43.3px 0px rgba(6, 106, 200, 0.72) inset;
 }
-.rituals_dreams .dreams_wrappper .about-lt .radius-o .dance-img {
+.rituals_dreams_container .dreams_wrappper .about-lt .radius-o .dance-img {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 285px;
 }
-.rituals_dreams .dreams_wrappper .about-lt .radius-o:after {
+.rituals_dreams_container .dreams_wrappper .about-lt .radius-o:after {
   content: " ";
   position: absolute;
   background: rgba(6, 106, 200, 0.15);
@@ -6565,11 +6586,11 @@ body .footer-container::after {
   border-radius: 79%;
 }
 @media (max-width: 768px) {
-  .rituals_dreams .dreams_wrappper .about-lt .radius-o:after {
+  .rituals_dreams_container .dreams_wrappper .about-lt .radius-o:after {
     display: none;
   }
 }
-.rituals_dreams .dreams_wrappper .about-lt .radius-o:before {
+.rituals_dreams_container .dreams_wrappper .about-lt .radius-o:before {
   content: " ";
   position: absolute;
   background: rgba(6, 106, 200, 0.15);
@@ -6583,28 +6604,28 @@ body .footer-container::after {
   z-index: -1 !important;
 }
 @media (max-width: 768px) {
-  .rituals_dreams .dreams_wrappper .about-lt .radius-o:before {
+  .rituals_dreams_container .dreams_wrappper .about-lt .radius-o:before {
     display: none;
   }
 }
-.rituals_dreams .dreams_wrappper .right_dreams_txt {
+.rituals_dreams_container .dreams_wrappper .right_dreams_txt {
   width: 48%;
   height: 100%;
   padding-top: 50px;
 }
 @media (max-width: 992px) {
-  .rituals_dreams .dreams_wrappper .right_dreams_txt {
+  .rituals_dreams_container .dreams_wrappper .right_dreams_txt {
     width: 100%;
     padding-top: 0;
   }
 }
-.rituals_dreams .dreams_wrappper .right_dreams_txt .first_dreams_txt p {
+.rituals_dreams_container .dreams_wrappper .right_dreams_txt .first_dreams_txt p {
   font-size: 16px;
   font-weight: 500;
   color: rgb(0, 0, 0);
   position: relative;
 }
-.rituals_dreams .dreams_wrappper .right_dreams_txt .first_dreams_txt p::after {
+.rituals_dreams_container .dreams_wrappper .right_dreams_txt .first_dreams_txt p::after {
   content: "";
   position: absolute;
   height: 2px;
@@ -6614,32 +6635,32 @@ body .footer-container::after {
   top: 10px;
   left: 200px;
 }
-.rituals_dreams .dreams_wrappper .right_dreams_txt .second_txt {
+.rituals_dreams_container .dreams_wrappper .right_dreams_txt .second_txt {
   margin-block: 15px !important;
 }
-.rituals_dreams .dreams_wrappper .right_dreams_txt .second_txt p {
+.rituals_dreams_container .dreams_wrappper .right_dreams_txt .second_txt p {
   font-size: 36px;
   font-weight: 600;
   margin: 0;
   color: rgb(0, 0, 0);
 }
-.rituals_dreams .dreams_wrappper .right_dreams_txt .second_txt p .blue {
+.rituals_dreams_container .dreams_wrappper .right_dreams_txt .second_txt p .blue {
   color: rgb(6, 106, 200);
 }
 @media (max-width: 768px) {
-  .rituals_dreams .dreams_wrappper .right_dreams_txt .second_txt p {
+  .rituals_dreams_container .dreams_wrappper .right_dreams_txt .second_txt p {
     font-size: 22px !important;
   }
 }
 @media (max-width: 992px) {
-  .rituals_dreams .dreams_wrappper .right_dreams_txt .second_txt p {
+  .rituals_dreams_container .dreams_wrappper .right_dreams_txt .second_txt p {
     font-size: 28px;
   }
 }
-.rituals_dreams .dreams_wrappper .right_dreams_txt .third_dream_txt {
+.rituals_dreams_container .dreams_wrappper .right_dreams_txt .third_dream_txt {
   margin-block: 20px;
 }
-.rituals_dreams .dreams_wrappper .right_dreams_txt .third_dream_txt p {
+.rituals_dreams_container .dreams_wrappper .right_dreams_txt .third_dream_txt p {
   font-size: 16px;
   font-weight: 400;
   text-align: justify;
@@ -6647,32 +6668,32 @@ body .footer-container::after {
   line-height: 30px;
 }
 @media (max-width: 768px) {
-  .rituals_dreams .dreams_wrappper .right_dreams_txt .third_dream_txt p {
+  .rituals_dreams_container .dreams_wrappper .right_dreams_txt .third_dream_txt p {
     font-size: 14px;
   }
 }
-.rituals_dreams .dreams_wrappper .right_dreams_txt .button a {
+.rituals_dreams_container .dreams_wrappper .right_dreams_txt .button a {
   display: flex;
   gap: 8px;
   align-items: center;
 }
-.rituals_dreams .dreams_wrappper .right_dreams_txt .button a p {
+.rituals_dreams_container .dreams_wrappper .right_dreams_txt .button a p {
   font-size: 14px;
   font-weight: 500;
   margin: 0;
   font-family: monda;
 }
-.rituals_dreams .dreams_wrappper .right_dreams_txt .button a p:hover {
+.rituals_dreams_container .dreams_wrappper .right_dreams_txt .button a p:hover {
   color: rgb(6, 106, 200);
 }
-.rituals_dreams .dreams_wrappper .right_dreams_txt .button a svg {
+.rituals_dreams_container .dreams_wrappper .right_dreams_txt .button a svg {
   height: 16px;
   width: 16px;
 }
-.rituals_dreams .dreams_wrappper .right_dreams_txt .button a:hover {
+.rituals_dreams_container .dreams_wrappper .right_dreams_txt .button a:hover {
   color: rgb(6, 106, 200);
 }
-.rituals_dreams .dreams_wrappper:before {
+.rituals_dreams_container .dreams_wrappper:before {
   content: " ";
   position: absolute;
   background: rgba(6, 106, 200, 0.15);
@@ -6686,7 +6707,7 @@ body .footer-container::after {
   z-index: -1;
 }
 @media (max-width: 768px) {
-  .rituals_dreams .dreams_wrappper:before {
+  .rituals_dreams_container .dreams_wrappper:before {
     display: none;
   }
 }
@@ -6848,7 +6869,7 @@ body .footer-container::after {
   border-radius: 4px;
   background-color: rgb(6, 106, 200);
   top: 10px;
-  left: 160px;
+  left: 90px;
 }
 .program_swiper .program_txt_pagination_wrap .program_initiative_txt .first_program_txt p {
   font-size: 16px;
