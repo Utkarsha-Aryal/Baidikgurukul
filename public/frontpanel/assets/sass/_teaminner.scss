@@ -86,6 +86,7 @@
         }
         .rght_txt {
             width: 55%;
+            line-height: 30px;
             @include respond-to(mobile) {
                 width: 100%;
             }

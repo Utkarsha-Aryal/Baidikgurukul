@@ -119,7 +119,7 @@
                         </div>
                     </a>
                     <div class="logo_txt">
-                        <p>चाेचाङ्गी <br> समाज नेपाल</p>
+                        <span class="logo_title">चाेचाङ्गी <br> समाज नेपाल</span>
                     </div>
                 </div>
                 <div class="nav_list_hamburger_menu">

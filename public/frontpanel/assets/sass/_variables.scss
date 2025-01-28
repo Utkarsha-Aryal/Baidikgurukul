@@ -77,3 +77,14 @@ button {
         color: $blue;
     }
 }
+
+p {
+    img {
+        height: auto !important;
+    }
+}
+ol {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    padding: 0;
+}

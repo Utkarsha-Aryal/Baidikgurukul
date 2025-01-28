@@ -161,7 +161,7 @@ body {
                         }
                     }
                     .logo_txt {
-                        p {
+                        .logo_title {
                             font-size: 16px;
                             font-weight: 600;
                             @include respond-to(mobile) {
@@ -444,7 +444,7 @@ body {
                         }
                     }
                     .logo_txt {
-                        p {
+                        .logo_title{
                             font-size: 20px;
                             font-weight: 600;
                             color: $white;
