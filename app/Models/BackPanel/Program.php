@@ -14,6 +14,7 @@ use Illuminate\Support\Str;
 class Program extends Model
 {
     use HasFactory;
+    
 
     public static function saveData($post)
     {

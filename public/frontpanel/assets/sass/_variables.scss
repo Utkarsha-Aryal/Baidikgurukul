@@ -79,9 +79,11 @@ button {
 }
 
 p {
+    overflow: hidden;
     img {
         height: auto !important;
         border: 5px solid #dfd9d9;
+        max-width: 695px;
         @include respond-to(tablet) {
             width: 100% !important;
         }

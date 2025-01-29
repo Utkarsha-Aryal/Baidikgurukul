@@ -25,11 +25,13 @@ class GalleryController extends Controller
 
             $images = GalleryImage::with('imageGallery')
                 ->where('status', 'Y')
+                ->take(15)
                 ->orderBy('id', 'desc')
                 ->get();
 
             $videos = GalleryVideo::with('videoGallery')
                 ->where('status', 'Y')
+                ->take(15)
                 ->orderBy('id', 'desc')
                 ->get();
 
@@ -138,20 +140,13 @@ class GalleryController extends Controller
             $type = 'success';
             $message = 'Successfully fetched data';
 
+            $page = request()->get('page', 1);
+
             $galleries = Gallery::with('images', 'videos')
                 ->where('status', 'Y')
                 ->orderBy('id', 'desc')
                 ->get();
 
-            $images = GalleryImage::with('imageGallery')
-                ->where('status', 'Y')
-                ->orderBy('id', 'desc')
-                ->get();
-
-            $videos = GalleryVideo::with('videoGallery')
-                ->where('status', 'Y')
-                ->orderBy('id', 'desc')
-                ->get();
 
             $galleryVideoImages = [];
 
@@ -162,20 +157,27 @@ class GalleryController extends Controller
                 }
             }
 
-            $data = [
-                'images' => $images,
-                'galleries' => $galleries,
-                'galleryVideoImages' => $galleryVideoImages,
-                'videos' => $videos,
-                'type' => $type,
-                'message' => $message
-            ];
-
             if ($tab === 'all') {
+                $galleries = Gallery::with(['images', 'videos'])
+                    ->where('status', 'Y')
+                    ->latest()
+                    ->limit(6)
+                    ->get();
+
                 $html = view('frontend.gallery.tab-content-all', compact('galleries', 'galleryVideoImages'))->render();
             } elseif ($tab === 'images') {
+                $galleries = Gallery::with(['images', 'videos'])
+                    ->where('status', 'Y')
+                    ->latest()
+                    ->paginate(9, ['*'], 'page', $page);
+
                 $html = view('frontend.gallery.tab-content', compact('galleries'))->render();
             } else {
+                $galleries = Gallery::with(['images', 'videos'])
+                    ->where('status', 'Y')
+                    ->latest()
+                    ->paginate(9, ['*'], 'page', $page);
+
                 $html = view('frontend.gallery.tab-content-video', compact('galleries', 'galleryVideoImages'))->render();
             }
 

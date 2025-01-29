@@ -2,6 +2,7 @@
 @section('title', 'ग्यालेरी')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <meta name="csrf-token" content="{{ csrf_token() }}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 
 @section('content2')
     <section class="introduction_page">
@@ -30,17 +31,17 @@
         </div>
         <div class="container">
             <div id="all" class="content active">
-                <div class="gallery-content-main">
+                <div class="gallery-content">
                     <p>Loading...</p>
                 </div>
             </div>
             <div id="images" class="content">
-                <div class="gallery-content-main">
+                <div class="gallery-content">
                     <p>Loading...</p>
                 </div>
             </div>
             <div id="videos" class="content">
-                <div class="gallery-content-main">
+                <div class="gallery-content">
                     <p>Loading...</p>
                 </div>
             </div>
@@ -59,34 +60,44 @@
                 $('.content').removeClass('active');
                 $('#' + target).addClass('active');
 
-                let url = "{{ url('/gallery/image/gettabcontent') }}/" + target;
-                $('#' + target + ' .gallery-content-main').html('<p>Loading...</p>');
+                loadContent(target, 1);
+            });
+
+            $(document).on('click', '.pagination .page-link', function(e) {
+                e.preventDefault();
+
+                let target = $('.tab.active').data('target');
+                let page = $(this).attr('href').split('page=')[1];
+
+                loadContent(target, page);
+            });
+
+            function loadContent(target, page) {
+                $('#' + target + ' .gallery-content').html('<p>Loading...</p>');
 
                 $.ajax({
-                    url: url,
+                    url: "{{ url('/gallery/image/gettabcontent') }}/" + target,
                     method: 'POST',
                     data: {
                         _token: $('meta[name="csrf-token"]').attr('content'),
-                        target: target
+                        target: target,
+                        page: page
                     },
                     success: function(response) {
                         if (response.html) {
-                            $('#' + target + ' .gallery-content-main').html(response.html);
+                            $('#' + target + ' .gallery-content').html(response.html);
                         } else {
-                            $('#' + target + ' .gallery-content-main').html(
-                                '<p>No content found.</p>');
+                            $('#' + target + ' .gallery-content').html('<p>No content found.</p>');
                         }
                     },
                     error: function() {
-                        $('#' + target + ' .gallery-content-main').html(
+                        $('#' + target + ' .gallery-content').html(
                             '<p>An error occurred. Please try again later.</p>');
                     }
                 });
-            });
+            }
 
-            $(document).ready(function() {
-                $('.tab.active').trigger('click');
-            });
+            $('.tab.active').trigger('click');
         });
     </script>
 @endsection

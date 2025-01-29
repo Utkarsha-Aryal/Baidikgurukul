@@ -17,8 +17,7 @@ class NewsController extends Controller
             $message = 'Successfully fetched data';
             $posts = Post::where('status', 'Y')
                 ->orderBy('id', 'desc')
-                ->get();
-
+                ->paginate(6);
             $data = [
                 'posts' => $posts,
                 'type' => $type,

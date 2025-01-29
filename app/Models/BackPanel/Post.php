@@ -68,8 +68,8 @@ class Post extends Model
                     $imageNamesJson = json_encode($imageNames);
                     $dataArray['feature_image'] = $imageNamesJson;
                 } else {
-                    // $fetchOldData = Post::select('feature_image')->where('id', $post['id'])->first();//compare
-                    // $oldData = json_decode($fetchOldData->documents);//compare
+                    // $fetchOldData = Post::select('feature_image')->where('id', $post['id'])->first();
+                    // $oldData = json_decode($fetchOldData->documents);
                     $postData = Post::where('id', $post['id'])->first();
                     $fetchOldData = json_decode($postData->feature_image);
                     if (isset($fetchOldData)) {

@@ -1,5 +1,6 @@
 @extends('frontend.layout2.main2')
 @section('title', 'हाम्रा हालका परियोजनाहरू')
+
 @section('content2')
     <section class="introduction_page">
         <div class="img_before">
@@ -32,7 +33,7 @@
                 <div class="program-inner-rt">
                     <div class="program-inner-rt-content">
                         <div class="program-inner-rt-title">
-                            <p>हाम्रा हालका परियोजनाहरू</p>
+                            <p>सम्बन्धित कार्यक्रमहरू</p>
                         </div>
                         @if (!@empty($programs))
                             @foreach ($programs as $program)

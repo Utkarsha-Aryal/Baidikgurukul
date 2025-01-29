@@ -19,7 +19,7 @@ class ProgramController extends Controller
             $programs = Program::selectRaw('title,image,slug')
                 ->where('status', 'Y')
                 ->orderBy('id', 'desc')
-                ->get();
+                ->paginate(9);
 
             $data = [
                 'programs' => $programs,
@@ -51,6 +51,15 @@ class ProgramController extends Controller
                 ->where('status', 'Y')
                 ->orderBy('id', 'desc')
                 ->get();
+
+
+            // $programs = Program::selectRaw('title,slug')
+            //     ->where('status', 'Y')
+            //     ->where('slug', '!=', $slug)
+            //     ->orderBy('id', 'desc')
+            //     ->take(6)
+            //     ->get();
+
 
 
             $data = [

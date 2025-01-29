@@ -269,8 +269,7 @@ body {
                                         width: 0;
                                         height: 2px;
                                         background-color: $blue;
-                                        transition:
-                                            width 0.3s ease,
+                                        transition: width 0.3s ease,
                                             left 0.3s ease;
                                         border-radius: 4px;
                                         margin-block: -2px;
@@ -310,7 +309,8 @@ body {
 
                                     li {
                                         padding-block: 8px;
-                                        border-bottom: 1.5px dashed rgba(180, 218, 254, 1);
+                                        border-bottom: 1.5px dashed
+                                            rgba(180, 218, 254, 1);
                                         @include respond-to(mobile) {
                                             padding: 0;
                                         }
@@ -343,9 +343,15 @@ body {
                                             position: absolute;
                                             top: 0; /* Position below the parent */
                                             left: 160px;
-                                            background-color: rgba(239, 247, 255, 1);
+                                            background-color: rgba(
+                                                239,
+                                                247,
+                                                255,
+                                                1
+                                            );
                                             border: 1px solid #ddd;
-                                            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+                                            box-shadow: 0px 4px 6px
+                                                rgba(0, 0, 0, 0.1);
                                             z-index: 100;
                                             width: 160px;
                                             padding: 10px 10px;
@@ -444,7 +450,7 @@ body {
                         }
                     }
                     .logo_txt {
-                        .logo_title{
+                        .logo_title {
                             font-size: 20px;
                             font-weight: 600;
                             color: $white;
