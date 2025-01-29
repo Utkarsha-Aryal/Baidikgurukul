@@ -82,9 +82,13 @@ button {
   color: rgb(180, 218, 254);
 }
 
+p {
+  overflow: hidden;
+}
 p img {
   height: auto !important;
   border: 5px solid #dfd9d9;
+  max-width: 695px;
 }
 @media (max-width: 992px) {
   p img {
@@ -421,25 +425,28 @@ ol {
   margin-block: 30px;
   box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
 }
-.mission_vision_container .mission_vision_goal_wrapper .mission_card_container .mission_icon {
+.mission_vision_container .mission_vision_goal_wrapper .mission_card_container .wrapperMain {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.mission_vision_container .mission_vision_goal_wrapper .mission_card_container .wrapperMain .mission_icon {
   height: 30px;
   width: 30px;
 }
 @media (max-width: 768px) {
-  .mission_vision_container .mission_vision_goal_wrapper .mission_card_container .mission_icon {
+  .mission_vision_container .mission_vision_goal_wrapper .mission_card_container .wrapperMain .mission_icon {
     height: 15px;
     width: 15px;
   }
 }
-.mission_vision_container .mission_vision_goal_wrapper .mission_card_container .mission_main {
-  margin-block: 20px;
-}
-.mission_vision_container .mission_vision_goal_wrapper .mission_card_container .mission_main p {
+.mission_vision_container .mission_vision_goal_wrapper .mission_card_container .wrapperMain .mission_main p {
   font-size: 24px;
   font-weight: 500;
 }
 @media (max-width: 768px) {
-  .mission_vision_container .mission_vision_goal_wrapper .mission_card_container .mission_main p {
+  .mission_vision_container .mission_vision_goal_wrapper .mission_card_container .wrapperMain .mission_main p {
     font-size: 16px;
   }
 }
@@ -2318,7 +2325,7 @@ ol {
   line-height: 30px;
 }
 .team_tab_section .container_wrapper .content #content1 .first_content_wrapper .second_txt p {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
   color: rgb(115, 115, 115);
 }
@@ -2618,7 +2625,7 @@ ol {
   line-height: 30px;
 }
 .team_tab_section .container_wrapper .content #content-0 .first_content_wrapper .second_txt p {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
   color: rgb(115, 115, 115);
 }
@@ -4241,8 +4248,9 @@ ol {
 .program-inner-container .program-inner-wrapper .program-inner-lt .program-inner-txt p {
   color: #737373;
   margin-block: 20px;
-  font-size: 18px;
+  font-size: 16px;
   margin: 0;
+  line-height: 30px !important;
 }
 .program-inner-container .program-inner-wrapper .program-inner-lt .program-main-img img {
   width: 100%;
@@ -4326,7 +4334,7 @@ ol {
 }
 .donation_list_container table td {
   color: rgb(115, 115, 115);
-  padding-block: 20px;
+  padding-block: 10px;
   border-spacing: 0;
   border-collapse: collapse;
 }
@@ -5077,9 +5085,13 @@ button {
   color: rgb(180, 218, 254);
 }
 
+p {
+  overflow: hidden;
+}
 p img {
   height: auto !important;
   border: 5px solid #dfd9d9;
+  max-width: 695px;
 }
 @media (max-width: 992px) {
   p img {
@@ -7331,9 +7343,6 @@ body .footer-container::after {
 .Event_page .container .event_wrapper .left_event_text .event_notice_container .event_notice_info_cards:hover .button .bi {
   color: white;
 }
-.Event_page .container .event_wrapper .left_event_text .button {
-  margin-top: 40px;
-}
 .Event_page .container .event_wrapper .left_event_text .button a {
   display: flex;
   align-items: center;
@@ -7753,7 +7762,6 @@ body .footer-container::after {
 .footer-container .footer-content .fcol4 .letter-link .flogo-icon {
   display: flex;
   gap: 25px;
-  margin-top: 30px;
 }
 .footer-container .footer-content .fcol4 .letter-link .flogo-icon a .bi {
   color: rgb(252, 252, 252);

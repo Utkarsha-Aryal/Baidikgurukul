@@ -19,6 +19,7 @@ class HistoryController extends Controller
             $histories = History::selectRaw('title,slug')
                 ->where('status', 'Y')
                 ->orderBy('id', 'desc')
+                ->take(6)
                 ->get();
 
             $history = History::selectRaw('title,details')

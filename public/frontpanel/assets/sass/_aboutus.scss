@@ -284,21 +284,26 @@
             border-radius: 4px;
             margin-block: 30px;
             box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
-            .mission_icon {
-                height: 30px;
-                width: 30px;
-                @include respond-to(mobile) {
-                    height: 15px;
-                    width: 15px;
-                }
-            }
-            .mission_main {
-                margin-block: 20px;
-                p {
-                    font-size: 24px;
-                    font-weight: 500;
+            .wrapperMain {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                margin-bottom: 1rem;
+                .mission_icon {
+                    height: 30px;
+                    width: 30px;
                     @include respond-to(mobile) {
-                        font-size: 16px;
+                        height: 15px;
+                        width: 15px;
+                    }
+                }
+                .mission_main {
+                    p {
+                        font-size: 24px;
+                        font-weight: 500;
+                        @include respond-to(mobile) {
+                            font-size: 16px;
+                        }
                     }
                 }
             }

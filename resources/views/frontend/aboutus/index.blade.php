@@ -1,7 +1,18 @@
 @extends('frontend.layout2.main2')
 @section('title', 'हाम्रो बारेमा')
-@section('content2')
+{{-- <style>
+    .wrapperMain {
+        display: flex;
+        align-content: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
 
+    .mission_main {
+        margin: 0 !important;
+    }
+</style> --}}
+@section('content2')
     <section class="introduction_page">
         <div class="img_before">
             <img src="{{ asset('frontpanel/assets/images/Mask group.png') }}" alt="">
@@ -63,35 +74,40 @@
 
             <div class="mission_vision_goal_wrapper">
                 <div class="mission_card_container">
-                    <div class="mission_icon">
-                        <img src="{{ asset('frontpanel/assets/images/Mask group.svg') }}" alt="">
-                    </div>
-                    <div class="mission_main">
-                        <p>मिशन</p>
+                    <div class="wrapperMain">
+                        <div class="mission_icon">
+                            <img src="{{ asset('frontpanel/assets/images/Mask group.svg') }}" alt="">
+                        </div>
+                        <div class="mission_main">
+                            <p>मिशन</p>
+                        </div>
                     </div>
                     <div class="mission_txt">
                         <p>{{ $aboutus->mission ?? '' }}</p>
                     </div>
                 </div>
                 <div class="mission_card_container">
-                    <div class="mission_icon">
-                        <img src="{{ asset('frontpanel/assets/images/Mask group.svg') }}" alt="">
-
-                    </div>
-                    <div class="mission_main">
-                        <p>दृष्टि</p>
+                    <div class="wrapperMain">
+                        <div class="mission_icon">
+                            <img src="{{ asset('frontpanel/assets/images/vision.png') }}" alt="">
+                        </div>
+                        <div class="mission_main">
+                            <p>दृष्टि</p>
+                        </div>
                     </div>
                     <div class="mission_txt">
                         <p>{{ $aboutus->vision ?? '' }}</p>
                     </div>
                 </div>
                 <div class="mission_card_container">
-                    <div class="mission_icon">
-                        <img src="{{ asset('frontpanel/assets/images/Mask group.svg') }}" alt="">
+                    <div class="wrapperMain">
+                        <div class="mission_icon">
+                            <img src="{{ asset('frontpanel/assets/images/goal.png') }}" alt="">
 
-                    </div>
-                    <div class="mission_main">
-                        <p>लक्ष्यहरू</p>
+                        </div>
+                        <div class="mission_main">
+                            <p>लक्ष्यहरू</p>
+                        </div>
                     </div>
                     <div class="mission_txt">
                         <p>{{ $aboutus->goals ?? '' }}</p>

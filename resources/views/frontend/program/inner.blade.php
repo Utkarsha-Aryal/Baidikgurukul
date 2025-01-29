@@ -1,5 +1,6 @@
 @extends('frontend.layout2.main2')
 @section('title', 'हाम्रा हालका परियोजनाहरू')
+
 @section('content2')
     <section class="introduction_page">
         <div class="img_before">

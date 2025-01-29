@@ -1,3 +1,6 @@
+<link href="https://nepalidatepicker.sajanmaharjan.com.np/nepali.datepicker/css/nepali.datepicker.v4.0.1.min.css"
+    rel="stylesheet" type="text/css" />
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.css" rel="stylesheet">
 <style>
     .ck-content {
         min-height: 300px !important;
@@ -48,9 +51,27 @@
         padding-left: 0.5rem !important;
     }
 </style>
-
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.js"></script>
+<script src="https://nepalidatepicker.sajanmaharjan.com.np/nepali.datepicker/js/nepali.datepicker.v4.0.1.min.js"
+    type="text/javascript"></script>
+<script>
+    function showDatePicker() {
+        window.onload = function() {
+            var mainInput = document.getElementById("nepali-datepicker");
+            mainInput.nepaliDatePicker();
+        };
+
+        $("#nepali-datepicker").nepaliDatePicker({
+            container: ".datepick",
+        });
+    }
+
+    $(document).ready(function() {
+        $("#nepali-datepicker").nepaliDatePicker({
+            container: ".datepick"
+        });
+    });
+</script>\
 
 <div class="modal-header">
     <h1 class="modal-title fs-5" id="staticBackdropLabel">Event</h1>
@@ -69,10 +90,13 @@
         </div>
 
         <div class="row mt-2">
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 datepick">
                 <label for="event_date" class="form-label">Event Date <span class="required-field">*</span></label>
-                <input type="date" name="event_date" id="event_date" class="form-control"
-                    value="{{ isset($event_date) ? \Carbon\Carbon::parse($event_date)->format('Y-m-d') : '' }}">
+                {{-- <input type="date" name="event_date" id="event_date" class="form-control"
+                    value="{{ isset($event_date) ? \Carbon\Carbon::parse($event_date)->format('Y-m-d') : '' }}"> --}}
+                <input type="text" id="nepali-datepicker" class="form-control" name="event_date"
+                    value="{{ isset($event_date) ? \Carbon\Carbon::parse($event_date)->format('Y-m-d') : '' }}"
+                    placeholder="Select Event Date">
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
                 <label for="event_address" class="form-label">Event Address <span
@@ -314,7 +338,7 @@
                     })
                     .appendTo('#eventForm');
 
-                showLoader(); // Ensure this function is properly defined
+                showLoader();
                 $('#eventForm').ajaxSubmit({
                     success: function(response) {
                         const result = JSON.parse(response);
@@ -330,7 +354,7 @@
                         showNotification('An error occurred.', 'error');
                     },
                     complete: function() {
-                        hideLoader(); // Always hide the loader after form submission
+                        hideLoader();
                     }
                 });
             }

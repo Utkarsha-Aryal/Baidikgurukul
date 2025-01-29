@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <link rel="stylesheet" href="{{ asset('frontpanel/assets/sass/main.css') }}">
-    @if (!empty($siteSettings->img_favicon))
-        <link rel="icon" href="{{ asset('storage/setting') . '/' . $siteSettings->img_favicon }}" type="image/png">
+    @if (!empty($siteSetting->img_favicon))
+        <link rel="icon" href="{{ asset('storage/setting') . '/' . $siteSetting->img_favicon }}" type="image/png">
     @endif
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
@@ -35,10 +35,12 @@
                 });
             }, 4000);
         }
+
         function showLoader() {
             $('#overlay').fadeIn();
             $('#loader').fadeIn();
         }
+
         function hideLoader() {
             $('#overlay').fadeOut();
             $('#loader').fadeOut();
@@ -54,6 +56,7 @@
             max-height: 90vh;
             overflow-y: auto;
         }
+
         .notification {
             display: flex;
             align-items: center;
@@ -64,43 +67,52 @@
             color: #fff;
             animation: fadeIn 0.5s, fadeOut 0.5s 3.5s;
         }
+
         .notification.success {
             background-color: #4CAF50;
         }
+
         .notification.error {
             background-color: #F44336;
         }
+
         .notification p {
             margin: 0;
             margin-left: 10px;
             flex: 1;
         }
+
         .notification .close-btn {
             cursor: pointer;
             margin-left: 10px;
             font-weight: bold;
             color: #fff;
         }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
                 transform: translateY(-20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
+
         @keyframes fadeOut {
             from {
                 opacity: 1;
                 transform: translateY(0);
             }
+
             to {
                 opacity: 0;
                 transform: translateY(-20px);
             }
         }
+
         #overlay {
             position: fixed;
             top: 0;
@@ -111,6 +123,7 @@
             z-index: 9999;
             display: none;
         }
+
         #loader {
             width: 45px;
             aspect-ratio: 1;
@@ -130,6 +143,7 @@
         }
     </style>
 </head>
+
 <body>
     <div id="notification-container"></div>
     <div id="overlay"></div>
@@ -138,4 +152,5 @@
     @yield('content2')
     @include('frontend.layout2.footer2')
 </body>
+
 </html>
