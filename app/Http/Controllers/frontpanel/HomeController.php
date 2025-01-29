@@ -28,7 +28,8 @@ class HomeController extends Controller
 
             $programs = Program::selectRaw('title,image,slug')
                 ->where('status', 'Y')
-                ->orderBy('id', 'desc')
+                ->latest()
+                ->limit(6)
                 ->get();
 
 
@@ -37,9 +38,10 @@ class HomeController extends Controller
                 ->orderBy('id', 'desc')
                 ->take(3)
                 ->get();
-                foreach ($events as $event) {
-                    $formattedDates[$event->id] = dayandmonth($event->event_date);
-                }
+                
+            foreach ($events as $event) {
+                $formattedDates[$event->id] = dayandmonth($event->event_date);
+            }
 
 
             $histories = History::selectRaw('title, details,image,slug')

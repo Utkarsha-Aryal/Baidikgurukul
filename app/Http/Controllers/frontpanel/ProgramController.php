@@ -50,8 +50,16 @@ class ProgramController extends Controller
             $programs = Program::selectRaw('title,slug')
                 ->where('status', 'Y')
                 ->orderBy('id', 'desc')
-                ->take(6)
                 ->get();
+
+
+            // $programs = Program::selectRaw('title,slug')
+            //     ->where('status', 'Y')
+            //     ->where('slug', '!=', $slug)
+            //     ->orderBy('id', 'desc')
+            //     ->take(6)
+            //     ->get();
+
 
 
             $data = [
