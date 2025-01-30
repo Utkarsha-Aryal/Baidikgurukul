@@ -13,7 +13,7 @@
                     </div>
                     <div class="email_txt_container">
                         @if (!empty($siteSetting->email))
-                            <a href="mailto:{{ $siteSetting->email ?? '' }}" target="_blank">
+                            <a href="mailto:{{ $siteSetting->email ?? '' }}">
                                 <p>{{ $siteSetting->email ?? '' }}</p>
                             </a>
                         @else
@@ -31,7 +31,7 @@
                     </div>
                     <div class="contact_txt_container">
                         @if (!empty($siteSetting->phone_number))
-                            <a href="tel:{{ $siteSetting->phone_number ?? '' }}" target="_blank">
+                            <a href="tel:{{ $siteSetting->phone_number ?? '' }}">
                                 <p>{{ $siteSetting->phone_number ?? '' }}</p>
                             </a>
                         @else
@@ -50,7 +50,7 @@
                 </div> -->
                 <div class="social_icon_container">
                     @if (!empty($siteSetting->link_facebook))
-                        <a href="{{ $siteSetting->link_facebook }}" target="_blank"> <svg
+                        <a href="#"> <svg
                                 xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-link_facebook" viewBox="0 0 16 16">
                                 <path
@@ -69,7 +69,7 @@
                 </div>
                 <div class="social_icon_container">
                     @if (!empty($siteSetting->link_twitter))
-                        <a href="{{ $siteSetting->link_twitter }}" target="_blank">
+                        <a href="#">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-twitter" viewBox="0 0 16 16">
                                 <path
@@ -88,7 +88,7 @@
                 </div>
                 <div class="social_icon_container">
                     @if (!empty($siteSetting->link_instagram))
-                        <a href="{{ $siteSetting->link_instagram }}" target="_blank">
+                        <a href="#">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-instagram" viewBox="0 0 16 16">
                                 <path
