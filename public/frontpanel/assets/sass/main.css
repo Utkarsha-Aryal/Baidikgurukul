@@ -5362,7 +5362,7 @@ body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .nav
   flex-direction: column !important;
   transform: translateX(0);
   width: 100%;
-  top: -4px;
+  top: -10px;
   height: 100vh;
 }
 body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .nav_list_hamburger_menu .nav_list_menu .navigation_list.active body {
@@ -5419,16 +5419,12 @@ body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .nav
   padding: 10px 10px;
   border-top: 2px solid rgb(6, 106, 200);
 }
-@media (max-width: 768px) {
-  body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .nav_list_hamburger_menu .nav_list_menu .navigation_list li .dropdown {
-    padding: 0 10px;
-    width: 100px;
-    left: 79px !important;
-  }
-}
 @media (max-width: 992px) {
   body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .nav_list_hamburger_menu .nav_list_menu .navigation_list li .dropdown {
-    left: 80px;
+    position: static;
+    width: 80%;
+    border: none;
+    background: white;
   }
 }
 body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .nav_list_hamburger_menu .nav_list_menu .navigation_list li .dropdown li {
@@ -5438,6 +5434,13 @@ body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .nav
 @media (max-width: 768px) {
   body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .nav_list_hamburger_menu .nav_list_menu .navigation_list li .dropdown li {
     padding: 0;
+    border: none;
+  }
+}
+@media (max-width: 992px) {
+  body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .nav_list_hamburger_menu .nav_list_menu .navigation_list li .dropdown li {
+    padding: 0;
+    border: none;
   }
 }
 body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .nav_list_hamburger_menu .nav_list_menu .navigation_list li .dropdown li:nth-child(2) a {
@@ -5451,6 +5454,11 @@ body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .nav
 body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .nav_list_hamburger_menu .nav_list_menu .navigation_list li .dropdown li a {
   color: rgb(115, 115, 115);
   font-size: 15px;
+}
+@media (max-width: 768px) {
+  body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .nav_list_hamburger_menu .nav_list_menu .navigation_list li .dropdown li a {
+    color: black;
+  }
 }
 body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .nav_list_hamburger_menu .nav_list_menu .navigation_list li .dropdown li a::after {
   display: none;
@@ -5477,20 +5485,15 @@ body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .nav
 body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .nav_list_hamburger_menu .nav_list_menu .navigation_list li .dropdown li .nested-dropdown li:hover {
   color: rgb(6, 106, 200);
 }
-@media (max-width: 992px) {
-  body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .nav_list_hamburger_menu .nav_list_menu .navigation_list li .dropdown li .nested-dropdown {
-    left: 80px;
-    width: 100px;
-  }
-}
-@media (max-width: 768px) {
-  body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .nav_list_hamburger_menu .nav_list_menu .navigation_list li .dropdown li .nested-dropdown {
-    left: 80px;
-    width: 65px !important;
-  }
-}
 body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .nav_list_hamburger_menu .nav_list_menu .navigation_list li .dropdown li:hover .nested-dropdown {
   display: block;
+}
+@media (max-width: 992px) {
+  body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .nav_list_hamburger_menu .nav_list_menu .navigation_list li .dropdown li:hover .nested-dropdown {
+    position: static;
+    background: white;
+    border: none;
+  }
 }
 body .header_container_wrapper #sticky_nav_menu .nav_menu_wrapper_container .nav_list_hamburger_menu .nav_list_menu .navigation_list li:hover .dropdown {
   display: block;
