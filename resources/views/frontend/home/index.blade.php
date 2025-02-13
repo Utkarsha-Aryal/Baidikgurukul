@@ -357,7 +357,7 @@
                         </p>
                     </div>
                     <div class="second_event_text">
-                        <p>हाम्रो आगामी <span class="blue_text">कार्यक्रम बारे सोचना </span></p>
+                        <p>हाम्रो आगामी <span class="blue_text">कार्यक्रम बारे सुचना </span></p>
                     </div>
                     <div class="third_event_text">
                         <P>मगर समुदाय नेपालका आदिवासी जनजातिहरू मध्ये एक हो, जो आफ्नो धनीका लागि परिचित छ
