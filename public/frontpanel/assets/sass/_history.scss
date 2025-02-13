@@ -135,6 +135,18 @@
                             font-weight: 400;
                             color: rgba(115, 115, 115, 1);
                         }
+                        .table {
+                            width: 100%;
+                            td {
+                                padding-block: 8px;
+                            }
+                            tr {
+                                display: flex;
+                                align-items: center;
+                                justify-content: space-between;
+                                width: 100%;
+                            }
+                        }
                     }
                     .third_image_wrapper {
                         display: flex;
