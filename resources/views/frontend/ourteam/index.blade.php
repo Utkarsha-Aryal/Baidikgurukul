@@ -14,7 +14,7 @@
                 <img src="{{ asset('frontpanel/assets/images/image1.jpeg') }}" alt="hands">
             </div>
             <div class="main_txt">
-                <p>हाम्रो टोली</p>
+                <p>{{ $teamcategoryName ?? '' }}</p>
             </div>
         </div>
         <div class="img_after">
@@ -27,9 +27,10 @@
             <div class="container_wrapper">
                 <!-- Tab Navigation (Left Side) -->
                 <div class="tabs">
-                    @if (!empty($uniqueYearIntervals))
+                    @if (!empty($uniqueYearIntervals) && count($uniqueYearIntervals) > 0)
                         @foreach ($uniqueYearIntervals as $index => $yearInterval)
-                            <div class="tab {{ $index == 0 ? 'active' : '' }}" id="tab{{ $index + 1 }}" data-year-interval="{{ $yearInterval }}">
+                            <div class="tab {{ $index == 0 ? 'active' : '' }}" id="tab{{ $index + 1 }}"
+                                data-year-interval="{{ $yearInterval }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
@@ -39,13 +40,12 @@
                             </div>
                         @endforeach
                     @else
-                        <p>No Data Found</p>
+                        <p>No Data Available</p>
                     @endif
                 </div>
 
-                <!-- Content Area (Right Side) -->
                 <div class="content">
-                  
+
                 </div>
             </div>
         </div>
@@ -54,21 +54,21 @@
     <script>
         $(document).ready(function() {
             var slug = @json($slug);
-            
+
             function loadTabContent(tab) {
                 $('.tab').removeClass('active');
                 tab.addClass('active');
-    
+
                 let yearInterval = tab.data('year-interval');
                 let url = "{{ url('/team/gettabcontent') }}";
-    
+
                 $('.content').html('<p>Loading...</p>');
-    
+
                 var data = {
                     yearInterval: yearInterval,
                     slug: slug,
                 };
-    
+
                 $.post({
                     url: url,
                     method: 'POST',
@@ -84,16 +84,17 @@
                         }
                     },
                     error: function() {
-                        $('.content').html('<p>An error occurred while loading data. Please try again later.</p>');
+                        $('.content').html(
+                            '<p>An error occurred while loading data. Please try again later.</p>');
                     }
                 });
             }
-    
+
             $('.tab').on('click', function(e) {
                 e.preventDefault();
                 loadTabContent($(this));
             });
-    
+
             // Trigger click on the first tab to load its content on page load
             $('.tab').first().trigger('click');
         });

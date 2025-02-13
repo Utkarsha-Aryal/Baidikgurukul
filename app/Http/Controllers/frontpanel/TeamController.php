@@ -21,6 +21,7 @@ class TeamController extends Controller
             $data = [];
 
             $teamcategory = TeamCategory::where('slug', $slug)->first();
+            $teamcategoryName = $teamcategory->team_category;
 
             $teamcategoryId = $teamcategory->id;
 
@@ -35,8 +36,8 @@ class TeamController extends Controller
             })->unique()->values();
 
             $data = [
-                // 'members' => $members,
                 'uniqueYearIntervals' => $uniqueYearIntervals,
+                'teamcategoryName' => $teamcategoryName,
                 'type' => $type,
                 'message' => $message,
                 'slug' => $slug
@@ -111,12 +112,12 @@ class TeamController extends Controller
             $timeintervalId = $timeinterval->id;
 
             $teammember = DB::table('team_members')
-            ->join('time_intervals', 'time_intervals.id', '=', 'team_members.time_interval_id')
-            ->join('team_categories', 'team_categories.id', '=', 'team_members.team_category_id')
-            ->where('team_members.team_category_id', $teamcategoryId)
+                ->join('time_intervals', 'time_intervals.id', '=', 'team_members.time_interval_id')
+                ->join('team_categories', 'team_categories.id', '=', 'team_members.team_category_id')
+                ->where('team_members.team_category_id', $teamcategoryId)
                 ->where('team_members.time_interval_id', $timeintervalId)
                 ->selectRaw('team_members.name,team_members.photo,team_members.slug,team_members.designation')
-                ->orderBy('team_members.order', 'asc')  
+                ->orderBy('team_members.order', 'asc')
                 ->get();
 
             $html = view('frontend.ourteam.tabConctent', compact('teammember'))->render();

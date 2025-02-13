@@ -17,67 +17,59 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
-        try {
-            $type = 'success';
+        $type = 'success';
+        $message = 'Successfully fetched data';
 
-            $message = 'Successfully fetched data';
+        $sitesetting = SiteSetting::find(1);
+        $about = AboutUs::find(1);
 
-            $sitesetting = SiteSetting::find(1);
+        $programs = Program::selectRaw('title,image,slug')
+            ->where('status', 'Y')
+            ->latest()
+            ->limit(6)
+            ->get();
 
-            $about = AboutUs::find(1);
+        $events = Event::selectRaw('title, details,image,slug,event_date,address,event_time_start,event_time_end,venue')
+            ->where('status', 'Y')
+            ->orderBy('id', 'desc')
+            ->take(3)
+            ->get();
 
-            $programs = Program::selectRaw('title,image,slug')
-                ->where('status', 'Y')
-                ->latest()
-                ->limit(6)
-                ->get();
+        $formattedDates = [];
 
-
-            $events = Event::selectRaw('title, details,image,slug,event_date,address,event_time_start,event_time_end,venue')
-                ->where('status', 'Y')
-                ->orderBy('id', 'desc')
-                ->take(3)
-                ->get();
-                
+        if ($events->isNotEmpty()) {
             foreach ($events as $event) {
                 $formattedDates[$event->id] = dayandmonth($event->event_date);
             }
-
-
-            $histories = History::selectRaw('title, details,image,slug')
-                ->where('status', 'Y')
-                ->orderBy('id', 'desc')
-                ->take(3)
-                ->get();
-
-            $message = MessageFrom::selectRaw('name,image,designation,message,slug,title')
-                ->where('status', 'Y')
-                ->where('display_in_home', 'Y')
-                ->first();
-
-            $eventImage = Event::where('status', 'Y')
-                ->orderBy('id', 'desc')
-                ->first();
-
-            $data = [
-                'sitesetting' => $sitesetting,
-                'eventImage' => $eventImage,
-                'about' => $about,
-                'programs' => $programs,
-                'events' => $events,
-                'histories' => $histories,
-                'formattedDates' => $formattedDates,
-                'events' => $events,
-                'type' => $type,
-                'message' => $message
-            ];
-        } catch (QueryException $e) {
-            $data['type'] = 'error';
-            $data['message'] = $this->queryMessage;
-        } catch (Exception $e) {
-            $data['type'] = 'error';
-            $data['message'] = $e->getMessage();
         }
+
+        $histories = History::selectRaw('title, details,image,slug')
+            ->where('status', 'Y')
+            ->orderBy('id', 'desc')
+            ->take(3)
+            ->get();
+
+        $message = MessageFrom::selectRaw('name,image,designation,message,slug,title')
+            ->where('status', 'Y')
+            ->where('display_in_home', 'Y')
+            ->first();
+
+        $eventImage = Event::where('status', 'Y')
+            ->orderBy('id', 'desc')
+            ->first();
+
+        $data = [
+            'sitesetting' => $sitesetting,
+            'eventImage' => $eventImage,
+            'about' => $about,
+            'programs' => $programs,
+            'events' => $events,
+            'histories' => $histories,
+            'formattedDates' => $formattedDates, 
+            'type' => $type,
+            'message' => $message
+        ];
+
         return view('frontend.home.index', $data);
     }
 }
