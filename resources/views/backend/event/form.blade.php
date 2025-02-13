@@ -71,7 +71,7 @@
             container: ".datepick"
         });
     });
-</script>\
+</script>
 
 <div class="modal-header">
     <h1 class="modal-title fs-5" id="staticBackdropLabel">Event</h1>

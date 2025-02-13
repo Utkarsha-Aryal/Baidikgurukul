@@ -19,6 +19,7 @@ class EventController extends Controller
 
             $events = Event::selectRaw('title, details, image, slug, address, venue, event_date, event_time_start, event_time_end, feature_image')
                 ->where('status', 'Y')
+                ->whereDate('event_date', '>=', now())
                 ->orderBy('id', 'asc')
                 ->paginate(3);
 

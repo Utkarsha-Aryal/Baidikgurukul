@@ -31,6 +31,7 @@ class HomeController extends Controller
 
         $events = Event::selectRaw('title, details,image,slug,event_date,address,event_time_start,event_time_end,venue')
             ->where('status', 'Y')
+            ->whereDate('event_date', '>=', now())
             ->orderBy('id', 'desc')
             ->take(3)
             ->get();
@@ -65,7 +66,7 @@ class HomeController extends Controller
             'programs' => $programs,
             'events' => $events,
             'histories' => $histories,
-            'formattedDates' => $formattedDates, 
+            'formattedDates' => $formattedDates,
             'type' => $type,
             'message' => $message
         ];
