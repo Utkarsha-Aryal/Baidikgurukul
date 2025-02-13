@@ -2336,7 +2336,6 @@ ol {
   padding-block: 8px;
 }
 .team_tab_section .container_wrapper .content #content1 .first_content_wrapper .second_txt .table tr {
-  display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
