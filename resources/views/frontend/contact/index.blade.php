@@ -28,7 +28,7 @@
             <div class="contact-content">
                 <div class="contact-content-lt">
                     <div class="contact-lt-header">
-                        <p>सम्पर्क गर्नुहोस</p>
+                        <p>हामीलाई सन्देश पठौना को लागी</p>
                     </div>
                     <div class="contact-lt-txt">
                         <p>फारम भर्नुहोस</p>
@@ -81,7 +81,7 @@
                                     <path
                                         d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1z" />
                                 </svg>
-                                <p>हामीलाई सम्पर्क गर्नुहोस</p>
+                                <p>हाम्रो सम्पर्क नम्बर र इमेल</p>
                             </div>
                             <div class="rt-desc">
                                 @if (!empty($sitesetting->phone_number))
