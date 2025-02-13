@@ -255,7 +255,7 @@
                         <p>कार्यक्रमहरू </p>
                     </div>
                     <div class="second_program_txt">
-                        <p>हाम्रा अपडेट <span class="blue">कार्यक्रमहरू</span></p>
+                        <p>हाम्रो <span class="blue">कार्यक्रम बारे जानकारी </span></p>
                     </div>
                     <div class="third_program_txt">
                         <p>चाेचाङ्गी समाज यसका सबै सदस्यहरूको प्रगति र कल्याण सुनिश्चित गर्दै हाम्रो समुदायको समृद्ध
@@ -357,7 +357,7 @@
                         </p>
                     </div>
                     <div class="second_event_text">
-                        <p>हाम्रो आगामी <span class="blue_text">कार्यक्रम बारे जानकारी </span></p>
+                        <p>हाम्रो आगामी <span class="blue_text">कार्यक्रम बारे सोचना </span></p>
                     </div>
                     <div class="third_event_text">
                         <P>मगर समुदाय नेपालका आदिवासी जनजातिहरू मध्ये एक हो, जो आफ्नो धनीका लागि परिचित छ
