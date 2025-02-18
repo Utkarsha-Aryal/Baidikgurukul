@@ -1,18 +1,133 @@
 @extends('frontend.layout2.main2')
 @section('title', 'होमपेज')
 @section('content2')
-    {{-- <style>
-        .program_swiper .program_txt_pagination_wrap .program_initiative_txt .first_program_txt::after {
-            content: "";
-            position: absolute;
-            height: 2px;
-            width: 50px;
-            border-radius: 4px;
-            background-color: rgb(6, 106, 200);
-            top: 10px;
-            left: 90px;
+    <style>
+        body.modal-open {
+            overflow: hidden;
         }
-    </style> --}}
+
+
+        .custom-modal {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+
+
+        .custom-modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+
+        .custom-modal-content {
+            background-color: #fff;
+            /* padding: 20px; */
+            border-radius: 8px;
+            text-align: center;
+            position: relative;
+            width: 400px;
+            height: 500px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+
+        .custom-close {
+            color: #aaa;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .custom-close:hover,
+        .custom-close:focus {
+            color: black;
+            text-decoration: none;
+        }
+
+
+        .modal-img {
+            width: 100%;
+            height: 100%;
+            object-fit: fill !important;
+            border-radius: 5px;
+            display: block;
+            margin: auto;
+        }
+
+        .modal-p {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+
+        @keyframes fadeIn {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+
+    @foreach ($notices as $index => $notice)
+        <div id="customModal-{{ $index }}" class="custom-modal">
+            @if (!empty($notice) && !empty($notice->image))
+                <div class="custom-modal-content">
+                    <span class="custom-close" data-modal="customModal-{{ $index }}">&times;</span>
+                    {{-- <p class="modal-p">{{ $notice->title }}</p> --}}
+                    <img class="modal-img" src="{{ asset('storage/notice/' . $notice->image) }}" alt="Notice Image">
+                </div>
+        </div>
+    @endif
+    @endforeach
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var modals = document.querySelectorAll('.custom-modal');
+
+            modals.forEach(function(modal) {
+                // Show modal
+                modal.classList.add('show');
+                document.body.classList.add('modal-open');
+
+                var closeBtn = modal.querySelector('.custom-close');
+
+                closeBtn.addEventListener('click', function() {
+                    modal.classList.remove('show');
+                    document.body.classList.remove('modal-open');
+                });
+
+                window.addEventListener('click', function(event) {
+                    if (event.target === modal) {
+                        modal.classList.remove('show');
+                        document.body.classList.remove('modal-open');
+                    }
+                });
+            });
+        });
+    </script>
+
+
     <section class="first_content">
         <div class="bg_image">
             <img src="{{ asset('frontpanel/assets/images/image1.jpeg') }}" alt="">

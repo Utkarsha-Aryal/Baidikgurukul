@@ -10,7 +10,11 @@ use App\Models\BackPanel\History;
 use App\Models\BackPanel\Program;
 use App\Models\BackPanel\SiteSetting;
 use App\Models\BackPanel\MessageFrom;
+use App\Models\BackPanel\Notice;
 use Exception;
+
+use Carbon\Carbon;
+
 use Illuminate\Database\QueryException;
 
 class HomeController extends Controller
@@ -59,9 +63,21 @@ class HomeController extends Controller
             ->orderBy('id', 'desc')
             ->first();
 
+
+
+        $today = Carbon::today()->toDateString();
+
+
+        $notices = Notice::where('status', 'Y')
+            ->whereDate('start_date', '<=', $today)
+            ->whereDate('end_date', '>=', $today)
+            ->orderBy('order_number', 'desc')
+            ->get();
+
         $data = [
             'sitesetting' => $sitesetting,
             'eventImage' => $eventImage,
+            'notices' => $notices,
             'about' => $about,
             'programs' => $programs,
             'events' => $events,

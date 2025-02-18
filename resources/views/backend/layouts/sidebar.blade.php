@@ -65,6 +65,21 @@
                     </a>
                 </li>
 
+
+                <li class="slide__category"><span class="category-name">Notice</span></li>
+
+                <li class="slide">
+                    <a href="{{ route('admin.notice') }}" class="side-menu__item">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" width="16" height="16"
+                            fill="currentColor" class="bi bi-card-checklist" viewBox="0 0 16 16">
+                            <path
+                                d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z" />
+                            <path
+                                d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0M7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0" />
+                        </svg>
+                        <span class="side-menu__label">Notice</span>
+                    </a>
+                </li>
                 <li class="slide__category"><span class="category-name">One Time Setting</span></li>
 
                 <li class="slide">
@@ -120,20 +135,22 @@
                     </ul>
                 </li>
                 {{-- our team end here --}}
-                {{-- <li class="slide">
+                <li class="slide">
                     <a href="{{ route('admin.member') }}" class="side-menu__item">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" width="16" height="16"
-                            fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" width="16"
+                            height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
                             <path
                                 d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5" />
                         </svg>
                         <span class="side-menu__label">Our Team</span>
                     </a>
-                </li> --}}
+                </li>
+
+
                 <li class="slide">
                     <a href="{{ route('admin.message') }}" class="side-menu__item">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" width="16" height="16"
-                            viewBox="0 0 24 24">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" width="16"
+                            height="16" viewBox="0 0 24 24">
                             <path fill="currentColor"
                                 d="M4 4h16v12H5.17L4 17.17zm0-2c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm2 10h12v2H6zm0-3h12v2H6zm0-3h12v2H6z" />
                         </svg>
@@ -142,8 +159,8 @@
                 </li>
                 <li class="slide">
                     <a href="{{ route('admin.post') }}" class="side-menu__item">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" width="16" height="16"
-                            viewBox="0 0 24 24">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" width="16"
+                            height="16" viewBox="0 0 24 24">
                             <path fill="currentColor"
                                 d="M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h8q.425 0 .713.288T14 4t-.288.713T13 5H5v14h14v-8q0-.425.288-.712T20 10t.713.288T21 11v8q0 .825-.587 1.413T19 21zm4-4q-.425 0-.712-.288T8 16t.288-.712T9 15h6q.425 0 .713.288T16 16t-.288.713T15 17zm0-3q-.425 0-.712-.288T8 13t.288-.712T9 12h6q.425 0 .713.288T16 13t-.288.713T15 14zm0-3q-.425 0-.712-.288T8 10t.288-.712T9 9h6q.425 0 .713.288T16 10t-.288.713T15 11zm9-2q-.425 0-.712-.288T17 8V7h-1q-.425 0-.712-.288T15 6t.288-.712T16 5h1V4q0-.425.288-.712T18 3t.713.288T19 4v1h1q.425 0 .713.288T21 6t-.288.713T20 7h-1v1q0 .425-.288.713T18 9" />
                         </svg>
@@ -288,6 +305,10 @@
                         </li>
                     </ul>
                 </li>
+
+
+
+
 
                 <!-- End::slide -->
             </ul>

@@ -24,6 +24,7 @@ use App\Http\Controllers\BackPanel\FAQController;
 use App\Http\Controllers\BackPanel\ProgramController;
 use App\Http\Controllers\BackPanel\RitualController;
 use App\Http\Controllers\BackPanel\EnquiryController as BackEnquiryController;
+use App\Http\Controllers\BackPanel\NoticeController;
 use App\Http\Controllers\frontpanel\ContactController;
 use App\Http\Controllers\frontpanel\DonarController;
 use App\Http\Controllers\frontpanel\EventController as FrontEventController;
@@ -320,6 +321,14 @@ Route::group(['middleware' => 'admin'], function () {
             Route::post('/restore', [BackEnquiryController::class, 'restore'])->name('admin.enquiry.restore');
         });
         //ritual end here
+
+        Route::group(['prefix' => 'notice'], function () {
+            Route::get('/', [NoticeController::class, 'index'])->name('admin.notice');
+            Route::post('/save', [NoticeController::class, 'save'])->name('admin.notice.save');
+            Route::post('/list', [NoticeController::class, 'list'])->name('admin.notice.list');
+            Route::post('/delete', [NoticeController::class, 'delete'])->name('admin.notice.delete');
+            Route::post('/restore', [NoticeController::class, 'restore'])->name('admin.notice.restore');
+        });
     });
 });
 /* Backend-end */
