@@ -14,7 +14,7 @@
                 <img src="{{ asset('frontpanel/assets/images/image1.jpeg') }}" alt="hands">
             </div>
             <div class="main_txt">
-                <p>हाम्रो टोली</p>
+                <p>{{ $teamcategoryName ?? '' }}</p>
             </div>
         </div>
         <div class="img_after">
@@ -27,7 +27,7 @@
             <div class="container_wrapper">
                 <!-- Tab Navigation (Left Side) -->
                 <div class="tabs">
-                    @if (!empty($uniqueYearIntervals))
+                    @if (!empty($uniqueYearIntervals) && count($uniqueYearIntervals) > 0)
                         @foreach ($uniqueYearIntervals as $index => $yearInterval)
                             <div class="tab {{ $index == 0 ? 'active' : '' }}" id="tab{{ $index + 1 }}"
                                 data-year-interval="{{ $yearInterval }}">
@@ -40,11 +40,10 @@
                             </div>
                         @endforeach
                     @else
-                        <p>No Data Found</p>
+                        <p>No Data Available</p>
                     @endif
                 </div>
 
-                <!-- Content Area (Right Side) -->
                 <div class="content">
 
                 </div>

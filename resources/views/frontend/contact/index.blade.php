@@ -16,7 +16,7 @@
                 <img src="{{ asset('frontpanel/assets/images/image1.jpeg') }}" alt="">
             </div>
             <div class="main_txt">
-                <p>सम्पर्क गर्नुहोस</p>
+                <p>हम्रो सम्पर्क बिवरन्</p>
             </div>
         </div>
         <div class="img_after">
@@ -28,7 +28,7 @@
             <div class="contact-content">
                 <div class="contact-content-lt">
                     <div class="contact-lt-header">
-                        <p>हामीलाई सन्देश पठौना को लागी</p>
+                        <p>हामीलाई सन्देश पठाउनको लागि</p>
                     </div>
                     <div class="contact-lt-txt">
                         <p>फारम भर्नुहोस</p>
