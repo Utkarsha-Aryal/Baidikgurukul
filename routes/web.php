@@ -25,6 +25,8 @@ use App\Http\Controllers\BackPanel\ProgramController;
 use App\Http\Controllers\BackPanel\RitualController;
 use App\Http\Controllers\BackPanel\EnquiryController as BackEnquiryController;
 use App\Http\Controllers\BackPanel\NoticeController;
+use App\Http\Controllers\BackPanel\CerficicateController;
+use App\Http\Controllers\BackPanel\CertificateController;
 use App\Http\Controllers\frontpanel\ContactController;
 use App\Http\Controllers\frontpanel\DonarController;
 use App\Http\Controllers\frontpanel\EventController as FrontEventController;
@@ -322,6 +324,7 @@ Route::group(['middleware' => 'admin'], function () {
         });
         //ritual end here
 
+        //notice start here
         Route::group(['prefix' => 'notice'], function () {
             Route::get('/', [NoticeController::class, 'index'])->name('admin.notice');
             Route::post('/save', [NoticeController::class, 'save'])->name('admin.notice.save');
@@ -329,6 +332,17 @@ Route::group(['middleware' => 'admin'], function () {
             Route::post('/delete', [NoticeController::class, 'delete'])->name('admin.notice.delete');
             Route::post('/restore', [NoticeController::class, 'restore'])->name('admin.notice.restore');
         });
+        //notice end here
+
+        //certificate start here
+        Route::group(['prefix' => 'cerficicate'], function () {
+            Route::get('/', [CertificateController::class, 'index'])->name('admin.certificate');
+            Route::post('/save', [CertificateController::class, 'save'])->name('admin.certificate.save');
+            Route::post('/list', [CertificateController::class, 'list'])->name('admin.certificate.list');
+            Route::post('/delete', [CertificateController::class, 'delete'])->name('admin.certificate.delete');
+            Route::post('/restore', [CertificateController::class, 'restore'])->name('admin.certificate.restore');
+        });
+        //certificate end here
     });
 });
 /* Backend-end */
