@@ -28,7 +28,7 @@ class TeamController extends Controller
             $members = TeamMember::with('timeInterval')
                 ->where('status', 'Y')
                 ->where('team_category_id', $teamcategoryId)
-                ->orderBy('id', 'desc')
+                ->orderBy('order', 'asc')
                 ->get();
 
             $uniqueYearIntervals = $members->map(function ($member) {

@@ -117,7 +117,7 @@ class GalleryController extends Controller
             $images = GalleryImage::where('gallery_id', $galleryId)
                 ->where('status', 'Y')
                 ->orderBy('id', 'desc')
-                ->get();
+                ->paginate(12);
 
             $data = [
                 'images' => $images,
