@@ -44,6 +44,8 @@ use App\Http\Controllers\frontpanel\EnquiryController;
 use App\Http\Controllers\frontpanel\MessageFromController as FrontMessageFromController;
 use App\Http\Controllers\frontpanel\TimelineController as FrontTimelineController;
 use App\Http\Controllers\ContactController as frontContact;
+use App\Http\Controllers\frontpanel\CertificateController as FrontCertificateController;
+
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -400,6 +402,8 @@ Route::post('senddata', [EnquiryController::class, 'save'])->name('enquiry.save'
 Route::get('message', [FrontMessageFromController::class, 'index'])->name('message');
 
 Route::get('timeline', [FrontTimelineController::class, 'index'])->name('timeline');
+
+Route::get('certificate', [FrontCertificateController::class, 'certificate'])->name('certificate');
 
 
 // Front End Start here 
