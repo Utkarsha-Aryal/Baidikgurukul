@@ -190,6 +190,10 @@
                                             class="{{ request()->routeIs('timeline') ? 'active' : '' }}">वार्षिक
                                             प्रगति समरि</a>
                                     </li>
+                                    <li><a href="{{ route('certificate') }}"
+                                            class="{{ request()->routeIs('certificate') ? 'active' : '' }}">प्रमाणपत्र
+                                            / पुरस्कार</a>
+                                    </li>
                                 </ul>
                             </li>
                             <li><a href="{{ route('program') }}"
