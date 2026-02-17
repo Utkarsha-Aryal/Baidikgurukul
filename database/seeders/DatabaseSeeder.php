@@ -12,10 +12,10 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            // UsersTableSeeder::class,
-            // SiteSettingSeeder::class,
-            // AboutUsSeeder::class,
-            BackPanelProgramSeeder::class, // Add the new seeder here
+            UsersTableSeeder::class,
+            SiteSettingSeeder::class,
+            AboutUsSeeder::class,
+            // BackPanelProgramSeeder::class, // Add the new seeder here
         ]);
     }
 }

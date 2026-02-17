@@ -20,6 +20,11 @@ class TeamMember extends Model
         return $this->belongsTo(TimeInterval::class, 'time_interval_id');
     }
 
+      public function teamCategory()
+    {
+        return $this->belongsTo(TeamCategory::class, 'team_category_id');
+    }
+
     public static function saveData($post)
     {
         try {
@@ -153,4 +158,17 @@ class TeamMember extends Model
             throw $e;
         }
     }
+ public function scopeActive($q) { return $q->where('status', 'Y'); }
+
+    public function scopeInterval($q, $intervalId)
+    {
+        return $q->where('time_interval_id', $intervalId);
+    }
+
+    public function scopeOrdered($q)
+    {
+        // NULL order goes last
+        return $q->orderByRaw('ISNULL(`order`), `order` ASC');
+    }
+
 }

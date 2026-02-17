@@ -11,6 +11,9 @@ use App\Models\BackPanel\Program;
 use App\Models\BackPanel\SiteSetting;
 use App\Models\BackPanel\MessageFrom;
 use App\Models\BackPanel\Notice;
+use App\Models\BackPanel\TeamMember;
+use App\Models\BackPanel\Gallery;
+use App\Models\BackPanel\Post;
 use Exception;
 
 use Carbon\Carbon;
@@ -40,6 +43,10 @@ class HomeController extends Controller
             ->take(3)
             ->get();
 
+            $news = Post::selectRaw('title,slug,event_date,event_address,image,details')->where('status','Y')->limit(3)->get();
+
+        $galleries = Gallery::selectRaw('name,image,slug')->where('status','Y')->limit(3)->get();
+
         $formattedDates = [];
 
         if ($events->isNotEmpty()) {
@@ -62,8 +69,17 @@ class HomeController extends Controller
         $eventImage = Event::where('status', 'Y')
             ->orderBy('id', 'desc')
             ->first();
+            
 
-
+        $teamMembers = TeamMember::query()
+    ->where([
+        ['team_category_id', 1],
+        ['time_interval_id', 1],
+        ['status', 'Y']
+    ])
+    ->orderBy('order')
+    ->limit(3)
+    ->get();
 
         $today = Carbon::today()->toDateString();
 
@@ -81,8 +97,11 @@ class HomeController extends Controller
             'about' => $about,
             'programs' => $programs,
             'events' => $events,
+            'news' => $news,
             'histories' => $histories,
+            'galleries' => $galleries,
             'formattedDates' => $formattedDates,
+            'teamMembers' => $teamMembers,
             'type' => $type,
             'message' => $message
         ];

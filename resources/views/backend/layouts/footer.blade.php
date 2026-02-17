@@ -18,7 +18,7 @@
      <div class="container">
          <div class="lft_content">
              <span class="text-muted"> @copy<span id="year"> 2025 </span> <a href="javascript:void(0);"
-                     class="text-muted">Chochangay Samaj Nepal. All Rights Reserved.</a>
+                     class="text-muted">परमान्द बैदिक सस्कृत  गुरुकुल  All Rights Reserved.</a>
              </span>
          </div>
          <div class="rght_content">

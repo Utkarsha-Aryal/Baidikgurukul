@@ -13,45 +13,25 @@ use Illuminate\Support\Facades\DB;
 
 class TeamController extends Controller
 {
-    public function ourteam($slug)
-    {
-        try {
-            $type = 'success';
-            $message = 'Successfully fetched data';
-            $data = [];
+    public function members()
+{
+    // ✅ auto-pick latest interval (or you can choose by request)
+    $intervalId = request('interval_id') 
+        ?? TimeInterval::query()->orderByDesc('id')->value('id');
 
-            $teamcategory = TeamCategory::where('slug', $slug)->first();
-            $teamcategoryName = $teamcategory->team_category;
+    $categories = TeamCategory::query()
+        ->with(['teamMembers' => function ($q) use ($intervalId) {
+            $q->active()
+              ->interval($intervalId)
+              ->ordered();
+        }])
+        ->orderBy('id') // or order by a category_order column if you have it
+        ->get()
+        // ✅ remove empty categories (no members in that interval)
+        ->filter(fn ($cat) => $cat->teamMembers->count() > 0);
 
-            $teamcategoryId = $teamcategory->id;
-
-            $members = TeamMember::with('timeInterval')
-                ->where('status', 'Y')
-                ->where('team_category_id', $teamcategoryId)
-                ->orderBy('order', 'asc')
-                ->get();
-
-            $uniqueYearIntervals = $members->map(function ($member) {
-                return $member->timeInterval->year_interval;
-            })->unique()->values();
-
-            $data = [
-                'uniqueYearIntervals' => $uniqueYearIntervals,
-                'teamcategoryName' => $teamcategoryName,
-                'type' => $type,
-                'message' => $message,
-                'slug' => $slug
-            ];
-        } catch (QueryException $e) {
-            $data['type'] = 'error';
-            $data['message'] = $this->queryMessage;
-        } catch (Exception $e) {
-            $data['type'] = 'error';
-            $data['message'] = $e->getMessage();
-        }
-
-        return view('frontend.ourteam.index', $data);
-    }
+    return view('frontend.ourteam.index', compact('categories', 'intervalId'));
+}
 
     public function teaminner($slug)
     {

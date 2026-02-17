@@ -15,7 +15,7 @@ class TeamCategory extends Model
     //function to show relation with member
     public function teamMember()
     {
-        return $this->hasMany(TeamMember::class);
+        return $this->hasMany(TeamMember::class,'team_category_id');
     }
 
     //function to save team category

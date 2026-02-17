@@ -356,7 +356,7 @@ Route::get('about', [IntroductionController::class, 'introduction'])->name('abou
 
 Route::get('new', [IntroductionController::class, 'new'])->name('new');
 
-Route::get('team/{slug}', [TeamController::class, 'ourteam'])->name('ourteam');
+Route::get('member', [TeamController::class, 'members'])->name('members');
 Route::get('teaminner/{slug}', [TeamController::class, 'teaminner'])->name('teaminner');
 Route::get('year/{slug}', [TeamController::class, 'teamyear'])->name('teamyear');
 Route::post('/team/gettabcontent', [TeamController::class, 'getTabContent'])->name('team.gettabcontent');
