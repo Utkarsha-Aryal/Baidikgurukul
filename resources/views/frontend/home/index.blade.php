@@ -17,32 +17,37 @@
     <!-- Slider -->
     <section class="card slider" data-slider data-autoplay="true" data-interval="5000" aria-label="Homepage photo slider">
       <div class="slider__viewport">
-        <div class="slide">
-          <img src="assets/img/slide1.jpg" alt="Institute campus or temple" />
-          <div class="slide__content">
-            <span class="badge">Announcement</span>
-            <h2>New Batch Admissions Open</h2>
-            <p>Join structured spiritual training with a disciplined daily routine.</p>
+        @php
+            $sliderItems = collect($news)->concat($events);
+        @endphp
+        
+        @forelse($sliderItems as $item)
+          <div class="slide">
+            <img src="{{ $item->image ? asset('storage/post/' . $item->image) : asset('images/gurukul.jpg') }}" alt="{{ $item->title }}" />
+            <div class="slide__content">
+              <span class="badge">{{ isset($item->event_date) ? 'Event/News' : 'News' }}</span>
+              <h2>{{ $item->title }}</h2>
+              <p>{{ \Illuminate\Support\Str::limit(strip_tags($item->details), 100) }}</p>
+            </div>
           </div>
-        </div>
-
-        <div class="slide">
-          <img src="assets/img/slide2.jpg" alt="Prayer or satsang" />
-          <div class="slide__content">
-            <span class="badge">Event</span>
-            <h2>Monthly Satsang & Teaching</h2>
-            <p>Guided session on scripture, practice, and community service.</p>
+        @empty
+          <div class="slide">
+            <img src="{{ asset('images/gurukul.jpg') }}" alt="Institute campus or temple" />
+            <div class="slide__content">
+              <span class="badge">Announcement</span>
+              <h2>Welcome to Gurukul</h2>
+              <p>Explore our latest news and events.</p>
+            </div>
           </div>
-        </div>
-
-        <div class="slide">
-          <img src="assets/img/slide3.jpg" alt="Students in class" />
-          <div class="slide__content">
-            <span class="badge">Training</span>
-            <h2>Residential Learning Environment</h2>
-            <p>Study, practice, and seva under experienced mentors.</p>
+          <div class="slide">
+            <img src="{{ asset('images/635179469_1328808025960244_3437006497765644158_n.jpg') }}" alt="Prayer or satsang" />
+            <div class="slide__content">
+              <span class="badge">Activity</span>
+              <h2>Daily Practice</h2>
+              <p>Observe the peaceful moments of satsang.</p>
+            </div>
           </div>
-        </div>
+        @endforelse
       </div>
 
       <div class="slider__controls" aria-hidden="false">
@@ -71,7 +76,7 @@
         <article class="card person">
           
           <img 
-            src="{{ $member->photo ? asset('storage/' . $member->photo) : asset('assets/img/default.jpg') }}" 
+            src="{{ $member->photo ? asset('storage/community/' . $member->photo) : asset('assets/img/default.jpg') }}" 
             alt="{{ $member->name }} photo" 
           />
 
@@ -91,90 +96,82 @@
 
     <!-- News + Events (two columns) -->
     <section class="split">
-    <section class="card">
-  <div class="card__head">
-    <div>
-      <h2 class="card__title">News</h2>
-      <p class="card__sub">Latest updates and highlights</p>
-    </div>
-    <a class="btn" href="">View All</a>
-  </div>
-
-  <div class="card__body">
-    <div class="list">
-
-      @forelse($news as $item)
-        <a class="list-item" href="">
-          
-          <div class="date">
-            {{ \Carbon\Carbon::parse($item->event_date)->format('d M Y') }}
-          </div>
-
+      <section class="card">
+        <div class="card__head">
           <div>
-            <p class="title">{{ $item->title }}</p>
-            <p class="desc">
-              {{ \Illuminate\Support\Str::limit(strip_tags($item->details), 80) }}
-            </p>
+            <h2 class="card__title">News</h2>
+            <p class="card__sub">Latest updates and highlights</p>
           </div>
+          <a class="btn" href="{{ route('news') }}">View All</a>
+        </div>
 
-        </a>
-      @empty
-        <p>No news available.</p>
-      @endforelse
+        <div class="card__body">
+          <div class="list">
+            @forelse($news as $item)
+              <a class="list-item" href="{{ route('news.inner.page', $item->slug) }}">
+                <div class="date">
+                  {{ \Carbon\Carbon::parse($item->event_date)->format('d M Y') }}
+                </div>
 
-    </div>
-  </div>
-</section>
-
-    <section class="card">
-  <div class="card__head">
-    <div>
-      <h2 class="card__title">Events</h2>
-      <p class="card__sub">Upcoming activities and programs</p>
-    </div>
-    <a class="btn" href="">View All</a>
-  </div>
-
-  <div class="card__body">
-    <div class="list">
-
-      @forelse($events as $event)
-        <a class="list-item" href="">
-          <div class="date">
-            {{ $event->event_date ? \Carbon\Carbon::parse($event->event_date)->format('d M Y') : '' }}
+                <div>
+                  <p class="title">{{ $item->title }}</p>
+                  <p class="desc">
+                    {{ \Illuminate\Support\Str::limit(strip_tags($item->details), 80) }}
+                  </p>
+                </div>
+              </a>
+            @empty
+              <p>No news available.</p>
+            @endforelse
           </div>
+        </div>
+      </section>
 
+      <section class="card">
+        <div class="card__head">
           <div>
-            <p class="title">{{ $event->title }}</p>
-
-            <p class="desc">
-              {{ \Illuminate\Support\Str::limit(strip_tags($event->details), 80) }}
-            </p>
-
-            {{-- Optional: show venue + time --}}
-            <p class="desc" style="opacity:.8;">
-              @if($event->venue) {{ $event->venue }} @endif
-              @if($event->event_time_start)
-                @if($event->venue) • @endif
-                {{ $event->event_time_start }}
-                @if($event->event_time_end) - {{ $event->event_time_end }} @endif
-              @endif
-              @if($event->address)
-                @if($event->venue || $event->event_time_start) • @endif
-                {{ $event->address }}
-              @endif
-            </p>
+            <h2 class="card__title">Events</h2>
+            <p class="card__sub">Upcoming activities and programs</p>
           </div>
-        </a>
-      @empty
-        <p>No upcoming events.</p>
-      @endforelse
+          <a class="btn" href="{{ route('events') }}">View All</a>
+        </div>
 
-    </div>
-  </div>
-</section>
+        <div class="card__body">
+          <div class="list">
+            @forelse($events as $event)
+              <a class="list-item" href="{{ route('event.inner.page', $event->slug) }}">
+                <div class="date">
+                  {{ $event->event_date ? \Carbon\Carbon::parse($event->event_date)->format('d M Y') : '' }}
+                </div>
 
+                <div>
+                  <p class="title">{{ $event->title }}</p>
 
+                  <p class="desc">
+                    {{ \Illuminate\Support\Str::limit(strip_tags($event->details), 80) }}
+                  </p>
+
+                  <p class="desc" style="opacity:.8;">
+                    @if($event->venue) {{ $event->venue }} @endif
+                    @if($event->event_time_start)
+                      @if($event->venue) • @endif
+                      {{ $event->event_time_start }}
+                      @if($event->event_time_end) - {{ $event->event_time_end }} @endif
+                    @endif
+                    @if($event->address)
+                      @if($event->venue || $event->event_time_start) • @endif
+                      {{ $event->address }}
+                    @endif
+                  </p>
+                </div>
+              </a>
+            @empty
+              <p>No upcoming events.</p>
+            @endforelse
+          </div>
+        </div>
+      </section>
+    </section>
   </div>
 
   <!-- RIGHT: Sidebar -->
@@ -188,16 +185,16 @@
         </div>
       </div>
       <div class="card__body quick">
-        <a class="quick-link" href="gallery-videos.html">
+        <a class="quick-link" href="{{ route('video') }}">
           <span>Video Gallery</span>
           <small>→</small>
         </a>
-        <a class="quick-link" href="gallery-photos.html">
+        <a class="quick-link" href="{{ route('gallery') }}">
           <span>Photo Gallery</span>
           <small>→</small>
         </a>
-        <a class="quick-link" href="notices.html">
-          <span>Notices (PDF)</span>
+        <a class="quick-link" href="{{ route('notices.index') }}">
+          <span>Notices</span>
           <small>→</small>
         </a>
       </div>
@@ -210,23 +207,23 @@
           <p class="card__sub">Preview</p>
         </div>
       </div>
-       <div class="card__body">
-    <div class="thumb-grid">
-
-      @forelse($galleries as $gallery)
-        <a class="thumb" href="">
-          <img
-            src="{{ $gallery->image ? asset('storage/gallery-image/' . $gallery->image) : asset('assets/img/default.jpg') }}"
-            alt="{{ $gallery->name }}"
-          />
-        </a>
-      @empty
-        <p>No gallery available.</p>
-      @endforelse
-
-    </div>
-  </div>
+      <div class="card__body">
+        <div class="thumb-grid">
+          @forelse($galleries as $gallery)
+            <a class="thumb" href="{{ route('image.inner', $gallery->slug) }}">
+              <img
+                src="{{ $gallery->image ? asset('storage/gallery-image/' . $gallery->image) : asset('assets/img/default.jpg') }}"
+                alt="{{ $gallery->name }}"
+              />
+            </a>
+          @empty
+            <p>No gallery available.</p>
+          @endforelse
+        </div>
+      </div>
     </section>
+  </aside>
+</main>
 @endsection
 
 @push('scripts')
