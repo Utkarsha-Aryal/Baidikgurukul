@@ -43,6 +43,7 @@ use App\Http\Controllers\frontpanel\TeamController;
 use App\Http\Controllers\frontpanel\EnquiryController;
 use App\Http\Controllers\frontpanel\MessageFromController as FrontMessageFromController;
 use App\Http\Controllers\frontpanel\TimelineController as FrontTimelineController;
+use App\Http\Controllers\frontpanel\VideoController;
 use App\Http\Controllers\ContactController as frontContact;
 use App\Http\Controllers\frontpanel\CertificateController as FrontCertificateController;
 
@@ -356,7 +357,7 @@ Route::get('about', [IntroductionController::class, 'introduction'])->name('abou
 
 Route::get('new', [IntroductionController::class, 'new'])->name('new');
 
-Route::get('member', [TeamController::class, 'members'])->name('members');
+Route::get('members', [TeamController::class, 'members'])->name('members');
 Route::get('teaminner/{slug}', [TeamController::class, 'teaminner'])->name('teaminner');
 Route::get('year/{slug}', [TeamController::class, 'teamyear'])->name('teamyear');
 Route::post('/team/gettabcontent', [TeamController::class, 'getTabContent'])->name('team.gettabcontent');
@@ -370,8 +371,11 @@ Route::get('imageinner/{slug}', [FrontGalleryController::class, 'imageInner'])->
 Route::post('/gallery/image/gettabcontent/{tab}', [FrontGalleryController::class, 'getTabContent'])->name('gallery.image.gettabcontent');
 // Route::post('/gallery/video/gettabcontent/{}', [FrontGalleryController::class, 'getTabContentVideo'])->name('gallery.video.gettabcontent');
 
+Route::get('video',[VideoController::class,'index'])->name('video');
 Route::get('news', [NewsController::class, 'news'])->name('news');
 Route::get('news/innerpage/{slug}', [NewsController::class, 'innerpage'])->name('news.inner.page');
+
+Route::get('notices', [\App\Http\Controllers\frontpanel\NoticeController::class, 'index'])->name('notices.index');
 
 Route::get('historyinner', [FrontHistoryController::class, 'history'])->name('history');
 Route::get('historyinner/{slug}', [FrontHistoryController::class, 'inner'])->name('history.inner');
@@ -387,7 +391,7 @@ Route::post('/rules/gettabcontent/{slug}', [RulesController::class, 'getTabConte
 
 Route::get('faq', [FrontFAQController::class, 'faq'])->name('faq');
 
-Route::get('event', [FrontEventController::class, 'event'])->name('event');
+Route::get('events', [FrontEventController::class, 'event'])->name('events');
 Route::get('event/innerpage/{slug}', [FrontEventController::class, 'innerpage'])->name('event.inner.page');
 
 Route::get('contact', [ContactController::class, 'contact'])->name('contact');

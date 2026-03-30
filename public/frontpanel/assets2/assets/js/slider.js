@@ -10,8 +10,10 @@
 
   let index = 0;
   const total = slides.length;
+  if (total === 0) return;
 
   function renderDots() {
+    if (!dotsWrap) return;
     dotsWrap.innerHTML = "";
     for (let i = 0; i < total; i++) {
       const d = document.createElement("button");
@@ -35,13 +37,18 @@
   nextBtn?.addEventListener("click", next);
   prevBtn?.addEventListener("click", prev);
 
+  if (total === 1) {
+    prevBtn?.setAttribute("hidden", "hidden");
+    nextBtn?.setAttribute("hidden", "hidden");
+  }
+
   renderDots();
   goTo(0);
 
   // autoplay (optional)
   const autoplay = slider.getAttribute("data-autoplay") === "true";
   const interval = Number(slider.getAttribute("data-interval") || "4500");
-  if (autoplay) {
+  if (autoplay && total > 1) {
     let t = setInterval(next, interval);
     slider.addEventListener("mouseenter", () => clearInterval(t));
     slider.addEventListener("mouseleave", () => (t = setInterval(next, interval)));

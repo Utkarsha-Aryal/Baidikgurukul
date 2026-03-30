@@ -21,7 +21,7 @@
         <div class="container">
             <div class="left_rght_txt_img">
                 <div class="left_img">
-                    @if (!empty($member->photo) && Storage::exists('public/community/' . $member->photo))
+                    @if (!empty($member->photo) && file_exists(storage_path('app/public/community/' . $member->photo)))
                         <img src="{{ asset('storage/community/' . $member->photo) }}" alt="">
                     @else
                         <img src="{{ asset('frontpanel/assets/images/curved.jpeg') }}" alt="">

@@ -1,7 +1,7 @@
 @extends('frontend.layouts.main')
 @section('title', 'समाचार')
 
-@section('content2')
+@section('content')
    
 <section class="page-hero">
   <div class="container page-hero__inner">
@@ -15,38 +15,33 @@
     <div class="card__head">
       <div>
         <h2 class="card__title">Latest News</h2>
-        <p class="card__sub">Static list for now (backend can later make it dynamic)</p>
-      </div>
-    </div>
     <div class="card__body">
       <div class="list">
-        <div class="list-item">
-
-          <div class="date">15 Feb 2026</div>
-          <div>
-            <p class="title">New intake schedule published</p>
-            <p class="desc">Admissions open for the next batch. Check notices for PDFs.</p>
-          </div>
-        </div>
-
-        <div class="list-item">
-          <div class="date">10 Feb 2026</div>
-          <div>
-            <p class="title">Prayer hall renovation completed</p>
-            <p class="desc">Facilities improved for daily practice.</p>
-          </div>
-        </div>
+        @forelse($posts as $post)
+          <a class="list-item" href="{{ route('news.inner.page', $post->slug) }}" style="text-decoration: none; color: inherit;">
+            <div class="date">
+              {{ $post->event_date ? \Carbon\Carbon::parse($post->event_date)->format('d M Y') : '' }}
+            </div>
+            <div>
+              <p class="title">{{ $post->title }}</p>
+              <p class="desc">{{ \Illuminate\Support\Str::limit(strip_tags($post->details), 80) }}</p>
+            </div>
+          </a>
+        @empty
+          <p style="padding: 1rem;">No news available at this moment.</p>
+        @endforelse
       </div>
+      
+      @if($posts->hasPages())
+        <div class="pagination-wrapper" style="margin-top: 2rem; padding: 1rem;">
+          {{ $posts->links() }}
+        </div>
+      @endif
     </div>
   </section>
 </main>
 
-<footer class="footer">
-  <div class="container footer__inner">
-    <div><strong>Religious Training Institute</strong><br /><span class="muted">© <span id="year"></span></span></div>
-    <div><a href="notices.html">Notices</a> · <a href="events.html">Events</a></div>
-  </div>
-</footer>
+
 
 <script>
   const btn = document.querySelector(".nav-toggle");

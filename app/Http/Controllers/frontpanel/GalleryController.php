@@ -83,6 +83,7 @@ class GalleryController extends Controller
                 ->get();
 
             $data = [
+                'gallery' => $galleries,
                 'videos' => $videos,
                 'type' => $type,
                 'message' => $message
@@ -94,7 +95,7 @@ class GalleryController extends Controller
             $data['type'] = 'error';
             $data['message'] = $e->getMessage();
         }
-        return view('frontend.gallery.video', $data);
+        return view('frontend.gallery.vinner', $data);
     }
 
     public function imageInner($slug)

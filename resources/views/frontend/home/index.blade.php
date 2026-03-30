@@ -17,17 +17,13 @@
     <!-- Slider -->
     <section class="card slider" data-slider data-autoplay="true" data-interval="5000" aria-label="Homepage photo slider">
       <div class="slider__viewport">
-        @php
-            $sliderItems = collect($news)->concat($events);
-        @endphp
-        
-        @forelse($sliderItems as $item)
+        @forelse($sliderItems as $slide)
           <div class="slide">
-            <img src="{{ $item->image ? asset('storage/post/' . $item->image) : asset('images/gurukul.jpg') }}" alt="{{ $item->title }}" />
+            <img src="{{ asset('storage/gallery-image/' . $slide->image) }}" alt="{{ $slide->name }}" />
             <div class="slide__content">
-              <span class="badge">{{ isset($item->event_date) ? 'Event/News' : 'News' }}</span>
-              <h2>{{ $item->title }}</h2>
-              <p>{{ \Illuminate\Support\Str::limit(strip_tags($item->details), 100) }}</p>
+              <span class="badge">Gallery</span>
+              <h2>{{ $slide->name }}</h2>
+              <p>Explore moments from our latest activities.</p>
             </div>
           </div>
         @empty
@@ -36,15 +32,7 @@
             <div class="slide__content">
               <span class="badge">Announcement</span>
               <h2>Welcome to Gurukul</h2>
-              <p>Explore our latest news and events.</p>
-            </div>
-          </div>
-          <div class="slide">
-            <img src="{{ asset('images/635179469_1328808025960244_3437006497765644158_n.jpg') }}" alt="Prayer or satsang" />
-            <div class="slide__content">
-              <span class="badge">Activity</span>
-              <h2>Daily Practice</h2>
-              <p>Observe the peaceful moments of satsang.</p>
+              <p>Discover our programs, news, events and committee updates.</p>
             </div>
           </div>
         @endforelse

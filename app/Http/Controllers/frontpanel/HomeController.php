@@ -46,6 +46,12 @@ class HomeController extends Controller
             $news = Post::selectRaw('title,slug,event_date,event_address,image,details')->where('status','Y')->limit(3)->get();
 
         $galleries = Gallery::selectRaw('name,image,slug')->where('status','Y')->limit(3)->get();
+        $sliderItems = Gallery::selectRaw('name,image,slug')
+            ->where('status', 'Y')
+            ->whereNotNull('image')
+            ->orderBy('id', 'desc')
+            ->limit(5)
+            ->get();
 
         $formattedDates = [];
 
@@ -100,6 +106,7 @@ class HomeController extends Controller
             'news' => $news,
             'histories' => $histories,
             'galleries' => $galleries,
+            'sliderItems' => $sliderItems,
             'formattedDates' => $formattedDates,
             'teamMembers' => $teamMembers,
             'type' => $type,

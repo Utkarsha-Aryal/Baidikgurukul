@@ -13,25 +13,27 @@ use Illuminate\Support\Facades\DB;
 
 class TeamController extends Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     public function members()
-{
-    // ✅ auto-pick latest interval (or you can choose by request)
-    $intervalId = request('interval_id') 
-        ?? TimeInterval::query()->orderByDesc('id')->value('id');
+    {
+        // Auto-pick latest interval (or accept from request)
+        $intervalId = request('interval_id')
+            ?? TimeInterval::query()->orderByDesc('id')->value('id');
 
-    $categories = TeamCategory::query()
-        ->with(['teamMembers' => function ($q) use ($intervalId) {
-            $q->active()
-              ->interval($intervalId)
-              ->ordered();
-        }])
-        ->orderBy('id') // or order by a category_order column if you have it
-        ->get()
-        // ✅ remove empty categories (no members in that interval)
-        ->filter(fn ($cat) => $cat->teamMembers->count() > 0);
+        $categories = TeamCategory::where('status', 'Y')
+            ->orderBy('order_number', 'asc')
+            ->get();
 
-    return view('frontend.ourteam.index', compact('categories', 'intervalId'));
-}
+        $timeIntervals = TimeInterval::where('status', 'Y')
+            ->orderByDesc('id')
+            ->get();
+
+        return view('frontend.ourteam.index', compact('categories', 'timeIntervals', 'intervalId'));
+    }
 
     public function teaminner($slug)
     {
@@ -86,9 +88,16 @@ class TeamController extends Controller
             $message = 'Successfully fetched data';
 
             $data = [];
-            $teamcategory = TeamCategory::where('slug',  $post['slug'])->first();
+            $teamcategory = TeamCategory::where('slug', $post['slug'])->first();
+            if (!$teamcategory) {
+                throw new Exception('Team category not found.');
+            }
             $teamcategoryId = $teamcategory->id;
-            $timeinterval = TimeInterval::where('year_interval',  $post['yearInterval'])->first();
+
+            $timeinterval = TimeInterval::where('year_interval', $post['yearInterval'])->first();
+            if (!$timeinterval) {
+                throw new Exception('Time interval not found.');
+            }
             $timeintervalId = $timeinterval->id;
 
             $teammember = DB::table('team_members')
@@ -96,6 +105,7 @@ class TeamController extends Controller
                 ->join('team_categories', 'team_categories.id', '=', 'team_members.team_category_id')
                 ->where('team_members.team_category_id', $teamcategoryId)
                 ->where('team_members.time_interval_id', $timeintervalId)
+                ->where('team_members.status', 'Y')
                 ->selectRaw('team_members.name,team_members.photo,team_members.slug,team_members.designation')
                 ->orderBy('team_members.order', 'asc')
                 ->get();

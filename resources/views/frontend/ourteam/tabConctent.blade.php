@@ -1,31 +1,38 @@
-@if (!empty($teammember))
-<div id="content1" class="content-item">
-    <div class="container_content_wrapper">
-            @foreach ($teammember as $index => $member)
-                <div class="image_container_wrap">
-                    <div class="img_hover_bg">
-                        <h3>{{ $member->name ?? '' }}</h3>
-                        <p>{{ $member->designation ?? '' }}</p>
-                    </div>
-                    <div class="img_default_bg">
-                        <h3>{{ $member->name ?? '' }}</h3>
-                        <p>{{ $member->designation ?? '' }}</p>
-                    </div>
-                    <div class="img_wrap">
-                        <a href="{{ route('teaminner', $member->slug) }}">
-                            @if (!empty($member->photo) && Storage::exists('public/community/' . $member->photo))
-                                <img src="{{ asset('storage/community/' . $member->photo) }}"
-                                    alt="">
-                            @else
-                                <img src="{{ asset('frontpanel/assets/images/curved.jpeg') }}"
-                                    alt="">
-                            @endif
-                        </a>
-                    </div>
-                </div>
-                @endforeach
+@if (!empty($teammember) && count($teammember) > 0)
+<div class="members-grid">
+    @foreach ($teammember as $member)
+    <article class="member-card">
+        <div class="member-card__img-wrap">
+            <a href="{{ route('teaminner', $member->slug) }}">
+                @if (!empty($member->photo) && file_exists(storage_path('app/public/community/' . $member->photo)))
+                    <img
+                        src="{{ asset('storage/community/' . $member->photo) }}"
+                        alt="{{ $member->name }}"
+                        loading="lazy"
+                    >
+                @else
+                    <img
+                        src="{{ asset('frontpanel/assets/images/curved.jpeg') }}"
+                        alt="{{ $member->name }}"
+                        loading="lazy"
+                    >
+                @endif
+            </a>
+            <div class="member-card__overlay">
+                <a href="{{ route('teaminner', $member->slug) }}" class="member-card__overlay-link">
+                    View Profile
+                </a>
+            </div>
         </div>
-    </div>
+        <div class="member-card__info">
+            <p class="member-card__name">{{ $member->name ?? '' }}</p>
+            <p class="member-card__role">{{ $member->designation ?? '' }}</p>
+        </div>
+    </article>
+    @endforeach
+</div>
 @else
-<p>No Member Found</p>
+<div class="team-empty">
+    यस वर्षको लागि सदस्यहरू फेला परेनन् — No members found for this period.
+</div>
 @endif
