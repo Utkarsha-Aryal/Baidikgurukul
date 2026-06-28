@@ -1,4 +1,7 @@
 @extends('frontend.layout2.main2')
+@php
+    $captchaEnabled = filled(config('services.nocaptcha.sitekey')) && filled(config('services.nocaptcha.secret'));
+@endphp
 <style>
     .error-message {
         color: red;
@@ -40,14 +43,18 @@
                             <input type="text" id="lname" name="last_name" placeholder="थर *">
                             <input type="email" id="mail" name="email" placeholder="इमेल *">
                             <input type="text" id="msg" name="message" placeholder="सन्देश लेख्नुहोस *">
-                            <div class="form-group">
-                                {!! NoCaptcha::display() !!}
-                                @error('g-recaptcha-response')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
+                            @if ($captchaEnabled)
+                                <div class="form-group">
+                                    {!! NoCaptcha::display() !!}
+                                    @error('g-recaptcha-response')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            @endif
                         </div>
-                        {!! NoCaptcha::renderJs() !!}
+                        @if ($captchaEnabled)
+                            {!! NoCaptcha::renderJs() !!}
+                        @endif
                         <div class="submit-btn">
                             <button type="submit" class="submitData">
                                 <p>पेश गर्नुहोस</p>
@@ -103,15 +110,6 @@
         </div>
     </div>
     <script>
-        grecaptcha.ready(function() {
-            grecaptcha.execute('{{ config('captcha.sitekey') }}', {
-                action: 'submit'
-            }).then(function(token) {
-                document.getElementById('g-recaptcha-response').value = token;
-            });
-        });
-    </script>
-    <script>
         $(document).ready(function() {
             $('#contactUsForm').validate({
                 rules: {
@@ -165,7 +163,9 @@
                             if (response && response.type === 'success') {
                                 showNotification(response.message, 'success');
                                 $('#contactUsForm')[0].reset();
-                                grecaptcha.reset();
+                                if (window.grecaptcha) {
+                                    grecaptcha.reset();
+                                }
                             } else {
                                 showNotification(response.message, 'error');
                             }
@@ -176,7 +176,9 @@
                             const response = xhr.responseJSON;
                             showNotification(response && response.message ? response.message :
                                 'An error occurred', 'error');
-                            grecaptcha.reset();
+                            if (window.grecaptcha) {
+                                grecaptcha.reset();
+                            }
                         }
                     });
                 }

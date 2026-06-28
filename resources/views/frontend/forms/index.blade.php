@@ -1,17 +1,6 @@
 @extends('frontend.layout2.main2')
 @section('title', 'Our Population Entry Form')
 
-<link href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
-
-<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
-
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-
-<link rel="stylesheet" href="styles.css">
-<script src="script.js"></script>
-
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
 @section('content2')
     <section class="introduction_page">
         <div class="img_before">
@@ -424,46 +413,6 @@
                 errorPlacement: function(error, element) {
                     error.addClass('error-message'); // Add the 'error-message' class to the error label
                     error.insertAfter(element); // Display error message after the input field
-                }
-            });
-
-            $('.submitData').off('click');
-            $('.submitData').on('click', function() {
-                // Check if CAPTCHA is valid
-                const captchaResponse = grecaptcha.getResponse();
-                if (!captchaResponse) {
-                    $('#captchaError').show(); // Show error message
-                    return;
-                } else {
-                    $('#captchaError').hide(); // Hide error message
-                }
-
-                // Validate the form and submit via AJAX
-                if ($('#contactUsForm').valid()) {
-                    showLoader();
-
-                    $('#contactUsForm').ajaxSubmit({
-                        success: function(response) {
-                            if (response) {
-                                if (response.type === 'success') {
-                                    showNotification(response.message, 'success');
-                                    $('#contactUsForm')[0].reset();
-                                    grecaptcha.reset(); // Reset CAPTCHA
-                                    hideLoader();
-                                } else {
-                                    showNotification(response.message, 'error');
-                                    hideLoader();
-                                }
-                            }
-                            hideLoader();
-                        },
-                        error: function(xhr) {
-                            hideLoader();
-                            const response = xhr.responseJSON;
-                            showNotification(response && response.message ? response.message :
-                                'An error occurred', 'error');
-                        }
-                    });
                 }
             });
         });
