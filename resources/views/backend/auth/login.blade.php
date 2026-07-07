@@ -30,8 +30,8 @@
                     @csrf
                     <div class="form-group mb-3">
                         <label class="form-label">Email</label>
-                        <input class="form-control email" placeholder="Enter your email" type="text" name="email"
-                            id="email">
+                        <input class="form-control email" placeholder="Enter your email" type="email" name="email"
+                            id="email" autocomplete="username">
                         @error('email')
                             {{ $message }}
                         @enderror
@@ -39,7 +39,7 @@
                     <div class="form-group mb-3">
                         <label class="form-label">Password</label>
                         <input class="form-control password" placeholder="Enter your password" type="password"
-                            name="password" id="password">
+                            name="password" id="password" autocomplete="current-password">
                         @error('password')
                             {{ $message }}
                         @enderror

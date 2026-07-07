@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\frontpanel;
 
-
 use App\Http\Controllers\Controller;
 use App\Models\BackPanel\Enquiry as BackPanelEnquiry;
-use Illuminate\Http\Request;
-use Illuminate\Database\QueryException;
 use Exception;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Database\QueryException;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class EnquiryController extends Controller
 {
@@ -21,8 +20,11 @@ class EnquiryController extends Controller
                 'last_name' => 'required|min:2|max:50',
                 'email' => 'required',
                 'message' => 'required|min:5|max:255',
-                'g-recaptcha-response' => 'required|captcha',
             ];
+
+            if (filled(config('services.nocaptcha.sitekey')) && filled(config('services.nocaptcha.secret'))) {
+                $rules['g-recaptcha-response'] = 'required|captcha';
+            }
 
             $message = [
                 'first_name.required' => 'कृपया आफ्नो नाम प्रविष्ट गर्नुहोस्।',
@@ -50,7 +52,7 @@ class EnquiryController extends Controller
 
             DB::beginTransaction();
             $result = BackPanelEnquiry::saveData($post);
-            if (!$result) {
+            if (! $result) {
                 throw new Exception("Could't sent.", 1);
             }
 
@@ -64,6 +66,7 @@ class EnquiryController extends Controller
             $type = 'error';
             $message = $e->getMessage();
         }
+
         return response()->json(['type' => $type, 'message' => $message]);
     }
 }
