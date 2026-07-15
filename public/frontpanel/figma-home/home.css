@@ -1,0 +1,133 @@
+:root {
+  --yellow: #f0d900;
+  --saffron: #d78317;
+  --red: #bd3535;
+  --ink: #080808;
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; min-width: 320px; }
+
+body {
+  background: var(--yellow);
+  color: var(--ink);
+  font-family: "Noto Sans Devanagari", sans-serif;
+}
+
+img { display: block; max-width: 100%; }
+
+.gurukul-home { width: 100%; overflow: hidden; }
+
+.hero {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1726.254 / 566;
+  background: #5a6c33;
+}
+
+.hero > img { width: 100%; height: 100%; object-fit: cover; }
+
+.hero__arrow {
+  position: absolute;
+  top: 50%;
+  width: 60px;
+  height: 80px;
+  border: 0;
+  border-radius: 0;
+  background: rgba(0, 0, 0, .82);
+  color: white;
+  font: 400 34px/1 Arial, sans-serif;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.hero__arrow--left { left: 0; }
+.hero__arrow--right { right: 0; }
+.hero__arrow:focus-visible { outline: 4px solid white; outline-offset: -6px; }
+
+.welcome {
+  min-height: 890px;
+  padding: 47px 4.7% 100px;
+  background: var(--yellow);
+}
+
+.story-strip {
+  display: grid;
+  grid-template-columns: 1.104fr 1.052fr 1fr;
+  gap: 28px;
+}
+
+.story-strip img { width: 100%; aspect-ratio: 2.105 / 1; object-fit: cover; }
+
+.welcome__content {
+  display: grid;
+  grid-template-columns: minmax(0, 1056px) minmax(260px, 1fr);
+  gap: clamp(70px, 12.8vw, 220px);
+  align-items: start;
+  margin-top: 27px;
+}
+
+.intro-panel {
+  min-height: 478px;
+  padding: 33px 45px 38px;
+  background: var(--saffron);
+}
+
+.intro-panel__header { display: flex; align-items: center; gap: 25px; }
+.intro-panel__header img { width: 179px; height: 151px; object-fit: contain; flex: 0 0 auto; }
+
+.intro-panel h1 {
+  margin: 0;
+  font-size: clamp(38px, 3.7vw, 64px);
+  font-weight: 400;
+  line-height: 1.22;
+  letter-spacing: 0;
+}
+
+.intro-panel p {
+  margin: 17px 0 0;
+  color: white;
+  font-size: clamp(20px, 1.85vw, 32px);
+  line-height: 1.38;
+  letter-spacing: 0;
+}
+
+.guru-card { padding-top: 28px; text-align: center; }
+.guru-card > a { display: inline-block; margin-bottom: 8px; color: var(--red); font: 400 20px/1.4 Arial, sans-serif; text-decoration: none; }
+
+.guru-card__photo {
+  width: min(262px, 100%);
+  height: 230px;
+  margin: 0 auto;
+  background: white;
+  overflow: hidden;
+}
+
+.guru-card__photo img { width: 100%; height: 100%; object-fit: cover; }
+.footer-band { height: 259px; background: var(--red); }
+
+@media (max-width: 900px) {
+  .hero { aspect-ratio: 16 / 7; }
+  .hero__arrow { width: 40px; height: 58px; font-size: 26px; }
+  .welcome { min-height: 0; padding: 24px 20px 60px; }
+  .story-strip { grid-template-columns: 1fr; gap: 16px; }
+  .story-strip img { aspect-ratio: 16 / 8; }
+  .welcome__content { grid-template-columns: 1fr; gap: 28px; margin-top: 20px; }
+  .intro-panel { min-height: 0; padding: 24px; }
+  .intro-panel__header { gap: 16px; }
+  .intro-panel__header img { width: 90px; height: 80px; }
+  .intro-panel h1 { font-size: 34px; }
+  .intro-panel p { font-size: 20px; }
+  .guru-card { padding-top: 0; }
+  .footer-band { height: 140px; }
+}
+
+@media (max-width: 520px) {
+  .hero { aspect-ratio: 4 / 3; }
+  .hero > img { object-position: center; }
+  .intro-panel__header { align-items: flex-start; }
+  .intro-panel__header img { width: 70px; height: 64px; }
+  .intro-panel h1 { font-size: 28px; }
+  .intro-panel p { font-size: 18px; }
+}
